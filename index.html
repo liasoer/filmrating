@@ -274,7 +274,7 @@ const Finder = {
         else if(words.every(w=>t.split(' ').some(tw=>tw.startsWith(w)))) m=Math.max(m,2);
         else if(t.includes(nq)) m=Math.max(m,1); } }
       const pop=Object.keys(x.sitelinks||{}).length;
-      return {imdbID:imdb, Title:de||en, Year:year, Poster:null, score:m*1000+pop, m};
+      return {imdbID:imdb, Title:de||en, Year:year, Poster:null, score:m*40+Math.min(pop,120), m};
     }).filter(r=>r.imdbID?.startsWith('tt') && r.m>0).sort((a,b)=>b.score-a.score);
   },
   async search(q){
