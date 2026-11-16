@@ -188,6 +188,9 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .hint{color:var(--t2);font-size:13px;margin:8px 16px 0}
 
 
+/* Hinweis auf offene Freundschaftsanfragen */
+.avatar.badge-dot::after{content:"";position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#ff453a;box-shadow:0 0 0 2px #000}
+
 /* Umschalter Filme / Serien */
 .seg{position:relative;display:flex;padding:3px;border-radius:14px;background:rgba(118,118,128,.24);height:40px}
 .seg button{position:relative;z-index:1;flex:1;border-radius:11px;font-size:15px;font-weight:600;color:var(--t2);transition:color .2s}
@@ -439,7 +442,10 @@ const Local = {
   async list(){ const d=this.data(); return d.ratings.map(r=> r.user_id==='local' ? {...r, username:d.user?.username} : r); },
   async save(r){ const d=this.data(); if(r.id){ const i=d.ratings.findIndex(x=>x.id===r.id); d.ratings[i]={...d.ratings[i],...r}; } else d.ratings.unshift({...r,id:uid(),user_id:'local',created_at:new Date().toISOString()}); this.save_(); },
   async remove(id){ const d=this.data(); d.ratings=d.ratings.filter(x=>x.id!==id); this.save_(); },
-  async setUsername(n){ this.data().user.username=n; this.save_(); }
+  async setUsername(n){ this.data().user.username=n; this.save_(); },
+  async friendships(){ return [{id:'d1',status:'accepted',other:{id:'demo1',username:'max'},incoming:false},{id:'d2',status:'accepted',other:{id:'demo2',username:'lea'},incoming:false}]; },
+  async addFriend(n){ throw new Error('Im Demo-Modus nicht möglich'); },
+  async acceptFriend(){}, async removeFriend(){}
 };
 
 /* ================= Datenschicht: Supabase (mit Login) ================= */
@@ -469,7 +475,24 @@ const Remote = {
     const {error}=await q; if(error) throw error;
   },
   async remove(id){ const {error}=await this.sb.from('ratings').delete().eq('id',id); if(error) throw error; },
-  async setUsername(n){ const {error}=await this.sb.from('profiles').upsert({id:state.user.id,username:n}); if(error) throw error; state.user.username=n; }
+  async setUsername(n){ const {error}=await this.sb.from('profiles').update({username:n}).eq('id',state.user.id); if(error) throw new Error(/duplicate|unique/i.test(error.message)?'Dieser Nutzername ist schon vergeben':error.message); state.user.username=n; },
+  async friendships(){
+    const {data,error}=await this.sb.from('friendships').select('id,status,requester,addressee,r:profiles!friendships_requester_fkey(id,username),a:profiles!friendships_addressee_fkey(id,username)');
+    if(error) throw error; const me=state.user.id;
+    return data.map(f=>({id:f.id,status:f.status,incoming:f.addressee===me,other:f.requester===me?f.a:f.r}));
+  },
+  async addFriend(name){
+    const {data:p,error}=await this.sb.from('profiles').select('id,username').eq('username',name).maybeSingle();
+    if(error) throw error; if(!p) throw new Error(`Niemand heisst «${name}»`); if(p.id===state.user.id) throw new Error('Das bist du selbst');
+    const back=(state.fr||[]).find(f=>f.other?.id===p.id);
+    if(back?.status==='accepted') throw new Error('Ihr seid schon befreundet');
+    if(back?.incoming) return this.acceptFriend(back.id);
+    if(back) throw new Error('Anfrage wurde schon gesendet');
+    const {error:e2}=await this.sb.from('friendships').insert({requester:state.user.id,addressee:p.id}); if(e2) throw e2;
+    return 'sent';
+  },
+  async acceptFriend(id){ const {error}=await this.sb.from('friendships').update({status:'accepted'}).eq('id',id); if(error) throw error; return 'accepted'; },
+  async removeFriend(id){ const {error}=await this.sb.from('friendships').delete().eq('id',id); if(error) throw error; }
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
@@ -486,7 +509,7 @@ function renderAuth(register=false){
     <p>Bewerte Filme und vergleiche mit deinen Freunden.</p>
     <form id="af" autocomplete="on">
       <div class="grp">
-        ${register?`<div class="field"><input id="au" placeholder="Name (sichtbar für Freunde)" required autocomplete="nickname"></div>`:''}
+        ${register?`<div class="field"><input id="au" placeholder="Nutzername (z.B. lias)" required autocomplete="username" autocapitalize="off" autocorrect="off" pattern="[a-zA-Z0-9._]{3,20}"></div>`:''}
         <div class="field"><input id="ae" type="email" inputmode="email" placeholder="E-Mail" autocomplete="email" autocapitalize="off" required></div>
         <div class="field"><input id="ap" type="password" placeholder="Passwort${register?' (mind. 6 Zeichen)':''}" autocomplete="${register?'new-password':'current-password'}" ${DB.mode==='online'?'required minlength="6"':''}></div>
       </div>
@@ -499,7 +522,7 @@ function renderAuth(register=false){
   $('#af').onsubmit=async e=>{
     e.preventDefault(); document.activeElement?.blur();
     try{
-      state.user = register ? await DB.signUp($('#ae').value.trim(),$('#ap').value,$('#au').value.trim())
+      state.user = register ? await DB.signUp($('#ae').value.trim(),$('#ap').value,$('#au').value.trim().toLowerCase())
                             : await DB.signIn($('#ae').value.trim(),$('#ap').value);
       await refresh();
     }catch(err){ toast(err.message||'Fehler bei der Anmeldung'); }
@@ -508,9 +531,14 @@ function renderAuth(register=false){
 
 /* ================= Hauptansicht ================= */
 async function refresh(){
-  try{ state.ratings = await DB.list(); }catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
-  render();
+  try{ const [r,f] = await Promise.all([DB.list(), DB.friendships().catch(()=>[])]); state.ratings=r; state.fr=f;
+    state.friendIds = new Set(f.filter(x=>x.status==='accepted').map(x=>x.other?.id)); }
+  catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
+  render(); updateBadge();
 }
+const isFriend = r => state.friendIds?.has(r.user_id);
+const isMeOrFriend = r => r.user_id===state.user.id || isFriend(r);
+function updateBadge(){ const n=(state.fr||[]).filter(f=>f.incoming&&f.status==='pending').length; const a=$('#prof'); if(a) a.classList.toggle('badge-dot', n>0); }
 
 function aggregate(rows){
   const m={};
@@ -527,7 +555,7 @@ function renderDock(){
     window.addEventListener('resize',()=>{ lensW=0; placeLens(); });
   }
   tb.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b.dataset.t===state.tab));
-  requestAnimationFrame(()=>placeLens());
+  requestAnimationFrame(()=>{ placeLens(); updateBadge(); });
 }
 let lensW=0;
 function placeLens(x, big){
@@ -569,7 +597,7 @@ function render(){
   const kindOf = r => r?.ext?.kind==='series' ? 'series' : 'movie';
   const base = state.ratings.filter(r=>kindOf(r)===K);
   let items = state.tab==='mine' ? base.filter(r=>r.user_id===me)
-            : state.tab==='friends' ? base.filter(r=>r.user_id!==me)
+            : state.tab==='friends' ? base.filter(isFriend)
             : aggregate(base);
   items = items.map(r=>({...r,_s:r.count?r.overall:avg(r)}));
   const q=state.q.toLowerCase();
@@ -577,7 +605,7 @@ function render(){
   const s = top && state.sort==='date' ? 'score' : state.sort;
   items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
   const W = K==='series' ? ['Serien','deine erste Serie'] : ['Filme','deinen ersten Film'];
-  const emptyTxt = {mine:`Noch keine ${W[0]} bewertet.<br>Tippe auf <b>+</b> und bewerte ${W[1]}.`,friends:`Deine Freunde haben noch keine ${W[0]} bewertet.`,top:`Noch keine ${W[0]} bewertet.`}[state.tab];
+  const emptyTxt = {mine:`Noch keine ${W[0]} bewertet.<br>Tippe auf <b>+</b> und bewerte ${W[1]}.`,friends: state.friendIds?.size ? `Deine Freunde haben noch keine ${W[0]} bewertet.` : `Du hast noch keine Freunde.<br>Füge sie im Profil über ihren Nutzernamen hinzu.`,top:`Noch keine ${W[0]} bewertet.`}[state.tab];
   const sorts = [['date',top?'Beste':'Neueste'],['score','Beste'],['title','A bis Z']].filter((x,i)=>!(top&&i===1));
 
   $('#app').innerHTML = `
@@ -624,7 +652,7 @@ function fmtsOf(r){
   if(!f && r?.imdb_id && state.kino?.all){ f = state.kino.all.find(m=>m.imdb_id===r.imdb_id)?.formats; }
   return (f||[]).filter(x=>FMT_SHOW.includes(x));
 }
-function friendsFor(m){ return m.imdb_id ? state.ratings.filter(r=>r.imdb_id===m.imdb_id) : []; }
+function friendsFor(m){ return m.imdb_id ? state.ratings.filter(r=>r.imdb_id===m.imdb_id && isMeOrFriend(r)) : []; }
 const imdbNum = m => parseFloat(m.ext?.imdb)||0;
 const genresDe = m => (m.genres||[]).map(g=>GENRE_DE[g]||g);
 function badgeFor(m){ const f=(m.formats||[]).find(x=>x==='IMAX'||x==='4DX'||x==='ScreenX'); return f?`<span class="badge">${f}</span>`:''; }
@@ -688,7 +716,7 @@ function openKino(m){
         <h2>${esc(m.title)}</h2>
         <div class="meta">${[genresDe(m).join(', '), m.duration?m.duration+' Min':'', m.age?'Ab '+m.age.split('/')[0]:''].filter(Boolean).map(esc).join(' · ')}</div>
         ${m.release?`<div class="meta">${new Date(m.release)>new Date()?'Kinostart':'Im Kino seit'} ${esc(fmtDate(m.release))}</div>`:''}
-        ${a!=null?`<div class="scorerow">${ring(a,'xl')}<div class="lbl"><b>Eure Wertung</b>${fr.length} Bewertung${fr.length>1?'en':''}</div></div>`:''}
+        ${a!=null?`<div class="scorerow">${ring(a,'xl')}<div class="lbl"><b>Du und deine Freunde</b>${fr.length} Bewertung${fr.length>1?'en':''}</div></div>`:''}
         ${extPills(m.ext)}
         ${(m.formats||[]).length?`<div class="ext">${m.formats.map(f=>`<span class="pill fmt">${esc(f)}</span>`).join('')}</div>`:''}
       </div>
@@ -744,7 +772,7 @@ function openDetail(key){
   const f = list.find(r=>r.poster) || list[0];
   const e = list.find(r=>r.ext)?.ext;
   const mine = list.find(r=>r.user_id===state.user.id);
-  const others = list.filter(r=>r!==mine);
+  const others = list.filter(r=>r!==mine && isFriend(r));
   const all = Math.round(list.reduce((a,r)=>a+avg(r),0)/list.length*10)/10;
   openSheet({ body:`
     <div class="hero">
@@ -754,7 +782,7 @@ function openDetail(key){
         <h2>${esc(f.title)}</h2>
         <div class="meta">${[e?.kind==='series'?'Serie'+(e.seasons?` · ${e.seasons} Staffel${e.seasons>1?'n':''}`:''):'', f.year,e?.genre,e?.kind==='series'?'':e?.runtime].filter(Boolean).map(esc).join(' · ')}</div>
         ${e?.director?`<div class="meta">Regie: ${esc(e.director)}</div>`:''}
-        <div class="scorerow">${ring(all,'xl')}<div class="lbl"><b>Gesamtschnitt</b>${list.length} Bewertung${list.length>1?'en':''}</div></div>
+        <div class="scorerow">${ring(all,'xl')}<div class="lbl"><b>Schnitt aller Nutzer</b>${list.length} Bewertung${list.length>1?'en':''}</div></div>
         ${extPills(e, fmtsOf(list.find(x=>x.ext)||f))}
       </div>
     </div>
@@ -880,33 +908,45 @@ function openForm(r){
 }
 
 function openProfile(){
+  const fr=state.fr||[];
   const mine=state.ratings.filter(r=>r.user_id===state.user.id);
   const a=mine.length?Math.round(mine.reduce((s,r)=>s+avg(r),0)/mine.length*10)/10:0;
   openSheet({ title:'Profil', body:`
     <div style="text-align:center;margin:10px 0 6px">
       <div class="glass glass-btn avatar" style="width:84px;height:84px;margin:0 auto;font-size:34px">${esc((state.user.username||'?')[0].toUpperCase())}</div>
-      <h2 style="font:800 24px/1.2 var(--f);margin-top:14px">${esc(state.user.username||'')}</h2>
+      <h2 style="font:800 24px/1.2 var(--f);margin-top:14px">@${esc(state.user.username||'')}</h2>
       <div class="meta">${esc(state.user.email||'')}</div>
     </div>
-    <div class="grp" style="margin-top:20px"><div class="cell cell-h"><span>Bewertete Filme</span><b>${mine.length}</b></div><div class="cell cell-h"><span>Dein Schnitt</span>${ring(a,'sm')}</div></div>
-    <div class="sec">Freunde</div>
-    <button class="btn pri" id="inv" style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:8px">${I.share}Freunde einladen</button>
-    <div class="hint">Schick deinen Freunden den Link. Sobald sie sich registrieren, siehst du ihre Bewertungen im Tab «Freunde».</div>
-    <div class="sec">Dein Name für Freunde</div>
-    <div class="grp"><div class="field"><input id="pn" style="text-align:left;color:var(--t1)" value="${esc(state.user.username||'')}" autocomplete="nickname"></div></div>
-    <button class="btn sec2" id="ps">Name sichern</button>
+    <div class="grp" style="margin-top:20px"><div class="cell cell-h"><span>Bewertungen</span><b>${mine.length}</b></div><div class="cell cell-h"><span>Dein Schnitt</span>${ring(a,'sm')}</div></div>
+    <div class="sec">Freund hinzufügen</div>
+    <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="fa" style="text-align:left;color:var(--t1)" placeholder="Nutzername" autocapitalize="off" autocorrect="off" autocomplete="off" enterkeyhint="send"><button class="link" id="fab2" style="padding:8px 0 8px 8px">Hinzufügen</button></div></div>
+    ${fr.filter(f=>f.incoming&&f.status==='pending').length?`<div class="sec">Anfragen</div><div class="grp">${fr.filter(f=>f.incoming&&f.status==='pending').map(f=>`<div class="cell cell-h"><b>@${esc(f.other?.username)}</b><span style="display:flex;gap:14px"><button class="link" data-acc="${f.id}">Annehmen</button><button class="link" style="color:var(--t2)" data-del="${f.id}">Ablehnen</button></span></div>`).join('')}</div>`:''}
+    <div class="sec">Deine Freunde (${fr.filter(f=>f.status==='accepted').length})</div>
+    <div class="grp">${fr.filter(f=>f.status!=='pending'||!f.incoming).map(f=>`<div class="cell cell-h"><span><b>@${esc(f.other?.username)}</b>${f.status==='pending'?' <span class="meta" style="display:inline">· Anfrage gesendet</span>':''}</span><button class="link" style="color:var(--t2)" data-del="${f.id}">${f.status==='pending'?'Zurückziehen':'Entfernen'}</button></div>`).join('') || '<div class="cell note" style="margin:0">Noch keine Freunde. Füge sie oben über ihren Nutzernamen hinzu.</div>'}</div>
+    <button class="btn sec2" id="inv" style="display:flex;align-items:center;justify-content:center;gap:8px">${I.share}App mit Freunden teilen</button>
+    <div class="hint">Freunde sehen deine Bewertungen erst, wenn ihr euch gegenseitig bestätigt habt. Im Tab «Top» fliessen alle Bewertungen anonym in den Schnitt ein.</div>
+    <div class="sec">Dein Nutzername</div>
+    <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="pn" style="text-align:left;color:var(--t1)" value="${esc(state.user.username||'')}" autocapitalize="off" autocorrect="off" autocomplete="username"></div></div>
+    <button class="btn sec2" id="ps">Nutzername sichern</button>
     <div class="sec">App installieren</div>
     <div class="grp"><div class="cell note" style="margin:0">iPhone: In Safari auf Teilen tippen, dann «Zum Home-Bildschirm».</div></div>
     <button class="btn red" id="lo" style="margin-top:24px">Abmelden</button>
     ${DB.mode==='demo'?'<div class="demo">Demo-Modus aktiv.</div>':''}
   `});
   $('#inv').onclick=invite;
-  $('#ps').onclick=async()=>{ try{ await DB.setUsername($('#pn').value.trim()); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
+  const uname=v=>v.trim().replace(/^@/,'').toLowerCase();
+  $('#ps').onclick=async()=>{ const n=uname($('#pn').value); if(!/^[a-z0-9._]{3,20}$/.test(n)) return toast('3 bis 20 Zeichen: a-z, 0-9, Punkt, Unterstrich');
+    try{ await DB.setUsername(n); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
+  const add=async()=>{ const n=uname($('#fa').value); if(!n) return;
+    try{ const r=await DB.addFriend(n); toast(r==='accepted'?`Du und @${n} seid jetzt Freunde`:`Anfrage an @${n} gesendet`); await refresh(); openProfile(); }catch(e){ toast(e.message); } };
+  $('#fab2').onclick=add; $('#fa').onkeydown=e=>{ if(e.key==='Enter') add(); };
+  document.querySelectorAll('[data-acc]').forEach(b=>b.onclick=async()=>{ try{ await DB.acceptFriend(b.dataset.acc); toast('Freundschaft bestätigt'); await refresh(); openProfile(); }catch(e){toast(e.message);} });
+  document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{ try{ await DB.removeFriend(b.dataset.del); await refresh(); openProfile(); }catch(e){toast(e.message);} });
   $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; closeSheet(); renderAuth(); };
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '22';
+const APP_VERSION = '23';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
