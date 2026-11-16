@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Filmrating">
+<meta name="theme-color" content="#0e0e12">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<title>Filmrating</title>
+<style>
+:root{--bg:#0e0e12;--card:#191920;--card2:#22222c;--line:#2d2d39;--text:#f2f2f5;--mut:#9a9aab;--acc:#ffb547;--acc2:#ff8a3d;--ok:#4ad38a;--mid:#f5d04a;--low:#ff9a4a;--bad:#ff5d5d;--r:16px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+body{padding:env(safe-area-inset-top) 0 calc(90px + env(safe-area-inset-bottom))}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 75%,transparent);padding:14px 0 8px}
+.top{display:flex;align-items:center;justify-content:space-between}
+h1{font-size:26px;margin:0;letter-spacing:-.5px}
+h1 span{color:var(--acc)}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-weight:700;color:var(--acc)}
+.tabs{display:flex;gap:6px;margin:14px 0 10px;background:var(--card);padding:4px;border-radius:12px}
+.tabs button{flex:1;padding:8px;border-radius:9px;color:var(--mut);font-weight:600;font-size:14px}
+.tabs button.on{background:var(--card2);color:var(--text)}
+.tools{display:flex;gap:8px}
+.inp{width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;outline:none}
+.inp:focus{border-color:var(--acc)}
+select.inp{width:auto}
+.list{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.card{display:flex;gap:12px;background:var(--card);border-radius:var(--r);padding:10px;align-items:center;text-align:left;width:100%}
+.poster{width:56px;height:84px;border-radius:9px;background:var(--card2) center/cover;flex:none;display:grid;place-items:center;color:var(--mut);font-size:22px}
+.poster.big{width:120px;height:180px;border-radius:12px}
+.info{flex:1;min-width:0}
+.title{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub{color:var(--mut);font-size:13px;margin-top:2px}
+.ext{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.pill{font-size:11px;color:var(--mut);background:var(--card2);padding:2px 7px;border-radius:20px;white-space:nowrap}
+.pill b{color:var(--text);font-weight:600}
+.score{flex:none;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:19px;color:#111}
+.score.lg{width:76px;height:76px;font-size:28px;border-radius:18px}
+.fab{position:fixed;right:20px;bottom:calc(24px + env(safe-area-inset-bottom));width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#111;font-size:34px;font-weight:300;box-shadow:0 8px 24px #0008;z-index:6}
+.empty{text-align:center;color:var(--mut);padding:50px 20px}
+.overlay{position:fixed;inset:0;background:#000a;z-index:20;display:none;align-items:flex-end;justify-content:center}
+.overlay.open{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:640px;max-height:94vh;overflow:auto;border-radius:22px 22px 0 0;padding:10px 18px calc(24px + env(safe-area-inset-bottom));border-top:1px solid var(--line);animation:up .22s ease}
+@keyframes up{from{transform:translateY(40px);opacity:.4}}
+.grab{width:42px;height:5px;background:var(--line);border-radius:3px;margin:0 auto 12px}
+.sheet h2{margin:4px 0 14px;font-size:21px}
+label.l{display:block;font-size:13px;color:var(--mut);margin:12px 0 6px}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+.crit{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.crit .h{display:flex;justify-content:space-between;align-items:center;font-weight:600}
+.crit .v{font-weight:800;color:var(--acc);font-size:18px;min-width:40px;text-align:right}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:4px 0 0}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--acc) var(--p,50%),var(--line) var(--p,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;margin-top:-10px;box-shadow:0 2px 8px #0008}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--line)}
+input[type=range]::-moz-range-progress{height:6px;border-radius:3px;background:var(--acc)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:0}
+.btn{width:100%;padding:14px;border-radius:14px;font-weight:700;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#111;margin-top:14px}
+.btn.sec{background:var(--card);color:var(--text)}
+.btn.del{background:none;color:var(--bad);margin-top:6px}
+.total{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:14px;padding:12px 14px;margin:14px 0 4px}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;align-items:center;font-size:14px;margin:8px 0}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc)}
+.res{display:flex;gap:10px;align-items:center;padding:8px;border-radius:12px;width:100%;text-align:left}
+.res:active,.res:hover{background:var(--card)}
+.res .poster{width:40px;height:60px}
+.picked{display:flex;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:10px}
+.dhead{display:flex;gap:16px;align-items:flex-start}
+.other{background:var(--card);border-radius:14px;padding:12px 14px;margin-top:10px}
+.other .h{display:flex;justify-content:space-between;align-items:center}
+.note{color:var(--mut);font-size:14px;margin-top:6px;white-space:pre-wrap}
+.auth{min-height:80vh;display:flex;flex-direction:column;justify-content:center}
+.auth h1{font-size:38px;text-align:center}
+.auth p{text-align:center;color:var(--mut);margin:6px 0 24px}
+.link{color:var(--acc);font-weight:600;margin-top:14px;display:block;text-align:center;width:100%}
+.toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:var(--card2);padding:10px 16px;border-radius:12px;z-index:50;max-width:90%;box-shadow:0 6px 20px #0008;display:none}
+.demo{font-size:12px;color:var(--acc);text-align:center;margin-top:8px}
+.sec-t{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin:20px 0 4px}
+</style>
+</head>
+<body>
+<div id="app" class="wrap"></div>
+<button class="fab" id="fab" style="display:none" aria-label="Film bewerten">+</button>
+<div class="overlay" id="ov"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= KONFIGURATION =================
+   Leer lassen = Demo-Modus (nur auf diesem Gerät, ohne Login).
+   Siehe ANLEITUNG.md */
+const CONFIG = {
+  SUPABASE_URL: 'https://vpdgwopcsevtvvaufegr.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_8igcj2eTIqMjcsjkAxum7A_jSyR96RY',
+  OMDB_KEY: '9a64d183'          // für Poster, IMDb, Rotten Tomatoes, Metacritic
+};
+
+const CRITERIA = [
+  {key:'story',  label:'Story'},
+  {key:'acting', label:'Cast'},
+  {key:'camera', label:'Kamera & Bild'},
+  {key:'music',  label:'Soundtrack'},
+  {key:'fun',    label:'Unterhaltung'}
+];
+
+/* ================= Helfer ================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const avg = r => { const v = CRITERIA.map(c => +r[c.key]).filter(x => !isNaN(x)); return v.length ? Math.round(v.reduce((a,b)=>a+b,0)/v.length*10)/10 : 0; };
+const f1 = n => (+n).toFixed(1);
+const col = n => n>=8?'var(--ok)':n>=6.5?'var(--mid)':n>=4.5?'var(--low)':'var(--bad)';
+const filmKey = r => r.imdb_id || ((r.title||'').trim().toLowerCase()+'|'+(r.year||''));
+const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now()+''+Math.random());
+const posterStyle = p => p && p !== 'N/A' ? `style="background-image:url('${esc(p)}')"` : '';
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.style.display='block'; clearTimeout(t._t); t._t=setTimeout(()=>t.style.display='none',3200); }
+function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('Script konnte nicht geladen werden')); document.head.appendChild(s); }); }
+
+function extPills(e){
+  if(!e) return '';
+  const p=[];
+  if(e.imdb) p.push(`<span class="pill">IMDb <b>${esc(e.imdb)}</b></span>`);
+  if(e.rt)   p.push(`<span class="pill">🍅 <b>${esc(e.rt)}</b></span>`);
+  if(e.mc)   p.push(`<span class="pill">MC <b>${esc(e.mc)}</b></span>`);
+  return p.length ? `<div class="ext">${p.join('')}</div>` : '';
+}
+
+/* ================= OMDb (Poster + externe Ratings) ================= */
+const Omdb = {
+  on: () => !!CONFIG.OMDB_KEY,
+  async search(q){
+    const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&type=movie&s=${encodeURIComponent(q)}`);
+    const d = await r.json(); return d.Search || [];
+  },
+  async details(id){
+    const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&i=${id}`);
+    const d = await r.json(); if(d.Response==='False') throw new Error(d.Error);
+    const find = s => (d.Ratings||[]).find(x=>x.Source===s)?.Value;
+    return {
+      imdb_id:d.imdbID, title:d.Title, year:parseInt(d.Year)||null,
+      poster: d.Poster!=='N/A'?d.Poster:null,
+      ext:{ imdb: d.imdbRating!=='N/A'?d.imdbRating:null, rt: find('Rotten Tomatoes')||null,
+            mc: find('Metacritic')?.replace('/100','')||null, genre:d.Genre, director:d.Director, runtime:d.Runtime }
+    };
+  }
+};
+
+/* ================= Datenschicht: Demo (lokal) ================= */
+const Local = {
+  mode:'demo', KEY:'filmrating-demo', _d:null,
+  data(){
+    if(this._d) return this._d;
+    try{ this._d = JSON.parse(localStorage.getItem(this.KEY)); }catch(e){}
+    if(!this._d){ this._d = {user:null, ratings:[
+      {id:uid(),user_id:'demo1',username:'Kollege Max',title:'Interstellar',year:2014,watched_on:'2026-10-02',story:9.5,acting:8.5,camera:10,music:10,fun:9,note:'Hans Zimmer!',created_at:'2026-10-02',ext:{imdb:'8.7',rt:'73%',mc:'74'}},
+      {id:uid(),user_id:'demo2',username:'Kollegin Lea',title:'Dune: Part Two',year:2024,watched_on:'2026-11-01',story:8,acting:9,camera:10,music:9.5,fun:8.5,note:'',created_at:'2026-11-01',ext:{imdb:'8.5',rt:'92%',mc:'79'}}
+    ]}; }
+    return this._d;
+  },
+  save_(){ try{ localStorage.setItem(this.KEY, JSON.stringify(this._d)); }catch(e){} },
+  async init(){},
+  async getUser(){ return this.data().user; },
+  async signIn(email){ const d=this.data(); d.user = d.user || {id:'local',email,username:email.split('@')[0]}; this.save_(); return d.user; },
+  async signUp(email,pw,username){ const d=this.data(); d.user={id:'local',email,username:username||email.split('@')[0]}; this.save_(); return d.user; },
+  async signOut(){ this.data().user=null; this.save_(); },
+  async list(){ const d=this.data(); return d.ratings.map(r=> r.user_id==='local' ? {...r, username:d.user?.username} : r); },
+  async save(r){ const d=this.data(); if(r.id){ const i=d.ratings.findIndex(x=>x.id===r.id); d.ratings[i]={...d.ratings[i],...r}; } else d.ratings.unshift({...r,id:uid(),user_id:'local',created_at:new Date().toISOString()}); this.save_(); },
+  async remove(id){ const d=this.data(); d.ratings=d.ratings.filter(x=>x.id!==id); this.save_(); },
+  async setUsername(n){ this.data().user.username=n; this.save_(); }
+};
+
+/* ================= Datenschicht: Supabase (mit Login) ================= */
+const Remote = {
+  mode:'online', sb:null,
+  async init(){ await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'); this.sb = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY); },
+  async getUser(){
+    const {data:{session}} = await this.sb.auth.getSession(); if(!session) return null;
+    const u=session.user; const {data:p} = await this.sb.from('profiles').select('username').eq('id',u.id).maybeSingle();
+    return {id:u.id,email:u.email,username:p?.username||u.user_metadata?.username||u.email.split('@')[0]};
+  },
+  async signIn(email,pw){ const {error}=await this.sb.auth.signInWithPassword({email,password:pw}); if(error) throw error; return this.getUser(); },
+  async signUp(email,pw,username){
+    const {data,error}=await this.sb.auth.signUp({email,password:pw,options:{data:{username}}}); if(error) throw error;
+    if(!data.session) throw new Error('Konto erstellt. Bitte bestätige deine E-Mail und melde dich dann an.');
+    return this.getUser();
+  },
+  async signOut(){ await this.sb.auth.signOut(); },
+  async list(){
+    const {data,error}=await this.sb.from('ratings').select('*, profiles(username)').order('created_at',{ascending:false});
+    if(error) throw error; return data.map(r=>({...r,username:r.profiles?.username}));
+  },
+  async save(r){
+    const row={title:r.title,year:r.year,watched_on:r.watched_on||null,note:r.note,overall:avg(r),imdb_id:r.imdb_id||null,poster:r.poster||null,ext:r.ext||null};
+    CRITERIA.forEach(c=>row[c.key]=r[c.key]);
+    const q = r.id ? this.sb.from('ratings').update(row).eq('id',r.id) : this.sb.from('ratings').insert({...row,user_id:state.user.id});
+    const {error}=await q; if(error) throw error;
+  },
+  async remove(id){ const {error}=await this.sb.from('ratings').delete().eq('id',id); if(error) throw error; },
+  async setUsername(n){ const {error}=await this.sb.from('profiles').upsert({id:state.user.id,username:n}); if(error) throw error; state.user.username=n; }
+};
+
+const DB = CONFIG.SUPABASE_URL ? Remote : Local;
+const state = {user:null, ratings:[], tab:'mine', q:'', sort:'date'};
+
+/* ================= Login ================= */
+function renderAuth(register=false){
+  $('#fab').style.display='none';
+  $('#app').innerHTML = `
+  <div class="auth">
+    <h1>Film<span>rating</span></h1>
+    <p>Bewerte Filme und vergleiche mit deinen Kollegen.</p>
+    <form id="af">
+      ${register?`<input class="inp" id="au" placeholder="Name (sichtbar für Kollegen)" required style="margin-bottom:10px">`:''}
+      <input class="inp" id="ae" type="email" placeholder="E-Mail" autocomplete="email" required style="margin-bottom:10px">
+      <input class="inp" id="ap" type="password" placeholder="Passwort" autocomplete="${register?'new-password':'current-password'}" ${DB.mode==='online'?'required minlength="6"':''}>
+      <button class="btn">${register?'Konto erstellen':'Anmelden'}</button>
+    </form>
+    <button class="link" id="sw">${register?'Ich habe schon ein Konto':'Neues Konto erstellen'}</button>
+    ${DB.mode==='demo'?'<div class="demo">Demo-Modus: Daten bleiben nur auf diesem Gerät.</div>':''}
+  </div>`;
+  $('#sw').onclick=()=>renderAuth(!register);
+  $('#af').onsubmit=async e=>{
+    e.preventDefault();
+    try{
+      state.user = register ? await DB.signUp($('#ae').value.trim(),$('#ap').value,$('#au').value.trim())
+                            : await DB.signIn($('#ae').value.trim(),$('#ap').value);
+      await refresh();
+    }catch(err){ toast(err.message||'Fehler bei der Anmeldung'); }
+  };
+}
+
+/* ================= Hauptansicht ================= */
+async function refresh(){
+  try{ state.ratings = await DB.list(); }catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
+  render();
+}
+
+function aggregate(rows){
+  const m={};
+  rows.forEach(r=>{ const k=filmKey(r); (m[k] ||= {key:k,title:r.title,year:r.year,poster:r.poster,ext:r.ext,list:[]}).list.push(r); if(!m[k].poster&&r.poster) m[k].poster=r.poster; if(!m[k].ext&&r.ext) m[k].ext=r.ext; });
+  return Object.values(m).map(f=>({...f,overall:Math.round(f.list.reduce((a,r)=>a+avg(r),0)/f.list.length*10)/10,count:f.list.length,created_at:f.list[0].created_at}));
+}
+
+function render(){
+  $('#fab').style.display='block';
+  const me=state.user.id;
+  let items = state.tab==='mine' ? state.ratings.filter(r=>r.user_id===me)
+            : state.tab==='friends' ? state.ratings.filter(r=>r.user_id!==me)
+            : aggregate(state.ratings);
+  items = items.map(r=>({...r,_s:r.count?r.overall:avg(r)}));
+  const q=state.q.toLowerCase();
+  if(q) items=items.filter(r=>(r.title||'').toLowerCase().includes(q)||(r.username||'').toLowerCase().includes(q));
+  const s=state.tab==='top'&&state.sort==='date'?'score':state.sort;
+  items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
+
+  const emptyTxt = {mine:'Noch keine Bewertungen. Tippe auf + und bewerte deinen ersten Film.',friends:'Deine Kollegen haben noch nichts bewertet.',top:'Noch keine Filme bewertet.'}[state.tab];
+  $('#app').innerHTML = `
+  <header>
+    <div class="top"><h1>Film<span>rating</span></h1><button class="avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
+    <div class="tabs">
+      <button data-t="mine" class="${state.tab==='mine'?'on':''}">Meine</button>
+      <button data-t="friends" class="${state.tab==='friends'?'on':''}">Kollegen</button>
+      <button data-t="top" class="${state.tab==='top'?'on':''}">Top-Liste</button>
+    </div>
+    <div class="tools">
+      <input class="inp" id="q" placeholder="Suchen…" value="${esc(state.q)}">
+      <select class="inp" id="so">
+        <option value="date" ${state.sort==='date'?'selected':''}>Neueste</option>
+        <option value="score" ${state.sort==='score'?'selected':''}>Beste</option>
+        <option value="title" ${state.sort==='title'?'selected':''}>A–Z</option>
+      </select>
+    </div>
+  </header>
+  <div class="list">
+    ${items.length? items.map(r=>`
+      <button class="card" data-k="${esc(filmKey(r.count?{imdb_id:r.key}:r))}" data-id="${esc(r.id||'')}">
+        <div class="poster" ${posterStyle(r.poster)}>${r.poster?'':'🎬'}</div>
+        <div class="info">
+          <div class="title">${esc(r.title)}</div>
+          <div class="sub">${r.year?esc(r.year)+' · ':''}${state.tab==='top'?`${r.count} Bewertung${r.count>1?'en':''}`:state.tab==='friends'?esc(r.username||'Unbekannt'):esc(r.watched_on||'')}</div>
+          ${extPills(r.ext)}
+        </div>
+        <div class="score" style="background:${col(r._s)}">${f1(r._s)}</div>
+      </button>`).join('') : `<div class="empty">${emptyTxt}</div>`}
+  </div>`;
+  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{state.tab=b.dataset.t;render();});
+  const qi=$('#q'); qi.oninput=()=>{state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p);};
+  $('#so').onchange=e=>{state.sort=e.target.value;render();};
+  $('#prof').onclick=openProfile;
+  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
+}
+
+/* ================= Sheets ================= */
+function openSheet(html){ $('#sheet').innerHTML='<div class="grab"></div>'+html; $('#ov').classList.add('open'); $('#sheet').scrollTop=0; }
+function closeSheet(){ $('#ov').classList.remove('open'); }
+$('#ov').onclick=e=>{ if(e.target.id==='ov') closeSheet(); };
+$('#fab').onclick=()=>openForm();
+
+function bars(r){
+  return `<div class="bars">${CRITERIA.map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>`;
+}
+
+function openDetail(key){
+  const list = state.ratings.filter(r=>filmKey(r)===key);
+  if(!list.length) return;
+  const f = list.find(r=>r.poster) || list[0];
+  const e = list.find(r=>r.ext)?.ext;
+  const mine = list.find(r=>r.user_id===state.user.id);
+  const others = list.filter(r=>r!==mine);
+  const all = Math.round(list.reduce((a,r)=>a+avg(r),0)/list.length*10)/10;
+  openSheet(`
+    <div class="dhead">
+      <div class="poster big" ${posterStyle(f.poster)}>${f.poster?'':'🎬'}</div>
+      <div style="flex:1">
+        <h2 style="margin-top:0">${esc(f.title)}</h2>
+        <div class="sub">${[f.year,e?.genre,e?.runtime].filter(Boolean).map(esc).join(' · ')}</div>
+        ${e?.director?`<div class="sub">Regie: ${esc(e.director)}</div>`:''}
+        <div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+          <div class="score lg" style="background:${col(all)}">${f1(all)}</div>
+          <div class="sub">Schnitt aus ${list.length} Bewertung${list.length>1?'en':''}</div>
+        </div>
+        ${extPills(e)}
+      </div>
+    </div>
+    ${mine?`
+      <div class="sec-t">Deine Bewertung</div>
+      <div class="other"><div class="h"><b>${f1(avg(mine))} / 10</b><span class="sub">${esc(mine.watched_on||'')}</span></div>${bars(mine)}${mine.note?`<div class="note">${esc(mine.note)}</div>`:''}</div>
+      <button class="btn sec" id="ed">Bearbeiten</button>`
+     :`<button class="btn" id="rate">Diesen Film auch bewerten</button>`}
+    ${others.length?`<div class="sec-t">Kollegen</div>`+others.map(r=>`
+      <div class="other"><div class="h"><b>${esc(r.username||'Unbekannt')}</b><div class="score" style="width:44px;height:44px;font-size:16px;background:${col(avg(r))}">${f1(avg(r))}</div></div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join(''):''}
+  `);
+  if(mine) $('#ed').onclick=()=>openForm(mine);
+  else $('#rate').onclick=()=>openForm({title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:e});
+}
+
+function openForm(r){
+  const isEdit = !!r?.id;
+  const d = r ? {...r} : {watched_on:new Date().toISOString().slice(0,10)};
+  CRITERIA.forEach(c=>{ if(d[c.key]==null) d[c.key]=7; });
+  const hasFilm = !!d.title;
+  openSheet(`
+    <h2>${isEdit?'Bewertung bearbeiten':'Film bewerten'}</h2>
+    <div id="film"></div>
+    <div class="row">
+      <div><label class="l">Gesehen am</label><input class="inp" type="date" id="fd" value="${esc(d.watched_on||'')}"></div>
+    </div>
+    <label class="l">Deine Bewertung (1 bis 10)</label>
+    ${CRITERIA.map(c=>`
+      <div class="crit"><div class="h"><span>${c.label}</span><span class="v" id="v_${c.key}">${f1(d[c.key])}</span></div>
+      <input type="range" min="1" max="10" step="0.5" id="r_${c.key}" value="${d[c.key]}"></div>`).join('')}
+    <div class="total"><b>Gesamt</b><div class="score" id="tot"></div></div>
+    <label class="l">Notiz (optional)</label>
+    <textarea class="inp" id="fn" rows="3" placeholder="Was ist dir aufgefallen?">${esc(d.note||'')}</textarea>
+    <button class="btn" id="sv">Speichern</button>
+    ${isEdit?'<button class="btn del" id="dl">Bewertung löschen</button>':''}
+  `);
+
+  const upd=()=>{
+    CRITERIA.forEach(c=>{ const el=$('#r_'+c.key); d[c.key]=+el.value; $('#v_'+c.key).textContent=f1(el.value); el.style.setProperty('--p',((el.value-1)/9*100)+'%'); });
+    const a=avg(d); const t=$('#tot'); t.textContent=f1(a); t.style.background=col(a);
+  };
+  CRITERIA.forEach(c=>$('#r_'+c.key).oninput=upd); upd();
+
+  const showPicked=()=>{
+    $('#film').innerHTML=`<div class="picked"><div class="poster" ${posterStyle(d.poster)}>${d.poster?'':'🎬'}</div>
+      <div class="info"><div class="title">${esc(d.title)}</div><div class="sub">${esc(d.year||'')}</div>${extPills(d.ext)}</div>
+      ${isEdit?'':'<button class="pill" id="chg">Ändern</button>'}</div>`;
+    if(!isEdit) $('#chg').onclick=()=>{ d.title=''; d.poster=null; d.ext=null; d.imdb_id=null; showSearch(); };
+  };
+  const showSearch=()=>{
+    if(Omdb.on()){
+      $('#film').innerHTML=`<input class="inp" id="fs" placeholder="Film suchen (englischer Titel klappt am besten)"><div id="sr"></div>`;
+      let t; $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); if(q.length<2){$('#sr').innerHTML='';return;}
+        t=setTimeout(async()=>{ try{ const res=await Omdb.search(q);
+          $('#sr').innerHTML = res.length ? res.slice(0,8).map(m=>`<button class="res" data-id="${m.imdbID}"><div class="poster" ${posterStyle(m.Poster)}>${m.Poster!=='N/A'?'':'🎬'}</div><div><div class="title">${esc(m.Title)}</div><div class="sub">${esc(m.Year)}</div></div></button>`).join('')
+            : `<div class="sub" style="padding:10px">Nichts gefunden. <button class="link" id="man" style="display:inline;width:auto">Manuell eintragen</button></div>`;
+          document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{ try{ Object.assign(d, await Omdb.details(b.dataset.id)); showPicked(); }catch(err){toast(err.message);} });
+          const man=$('#man'); if(man) man.onclick=showManual;
+        }catch(err){ toast('Suche fehlgeschlagen'); } },350); };
+      $('#fs').focus();
+    } else showManual();
+  };
+  const showManual=()=>{
+    $('#film').innerHTML=`<div class="row"><div style="flex:3"><label class="l" style="margin-top:0">Titel</label><input class="inp" id="ft" value="${esc(d.title||'')}"></div>
+      <div><label class="l" style="margin-top:0">Jahr</label><input class="inp" id="fy" inputmode="numeric" value="${esc(d.year||'')}"></div></div>`;
+    $('#ft').oninput=e=>d.title=e.target.value; $('#fy').oninput=e=>d.year=parseInt(e.target.value)||null;
+  };
+  hasFilm ? showPicked() : showSearch();
+
+  $('#sv').onclick=async()=>{
+    if(!d.title||!d.title.trim()) return toast('Bitte zuerst einen Film wählen');
+    d.watched_on=$('#fd').value; d.note=$('#fn').value.trim(); d.overall=avg(d);
+    if(!isEdit){ const dup=state.ratings.find(x=>x.user_id===state.user.id&&filmKey(x)===filmKey(d)); if(dup){ d.id=dup.id; } }
+    try{ await DB.save(d); closeSheet(); toast('Gespeichert'); state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); }
+  };
+  if(isEdit) $('#dl').onclick=async()=>{ try{ await DB.remove(d.id); closeSheet(); toast('Gelöscht'); await refresh(); }catch(e){ toast(e.message); } };
+}
+
+function openProfile(){
+  const mine=state.ratings.filter(r=>r.user_id===state.user.id);
+  const a=mine.length?mine.reduce((s,r)=>s+avg(r),0)/mine.length:0;
+  openSheet(`
+    <h2>Profil</h2>
+    <div class="sub">${esc(state.user.email||'')}</div>
+    <div class="total"><span>${mine.length} Filme bewertet</span><b>Ø ${f1(a)}</b></div>
+    <label class="l">Name (sichtbar für Kollegen)</label>
+    <input class="inp" id="pn" value="${esc(state.user.username||'')}">
+    <button class="btn sec" id="ps">Name speichern</button>
+    <button class="btn del" id="lo">Abmelden</button>
+    ${DB.mode==='demo'?'<div class="demo">Demo-Modus aktiv. Für Login mit Kollegen siehe ANLEITUNG.md.</div>':''}
+  `);
+  $('#ps').onclick=async()=>{ try{ await DB.setUsername($('#pn').value.trim()); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
+  $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; closeSheet(); renderAuth(); };
+}
+
+/* ================= Start ================= */
+(async()=>{
+  try{ await DB.init(); state.user = await DB.getUser(); }catch(e){ toast(e.message); }
+  state.user ? refresh() : renderAuth();
+})();
+</script>
+</body>
+</html>
