@@ -101,6 +101,7 @@ soon = [m for m in listing("/de/filme/baldimkino/", 2) if m["path"] not in {x["p
 
 out = {"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "source": "cineman.ch",
        "now": [], "soon": []}
+now = now[:80]
 for i, m in enumerate(now):
     e = entry(m, new=m["path"] in newp); e["order"] = i + 1; out["now"].append(e)
 for m in soon[:20]:
