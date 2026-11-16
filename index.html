@@ -82,7 +82,7 @@ svg{display:block}
 
 /* ---------- Schwebende Tab-Leiste ---------- */
 .dock{position:fixed;left:0;right:0;bottom:calc(var(--sa-b) + 10px);z-index:10;display:flex;justify-content:center;align-items:center;gap:12px;padding:0 16px;pointer-events:none}
-.tabbar{pointer-events:auto;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:330px}
+.tabbar{pointer-events:auto;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:370px}
 .tab{flex:1;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--t1);opacity:.75;transition:all .25s}
 .tab.on{opacity:1;color:var(--tint);background:rgba(255,255,255,.1)}
 .addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:var(--tint)}
@@ -225,6 +225,8 @@ const I = {
   star:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg>',
   search:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(235,235,245,.6)" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
   close:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  ticket:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a2.5 2.5 0 0 0 0 5v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a2.5 2.5 0 0 0 0-5z" transform="translate(0 1.5)"/><path d="M14 6.5v1.5M14 11v1.5M14 15.5V17" stroke-linecap="round"/></svg>',
+  share:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
   pop:'<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1.6 11.2a1 1 0 0 1-1 .8H7.6a1 1 0 0 1-1-.8z"/><path d="M5 9a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5-1 3 3 0 0 1 5 1 2.5 2.5 0 0 1 2 4"/><path d="M10 13v5M14 13v5"/></svg>'
 };
 
@@ -322,8 +324,8 @@ const Local = {
     if(this._d) return this._d;
     try{ this._d = JSON.parse(localStorage.getItem(this.KEY)); }catch(e){}
     if(!this._d){ this._d = {user:null, ratings:[
-      {id:uid(),user_id:'demo1',username:'Kollege Max',title:'Interstellar',year:2014,watched_on:'2026-10-02',story:9.5,acting:8.5,camera:10,music:10,fun:9,note:'Hans Zimmer!',created_at:'2026-10-02',ext:{imdb:'8.7',rt:'73%',mc:'74'}},
-      {id:uid(),user_id:'demo2',username:'Kollegin Lea',title:'Dune: Part Two',year:2024,watched_on:'2026-11-01',story:8,acting:9,camera:10,music:9.5,fun:8.5,note:'',created_at:'2026-11-01',ext:{imdb:'8.5',rt:'92%',mc:'79'}}
+      {id:uid(),user_id:'demo1',username:'Max',title:'Interstellar',year:2014,watched_on:'2026-10-02',story:9.5,acting:8.5,camera:10,music:10,fun:9,note:'Hans Zimmer!',created_at:'2026-10-02',ext:{imdb:'8.7',rt:'73%',mc:'74'}},
+      {id:uid(),user_id:'demo2',username:'Lea',title:'Dune: Part Two',year:2024,watched_on:'2026-11-01',story:8,acting:9,camera:10,music:9.5,fun:8.5,note:'',created_at:'2026-11-01',ext:{imdb:'8.5',rt:'92%',mc:'79'}}
     ]}; }
     return this._d;
   },
@@ -371,7 +373,7 @@ const Remote = {
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
 const state = {user:null, ratings:[], tab:'mine', q:'', sort:'date'};
-const TABS = [{id:'mine',label:'Meine',icon:I.film,title:'Meine Filme'},{id:'friends',label:'Kollegen',icon:I.people,title:'Kollegen'},{id:'top',label:'Top-Liste',icon:I.star,title:'Top-Liste'}];
+const TABS = [{id:'mine',label:'Meine',icon:I.film,title:'Meine Filme'},{id:'friends',label:'Freunde',icon:I.people,title:'Freunde'},{id:'top',label:'Top',icon:I.star,title:'Top-Liste'},{id:'kino',label:'Kino',icon:I.ticket,title:'Im Kino'}];
 
 /* ================= Login ================= */
 function renderAuth(register=false){
@@ -380,10 +382,10 @@ function renderAuth(register=false){
   <div class="auth">
     <div class="logo"></div>
     <h1>Filmrating</h1>
-    <p>Bewerte Filme und vergleiche mit deinen Kollegen.</p>
+    <p>Bewerte Filme und vergleiche mit deinen Freunden.</p>
     <form id="af" autocomplete="on">
       <div class="grp">
-        ${register?`<div class="field"><input id="au" placeholder="Name (sichtbar für Kollegen)" required autocomplete="nickname"></div>`:''}
+        ${register?`<div class="field"><input id="au" placeholder="Name (sichtbar für Freunde)" required autocomplete="nickname"></div>`:''}
         <div class="field"><input id="ae" type="email" inputmode="email" placeholder="E-Mail" autocomplete="email" autocapitalize="off" required></div>
         <div class="field"><input id="ap" type="password" placeholder="Passwort${register?' (mind. 6 Zeichen)':''}" autocomplete="${register?'new-password':'current-password'}" ${DB.mode==='online'?'required minlength="6"':''}></div>
       </div>
@@ -423,6 +425,7 @@ function renderDock(){
 
 function render(){
   renderDock();
+  if(state.tab==='kino') return renderKino();
   const me=state.user.id, top=state.tab==='top';
   let items = state.tab==='mine' ? state.ratings.filter(r=>r.user_id===me)
             : state.tab==='friends' ? state.ratings.filter(r=>r.user_id!==me)
@@ -432,7 +435,7 @@ function render(){
   if(q) items=items.filter(r=>(r.title||'').toLowerCase().includes(q)||(r.username||'').toLowerCase().includes(q));
   const s = top && state.sort==='date' ? 'score' : state.sort;
   items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
-  const emptyTxt = {mine:'Noch keine Bewertungen.<br>Tippe auf <b>+</b> und bewerte deinen ersten Film.',friends:'Deine Kollegen haben noch nichts bewertet.',top:'Noch keine Filme bewertet.'}[state.tab];
+  const emptyTxt = {mine:'Noch keine Bewertungen.<br>Tippe auf <b>+</b> und bewerte deinen ersten Film.',friends:'Deine Freunde haben noch nichts bewertet.<br>Lade sie im Profil ein.',top:'Noch keine Filme bewertet.'}[state.tab];
   const sorts = [['date',top?'Beste':'Neueste'],['score','Beste'],['title','A bis Z']].filter((x,i)=>!(top&&i===1));
 
   $('#app').innerHTML = `
@@ -459,6 +462,83 @@ function render(){
   document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
 }
 function fmtDate(d){ if(!d) return ''; const x=new Date(d); return isNaN(x)?d:x.toLocaleDateString('de-CH',{day:'numeric',month:'short',year:'numeric'}); }
+
+/* ================= Kino ================= */
+const KINO_URL = 'https://raw.githubusercontent.com/liasoer/filmrating/main/kino.json';
+async function loadKino(){
+  if(state.kino) return state.kino;
+  try{ const r = await fetch(KINO_URL+'?h='+new Date().toISOString().slice(0,13)); if(!r.ok) throw 0; state.kino = await r.json(); }
+  catch(e){ state.kino = {now:[], soon:[], err:true}; }
+  return state.kino;
+}
+function friendsFor(m){ return m.imdb_id ? state.ratings.filter(r=>r.imdb_id===m.imdb_id) : []; }
+function renderKino(){
+  state.kinoSec ||= 'now';
+  const k = state.kino;
+  if(!k) loadKino().then(()=>{ if(state.tab==='kino') render(); });
+  const q = state.q.toLowerCase();
+  const items = k ? (k[state.kinoSec]||[]).map((m,i)=>({...m,_i:i})).filter(m=>!q || m.title.toLowerCase().includes(q) || (m.cast||[]).join(' ').toLowerCase().includes(q)) : [];
+  const upd = k?.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
+  $('#app').innerHTML = `
+    <div class="navbar"><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
+    <h1 class="large">Im Kino</h1>
+    <label class="search">${I.search}<input id="q" type="search" placeholder="Film oder Schauspieler" value="${esc(state.q)}" enterkeyhint="search"></label>
+    <div class="chips"><button class="chip ${state.kinoSec==='now'?'on':''}" data-k="now">Jetzt im Kino</button><button class="chip ${state.kinoSec==='soon'?'on':''}" data-k="soon">Demnächst</button></div>
+    <div class="list">
+      ${!k ? `<div class="empty">Lade Kinoprogramm…</div>` : k.err ? `<div class="empty">${I.pop}Das Kinoprogramm konnte nicht geladen werden.</div>` :
+        items.length ? items.map(m=>{ const fr=friendsFor(m); const a=fr.length?Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10:null;
+        return `<button class="card" data-ki="${m._i}">
+          <div class="poster" ${posterStyle(m.poster)}>${m.poster?'':I.film}</div>
+          <div class="info">
+            <div class="title">${esc(m.title)}</div>
+            <div class="meta">${state.kinoSec==='soon'&&m.release?'Ab '+esc(fmtDate(m.release))+' · ':''}${[(m.genres||[]).slice(0,2).join(', '), m.duration?m.duration+' Min':''].filter(Boolean).map(esc).join(' · ')}</div>
+            ${extPills(m.ext)}
+          </div>
+          ${a!=null ? ring(a) : ''}
+        </button>`; }).join('') : `<div class="empty">${I.pop}Nichts gefunden.</div>`}
+    </div>
+    ${k && !k.err ? `<div class="hint" style="text-align:center;margin-top:18px">Programm von ${esc(k.source||'Pathé Schweiz')}${upd?', aktualisiert am '+esc(upd):''}</div>`:''}`;
+  const qi=$('#q'); qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
+  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ state.kinoSec=c.dataset.k; tick(); render(); });
+  $('#prof').onclick=openProfile;
+  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openKino(k[state.kinoSec][+c.dataset.ki]));
+}
+function openKino(m){
+  const fr = friendsFor(m), mine = fr.find(r=>r.user_id===state.user.id), others = fr.filter(r=>r!==mine);
+  const a = fr.length ? Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10 : null;
+  openSheet({ body:`
+    <div class="hero">
+      <div class="hero-bg" ${posterStyle(m.poster)}></div>
+      <div class="hero-in">
+        <div class="poster" ${posterStyle(m.poster)}>${m.poster?'':I.film}</div>
+        <h2>${esc(m.title)}</h2>
+        <div class="meta">${[(m.genres||[]).join(', '), m.duration?m.duration+' Min':'', m.age?'Ab '+m.age.split('/')[0]:''].filter(Boolean).map(esc).join(' · ')}</div>
+        ${m.release?`<div class="meta">${new Date(m.release)>new Date()?'Kinostart':'Im Kino seit'} ${esc(fmtDate(m.release))}</div>`:''}
+        ${a!=null?`<div class="scorerow">${ring(a,'xl')}<div class="lbl"><b>Eure Wertung</b>${fr.length} Bewertung${fr.length>1?'en':''}</div></div>`:''}
+        ${extPills(m.ext)}
+      </div>
+    </div>
+    ${mine ? `<button class="btn sec2" id="kd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="kr" style="margin-top:20px">Film bewerten</button>`}
+    <a class="btn sec2" href="${esc(m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Programm & Tickets bei Pathé</a>
+    <div class="sec">Details</div>
+    <div class="grp">
+      ${(m.directors||[]).length?`<div class="cell cell-h"><span>Regie</span><b style="text-align:right">${esc(m.directors.join(', '))}</b></div>`:''}
+      ${(m.cast||[]).filter(Boolean).length?`<div class="cell"><div style="color:var(--t2);font-size:14px">Besetzung</div><div style="margin-top:4px">${esc(m.cast.join(', '))}</div></div>`:''}
+    </div>
+    ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
+      <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
+  `});
+  if(mine) $('#kd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
+  else $('#kr').onclick=()=>openForm({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:m.ext||null});
+}
+
+/* ================= Freunde einladen ================= */
+async function invite(){
+  const url = location.origin + location.pathname;
+  const text = 'Bewerte mit mir Filme in Filmrating! Registrier dich hier:';
+  try{ if(navigator.share){ await navigator.share({title:'Filmrating', text, url}); return; } }catch(e){ if(e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(text+' '+url); toast('Link kopiert'); }catch(e){ toast(url); }
+}
 
 /* ================= Sheets ================= */
 function openSheet({title='', right='', body}){
@@ -506,7 +586,7 @@ function openDetail(key){
       <div class="grp"><div class="cell"><div class="cell-h"><b>${fmtDate(mine.watched_on)||'Gesehen'}</b>${ring(avg(mine),'sm')}</div>${bars(mine)}${mine.note?`<div class="note">${esc(mine.note)}</div>`:''}</div></div>
       <button class="btn sec2" id="ed">Bewertung bearbeiten</button>`
      :`<button class="btn pri" id="rate" style="margin-top:22px">Diesen Film bewerten</button>`}
-    ${others.length?`<div class="sec">Kollegen</div><div class="grp">`+others.map(r=>`
+    ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   if(mine) $('#ed').onclick=()=>openForm(mine);
@@ -586,7 +666,10 @@ function openProfile(){
       <div class="meta">${esc(state.user.email||'')}</div>
     </div>
     <div class="grp" style="margin-top:20px"><div class="cell cell-h"><span>Bewertete Filme</span><b>${mine.length}</b></div><div class="cell cell-h"><span>Dein Schnitt</span>${ring(a,'sm')}</div></div>
-    <div class="sec">Name für Kollegen</div>
+    <div class="sec">Freunde</div>
+    <button class="btn pri" id="inv" style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:8px">${I.share}Freunde einladen</button>
+    <div class="hint">Schick deinen Freunden den Link. Sobald sie sich registrieren, siehst du ihre Bewertungen im Tab «Freunde».</div>
+    <div class="sec">Dein Name für Freunde</div>
     <div class="grp"><div class="field"><input id="pn" style="text-align:left;color:var(--t1)" value="${esc(state.user.username||'')}" autocomplete="nickname"></div></div>
     <button class="btn sec2" id="ps">Name sichern</button>
     <div class="sec">App installieren</div>
@@ -594,6 +677,7 @@ function openProfile(){
     <button class="btn red" id="lo" style="margin-top:24px">Abmelden</button>
     ${DB.mode==='demo'?'<div class="demo">Demo-Modus aktiv.</div>':''}
   `});
+  $('#inv').onclick=invite;
   $('#ps').onclick=async()=>{ try{ await DB.setUsername($('#pn').value.trim()); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
   $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; closeSheet(); renderAuth(); };
 }
