@@ -69,7 +69,7 @@ def build():
     soon = sorted([s for s in shows if s.get("isMovie") and s.get("isComingSoon")], key=lambda s: ((s.get("releaseAt") or {}).get("CH_DE") or "9999", s.get("upcomingOrder") or 999))[:15]
     os.makedirs("pathe", exist_ok=True)
     with open("pathe/urls.txt", "w") as f:
-        f.write("\n".join([SHOWS] + [DETAIL.format(s["slug"]) for s in now + soon]) + "\n")
+        f.write("\n".join([SHOWS] + [DETAIL.format(s["slug"]) for s in now + soon]))
     return {"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "source": "Pathé Schweiz",
             "now": [entry(s, raw.get(DETAIL.format(s["slug"])) or {}) for s in now],
             "soon": [entry(s, raw.get(DETAIL.format(s["slug"])) or {}) for s in soon]}
