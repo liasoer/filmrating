@@ -506,7 +506,7 @@ const Remote = {
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
-const state = {user:null, ratings:[], tab:'neu', q:'', sort:'date'};
+const state = {user:null, ratings:[], tab:'neu', q:'', sort:'score'};
 const TABS = [{id:'neu',label:'Neu',icon:I.ticket,title:'Neu'},{id:'mine',label:'Meine',icon:I.film,title:'Meine Filme'},{id:'friends',label:'Freunde',icon:I.people,title:'Freunde'},{id:'top',label:'Top',icon:I.star,title:'Top-Liste'}];
 
 /* ================= Login ================= */
@@ -686,13 +686,13 @@ function render(){
   items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
   const W = K==='series' ? ['Serien','deine erste Serie'] : ['Filme','deinen ersten Film'];
   const emptyTxt = {mine:`Noch keine ${W[0]} bewertet.<br>Tippe auf <b>+</b> und bewerte ${W[1]}.`,friends: state.friendIds?.size ? `Deine Freunde haben noch keine ${W[0]} bewertet.` : `Du hast noch keine Freunde.<br>Füge sie im Profil über ihren Nutzernamen hinzu.`,top:`Noch keine ${W[0]} bewertet.`}[state.tab];
-  const sorts = [['date',top?'Beste':'Neueste'],['score','Beste'],['title','A bis Z']].filter((x,i)=>!(top&&i===1));
+  const sorts = top ? [['score','Beste'],['title','A bis Z']] : [['score','Beste'],['date','Neueste'],['title','A bis Z']];
 
   $('#app').innerHTML = `
     <div class="hdr"><h1 class="large">${state.tab==='mine'?(K==='series'?'Meine Serien':'Meine Filme'):TABS.find(t=>t.id===state.tab).title}</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
     <div class="seg" id="kind"><i class="seg-ind" style="transform:translateX(${K==='series'?'100%':'0'})"></i><button data-k="movie" class="${K==='movie'?'on':''}">Filme</button><button data-k="series" class="${K==='series'?'on':''}">Serien</button></div>
     <label class="search" style="margin-top:12px">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
-    <div class="chips">${sorts.map(([v,l])=>`<button class="chip ${state.sort===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>
+    <div class="chips">${sorts.map(([v,l])=>`<button class="chip ${s===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>
     <div class="list">
       ${items.length ? items.map((r,i)=>`
         <button class="card" data-k="${esc(r.count?r.key:filmKey(r))}">${r.poster?`<div class="card-bg" ${posterStyle(r.poster)}></div>`:''}
@@ -1029,7 +1029,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '29';
+const APP_VERSION = '30';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
