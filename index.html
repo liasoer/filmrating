@@ -544,7 +544,7 @@ function openKino(m){
       </div>
     </div>
     ${mine ? `<button class="btn sec2" id="kd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="kr" style="margin-top:20px">Film bewerten</button>`}
-    <a class="btn sec2" href="${esc(m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Programm & Tickets bei Pathé</a>
+    <a class="btn sec2" href="${esc(m.slug?`https://www.pathe.ch/de/films/${m.slug}`:m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Programm & Tickets bei Pathé</a>
     <div class="sec">Details</div>
     <div class="grp">
       ${(m.directors||[]).length?`<div class="cell cell-h"><span>Regie</span><b style="text-align:right">${esc(m.directors.join(', '))}</b></div>`:''}
@@ -748,7 +748,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '9';
+const APP_VERSION = '10';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());

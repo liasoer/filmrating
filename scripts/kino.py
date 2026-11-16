@@ -32,7 +32,7 @@ def entry(s):
         "duration": s.get("duration"), "genres": [g for g in (s.get("genres") or []) if g != "Fiction"],
         "directors": s.get("directors") or [], "cast": (s.get("hubbleCasting") or "").split(", ")[:4],
         "age": ((s.get("contentRating") or {}).get("ref") or ""),
-        "url": f"https://www.pathe.ch/de/filme/{s['slug']}",
+        "url": f"https://www.pathe.ch/de/films/{s['slug']}",
     }
     d = omdb(s["title"], year)
     if d:
