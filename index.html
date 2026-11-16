@@ -92,11 +92,22 @@ svg{display:block}
 
 /* ---------- Schwebende Tab-Leiste ---------- */
 .dock{position:fixed;left:0;right:0;bottom:max(12px, calc(var(--sa-b) - 14px));z-index:10;display:flex;justify-content:center;align-items:center;gap:12px;padding:0 16px;pointer-events:none}
-.tabbar{pointer-events:auto;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:370px}
-.tab{flex:1;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--t1);opacity:.75;transition:all .25s}
-.tab.on{opacity:1;color:#4da3ff;background:rgba(255,255,255,.1)}
-.addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--tint)}
-.addbtn:active,.tab:active{transform:scale(.92)}
+.tabbar,.addbtn{background:rgba(28,28,34,.36);-webkit-backdrop-filter:blur(28px) saturate(210%) brightness(1.08);backdrop-filter:blur(28px) saturate(210%) brightness(1.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 1px rgba(255,255,255,.07),inset 0 0 0 .5px rgba(255,255,255,.20),inset 0 0 18px rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.5)}
+.tabbar{pointer-events:auto;position:relative;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:370px;touch-action:none;-webkit-user-select:none;user-select:none}
+.tab{position:relative;z-index:1;flex:1;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--t1);opacity:.78;pointer-events:none;
+  transition:transform .3s cubic-bezier(.3,1.5,.4,1),color .2s,opacity .2s}
+.tab.on{opacity:1;color:#4da3ff}
+.tab.hover{transform:scale(1.14);opacity:1;color:#fff}
+.tabbar.drag .tab.on:not(.hover){color:var(--t1);opacity:.78}
+.lens{position:absolute;z-index:0;top:4px;bottom:4px;left:0;width:var(--w,80px);border-radius:27px;transform:translateX(var(--x,4px));
+  background:rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.12);
+  transition:transform .5s cubic-bezier(.25,1.45,.4,1),background .25s,box-shadow .25s,scale .3s cubic-bezier(.3,1.5,.4,1)}
+.tabbar.drag .lens{transition:transform .07s linear,background .2s,box-shadow .2s,scale .3s cubic-bezier(.3,1.5,.4,1);scale:1.2 1.28;
+  background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(1.5px) saturate(240%) brightness(1.3);backdrop-filter:blur(1.5px) saturate(240%) brightness(1.3);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -1px 2px rgba(255,255,255,.18),inset 3px 0 4px rgba(255,90,140,.32),inset -3px 0 4px rgba(90,180,255,.42),0 10px 26px rgba(0,0,0,.4)}
+.addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#4da3ff;transition:transform .3s cubic-bezier(.3,1.5,.4,1)}
+.addbtn:active{transform:scale(.9)}
 
 /* ---------- Sheets ---------- */
 .ov{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s}
@@ -259,8 +270,8 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 <div class="glow"></div>
 <div id="app"></div>
 <div class="dock" id="dock" style="display:none">
-  <nav class="tabbar glass" id="tabbar"></nav>
-  <button class="addbtn glass" id="add" aria-label="Film bewerten"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+  <nav class="tabbar" id="tabbar"></nav>
+  <button class="addbtn" id="add" aria-label="Film bewerten"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
 </div>
 <div class="ov" id="ov"></div>
 <div class="sheet" id="sheet"></div>
@@ -499,8 +510,37 @@ function aggregate(rows){
 
 function renderDock(){
   $('#dock').style.display='flex';
-  $('#tabbar').innerHTML = TABS.map(t=>`<button class="tab ${state.tab===t.id?'on':''}" data-t="${t.id}">${t.icon}<span>${t.label}</span></button>`).join('');
-  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{ if(state.tab!==b.dataset.t){ state.tab=b.dataset.t; tick(); render(); window.scrollTo({top:0}); } });
+  const tb=$('#tabbar');
+  if(!tb.dataset.built){
+    tb.innerHTML = '<div class="lens" id="lens"></div>' + TABS.map(t=>`<div class="tab" data-t="${t.id}">${t.icon}<span>${t.label}</span></div>`).join('');
+    tb.dataset.built='1'; setupDock(tb);
+    window.addEventListener('resize',()=>placeLens());
+  }
+  tb.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b.dataset.t===state.tab));
+  requestAnimationFrame(()=>placeLens());
+}
+function placeLens(x){
+  const tb=$('#tabbar'), lens=$('#lens'); if(!lens) return;
+  const tabs=[...tb.querySelectorAll('.tab')]; const w=tabs[0].offsetWidth;
+  lens.style.setProperty('--w', w+'px');
+  if(x==null){ const a=tabs.find(b=>b.dataset.t===state.tab)||tabs[0]; x=a.offsetLeft; }
+  lens.style.setProperty('--x', x+'px');
+}
+function setupDock(tb){
+  let drag=false, cur=null;
+  const tabs=()=>[...tb.querySelectorAll('.tab')];
+  const at=cx=>{ const r=tb.getBoundingClientRect(), ts=tabs(), w=ts[0].offsetWidth;
+    let x=Math.max(4, Math.min(r.width-w-4, cx-r.left-w/2));
+    const i=Math.max(0, Math.min(ts.length-1, Math.floor((cx-r.left-4)/((r.width-8)/ts.length))));
+    return {x, t:ts[i]}; };
+  const hover=t=>{ if(cur!==t){ cur=t; tick(); tabs().forEach(b=>b.classList.toggle('hover', b===t)); } };
+  tb.addEventListener('pointerdown',e=>{ drag=true; cur=null; try{ tb.setPointerCapture(e.pointerId); }catch(_){} const p=at(e.clientX); tb.classList.add('drag'); placeLens(p.x); hover(p.t); });
+  tb.addEventListener('pointermove',e=>{ if(!drag) return; const p=at(e.clientX); placeLens(p.x); hover(p.t); });
+  const end=e=>{ if(!drag) return; drag=false; tb.classList.remove('drag'); tabs().forEach(b=>b.classList.remove('hover'));
+    const id=at(e.clientX).t.dataset.t;
+    if(state.tab!==id){ state.tab=id; render(); window.scrollTo({top:0}); } else placeLens(); };
+  tb.addEventListener('pointerup',end);
+  tb.addEventListener('pointercancel',()=>{ drag=false; tb.classList.remove('drag'); tabs().forEach(b=>b.classList.remove('hover')); placeLens(); });
 }
 
 function render(){
@@ -840,7 +880,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '18';
+const APP_VERSION = '19';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
