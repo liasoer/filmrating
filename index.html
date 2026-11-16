@@ -25,7 +25,7 @@
   --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0}
-html{height:100%;background:var(--bg);-webkit-text-size-adjust:100%}
+html{min-height:100%;min-height:100lvh;background:var(--bg);-webkit-text-size-adjust:100%}
 body{min-height:100%;background:var(--bg);color:var(--t1);font:17px/1.35 var(--f);letter-spacing:-.2px;overscroll-behavior-y:none;-webkit-font-smoothing:antialiased}
 body.lock{overflow:hidden}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
@@ -91,9 +91,10 @@ svg{display:block}
 /* ---------- Sheets ---------- */
 .ov{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s}
 .ov.open{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;max-width:680px;margin:0 auto;height:calc(100dvh - var(--sa-t) - 12px);background:#111113;border-radius:var(--r-xl) var(--r-xl) 0 0;
+.sheet{position:fixed;left:0;right:0;top:calc(var(--sa-t) + 12px);bottom:0;z-index:31;max-width:680px;margin:0 auto;background:#111113;border-radius:var(--r-xl) var(--r-xl) 0 0;
   transform:translateY(105%);transition:transform .42s cubic-bezier(.2,.9,.25,1);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -0.5px 0 rgba(255,255,255,.15)}
 .sheet.open{transform:none}
+.sheet::after{content:"";position:absolute;left:0;right:0;top:100%;height:200px;background:#111113}
 .sh-bar{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
 .sh-bar h3{font-size:17px;font-weight:650}
 .sh-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:68px 16px calc(var(--sa-b) + 30px)}
@@ -236,6 +237,51 @@ function extPills(e){
   if(e.mc)   p.push(`<span class="pill">MC <b>${esc(e.mc)}</b></span>`);
   return p.length ? `<div class="ext">${p.join('')}</div>` : '';
 }
+
+/* ================= Filmsuche: Wikidata (Teilwörter, deutsche Titel) + OMDb ================= */
+const Finder = {
+  cache:{},
+  norm: s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim(),
+  async wikidata(q){
+    const W='https://www.wikidata.org/w/api.php?format=json&origin=*';
+    const words = Finder.norm(q).split(' ').filter(Boolean);
+    if(!words.length) return [];
+    const sr = words.map(w=>w+'*').join(' ')+' haswbstatement:P31=Q11424 haswbstatement:P345';
+    const s = await fetch(`${W}&action=query&list=search&srlimit=40&srsearch=${encodeURIComponent(sr)}`).then(r=>r.json());
+    const ids = (s.query?.search||[]).map(x=>x.title);
+    if(!ids.length) return [];
+    const e = await fetch(`${W}&action=wbgetentities&props=claims|labels|sitelinks&languages=de|en&ids=${ids.join('|')}`).then(r=>r.json());
+    const nq = Finder.norm(q);
+    return ids.map(id=>e.entities?.[id]).filter(Boolean).map(x=>{
+      const de=x.labels?.de?.value, en=x.labels?.en?.value;
+      const imdb=x.claims?.P345?.[0]?.mainsnak?.datavalue?.value;
+      const year=(x.claims?.P577?.[0]?.mainsnak?.datavalue?.value?.time||'').slice(1,5);
+      let m=0;
+      for(const t of [de,en].map(Finder.norm)){ if(!t) continue;
+        if(t===nq) m=Math.max(m,4); else if(t.startsWith(nq)) m=Math.max(m,3);
+        else if(words.every(w=>t.split(' ').some(tw=>tw.startsWith(w)))) m=Math.max(m,2);
+        else if(t.includes(nq)) m=Math.max(m,1); }
+      const pop=Object.keys(x.sitelinks||{}).length;
+      return {imdbID:imdb, Title:de||en, Year:year, Poster:null, score:m*1000+pop, m};
+    }).filter(r=>r.imdbID?.startsWith('tt') && r.m>0).sort((a,b)=>b.score-a.score);
+  },
+  async search(q){
+    const [wd, om] = await Promise.all([
+      Finder.wikidata(q).catch(()=>[]),
+      Omdb.on() ? Omdb.search(q).catch(()=>[]) : Promise.resolve([])
+    ]);
+    const out=[], seen=new Set();
+    const add=r=>{ if(r.imdbID && !seen.has(r.imdbID)){ seen.add(r.imdbID); out.push(r); } };
+    wd.filter(r=>r.m>=3).forEach(add);
+    om.forEach(r=>add({imdbID:r.imdbID,Title:r.Title,Year:r.Year,Poster:r.Poster!=='N/A'?r.Poster:null}));
+    wd.forEach(add);
+    return out.slice(0,10);
+  },
+  async poster(id){
+    if(id in Finder.cache) return Finder.cache[id];
+    try{ const d=await Omdb.details(id); Finder.cache[id]=d.poster; return d.poster; }catch(e){ return Finder.cache[id]=null; }
+  }
+};
 
 /* ================= OMDb (Poster + externe Ratings) ================= */
 const Omdb = {
@@ -489,15 +535,18 @@ function openForm(r){
     if(!isEdit) $('#chg').onclick=()=>{ d.title=''; d.poster=null; d.ext=null; d.imdb_id=null; showSearch(); };
   };
   const showSearch=()=>{
-    if(!Omdb.on()) return showManual();
-    $('#film').innerHTML=`<div style="padding:10px"><label class="search">${I.search}<input id="fs" type="search" placeholder="Film suchen" enterkeyhint="search" autocomplete="off"></label></div><div id="sr"></div>`;
-    let t; $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); if(q.length<2){$('#sr').innerHTML='';return;}
-      t=setTimeout(async()=>{ try{ const res=await Omdb.search(q);
-        $('#sr').innerHTML = (res.length ? res.slice(0,8).map(m=>`<button class="res" data-id="${m.imdbID}"><div class="poster" ${posterStyle(m.Poster)}>${m.Poster!=='N/A'?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${esc(m.Year)}</div></div></button>`).join('')
+    $('#film').innerHTML=`<div style="padding:10px"><label class="search">${I.search}<input id="fs" type="search" placeholder="Film suchen, z.B. «inters» oder «Der Pate»" enterkeyhint="search" autocomplete="off" autocorrect="off"></label></div><div id="sr"></div>`;
+    let t, seq=0; $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); if(q.length<2){$('#sr').innerHTML='';return;}
+      t=setTimeout(async()=>{ const my=++seq; $('#sr').innerHTML='<div class="hint" style="padding-bottom:14px">Suche…</div>';
+        try{ const res=await Finder.search(q); if(my!==seq) return;
+        $('#sr').innerHTML = (res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${esc(m.Year||'')}</div></div></button>`).join('')
           : `<div class="hint" style="padding-bottom:12px">Nichts gefunden.</div>`) + `<div style="padding:4px 16px 14px"><button class="link" id="man">Manuell eintragen</button></div>`;
-        document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{ try{ Object.assign(d, await Omdb.details(b.dataset.id)); document.activeElement?.blur(); tick(); showPicked(); }catch(err){toast(err.message);} });
+        document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{
+          if(!Omdb.on()){ d.title=b.dataset.t; d.imdb_id=b.dataset.id; return showPicked(); }
+          try{ Object.assign(d, await Omdb.details(b.dataset.id)); document.activeElement?.blur(); tick(); showPicked(); }catch(err){toast(err.message);} });
         $('#man').onclick=showManual;
-      }catch(err){ toast('Suche fehlgeschlagen'); } },350); };
+        if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,6).forEach(async m=>{ const p=await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
+      }catch(err){ if(my===seq) toast('Suche fehlgeschlagen'); } },350); };
   };
   const showManual=()=>{
     $('#film').innerHTML=`<div class="field"><label>Titel</label><input id="ft" value="${esc(d.title||'')}" placeholder="Filmtitel"></div>
