@@ -188,6 +188,13 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .hint{color:var(--t2);font-size:13px;margin:8px 16px 0}
 
 
+/* Umschalter Filme / Serien */
+.seg{position:relative;display:flex;padding:3px;border-radius:14px;background:rgba(118,118,128,.24);height:40px}
+.seg button{position:relative;z-index:1;flex:1;border-radius:11px;font-size:15px;font-weight:600;color:var(--t2);transition:color .2s}
+.seg button.on{color:var(--t1)}
+.seg-ind{position:absolute;z-index:0;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:11px;background:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 2px 8px rgba(0,0,0,.3);transition:transform .35s cubic-bezier(.3,1.3,.5,1)}
+#mk button.on{background:rgba(255,255,255,.18);color:var(--t1)}
+
 /* Neu: Netflix-Startseite */
 .hero-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .hero-rail::-webkit-scrollbar,.rail::-webkit-scrollbar{display:none}
@@ -355,7 +362,7 @@ const Finder = {
     (await Promise.all(chunks.map(c=>fetch(`${W}&action=wbgetentities&props=claims|labels|sitelinks&languages=de|en|mul&ids=${c.join('|')}`).then(r=>r.json()))))
       .forEach(e=>Object.assign(ents, e.entities||{}));
     const nq = tw.join(' ');
-    const OK = new Set(['Q11424','Q202866','Q24869','Q506240','Q5398426','Q581714','Q1259759','Q93204','Q226730','Q17517379']);
+    const OK = new Set(['Q11424','Q202866','Q24869','Q506240','Q5398426','Q581714','Q1259759','Q93204','Q226730','Q17517379','Q117467246','Q63952888']);
     return ids.map(id=>ents[id]).filter(x=>x && (x.claims?.P31||[]).some(c=>OK.has(c.mainsnak?.datavalue?.value?.id))).map(x=>{
       const de=x.labels?.de?.value, en=x.labels?.en?.value||x.labels?.mul?.value||lbl[x.id];
       const words=tw;
@@ -368,7 +375,9 @@ const Finder = {
         else if(words.every(w=>t.split(' ').some(tw=>tw.startsWith(w)))) m=Math.max(m,2);
         else if(t.includes(nq)) m=Math.max(m,1); } }
       const pop=Object.keys(x.sitelinks||{}).length;
-      return {imdbID:imdb, Title:de||en, Year:year, Poster:null, score:m*40+Math.min(pop,120), m};
+      const SER=new Set(['Q5398426','Q581714','Q1259759','Q117467246','Q63952888']);
+      const kind=(x.claims?.P31||[]).some(c=>SER.has(c.mainsnak?.datavalue?.value?.id))?'series':'movie';
+      return {imdbID:imdb, Title:de||en, Year:year, Poster:null, kind, score:m*40+Math.min(pop,120), m};
     }).filter(r=>r.imdbID?.startsWith('tt') && r.m>0).sort((a,b)=>b.score-a.score);
   },
   async search(q){
@@ -379,7 +388,7 @@ const Finder = {
     const out=[], seen=new Set();
     const add=r=>{ if(r.imdbID && !seen.has(r.imdbID)){ seen.add(r.imdbID); out.push(r); } };
     wd.filter(r=>r.m>=3).forEach(add);
-    om.forEach(r=>add({imdbID:r.imdbID,Title:r.Title,Year:r.Year,Poster:r.Poster!=='N/A'?r.Poster:null}));
+    om.forEach(r=>add({imdbID:r.imdbID,Title:r.Title,Year:r.Year,Poster:r.Poster!=='N/A'?r.Poster:null,kind:r.Type==='series'?'series':'movie'}));
     wd.forEach(add);
     return out.slice(0,10);
   },
@@ -393,8 +402,8 @@ const Finder = {
 const Omdb = {
   on: () => !!CONFIG.OMDB_KEY,
   async search(q){
-    const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&type=movie&s=${encodeURIComponent(q)}`);
-    const d = await r.json(); return d.Search || [];
+    const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&s=${encodeURIComponent(q)}`);
+    const d = await r.json(); return (d.Search || []).filter(x=>x.Type==='movie'||x.Type==='series');
   },
   async details(id){
     const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&i=${id}`);
@@ -403,7 +412,7 @@ const Omdb = {
     return {
       imdb_id:d.imdbID, title:d.Title, year:parseInt(d.Year)||null,
       poster: d.Poster!=='N/A'?d.Poster:null,
-      ext:{ imdb: d.imdbRating!=='N/A'?d.imdbRating:null, rt: find('Rotten Tomatoes')||null,
+      ext:{ kind: d.Type==='series'?'series':'movie', seasons: d.totalSeasons&&d.totalSeasons!=='N/A'?d.totalSeasons:null, imdb: d.imdbRating!=='N/A'?d.imdbRating:null, rt: find('Rotten Tomatoes')||null,
             mc: find('Metacritic')?.replace('/100','')||null, genre:d.Genre, director:d.Director, runtime:d.Runtime }
     };
   }
@@ -556,21 +565,25 @@ function setupDock(tb){
 function render(){
   renderDock();
   if(state.tab==='neu') return renderNeu();
-  const me=state.user.id, top=state.tab==='top';
-  let items = state.tab==='mine' ? state.ratings.filter(r=>r.user_id===me)
-            : state.tab==='friends' ? state.ratings.filter(r=>r.user_id!==me)
-            : aggregate(state.ratings);
+  const me=state.user.id, top=state.tab==='top', K=state.kind||'movie';
+  const kindOf = r => r?.ext?.kind==='series' ? 'series' : 'movie';
+  const base = state.ratings.filter(r=>kindOf(r)===K);
+  let items = state.tab==='mine' ? base.filter(r=>r.user_id===me)
+            : state.tab==='friends' ? base.filter(r=>r.user_id!==me)
+            : aggregate(base);
   items = items.map(r=>({...r,_s:r.count?r.overall:avg(r)}));
   const q=state.q.toLowerCase();
   if(q) items=items.filter(r=>(r.title||'').toLowerCase().includes(q)||(r.username||'').toLowerCase().includes(q));
   const s = top && state.sort==='date' ? 'score' : state.sort;
   items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
-  const emptyTxt = {mine:'Noch keine Bewertungen.<br>Tippe auf <b>+</b> und bewerte deinen ersten Film.',friends:'Deine Freunde haben noch nichts bewertet.<br>Lade sie im Profil ein.',top:'Noch keine Filme bewertet.'}[state.tab];
+  const W = K==='series' ? ['Serien','deine erste Serie'] : ['Filme','deinen ersten Film'];
+  const emptyTxt = {mine:`Noch keine ${W[0]} bewertet.<br>Tippe auf <b>+</b> und bewerte ${W[1]}.`,friends:`Deine Freunde haben noch keine ${W[0]} bewertet.`,top:`Noch keine ${W[0]} bewertet.`}[state.tab];
   const sorts = [['date',top?'Beste':'Neueste'],['score','Beste'],['title','A bis Z']].filter((x,i)=>!(top&&i===1));
 
   $('#app').innerHTML = `
-    <div class="hdr"><h1 class="large">${TABS.find(t=>t.id===state.tab).title}</h1><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
-    <label class="search">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
+    <div class="hdr"><h1 class="large">${state.tab==='mine'?(K==='series'?'Meine Serien':'Meine Filme'):TABS.find(t=>t.id===state.tab).title}</h1><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
+    <div class="seg" id="kind"><i class="seg-ind" style="transform:translateX(${K==='series'?'100%':'0'})"></i><button data-k="movie" class="${K==='movie'?'on':''}">Filme</button><button data-k="series" class="${K==='series'?'on':''}">Serien</button></div>
+    <label class="search" style="margin-top:12px">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
     <div class="chips">${sorts.map(([v,l])=>`<button class="chip ${state.sort===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>
     <div class="list">
       ${items.length ? items.map((r,i)=>`
@@ -587,6 +600,7 @@ function render(){
     </div>`;
   const qi=$('#q'); qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
   document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ state.sort=c.dataset.s; tick(); render(); });
+  document.querySelectorAll('#kind button').forEach(b=>b.onclick=()=>{ if(state.kind!==b.dataset.k){ state.kind=b.dataset.k; tick(); $('#kind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(render,180); } });
   $('#prof').onclick=openProfile;
   document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
 }
@@ -738,7 +752,7 @@ function openDetail(key){
       <div class="hero-in">
         <div class="poster" ${posterStyle(f.poster)}>${f.poster?'':I.film}</div>
         <h2>${esc(f.title)}</h2>
-        <div class="meta">${[f.year,e?.genre,e?.runtime].filter(Boolean).map(esc).join(' · ')}</div>
+        <div class="meta">${[e?.kind==='series'?'Serie'+(e.seasons?` · ${e.seasons} Staffel${e.seasons>1?'n':''}`:''):'', f.year,e?.genre,e?.kind==='series'?'':e?.runtime].filter(Boolean).map(esc).join(' · ')}</div>
         ${e?.director?`<div class="meta">Regie: ${esc(e.director)}</div>`:''}
         <div class="scorerow">${ring(all,'xl')}<div class="lbl"><b>Gesamtschnitt</b>${list.length} Bewertung${list.length>1?'en':''}</div></div>
         ${extPills(e, fmtsOf(list.find(x=>x.ext)||f))}
@@ -781,21 +795,21 @@ function openForm(r){
     void wz.offsetWidth;
 
     if(st==='film'){
-      wz.innerHTML = `<h2 class="wz-h">Welchen Film hast du gesehen?</h2>
-        <label class="search" style="margin-top:18px">${I.search}<input id="fs" type="search" placeholder="Titel suchen" enterkeyhint="search" autocomplete="off" autocorrect="off"></label>
+      wz.innerHTML = `<h2 class="wz-h">Was hast du gesehen?</h2>
+        <label class="search" style="margin-top:18px">${I.search}<input id="fs" type="search" placeholder="Film oder Serie suchen" enterkeyhint="search" autocomplete="off" autocorrect="off"></label>
         <div class="grp" id="sr" style="margin-top:12px;display:none"></div>
-        <div style="text-align:center;margin-top:18px"><button class="link" id="man">Film manuell eintragen</button></div>`;
+        <div style="text-align:center;margin-top:18px"><button class="link" id="man">Manuell eintragen</button></div>`;
       setTimeout(()=>$('#fs')?.focus(), 350);
       let t, seq=0;
       $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); const sr=$('#sr'); if(q.length<2){ sr.style.display='none'; sr.innerHTML=''; return; }
         t=setTimeout(async()=>{ const my=++seq; sr.style.display=''; sr.innerHTML='<div class="hint" style="padding:14px 0">Suche…</div>';
           try{ const res=await Finder.search(q); if(my!==seq) return;
-            sr.innerHTML = res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}" data-y="${esc(m.Year||'')}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${esc(m.Year||'')}</div></div></button>`).join('') : `<div class="hint" style="padding:14px 0">Nichts gefunden.</div>`;
+            sr.innerHTML = res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}" data-y="${esc(m.Year||'')}" data-kind="${m.kind||'movie'}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${[m.kind==='series'?'Serie':'Film', m.Year].filter(Boolean).map(esc).join(' · ')}</div></div></button>`).join('') : `<div class="hint" style="padding:14px 0">Nichts gefunden.</div>`;
             document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{
               document.activeElement?.blur();
-              d.title=b.dataset.t; d.year=parseInt(b.dataset.y)||null; d.imdb_id=b.dataset.id;
+              d.title=b.dataset.t; d.year=parseInt(b.dataset.y)||null; d.imdb_id=b.dataset.id; d.ext={...(d.ext||{}), kind:b.dataset.kind||'movie'};
               const p=b.querySelector('.poster').style.backgroundImage.match(/url\(["']?(.*?)["']?\)/); d.poster=p?p[1]:null;
-              if(Omdb.on()){ try{ const x=await Omdb.details(b.dataset.id); d.ext=x.ext; d.poster=x.poster||d.poster; d.year=x.year||d.year; }catch(e){} }
+              if(Omdb.on()){ try{ const x=await Omdb.details(b.dataset.id); d.ext={...x.ext, formats:d.ext?.formats}; d.poster=x.poster||d.poster; d.year=x.year||d.year; }catch(e){} }
               const dup=state.ratings.find(x=>x.user_id===state.user.id&&filmKey(x)===filmKey(d));
               if(dup && !isEdit){ Object.assign(d, {...dup, poster:d.poster||dup.poster, ext:d.ext||dup.ext}); toast('Du hast diesen Film schon bewertet, du bearbeitest ihn jetzt'); }
               go(1);
@@ -805,9 +819,11 @@ function openForm(r){
         },300); };
       $('#man').onclick=()=>{
         wz.innerHTML = `<h2 class="wz-h">Film eintragen</h2>
-          <div class="grp" style="margin-top:18px"><div class="field"><label>Titel</label><input id="ft" placeholder="Filmtitel" value="${esc(d.title||'')}"></div><div class="field"><label>Jahr</label><input id="fy" inputmode="numeric" placeholder="2026" value="${esc(d.year||'')}"></div></div>`;
+          <div class="grp" style="margin-top:18px"><div class="field"><label>Titel</label><input id="ft" placeholder="Filmtitel" value="${esc(d.title||'')}"></div><div class="field"><label>Jahr</label><input id="fy" inputmode="numeric" placeholder="2026" value="${esc(d.year||'')}"></div></div>
+          <div class="seg" id="mk" style="margin-top:12px"><button data-k="movie" class="${(d.ext?.kind||'movie')==='movie'?'on':''}">Film</button><button data-k="series" class="${d.ext?.kind==='series'?'on':''}">Serie</button></div>`;
+        let mk=d.ext?.kind||'movie'; document.querySelectorAll('#mk button').forEach(b=>b.onclick=()=>{ mk=b.dataset.k; document.querySelectorAll('#mk button').forEach(x=>x.classList.toggle('on',x===b)); tick(); });
         foot.style.display=''; nx.textContent='Weiter';
-        nx.onclick=()=>{ d.title=$('#ft').value.trim(); d.year=parseInt($('#fy').value)||null; if(!d.title) return toast('Bitte einen Titel eingeben'); d.imdb_id=null; d.poster=null; d.ext=null; go(1); };
+        nx.onclick=()=>{ d.title=$('#ft').value.trim(); d.year=parseInt($('#fy').value)||null; if(!d.title) return toast('Bitte einen Titel eingeben'); d.imdb_id=null; d.poster=null; d.ext={kind:mk}; go(1); };
         setTimeout(()=>$('#ft').focus(),50);
       };
       return;
@@ -890,7 +906,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '21';
+const APP_VERSION = '22';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
