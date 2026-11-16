@@ -220,7 +220,8 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .wz-bg{position:absolute;inset:-80px;z-index:0;background:center/cover;filter:blur(60px) saturate(170%) brightness(.38);transform:scale(1.15);pointer-events:none;transition:background-image .4s}
 .wz-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(17,17,19,.2),rgba(17,17,19,.75) 70%)}
 .sheet.wiz .sh-body,.sheet.wiz .sh-bar{position:relative;z-index:1}
-.sheet.wiz .sh-bar{position:absolute}
+.sheet.wiz .sh-bar{position:absolute;z-index:5}
+.sheet.wiz .grab{z-index:6}
 .sheet.wiz .sh-foot{background:linear-gradient(rgba(17,17,19,0),rgba(17,17,19,.85) 45%);box-shadow:none}
 .sheet.wiz .grp,.sheet.wiz .wz-film{background:rgba(44,44,50,.55);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1)}
 .sheet.wiz .search{background:rgba(118,118,128,.3)}
@@ -839,7 +840,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '16';
+const APP_VERSION = '17';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
