@@ -3,7 +3,9 @@ Läuft täglich als GitHub Action und schreibt kino.json."""
 import json, os, re, urllib.request, urllib.parse, datetime
 
 OMDB = os.environ.get("OMDB_KEY", "9a64d183")
-UA = {"User-Agent": "Mozilla/5.0 (Filmrating kino.json)"}
+UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36",
+      "Accept": "application/json, text/plain, */*", "Accept-Language": "de-CH,de;q=0.9,en;q=0.8",
+      "Referer": "https://www.pathe.ch/de", "Origin": "https://www.pathe.ch"}
 
 def get(url):
     with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
@@ -65,7 +67,10 @@ def entry(s):
             e["poster"] = d["Poster"]
     return e
 
-shows = get("https://www.pathe.ch/api/shows?language=de")["shows"]
+try:
+    shows = get("https://www.pathe.ch/api/shows?language=de")["shows"]
+except Exception as e:
+    print("Pathé nicht erreichbar:", e); raise SystemExit(0)
 now = [s for s in shows if s.get("isMovie") and not s.get("isComingSoon") and (s.get("next24ShowtimesCount") or 0) > 0]
 now.sort(key=lambda s: s.get("homeOrder") or 999)
 soon = [s for s in shows if s.get("isMovie") and s.get("isComingSoon")]
