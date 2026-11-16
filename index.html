@@ -95,7 +95,7 @@ svg{display:block}
 .tabbar{pointer-events:auto;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:370px}
 .tab{flex:1;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--t1);opacity:.75;transition:all .25s}
 .tab.on{opacity:1;color:#4da3ff;background:rgba(255,255,255,.1)}
-.addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,rgba(10,132,255,.85),rgba(94,92,230,.85))}
+.addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--tint)}
 .addbtn:active,.tab:active{transform:scale(.92)}
 
 /* ---------- Sheets ---------- */
@@ -109,7 +109,7 @@ svg{display:block}
 .sh-bar h3{font-size:17px;font-weight:650}
 .sh-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:68px 16px calc(var(--sa-b) + 30px)}
 .grab{position:absolute;top:6px;left:50%;width:36px;height:5px;margin-left:-18px;border-radius:3px;background:rgba(255,255,255,.28);z-index:4}
-.done{height:44px;padding:0 18px;border-radius:22px;font-weight:650;color:#fff;background:linear-gradient(135deg,var(--tint),var(--tint2))}
+.done{height:44px;padding:0 18px;border-radius:22px;font-weight:650;color:#fff;background:var(--tint)}
 .done:active{transform:scale(.94)}
 
 /* Detail-Hero */
@@ -137,9 +137,9 @@ svg{display:block}
 .bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 12px;align-items:center;font-size:14px;color:var(--t2);margin-top:10px}
 .bars b{color:var(--t1);font-weight:700;min-width:30px;text-align:right}
 .bar{height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
-.bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--tint),var(--tint2))}
+.bar i{display:block;height:100%;border-radius:3px;background:var(--tint)}
 .btn{display:block;width:100%;height:52px;border-radius:26px;font-weight:650;font-size:17px;margin-top:14px}
-.btn.pri{color:#fff;background:linear-gradient(135deg,var(--tint),var(--tint2))}
+.btn.pri{color:#fff;background:var(--tint)}
 .btn.sec2{background:var(--grp);color:var(--tint)}
 .btn.red{background:var(--grp);color:var(--bad)}
 .btn:active{transform:scale(.97);opacity:.85}
@@ -671,7 +671,7 @@ $('#ov').onclick=closeSheet;
 $('#add').onclick=()=>{ tick(); openForm(); };
 
 function bars(r){
-  return `<div class="bars">${CRITERIA.map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>`;
+  return `<div class="bars">${CRITERIA.map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%;background:${col(+r[c.key])}"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>`;
 }
 
 function openDetail(key){
@@ -840,7 +840,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '17';
+const APP_VERSION = '18';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
