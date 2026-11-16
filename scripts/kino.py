@@ -23,7 +23,21 @@ def omdb(title, year):
             return d
     return None
 
+FORMATS = [("IMAX", {"imax", "imaxvip"}), ("4DX", {"4dx"}), ("D-BOX", {"dbox"}), ("Dolby Atmos", {"atmos"}),
+           ("ScreenX", {"screenx"}), ("3D", {"3d"}), ("VIP & Premium", {"vip", "vipbed", "viplounge", "premium", "premium-seats", "imaxvip"}),
+           ("Kinderkino", {"kidscinema"})]
+LANGS = {"allemand": "Deutsch", "anglais": "Englisch", "français": "Französisch", "italien": "Italienisch", "espagnol": "Spanisch",
+         "japonais": "Japanisch", "coréen": "Koreanisch", "hindi": "Hindi", "russe": "Russisch", "albanais": "Albanisch", "suisse allemand": "Schweizerdeutsch"}
+
+def details(slug):
+    try:
+        return get(f"https://www.pathe.ch/api/show/{slug}?language=de")
+    except Exception:
+        return {}
+
 def entry(s):
+    det = details(s["slug"])
+    tags = {t.lower() for t in (det.get("tags") or [])}
     rel = (s.get("releaseAt") or {}).get("CH_DE") or (s.get("releaseAt") or {}).get("CH_FR")
     year = (rel or "")[:4] or None
     e = {
@@ -33,6 +47,12 @@ def entry(s):
         "directors": s.get("directors") or [], "cast": (s.get("hubbleCasting") or "").split(", ")[:4],
         "age": ((s.get("contentRating") or {}).get("ref") or ""),
         "url": f"https://www.pathe.ch/de/films/{s['slug']}",
+        "backdrop": (s.get("backgroundPath") or {}).get("lg"),
+        "isNew": bool(s.get("isNew")),
+        "order": s.get("homeOrder"),
+        "formats": [name for name, keys in FORMATS if tags & keys],
+        "languages": [LANGS[t] for t in sorted(tags) if t in LANGS],
+        "synopsis": re.sub(r"<[^>]+>", "", det.get("synopsis") or "").strip()[:600],
     }
     d = omdb(s["title"], year)
     if d:

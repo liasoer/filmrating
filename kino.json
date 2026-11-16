@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T21:30+00:00",
+ "updated": "2026-11-16T21:51+00:00",
  "source": "Pathé Schweiz",
  "now": [
   {
@@ -22,6 +22,21 @@
    ],
    "age": "14/14",
    "url": "https://www.pathe.ch/de/films/how-to-rob-a-bank-51793",
+   "backdrop": "https://media.pathe.ch/movie/mx/51793/lg/135/media",
+   "isNew": true,
+   "order": 1,
+   "formats": [
+    "4DX",
+    "D-BOX",
+    "Dolby Atmos",
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Deutsch",
+    "Englisch",
+    "Französisch"
+   ],
+   "synopsis": "In HOW TO ROB A BANK streamt eine Gruppe junger Outlaws ihre riskanten Raubüberfälle live ins Netz. Dabei ahnen sie nicht, dass sie aufgrund ihres wachsenden viralen Ruhmes ins Visier eines erfahrenen FBI-Agenten und einer brillanten Softwareentwicklerin geraten sind. Obwohl das ungleiche Duo ihnen immer näherkommt, geht die Bande bis an ihre Grenzen und setzt für ihre Überzeugungen – und ihren bisher ehrgeizigsten Raubüberfall – alles aufs Spiel.",
    "imdb_id": "tt35866986",
    "ext": {
     "imdb": null,
@@ -52,6 +67,20 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/ebenezer-a-christmas-carol-50491",
+   "backdrop": "https://media.pathe.ch/movie/mx/50491/lg/31/media",
+   "isNew": true,
+   "order": 2,
+   "formats": [
+    "D-BOX",
+    "Dolby Atmos",
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Deutsch",
+    "Englisch",
+    "Französisch"
+   ],
+   "synopsis": "Diesen November ist Johnny Depp Ebenezer Scrooge. Den Namen kennen Sie, die Geschichte nicht. In EBENEZER – EINE WEIHNACHTSGESCHICHTE von Ti West spielen außerdem Rupert Grint, Andrea Riseborough, Sam Claflin, Daisy Ridley, Arthur Conti, Ellie Bamber, Henry Lloyd-Hughes, Charlie Murphy sowie Tramell Tillman und Ian McKellen mit.",
    "imdb_id": "tt38773219",
    "ext": {
     "imdb": null,
@@ -82,6 +111,16 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/der-perfekte-urlaub-51935",
+   "backdrop": "https://media.pathe.ch/movie/mx/51935/lg/75/media",
+   "isNew": false,
+   "order": 3,
+   "formats": [
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Was gibt es Schöneres als einen Abend unter Freunden? Ein gemeinsamer Urlaub! Nach dem Riesen-Hit DAS PERFEKTE GEHEIMNIS mit über fünf Millionen verkauften Kinotickets im DACH-Raum schicken Bora Dagtekin und Lena Schömann das bewährte Star-Ensemble auf einen Kurztrip mit Eskalationspotenzial: DER PERFEKTE URLAUB startet am 22. Oktober 2026 in den Kinos.Auch in DER PERFEKTE URLAUB versammeln die Filmemacher:innen einen prominenten Cast vor der Kamera: Erneut zählen Elyas M’Barek, Karoline Herfurth, Jessica Schwarz, Florian David Fitz, Jella Haase, Frederick Lau, Wotan Wilke Möhring und Emily Ku",
    "imdb_id": "tt37801321",
    "ext": {
     "imdb": null,
@@ -112,6 +151,18 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/other-mommy-54756",
+   "backdrop": "https://media.pathe.ch/movie/mx/54756/lg/113/media",
+   "isNew": false,
+   "order": 4,
+   "formats": [
+    "4DX",
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Deutsch",
+    "Französisch"
+   ],
+   "synopsis": "Und jetzt krieche ich in dein Herz.Die eigene Mutter ist für ein Kind der Inbegriff von Geborgenheit. Doch die kleine Bela muss erkennen, dass das Böse manchmal genau das Gesicht trägt, dem man am meisten vertraut.  Mit OTHER MOMMY öffnen James Wan, Blumhouse Atomic Monster und Rob Savage die Tür zu einer Welt, in der Sicherheit nur eine trügerische Erinnerung ist.",
    "imdb_id": "tt36586020",
    "ext": {
     "imdb": null,
@@ -142,6 +193,15 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/wild-horse-nine-52032",
+   "backdrop": null,
+   "isNew": true,
+   "order": 6,
+   "formats": [],
+   "languages": [
+    "Deutsch",
+    "Englisch"
+   ],
+   "synopsis": "Oscar®-Preisträger und Kultregisseur Martin McDonagh ist zurück! Nach „The Banshees of Inisherin“ und „Three Billboards Outside Ebbing, Missouri“ nun mit der schwarzhumorigen und starbesetzte Komödie WILD HORSE NINE. Kurz vor dem Militär-Putsch in Chile im Jahr 1973 werden die CIA-Agenten Chris (John Malkovich) und Lee (Sam Rockwell) von ihrem Büroleiter MJ (Steve Buscemi) von Santiago auf die Osterinsel entsandt. Vor dem Hintergrund der ikonischen Skulpturen der Insel ringen die langjährigen Partner mit ihrer dunklen Vergangenheit und aktuellen Verschwörungen. Dabei droht Chris’ neu gefundene",
    "imdb_id": "tt15799564",
    "ext": {
     "imdb": null,
@@ -170,7 +230,17 @@
     "J.K. Simmons"
    ],
    "age": "12/12",
-   "url": "https://www.pathe.ch/de/films/eiserne-wildnis-heart-of-the-beast-52900"
+   "url": "https://www.pathe.ch/de/films/eiserne-wildnis-heart-of-the-beast-52900",
+   "backdrop": "https://media.pathe.ch/movie/mx/52900/lg/100/media",
+   "isNew": false,
+   "order": 7,
+   "formats": [],
+   "languages": [
+    "Deutsch",
+    "Englisch",
+    "Französisch"
+   ],
+   "synopsis": "Nach einem verheerenden Flugzeugabsturz finden sich der Special-Forces-Offizier James Belmont (Brad Pitt) und sein Militärhund Odin tief in der Wildnis Alaskas gestrandet wieder. Gemeinsam sind sie gezwungen, einen brutalen Kampf ums Überleben gegen die Elemente zu führen. „Eiserne Wildnis - Heart of the Beast“ des gefeierten Filmemachers David Ayer ist ein packender Abenteuerthriller, der von der unzerbrechlichen Verbindung zwischen einem Mann und seinem besten Freund erzählt, während sie sich ihrer bislang grössten Herausforderung stellen."
   },
   {
    "title": "Godzilla Minus Zero",
@@ -191,6 +261,20 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/godzilla-minus-zero-55017",
+   "backdrop": "https://media.pathe.ch/movie/mx/55017/lg/53/media",
+   "isNew": false,
+   "order": 8,
+   "formats": [
+    "IMAX",
+    "4DX",
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Deutsch",
+    "Französisch",
+    "Japanisch"
+   ],
+   "synopsis": "Der Krieg hat Japan auf Null reduziert, und Godzilla hat es ins Minus gestürzt. Zwei Jahre sind seitdem vergangen und das Land kämpft immer noch immer verzweifelt darum, sich wieder zu erholen und endlich in den normalen Alltag zurückzufinden. Gerade als es der Menschheit gelang, an einem hart erkämpften Frieden festzuhalten, schlägt eine neue Bedrohung zu und vernichtet die Hoffnung im Handumdrehen. Ein drittes Mal wird es nicht geben. Hier endet alles.",
    "imdb_id": "tt34384661",
    "ext": {
     "imdb": null,
@@ -221,6 +305,18 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/clayface-40536",
+   "backdrop": "https://media.pathe.ch/movie/mx/40536/lg/47/media",
+   "isNew": false,
+   "order": 9,
+   "formats": [
+    "D-BOX"
+   ],
+   "languages": [
+    "Deutsch",
+    "Englisch",
+    "Französisch"
+   ],
+   "synopsis": "Matt Hagens kometenhafter Aufstieg vom Jungen aus den Straßen Gothams zum Schauspielstar in Hollywood findet ein tragisches Ende, als er durch die Machenschaften eines örtlichen Gangsterbosses auf grausame Weise entstellt wird. Von seinem Team im Stich gelassen und völlig mittellos, wendet sich Matt einer bahnbrechenden neuen Behandlungsmethode zu, die ihn auf wundersame Weise zurück in sein altes Ich verwandelt. Doch völlig unerwartet beeinträchtigt diese Therapie auch seinen Realitätssinn – und treibt ihn in eine zerstörerische Spirale aus alles verzehrenden Rachegelüsten.",
    "imdb_id": "tt34890576",
    "ext": {
     "imdb": "7.5",
@@ -251,6 +347,14 @@
    ],
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/il-faut-bruler-maman-51587",
+   "backdrop": "https://media.pathe.ch/movie/mx/51587/lg/26/media",
+   "isNew": true,
+   "order": 10,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "In a family of undertakers, two sisters and a brother reunite for their mother's funeral. With the staff on strike, they must carry out the funeral arrangements themselves. How will they agree on how to cremate Mom?",
    "imdb_id": "tt39562962",
    "ext": {
     "imdb": null,
@@ -281,6 +385,15 @@
    ],
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/verity-dunkle-geheimnisse-50878",
+   "backdrop": "https://media.pathe.ch/movie/mx/50878/lg/94/media",
+   "isNew": false,
+   "order": 11,
+   "formats": [],
+   "languages": [
+    "Deutsch",
+    "Französisch"
+   ],
+   "synopsis": "Basierend auf Colleen Hoovers Bestseller erzählt dieser ebenso verführerische wie fesselnde Psychothriller die Geschichte der renommierten Autorin Verity Crawford (Anne Hathaway) und Lowen Ashleigh (Dakota Johnson), einer bislang recht erfolglosen Schriftstellerin, die auf das abgelegene Anwesen der Crawfords zieht, um für Verity als Ghostwriterin zu arbeiten. Nachdem Lowen scheinbar Veritys erschreckende autobiografische Aufzeichnungen entdeckt, gerät sie in einen Strudel verstörender und verwirrender Geständnisse über Veritys Ehemann Jeremy (Josh Hartnett) – und ringt damit, Fiktion von Real",
    "imdb_id": "tt32261958",
    "ext": {
     "imdb": null,
@@ -307,7 +420,17 @@
     ""
    ],
    "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/auf-der-suche-nach-der-weihnachtswerkstatt-54872"
+   "url": "https://www.pathe.ch/de/films/auf-der-suche-nach-der-weihnachtswerkstatt-54872",
+   "backdrop": "https://media.pathe.ch/movie/mx/54872/lg/68/media",
+   "isNew": true,
+   "order": 12,
+   "formats": [
+    "Kinderkino"
+   ],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Als die Weihnachtswunschliste der neunjährigen Mari verschwindet und ein geheimnisvoller Handschuh auftaucht, macht sie sich gemeinsam mit ihrem weihnachtsmüden Vater und ihrer furchtlosen Grossmutter auf die Suche nach Santas Werkstatt. Doch während sie gegen Schneestürme kämpfen und einem entschlossenen Elf begegnen, der sie aufhalten will, entdecken sie, dass der wahre Zauber von Weihnachten nicht in den Geschenken liegt – sondern in der Liebe und im Glauben aneinander."
   },
   {
    "title": "Je so' pazzo",
@@ -329,6 +452,16 @@
    ],
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/je-so-pazzo-56882",
+   "backdrop": "https://media.pathe.ch/movie/mx/56882/lg/11/media",
+   "isNew": true,
+   "order": 13,
+   "formats": [
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Italienisch"
+   ],
+   "synopsis": "Der Film erzählt die Geschichte von Pino Daniele, der mit seiner Mischung aus Blues, Jazz und neapolitanischer Tradition die italienische Musik prägt. Von einer schwierigen Kindheit bis zum legendären Konzert 1981 begleitet er seinen Aufstieg. Dabei kämpft Pino mit familiären Konflikten, persönlichen Krisen und dem Wunsch nach Versöhnung mit seinem Vater und seinen Wurzeln.",
    "imdb_id": "tt36411726",
    "ext": {
     "imdb": null,
@@ -359,6 +492,18 @@
    ],
    "age": "14/14",
    "url": "https://www.pathe.ch/de/films/ramayana-rise-of-a-legend-55622",
+   "backdrop": "https://media.pathe.ch/movie/mx/55622/lg/26/media",
+   "isNew": false,
+   "order": 15,
+   "formats": [
+    "IMAX",
+    "3D"
+   ],
+   "languages": [
+    "Englisch",
+    "Hindi"
+   ],
+   "synopsis": "Das erste Epos der Menschheit. Von den visuellen Machern hinter Die Odyssee und Dune.",
    "imdb_id": "tt27988879",
    "ext": {
     "imdb": null,
@@ -388,7 +533,18 @@
     "Justin Fletcher"
    ],
    "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/shaun-das-schaf-spuk-im-kurbisfeld-54679"
+   "url": "https://www.pathe.ch/de/films/shaun-das-schaf-spuk-im-kurbisfeld-54679",
+   "backdrop": "https://media.pathe.ch/movie/mx/54679/lg/82/media",
+   "isNew": false,
+   "order": 16,
+   "formats": [
+    "Kinderkino"
+   ],
+   "languages": [
+    "Deutsch",
+    "Französisch"
+   ],
+   "synopsis": "Auf der Mossy Bottom Farm steigt die Vorfreude auf Halloween. Doch ausgerechnet kurz vor dem grossen Fest zerstört der tollpatschige Farmer den liebevoll angelegten Kürbisgarten der Schafherde. Für Shaun das Schaf ist klar: Halloween muss gerettet werden. Entschlossen, das Problem zu lösen, wagt er ein ungewöhnliches wissenschaftliches Experiment. Doch schon bald geraten die Dinge ausser Kontrolle. Als der Farmer plötzlich spurlos verschwindet und ein mysteriöses, haariges Ungeheuer die Wälder von Mossingham unsicher macht, ist das Chaos perfekt. Auf Shaun und seine wolligen Freunde wartet ein"
   },
   {
    "title": "Un bon patron",
@@ -410,6 +566,14 @@
    ],
    "age": "12/16",
    "url": "https://www.pathe.ch/de/films/un-bon-patron-51586",
+   "backdrop": "https://media.pathe.ch/movie/mx/51586/lg/22/media",
+   "isNew": false,
+   "order": 17,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Un Bon Patron (2026) is a French comedy directed by Philippe de Chauveron, starring Didier Bourdon and Catherine Frot, adapted from the Spanish film The Good Boss (El Buen Patrón)",
    "imdb_id": "tt39089756",
    "ext": {
     "imdb": null,
@@ -435,6 +599,14 @@
    ],
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/women-on-trial-51584",
+   "backdrop": "https://media.pathe.ch/movie/mx/51584/lg/36/media",
+   "isNew": false,
+   "order": 19,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "November 1972, in the bustling Bobigny court, a historic trial shakes French society. The case of Marie-Claire Chevalier, who, at the age of 16, decided to have an illegal abortion with the complicity of her mother, was brought to trial. Their lawyer, Gisèle Halimi, decided not to defend two women “guilty” of abortion, but to put a deeply unjust law on trial.",
    "imdb_id": "tt11197002",
    "ext": {
     "imdb": null,
@@ -465,6 +637,14 @@
    ],
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/karma-49299",
+   "backdrop": "https://media.pathe.ch/movie/mx/49299/lg/148/media",
+   "isNew": false,
+   "order": 20,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "In a village in northern Spain, Jeanne tries to rebuild her life with Daniel, who knows nothing about her troubled past. One day, Jeanne's six-year-old godson mysteriously disappears and Jeanne becomes the main suspect.",
    "imdb_id": "tt35450621",
    "ext": {
     "imdb": "6.5",
@@ -494,6 +674,14 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/a-talent-for-murder-55749",
+   "backdrop": "https://media.pathe.ch/movie/mx/55749/lg/21/media",
+   "isNew": false,
+   "order": 22,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Ein geheimnisvoller junger Mann eines New Yorker Verlags wird in die Schweiz geschickt, um die weltberühmte Schriftstellerin Patricia Highsmith davon zu überzeugen, einen letzten Band der Ripley-Reihe zu schreiben.",
    "imdb_id": "tt14129116",
    "ext": {
     "imdb": null,
@@ -524,6 +712,17 @@
    ],
    "age": "14/14",
    "url": "https://www.pathe.ch/de/films/die-odyssee-43278",
+   "backdrop": "https://media.pathe.ch/movie/mx/43278/lg/180/media",
+   "isNew": false,
+   "order": 25,
+   "formats": [
+    "IMAX"
+   ],
+   "languages": [
+    "Deutsch",
+    "Englisch"
+   ],
+   "synopsis": "DIE ODYSSEE, Christopher Nolans neuestes Filmprojekt, ist ein bildgewaltiges Action-Epos, das mit brandneuer IMAX®-Technologie an Schauplätzen auf der ganzen Welt entstanden ist. Der Film bringt Homers mythische Heldensaga am 16. Juli 2026 auf die grosse Leinwand. Zur Besetzung von DIE ODYSSEE gehören Matt Damon (Good Will Hunting), Tom Holland (Spider-Man: No Way Home), Anne Hathaway (Les Misérables), Robert Pattinson (Der Leuchtturm) und Lupita Nyong’o (12 Years A Slave). In weiteren Rollen sind Zendaya (Dune) und Charlize Theron (Monster) zu sehen.",
    "imdb_id": "tt1284645",
    "ext": {
     "imdb": "8.0",
@@ -548,7 +747,15 @@
     ""
    ],
    "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/festtagsspass-mit-peppa-das-kinoerlebnis-56027"
+   "url": "https://www.pathe.ch/de/films/festtagsspass-mit-peppa-das-kinoerlebnis-56027",
+   "backdrop": "https://media.pathe.ch/movie/mx/56027/lg/47/media",
+   "isNew": true,
+   "order": 26,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "JErlebt ein festliches Kinoabenteuer, in dem Peppa Wutz und ihre Familie auf der großen Leinwand Evies erstes Weihnachtsfest feiern! Seid dabei, wenn Peppa Wutz und ihre Familie den Trubel am Weihnachtstag erleben und sich an ihre schönsten Weihnachtsmomente erinnern. Von verschneiten Abenteuern und festlichen Theateraufführungen bis hin zum Schmücken des Weihnachtsbaums – dieses einstündige Kinoerlebnis vereint sieben klassische Weihnachtsfolgen von Peppa Wutz mit vier brandneuen Liedern, bei denen die Kleinen tanzen und mitsingen können. Voller Lachen, Musik und herzerwärmender Momente ist d"
   },
   {
    "title": "Forgotten Island ",
@@ -571,6 +778,17 @@
    ],
    "age": "6/10",
    "url": "https://www.pathe.ch/de/films/forgotten-island-51497",
+   "backdrop": "https://media.pathe.ch/movie/mx/51497/lg/232/media",
+   "isNew": false,
+   "order": 27,
+   "formats": [
+    "D-BOX"
+   ],
+   "languages": [
+    "Deutsch",
+    "Französisch"
+   ],
+   "synopsis": "Als die zwei besten Freundinnen Jo und Raissa auf der geheimnisvollen Insel Nakali stranden, begreifen sie, dass der Weg nach Hause ein ganzes Leben an Erinnerungen fordert – vielleicht auch an den Menschen, der ihnen am meisten bedeutet.Die Grammy- und Oscar® prämierte Ausnahmekünstlerin H.E.R. und Liza Soberano (Lisa Frankenstein, Allein mit dir) glänzen in den Hauptrollen als Jo und Raissa. Die beiden Highschool-Absolventinnen sind unzertrennliche Freundinnen seit Kindertagen. Doch nun stehen sie am Beginn völlig unterschiedlicher Lebenswege.In ihrer letzten gemeinsamen Nacht entdecken Jo u",
    "imdb_id": "tt36583977",
    "ext": {
     "imdb": "7.7",
@@ -599,6 +817,17 @@
    ],
    "age": "0/14",
    "url": "https://www.pathe.ch/de/films/george-michael-the-faith-tour-54917",
+   "backdrop": "https://media.pathe.ch/movie/mx/54917/lg/43/media",
+   "isNew": true,
+   "order": 28,
+   "formats": [
+    "IMAX",
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Englisch"
+   ],
+   "synopsis": "Mit seinen Songs prägte er eine Ära: George Michael. Mit dem neuen Konzertfilm GEORGE MICHAEL – THE FAITH TOUR erwacht seine legendäre Faith-Tour im Kino noch einmal zum Leben, mit nie zuvor gezeigtem Material, spektakulär überarbeitet und remastered.GEORGE MICHAEL – THE FAITH TOUR zeigt einen der einflussreichsten Stars seiner Generation auf dem Höhepunkt seines kreativen Schaffens. Das wiederentdeckte 35-mm-Filmmaterial seines Auftritts 1988 in Paris, im Palais Omnisports de Paris-Bercy (heute Accor Arena), ist ein wahrer Glücksfall. Dank der aufwendigen Restaurierung lässt sich die rekordbr",
    "imdb_id": "tt40564737",
    "ext": {
     "imdb": null,
@@ -629,6 +858,15 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/hope-54368",
+   "backdrop": "https://media.pathe.ch/movie/mx/54368/lg/64/media",
+   "isNew": false,
+   "order": 29,
+   "formats": [],
+   "languages": [
+    "Koreanisch",
+    "Französisch"
+   ],
+   "synopsis": "Am Rande der abgelegenen Hafenstadt Hope wird eine mysteriöse Entdeckung gemacht. Bald findet sich die Bevölkerung in einem verzweifelten Kampf ums Überleben wieder – gegen etwas, dem niemand je zuvor begegnet ist. Der Polizeichef, eine Polizistin und eine Gruppe von Jägern nehmen die Verfolgung auf.",
    "imdb_id": "tt27369017",
    "ext": {
     "imdb": "6.9",
@@ -659,7 +897,17 @@
     "Allison Janney"
    ],
    "age": "6/8",
-   "url": "https://www.pathe.ch/de/films/minions-monster-40833"
+   "url": "https://www.pathe.ch/de/films/minions-monster-40833",
+   "backdrop": "https://media.pathe.ch/movie/mx/40833/lg/274/media",
+   "isNew": false,
+   "order": 30,
+   "formats": [
+    "Kinderkino"
+   ],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "MINIONS & MONSTER erzählt die abgefahrene, aberwitzige und natürlich absolut wahre Geschichte von den Minions und wie sie Hollywood erobern, Filmstars werden, alles verlieren, Monster auf die Welt loslassen und sich dann heldenhaft daranmachen, den Planeten vor genau dem Chaos zu retten, das sie selbst angerichtet haben.In den mehr als zehn Jahren seit ihrem ersten Auftritt sind die Minions die absoluten Kult-Animationsfiguren ihrer Generation geworden. Global bekannt und von Fans jeden Alters geliebt, haben die Illumination Franchises Ich – Einfach unverbesserlich und Minions weltweit mehr al"
   },
   {
    "title": "Papa où t'es ?",
@@ -678,6 +926,14 @@
    ],
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/papa-ou-t-es-56162",
+   "backdrop": "https://media.pathe.ch/movie/id/56162/backdrop/279770/lg/1/c87c3d7967dbae79619c67865266006c.jpg",
+   "isNew": false,
+   "order": 31,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Plot unknown",
    "imdb_id": "tt8784060",
    "ext": {
     "imdb": "7.0",
@@ -703,6 +959,14 @@
    ],
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/15-18-52251",
+   "backdrop": "https://media.pathe.ch/movie/mx/52251/lg/8/media",
+   "isNew": true,
+   "order": 32,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Follows a doctor and his team in a French adolescent psychiatry unit. When 17-year-old Lucia is brought back by police, the arrival of a new patient threatens to shatter the fragile balance of the ward.",
    "imdb_id": "tt42826707",
    "ext": {
     "imdb": "6.7",
@@ -733,6 +997,14 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/a-woman-today-54593",
+   "backdrop": "https://media.pathe.ch/movie/mx/54593/lg/47/media",
+   "isNew": false,
+   "order": 33,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Juliette holds a top position in finance. Her world collapses after she is assaulted by a colleague at a company event.",
    "imdb_id": "tt43645716",
    "ext": {
     "imdb": "6.1",
@@ -763,6 +1035,14 @@
    ],
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/la-gradiva-54590",
+   "backdrop": "https://media.pathe.ch/movie/id/54590/backdrop/281923/lg/1/gra-filmstills-3508x1973px-2-scaled.jpg",
+   "isNew": false,
+   "order": 34,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "A group of high school students sets off on a school trip to discover the ruins of Pompeii. They are seized by a sense of vertigo. They allow themselves to be overwhelmed by desire and anger, until they surrender completely.",
    "imdb_id": "tt36107185",
    "ext": {
     "imdb": "6.3",
@@ -793,6 +1073,14 @@
    ],
    "age": "10/12",
    "url": "https://www.pathe.ch/de/films/le-roi-du-game-54367",
+   "backdrop": "https://media.pathe.ch/movie/mx/54367/lg/67/media",
+   "isNew": false,
+   "order": 35,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "In conflict with his daughter Isaure, Alexandre discovers that she has been selected for the oral exam of a prestigious business school—her greatest dream. However, Isaure is nowhere to be found, lost in a weekend of medieval fantasy role-playing. To find her, Alexandre enters the game, taking on the role of a devious Game Master. But as the adventure unfolds, he realizes that he himself has been lost for years. Under the guise of \"Renard Chafouin,\" he gets a chance to reconnect with his values—and to avoid losing his daughter forever.",
    "imdb_id": "tt44842464",
    "ext": {
     "imdb": null,
@@ -821,6 +1109,12 @@
    ],
    "age": "16/18",
    "url": "https://www.pathe.ch/de/films/naza-55507",
+   "backdrop": "https://media.pathe.ch/movie/mx/55507/lg/62/media",
+   "isNew": false,
+   "order": 36,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Aufgenommen bei Nacht auf den Dächern von Tel Aviv, enthüllt der Film detailliert die Systeme hinter Israels gezielter Massentötung palästinensischer Zivilist:innen im Gazastreifen.",
    "imdb_id": "tt44766123",
    "ext": {
     "imdb": "7.9",
@@ -851,6 +1145,14 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/sanguine-54505",
+   "backdrop": "https://media.pathe.ch/movie/mx/54505/lg/41/media",
+   "isNew": false,
+   "order": 37,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Margot, a young intern at the country's most competitive ER, struggles in the high-pressure environment. When multiple patients her age arrive with strange symptoms, her own body begins experiencing alarming transformations.",
    "imdb_id": "tt37799273",
    "ext": {
     "imdb": "5.4",
@@ -881,6 +1183,15 @@
    ],
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/spider-man-brand-new-day-43161",
+   "backdrop": "https://media.pathe.ch/movie/id/43161/backdrop/270122/lg/1/sbnd-27223-r.jpg",
+   "isNew": false,
+   "order": 38,
+   "formats": [],
+   "languages": [
+    "Deutsch",
+    "Französisch"
+   ],
+   "synopsis": "Nach dem phänomenalen weltweiten Erfolg von „Spider-Man: No Way Home“ schlägt SPIDER-MAN: BRAND NEW DAY ein völlig neues Kapitel für Peter Parker und Spider-Man auf. Vier Jahre sind seit den Ereignissen von „No Way Home“ vergangen. Peter ist nun erwachsen und lebt für sich allein, nachdem er sich freiwillig aus dem Leben und den Erinnerungen derer, die er liebt, ausgelöscht hat. Er bekämpft Verbrechen in einem New York, das ihn und seinen Namen nicht mehr kennt, und widmet sich ganz dem Schutz seiner Stadt: Spider-Man in Vollzeit. Doch mit den steigenden Anforderungen löst der Druck eine überr",
    "imdb_id": "tt22084616",
    "ext": {
     "imdb": "8.0",
@@ -911,6 +1222,14 @@
    ],
    "age": "10/14",
    "url": "https://www.pathe.ch/de/films/words-of-love-52750",
+   "backdrop": "https://media.pathe.ch/movie/mx/52750/lg/158/media",
+   "isNew": false,
+   "order": 39,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "For 14 years, Erika has held her household together—raising teen Abi, her little brother Yoni, and a cheese-obsessed dog. When Abi's fixation on finding her father threatens everything, the journey ahead reshapes their bond for the better.",
    "imdb_id": "tt39969491",
    "ext": {
     "imdb": "5.9",
@@ -940,7 +1259,15 @@
     "Isabelle Huppert"
    ],
    "age": "8/12",
-   "url": "https://www.pathe.ch/de/films/all-about-corinne-52817"
+   "url": "https://www.pathe.ch/de/films/all-about-corinne-52817",
+   "backdrop": "https://media.pathe.ch/movie/mx/52817/lg/49/media",
+   "isNew": false,
+   "order": 40,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Corinne Maclou is a background actor who dreams of one day being more than an extra. Confident her breakthrough is right around the corner, she befriends famous actor Sandrine Kiberlain, hoping it will help her achieve her goal — but there’s still a long way to go for her to be welcomed into the closed-off French cinema family."
   },
   {
    "title": "Another Day",
@@ -962,6 +1289,14 @@
    ],
    "age": "14/14",
    "url": "https://www.pathe.ch/de/films/another-day-54444",
+   "backdrop": "https://media.pathe.ch/movie/mx/54444/lg/100/media",
+   "isNew": false,
+   "order": 41,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Garance is a young actress but not a star. She manages things as best she can, finding fuel and comfort in alcohol. As she embarks for an eight-year journey of life changes, she drinks more and more. Until death seems to loom.",
    "imdb_id": "tt38584405",
    "ext": {
     "imdb": "6.1",
@@ -992,6 +1327,14 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/blood-money-56222",
+   "backdrop": "https://media.pathe.ch/movie/mx/56222/lg/20/media",
+   "isNew": true,
+   "order": 42,
+   "formats": [],
+   "languages": [
+    "Albanisch"
+   ],
+   "synopsis": "In der albanischen Hafenstadt Durrës wird der ehemalige Häftling Arion (Noizy) aus dem Gefängnis geholt, um für den hoch verschuldeten Ilir (Blerim Destani) an illegalen Bare-Knuckle-Kämpfen in der berüchtigten Kampfstätte «The Circle» teilzunehmen. Clubbesitzer Hans (Moritz Bleibtreu) begegnet ihm zunächst mit Skepsis. Doch als Arion immer mehr Aufmerksamkeit auf sich zieht, erkennt auch Hans sein kommerzielles Potenzial. Was als Ausweg aus der Misere beginnt, entwickelt sich zu einem riskanten Spiel, als Ilir in ein illegales Wettnetzwerk gerät. BLOOD MONEY ist ein raues Kampfsportdrama über",
    "imdb_id": "tt39089238",
    "ext": {
     "imdb": null,
@@ -1020,7 +1363,15 @@
     "Mille Lehfeldt"
    ],
    "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/der-frechste-troll-der-welt-54637"
+   "url": "https://www.pathe.ch/de/films/der-frechste-troll-der-welt-54637",
+   "backdrop": "https://media.pathe.ch/movie/mx/54637/lg/85/media",
+   "isNew": false,
+   "order": 43,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Der kleine Troll Billy ist im Quatsch machen einfach unschlagbar. Auf seiner Lieblings-Fledermaus fliegt er von einem Schlamassel in den nächsten. Eigentlich soll der kleine freche Billy der nächste Höhlenmeister werden und die Troll-Familie vor den fiesen Menschen beschützen. Aber stattdessen sehnt er sich nach gefährlichen Abenteuern. Neugierig und im Herzen mutig schleicht er sich ans Tageslicht in die streng verbotene Menschenwelt. Mit Schwester Bonny an seiner Seite entdeckt er jedoch, dass ihr Zuhause in grosser Gefahr schwebt. Die Menschen wollen einen gigantischen Freizeitpark darauf b"
   },
   {
    "title": "Iron Boy",
@@ -1042,6 +1393,14 @@
    ],
    "age": "6/10",
    "url": "https://www.pathe.ch/de/films/iron-boy-52902",
+   "backdrop": "https://media.pathe.ch/movie/mx/52902/lg/148/media",
+   "isNew": false,
+   "order": 44,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Christophe, a 10-year-old boy with balance issues, navigates life in an orthopedic brace while his struggling family farm faces modernization. Torn between independence and mending ties with his distant father, he weighs his future.",
    "imdb_id": "tt36639956",
    "ext": {
     "imdb": "7.6",
@@ -1072,6 +1431,14 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/resident-evil-50490",
+   "backdrop": "https://media.pathe.ch/movie/mx/50490/lg/144/media",
+   "isNew": false,
+   "order": 46,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Der Kurierfahrer Bryan (Austin Abrams) nimmt einen scheinbar harmlosen Auftrag an: die Lieferung eines biomedizinischen Pakets. Was wie ein gewöhnlicher Arbeitstag beginnt, wird zur Hölle auf Erden. Eine Nacht, kein Ausweg - und ein Horror, der alles verschlingt.Mit seinen Filmen hat Zach Cregger (BARBARIAN, WEAPONS) bereits bewiesen, dass er Horror anders denkt als alle anderen. RESIDENT EVIL verspricht ein Kinoerlebnis, das unter die Haut geht und man so noch nie gesehen hat.",
    "imdb_id": "tt35538033",
    "ext": {
     "imdb": null,
@@ -1102,6 +1469,14 @@
    ],
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/street-fighter-54680",
+   "backdrop": "https://media.pathe.ch/movie/mx/54680/lg/118/media",
+   "isNew": false,
+   "order": 47,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Angesiedelt im Jahr 1993, werden die entfremdeten Street Fighter Ryu (Andrew Koji) und Ken Masters (Noah Centineo) wieder in den Kampf getrieben, als die mysteriöse Chun-Li (Callina Liang) sie für das nächste World Warrior Tournament rekrutiert – ein brutales Aufeinandertreffen von Fäusten, Schicksal und Wut. Doch hinter diesem Battle Royale verbirgt sich eine tödliche Verschwörung, die sie zwingt, nicht nur gegeneinander, sondern auch gegen die Dämonen ihrer Vergangenheit anzutreten. Und wenn sie’s nicht tun, heißt es: GAME OVER!Unter der Regie von Kitao Sakurai bringt STREET FIGHTER den Kamp",
    "imdb_id": "tt27419420",
    "ext": {
     "imdb": "6.2",
@@ -1134,7 +1509,13 @@
     "Chimwemwe Miller"
    ],
    "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/der-letzte-walsanger-49129"
+   "url": "https://www.pathe.ch/de/films/der-letzte-walsanger-49129",
+   "backdrop": "https://media.pathe.ch/movie/mx/49129/lg/333/media",
+   "isNew": false,
+   "order": 75,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Der jugendliche Buckelwal Vincent (gesprochen von Flemming Stein) ist der verwaiste Sohn des letzten Walsängers. Da ihn der Verlust seiner Eltern stark belastet, ist er nicht in der Lage, ebenfalls die Ozeane mit seinem magischen Lied zu beschützen. Doch als der monströse Leviathan aus einem schmelzenden Eisberg ausbricht und sämtliches Meeresleben mit seiner giftigen Tinte bedroht, muss Vincent seine Ängste überwinden und sich auf eine gefährliche Reise begeben um sein eigenes Lied zu finden."
   },
   {
    "title": "111 - Echoes from Halifax",
@@ -1154,6 +1535,12 @@
    ],
    "age": "10/12",
    "url": "https://www.pathe.ch/de/films/111-echoes-from-halifax-38775",
+   "backdrop": "https://media.pathe.ch/movie/mx/38775/lg/63/media",
+   "isNew": false,
+   "order": 48,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Am 2. September 1998 verändert der Absturz des Swissair-Flugs 111 vor der Küste von Halifax das Leben vieler Menschen für immer. Doch «111 – Echoes from Halifax» erzählt nicht die Katastrophe selbst – sondern ihre Nachwirkungen. Der Film folgt Menschen in verschiedenen Ländern, deren Schicksale durch das Unglück miteinander verbunden sind. Angehörige ringen um Gewissheit über ihre Liebsten, Helfende versuchen Trost zu spenden, und die Bewohner der kanadischen Küste werden mit den Spuren der Tragödie konfrontiert. Während die Zeit vergeht und Fragen offen bleiben, zeigt der Film, wie Trauer ver",
    "imdb_id": "tt33480983",
    "ext": {
     "imdb": null,
@@ -1179,6 +1566,12 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/dua-56317",
+   "backdrop": "https://media.pathe.ch/movie/mx/56317/lg/34/media",
+   "isNew": false,
+   "order": 79,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Prishtina, Kosovo, Ende der 1990er Jahre. Während der Krieg näher rückt und die ethnischen Spannungen eskalieren, ringt die dreizehnjährige Dua darum, ihren Platz unter Gleichaltrigen – und in ihrem sich wandelnden Körper – zu finden. Nach einem Vorfall, der ihre Gemeinschaft erschüttert, gerät sie selbst ins Visier. Sie freundet sich mit der furchtlosen Maki an, die sie zu einer unerwarteten Form des Widerstands hinzieht. Zwischen allgegenwärtiger Gewalt und der wachsenden Bedrohung des Exils bleibt kaum Raum für leise, persönliche Aufbrüche.",
    "imdb_id": "tt38765198",
    "ext": {
     "imdb": "7.8",
@@ -1209,6 +1602,12 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/frank-louis-54510",
+   "backdrop": "https://media.pathe.ch/movie/mx/54510/lg/47/media",
+   "isNew": false,
+   "order": 96,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Frank (Kingsley Ben-Adir), ein Mann in den Vierzigern, verbüsst eine lebenslange Haftstrafe - mit der Aussicht auf Bewährung. Um die brutale Realität des Gefängnisalltags zu ertragen, hat er sich emotional abgeschottet. Als er in eine neue Einrichtung verlegt wird, beschliesst er, sich den Gold Coats anzuschliessen – einem Programm, in dem Häftlinge an Alzheimer und Demenz erkrankte Mitinsassen zu betreuen - in der Hoffnung, durch dieses Engagement die Chancen auf Bewährung zu erhöhen. Die Arbeit ist fordernd, doch Frank entwickelt eine unerwartete Beziehung zu einem seiner Patienten, Louis Ne",
    "imdb_id": "tt20495188",
    "ext": {
     "imdb": null,
@@ -1239,6 +1638,16 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/wildwood-54930",
+   "backdrop": "https://media.pathe.ch/movie/mx/54930/lg/68/media",
+   "isNew": false,
+   "order": 18,
+   "formats": [
+    "4DX"
+   ],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Nachdem ihr kleiner Bruder von einem Schwarm Krähen entführt worden ist, begibt sich die 12-jährige Prue auf eine abenteuerliche Rettungsmission in die „Undurchdringliche Wildnis“ – einen verzauberten Wald, der sich am Rande von Portland, Oregon, verbirgt. Gemeinsam mit ihrem tollpatschigen Mitschüler Curtis betritt sie eine Welt voller sprechender Tiere, Magie und uralter Mächte. Als die beiden in einen Konflikt geraten, der das Gleichgewicht des Waldes bedroht, entdeckt Prue eine innere Stärke, von der sie niemals geahnt hätte, dass sie in ihr steckt. Wenn sie ihren Bruder retten und das Sch",
    "imdb_id": "tt2056785",
    "ext": {
     "imdb": "8.7",
@@ -1269,6 +1678,12 @@
    ],
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/gentle-monster-54388",
+   "backdrop": "https://media.pathe.ch/movie/mx/54388/lg/96/media",
+   "isNew": true,
+   "order": 98,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Die berühmte Pianistin Lucy zieht – trotz negativer Auswirkungen auf ihre Karriere – nach dem Burnout ihres Mannes Philip zusammen mit ihm und dem gemeinsamen Sohn aufs Land. Elsa, die als Sonderermittlerin bei der Polizei arbeitet, muss sich um ihren dementen Vater kümmern. Die beiden Frauen vereint ein Schicksal: Sie sehen sich umgeben von den dunklen Geheimnissen der Männer in ihrem Leben.",
    "imdb_id": "tt37020296",
    "ext": {
     "imdb": "5.5",
@@ -1298,6 +1713,12 @@
    ],
    "age": "8/12",
    "url": "https://www.pathe.ch/de/films/camembert-51588",
+   "backdrop": "https://media.pathe.ch/movie/mx/51588/lg/26/media",
+   "isNew": true,
+   "order": 65,
+   "formats": [],
+   "languages": [],
+   "synopsis": "At Christmas Eve dinner at the Roussels', Stan meets his girlfriend Cléo's large, upper-class family for the first time. Everything seems perfect - until the group decides to play a game of Trivial Pursuit.",
    "imdb_id": "tt39314834",
    "ext": {
     "imdb": null,
@@ -1324,7 +1745,13 @@
     ""
    ],
    "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/de-ragebogefisch-51589"
+   "url": "https://www.pathe.ch/de/films/de-ragebogefisch-51589",
+   "backdrop": "https://media.pathe.ch/movie/mx/51589/lg/28/media",
+   "isNew": false,
+   "order": 73,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Der Regenbogenfisch ist mit seinen schillernden Schuppen der schönste Fisch im ganzen Ozean. Doch er ist auch etwas eitel und stösst damit die anderen Fische vor den Kopf. Mit der Zeit wird er so immer einsamer. Als er eines Tages eine seiner geliebten Glitzerschuppen verliert, begleitet ihn der Kleine Blaue auf der Suche danach in die tiefste Tiefsee. Eine abenteuerliche Meeresreise beginnt – und der Regenbogenfisch erkennt, dass man gemeinsam viel mutiger ist als allein, und dass echte Freundschaft kostbarer ist als das prächtigste Schuppenkleid."
   },
   {
    "title": "Lieblingsmenschen",
@@ -1345,6 +1772,12 @@
    ],
    "age": "6/6",
    "url": "https://www.pathe.ch/de/films/lieblingsmenschen-54702",
+   "backdrop": "https://media.pathe.ch/movie/mx/54702/lg/21/media",
+   "isNew": false,
+   "order": 135,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Amir, ein 28-jähriger schwuler Flüchtling aus dem Iran, trifft auf Agnes, eine lebhafte 101-jährige Berlinerin. Sie beschliessen, zusammenzuziehen. Was als ungewöhnliche Wohngemeinschaft beginnt, entwickelt sich zu einer tiefen Freundschaft, die die kulturellen und altersbedingten Grenzen sprengt. Dabei lernen sie nicht nur voneinander, sondern finden auch neue Freude und Lebensmut. Eine wahre Geschichte über unerwartete Freundschaft und die Wunder, die das Leben bereithält.",
    "imdb_id": "tt43598591",
    "ext": {
     "imdb": "8.2",
@@ -1375,6 +1808,20 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/the-hunger-games-sunrise-on-the-reaping-49227",
+   "backdrop": "https://media.pathe.ch/movie/id/49227/backdrop/270519/lg/1/solstice-unit-250903-00331rc-1.jpg",
+   "isNew": false,
+   "order": 5,
+   "formats": [
+    "IMAX",
+    "Dolby Atmos",
+    "VIP & Premium"
+   ],
+   "languages": [
+    "Deutsch",
+    "Englisch",
+    "Französisch"
+   ],
+   "synopsis": "DIE TRIBUTE VON PANEM – SUNRISE ON THE REAPING ist das mit Spannung erwartete neue Kapitel des weltweiten Erfolgsphänomens, basierend auf den dystopischen Bestsellern von Suzanne Collins.Der Film erzählt die Geschichte des jungen Haymitch Abernathy, der 24 Jahre vor den Ereignissen von DIE TRIBUTE VON PANEM – THE HUNGER GAMES auserwählt wird, um an den 50. Hungerspielen, dem zweiten sogenannten Jubel-Jubiläum, teilzunehmen. In einem von Misstrauen und politischer Spannung zerrissenen Panem wird ein noch erbarmungsloseres Jubiläums-Spiel alles für immer verändern.",
    "imdb_id": "tt32558705",
    "ext": {
     "imdb": null,
@@ -1405,6 +1852,12 @@
    ],
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/the-only-living-pickpocket-in-new-york-56180",
+   "backdrop": "https://media.pathe.ch/movie/mx/56180/lg/29/media",
+   "isNew": false,
+   "order": 193,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Als ein Diebstahl schiefgeht, wird ein erfahrener Taschendieb quer durch New York geschickt, um die gestohlenen Waren zurückzuholen.",
    "imdb_id": "tt36482679",
    "ext": {
     "imdb": null,
@@ -1427,7 +1880,13 @@
     ""
    ],
    "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/ndc-2026-bienvenue-au-club-56286"
+   "url": "https://www.pathe.ch/de/films/ndc-2026-bienvenue-au-club-56286",
+   "backdrop": "https://media.pathe.ch/movie/id/56286/backdrop/282459/lg/1/ndc-2026.png",
+   "isNew": false,
+   "order": 152,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Groucho Marx a certes dit : Jamais je ne voudrais faire partie d'un club qui accepterait de m'avoir pour membre. Mais à l’ère où chacun cultive religieusement son entre-soi derrière un écran et se replie sur son canapé, le club reste un précieux espace de rencontre et de partage, un lieu où les passions individuelles deviennent une aventure collective. Bienvenue dans la vraie vie des flics lausannois en short et des gangs de filles à boguet !"
   },
   {
    "title": "NDC 2026: Carte blanche au Festival du Film d'ani.",
@@ -1443,7 +1902,13 @@
     ""
    ],
    "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/ndc-2026-carte-blanche-au-festival-du-film-d-ani-56287"
+   "url": "https://www.pathe.ch/de/films/ndc-2026-carte-blanche-au-festival-du-film-d-ani-56287",
+   "backdrop": "https://media.pathe.ch/movie/id/56287/backdrop/282461/lg/1/ndc-2026.png",
+   "isNew": false,
+   "order": 153,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Dix ans déjà que le Festival du Film d’Animation de Savigny nous fait scintiller les pupilles avec un florilège de courts métrages d’animation du monde entier. Et c’te belle équipe propose un best of, juste pour vous !"
   },
   {
    "title": "NDC 2026: De la passion à l'obsession",
@@ -1457,7 +1922,13 @@
     ""
    ],
    "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/ndc-2026-de-la-passion-a-l-obsession-56291"
+   "url": "https://www.pathe.ch/de/films/ndc-2026-de-la-passion-a-l-obsession-56291",
+   "backdrop": "https://media.pathe.ch/movie/id/56291/backdrop/282463/lg/1/ndc-2026.png",
+   "isNew": false,
+   "order": 154,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Comment démarre une passion, et à partir de quand devient-elle obsession ? Certaines passions prennent toute la place. Ce qui semble inoffensif à première vue peut révéler des aspects très sombres. L'obsession peut s'installer au plus profond de soi, telle un ver solitaire, s'y accrocher et devenir le seul compagnon de route. Un rituel pour s’en débarrasser pourrait être la seule issue."
   },
   {
    "title": "NDC 2026: Heavy Platon",
@@ -1471,7 +1942,13 @@
     ""
    ],
    "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/ndc-2026-heavy-platon-56292"
+   "url": "https://www.pathe.ch/de/films/ndc-2026-heavy-platon-56292",
+   "backdrop": "https://media.pathe.ch/movie/id/56292/backdrop/282465/lg/1/ndc-2026.png",
+   "isNew": false,
+   "order": 155,
+   "formats": [],
+   "languages": [],
+   "synopsis": "Trois films qui n’ont pas besoin de mots pour se faire entendre. Une voix qui fait trembler la terre, des métalleuses et des métalleux en transe, un enfant qui sort de la caverne : le cinéma joue fort avec les formes, les corps et les perceptions. Trois univers poétiques, parfois dérangeants, où le réel se fissure pour laisser entrevoirautre chose."
   }
  ]
 }
