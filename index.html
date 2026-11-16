@@ -170,15 +170,16 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 
 
 /* Neu: Netflix-Startseite */
-.hero-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hero-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .hero-rail::-webkit-scrollbar,.rail::-webkit-scrollbar{display:none}
-.hcard{flex:none;position:relative;width:min(74vw,330px);aspect-ratio:2/3;border-radius:28px;overflow:hidden;scroll-snap-align:center;background:#1c1c1e center/cover;text-align:left;box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 .5px rgba(255,255,255,.1);transition:transform .25s}
+.hcard{flex:none;position:relative;width:232px;aspect-ratio:2/3;border-radius:22px;overflow:hidden;scroll-snap-align:start;background:#1c1c1e center/cover;text-align:left;box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 .5px rgba(255,255,255,.1);transition:transform .25s}
 .hcard:active{transform:scale(.97)}
 .hcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 22%,transparent 45%,rgba(0,0,0,.92) 100%)}
-.hc-in{position:absolute;left:0;right:0;bottom:0;padding:18px;z-index:1}
-.hc-t{font:800 26px/1.1 var(--f);letter-spacing:-.5px}
+.hc-in{position:absolute;left:0;right:0;bottom:0;padding:14px;z-index:1}
+.hc-in .ext{gap:4px}
+.hc-t{font:800 21px/1.12 var(--f);letter-spacing:-.4px}
 .hc-m{font-size:14px;color:rgba(255,255,255,.75);margin-top:6px}
-.badges{position:absolute;top:14px;left:14px;right:14px;display:flex;flex-wrap:wrap;gap:6px;z-index:1}
+.badges{position:absolute;top:10px;left:10px;right:10px;display:flex;flex-wrap:wrap;gap:6px;z-index:1}
 .badge{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:11px;font-size:11px;font-weight:800;letter-spacing:.3px;color:#fff;background:rgba(20,20,24,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.25)}
 .badge.new{color:#000;background:var(--tint)}
 .rowh{font:700 21px/1.2 var(--f);letter-spacing:-.4px;margin:28px 2px 10px}
@@ -205,10 +206,28 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 @keyframes inl{from{opacity:0;transform:translateX(-28px)}}
 .wz-h{font:800 28px/1.15 var(--f);letter-spacing:-.6px;text-align:center;margin-top:8px}
 .wz-film{display:flex;align-items:center;gap:12px;padding:10px;border-radius:var(--r-l);background:var(--grp)}
-.wz-film .poster{width:44px;height:66px;border-radius:10px}
-.wz-crit{display:flex;flex-direction:column;align-items:center;padding-top:6vh}
+.wz-film .poster{width:48px;height:72px;border-radius:10px}
+.wz-film .info{flex:1;min-width:0}
+.wz-film .ext{margin-top:5px}
+.wz-crit{display:flex;flex-direction:column;align-items:center;padding-top:3.5vh}
+.wz-bg{position:absolute;inset:-80px;z-index:0;background:center/cover;filter:blur(60px) saturate(170%) brightness(.38);transform:scale(1.15);pointer-events:none;transition:background-image .4s}
+.wz-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(17,17,19,.2),rgba(17,17,19,.75) 70%)}
+.sheet.wiz .sh-body,.sheet.wiz .sh-bar{position:relative;z-index:1}
+.sheet.wiz .sh-bar{position:absolute}
+.sheet.wiz .sh-foot{background:linear-gradient(rgba(17,17,19,0),rgba(17,17,19,.85) 45%);box-shadow:none}
+.sheet.wiz .grp,.sheet.wiz .wz-film{background:rgba(44,44,50,.55);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1)}
+.sheet.wiz .search{background:rgba(118,118,128,.3)}
+.meter{--v:70;--c:var(--ok);width:min(58vw,230px);aspect-ratio:1;border-radius:50%;margin:3.5vh 0 3vh;position:relative;display:grid;place-items:center;
+  background:conic-gradient(var(--c) calc(var(--v)*1%),rgba(255,255,255,.1) 0);transition:--v .2s;
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 14px),#000 calc(100% - 13px));mask:radial-gradient(farthest-side,transparent calc(100% - 14px),#000 calc(100% - 13px));filter:drop-shadow(0 0 22px color-mix(in srgb,var(--c) 45%,transparent))}
+.meter-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.meter{-webkit-mask:none;mask:none;background:none}
+.meter::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--c) calc(var(--v)*1%),rgba(255,255,255,.1) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 14px),#000 calc(100% - 13px));mask:radial-gradient(farthest-side,transparent calc(100% - 14px),#000 calc(100% - 13px))}
+.meter.sm{width:150px}
+.meter.sm .wz-val{font-size:46px}
+.wz-word{font-size:15px;font-weight:700;margin-top:4px;letter-spacing:.2px}
 .wz-step{font-size:13px;font-weight:700;color:var(--tint);text-transform:uppercase;letter-spacing:.6px}
-.wz-val{font:800 96px/1 var(--f);letter-spacing:-3px;margin:5vh 0 4vh;font-variant-numeric:tabular-nums;transition:color .2s}
+.wz-val{font:800 72px/1 var(--f);letter-spacing:-2.5px;font-variant-numeric:tabular-nums}
 .wz-ctl{display:flex;align-items:center;gap:14px;width:100%}
 .wz-ctl input{flex:1}
 .wz-ctl .glass-btn{flex:none;width:48px;height:48px;color:var(--t1)}
@@ -251,7 +270,8 @@ const CRITERIA = [
   {key:'story',  label:'Story'},
   {key:'camera', label:'Kamera & Bild'},
   {key:'music',  label:'Musik'},
-  {key:'acting', label:'Cast'}
+  {key:'acting', label:'Cast'},
+  {key:'fun',    label:'Unterhaltung'}
 ];
 
 /* ================= Helfer ================= */
@@ -282,9 +302,9 @@ const I = {
   pop:'<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1.6 11.2a1 1 0 0 1-1 .8H7.6a1 1 0 0 1-1-.8z"/><path d="M5 9a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5-1 3 3 0 0 1 5 1 2.5 2.5 0 0 1 2 4"/><path d="M10 13v5M14 13v5"/></svg>'
 };
 
-function extPills(e){
-  if(!e) return '';
-  const p=[];
+function extPills(e, fm=[]){
+  const p=fm.map(f=>`<span class="pill fmt">${esc(f)}</span>`);
+  if(!e) return p.length?`<div class="ext">${p.join('')}</div>`:'';
   if(e.imdb) p.push(`<span class="pill">IMDb <b>${esc(e.imdb)}</b></span>`);
   if(e.rt)   p.push(`<span class="pill">🍅 <b>${esc(e.rt)}</b></span>`);
   if(e.mc)   p.push(`<span class="pill">MC <b>${esc(e.mc)}</b></span>`);
@@ -502,7 +522,7 @@ function render(){
           <div class="info">
             <div class="title">${esc(r.title)}</div>
             <div class="meta">${[r.year, top?`${r.count} Bewertung${r.count>1?'en':''}`:state.tab==='friends'?(r.username||'Unbekannt'):fmtDate(r.watched_on)].filter(Boolean).map(esc).join(' · ')}</div>
-            ${extPills(r.ext)}
+            ${extPills(r.ext, fmtsOf(r.count?r.list.find(x=>x.ext)||r.list[0]:r))}
           </div>
           ${ring(r._s)}
         </button>`).join('') : `<div class="empty">${I.pop}${emptyTxt}</div>`}
@@ -525,6 +545,12 @@ async function loadKino(){
     state.kino = k; }
   catch(e){ state.kino = {now:[], soon:[], all:[], err:true}; }
   return state.kino;
+}
+const FMT_SHOW = ['IMAX','4DX','D-BOX','Dolby Atmos','ScreenX','3D'];
+function fmtsOf(r){
+  let f = r?.ext?.formats;
+  if(!f && r?.imdb_id && state.kino?.all){ f = state.kino.all.find(m=>m.imdb_id===r.imdb_id)?.formats; }
+  return (f||[]).filter(x=>FMT_SHOW.includes(x));
 }
 function friendsFor(m){ return m.imdb_id ? state.ratings.filter(r=>r.imdb_id===m.imdb_id) : []; }
 const imdbNum = m => parseFloat(m.ext?.imdb)||0;
@@ -560,7 +586,7 @@ function renderNeu(){
   $('#app').innerHTML = head + `
     <div class="hero-rail">${heroes.map(m=>`
       <button class="hcard" data-kid="${m._i}" ${posterStyle(m.poster)}>
-        <div class="badges">${m.isNew?'<span class="badge new">Neu</span>':''}${(m.formats||[]).filter(f=>f!=='VIP & Premium'&&f!=='Kinderkino').slice(0,3).map(f=>`<span class="badge">${f}</span>`).join('')}</div>
+        <div class="badges">${m.isNew?'<span class="badge new">Neu</span>':''}${(m.formats||[]).filter(f=>f!=='VIP & Premium'&&f!=='Kinderkino').slice(0,2).map(f=>`<span class="badge">${f}</span>`).join('')}</div>
         <div class="hc-in">
           <div class="hc-t">${esc(m.title)}</div>
           <div class="hc-m">${[genresDe(m).slice(0,2).join(', '), m.duration?m.duration+' Min':''].filter(Boolean).map(esc).join(' · ')}</div>
@@ -608,7 +634,7 @@ function openKino(m){
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   if(mine) $('#kd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
-  else $('#kr').onclick=()=>openForm({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:m.ext||null});
+  else $('#kr').onclick=()=>openForm({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), formats:m.formats||[]}});
 }
 
 /* ================= Freunde einladen ================= */
@@ -621,7 +647,7 @@ async function invite(){
 
 /* ================= Sheets ================= */
 function openSheet({title='', right='', body, footer='', swipe=true}){
-  const sh=$('#sheet');
+  const sh=$('#sheet'); sh.classList.remove('wiz');
   sh.innerHTML = `<div class="grab"></div><div class="sh-bar"><button class="glass glass-btn" id="shx" aria-label="Schliessen">${I.close}</button><h3>${title}</h3><div style="min-width:44px;display:flex;justify-content:flex-end">${right}</div></div><div class="sh-body" id="shb">${body}</div>${footer?`<div class="sh-foot" id="shf">${footer}</div>`:''}`;
   requestAnimationFrame(()=>{ $('#ov').classList.add('open'); sh.classList.add('open'); });
   document.body.classList.add('lock');
@@ -632,7 +658,7 @@ function openSheet({title='', right='', body, footer='', swipe=true}){
   sh.ontouchmove=e=>{ if(y0==null) return; dy=e.touches[0].clientY-y0; if(dy>0){ sh.style.transition='none'; sh.style.transform=`translateY(${dy}px)`; } };
   sh.ontouchend=()=>{ if(y0==null) return; sh.style.transition=''; sh.style.transform=''; if(dy>120) closeSheet(); y0=null; };
 }
-function closeSheet(){ $('#ov').classList.remove('open'); $('#sheet').classList.remove('open'); document.body.classList.remove('lock'); document.activeElement?.blur(); }
+function closeSheet(){ $('#ov').classList.remove('open'); $('#sheet').classList.remove('open'); setTimeout(()=>{ if(!$('#sheet').classList.contains('open')) $('#sheet').classList.remove('wiz'); },450); document.body.classList.remove('lock'); document.activeElement?.blur(); }
 $('#ov').onclick=closeSheet;
 $('#add').onclick=()=>{ tick(); openForm(); };
 
@@ -657,7 +683,7 @@ function openDetail(key){
         <div class="meta">${[f.year,e?.genre,e?.runtime].filter(Boolean).map(esc).join(' · ')}</div>
         ${e?.director?`<div class="meta">Regie: ${esc(e.director)}</div>`:''}
         <div class="scorerow">${ring(all,'xl')}<div class="lbl"><b>Gesamtschnitt</b>${list.length} Bewertung${list.length>1?'en':''}</div></div>
-        ${extPills(e)}
+        ${extPills(e, fmtsOf(list.find(x=>x.ext)||f))}
       </div>
     </div>
     ${mine?`
@@ -676,11 +702,12 @@ function openForm(r){
   const isEdit = !!r?.id;
   const d = r ? {...r} : {watched_on:new Date().toISOString().slice(0,10)};
   CRITERIA.forEach(c=>{ if(d[c.key]==null) d[c.key]=7; });
-  const HINT = {story:'Handlung, Spannung, Ende', camera:'Bildsprache, Effekte, Farben', music:'Soundtrack, Score, Sound', acting:'Schauspiel und Besetzung'};
+  const HINT = {story:'Handlung, Spannung, Ende', camera:'Bildsprache, Effekte, Farben', music:'Soundtrack, Score, Sound', acting:'Schauspiel und Besetzung', fun:'Spass, Tempo, Kurzweil'};
   const steps = ['film', ...CRITERIA.map(c=>c.key), 'done'];
   let i = d.title ? 1 : 0, dir = 1;
 
   openSheet({ swipe:false, title:`<div class="prog" id="prog"></div>`, body:`<div id="wz"></div>`, footer:`<button class="btn pri" id="nx" style="margin:0">Weiter</button>` });
+  $('#sheet').classList.add('wiz'); $('#sheet').insertAdjacentHTML('afterbegin','<div class="wz-bg" id="wzbg"></div>');
   const go = n => { dir = n>i?1:-1; i = n; tick(); draw(); };
 
   function draw(){
@@ -728,7 +755,10 @@ function openForm(r){
       return;
     }
 
-    const filmHead = `<div class="wz-film"><div class="poster" ${posterStyle(d.poster)}>${d.poster?'':I.film}</div><div><div class="title">${esc(d.title)}</div><div class="meta">${esc(d.year||'')}</div></div></div>`;
+    const bg=$('#wzbg'); if(bg) bg.style.backgroundImage = d.poster?`url('${d.poster}')`:'';
+    const fm = fmtsOf(d);
+    const filmHead = `<div class="wz-film"><div class="poster" ${posterStyle(d.poster)}>${d.poster?'':I.film}</div><div class="info"><div class="title">${esc(d.title)}</div><div class="meta">${esc(d.year||'')}</div>${fm.length?`<div class="ext">${fm.map(f=>`<span class="pill fmt">${esc(f)}</span>`).join('')}</div>`:''}</div></div>`;
+    const WORD = v => v<3?'Schlecht':v<5?'Schwach':v<6.5?'Okay':v<8?'Gut':v<9.5?'Sehr gut':'Meisterwerk';
 
     if(st!=='done'){
       const c = CRITERIA.find(c=>c.key===st), n = steps.indexOf(st);
@@ -737,7 +767,7 @@ function openForm(r){
           <div class="wz-step">${n} von ${CRITERIA.length}</div>
           <h2 class="wz-h">${c.label}</h2>
           <div class="hint" style="margin:6px 0 0;text-align:center">${HINT[c.key]||''}</div>
-          <div class="wz-val" id="wv">${f1(d[st])}</div>
+          <div class="meter" id="mt"><div class="meter-in"><div class="wz-val" id="wv">${f1(d[st])}</div><div class="wz-word" id="ww"></div></div></div>
           <div class="wz-ctl">
             <button class="glass glass-btn" id="mn" aria-label="Weniger">${I.minus}</button>
             <input type="range" min="1" max="10" step="0.5" id="rg" value="${d[st]}" aria-label="${c.label}">
@@ -745,8 +775,8 @@ function openForm(r){
           </div>
           <div class="ticks" style="padding:0 64px;width:100%"><span>1</span><span>10</span></div>
         </div>`;
-      const rg=$('#rg'), wv=$('#wv');
-      const set=v=>{ v=Math.min(10,Math.max(1,Math.round(v*2)/2)); if(v!==d[st]) tick(); d[st]=v; rg.value=v; wv.textContent=f1(v); wv.style.color=col(v); rg.style.setProperty('--p',((v-1)/9*100)+'%'); };
+      const rg=$('#rg'), wv=$('#wv'), mt=$('#mt'), ww=$('#ww');
+      const set=v=>{ v=Math.min(10,Math.max(1,Math.round(v*2)/2)); if(v!==d[st]) tick(); d[st]=v; rg.value=v; wv.textContent=f1(v); ww.textContent=WORD(v); ww.style.color=col(v); mt.style.setProperty('--v',v*10); mt.style.setProperty('--c',col(v)); rg.style.setProperty('--p',((v-1)/9*100)+'%'); };
       rg.oninput=()=>set(+rg.value); $('#mn').onclick=()=>set(d[st]-0.5); $('#pl').onclick=()=>set(d[st]+0.5);
       set(d[st]);
       nx.textContent = 'Weiter'; nx.onclick=()=>go(i+1);
@@ -755,7 +785,7 @@ function openForm(r){
 
     // Zusammenfassung
     wz.innerHTML = `${filmHead}
-      <div style="display:flex;justify-content:center;margin:22px 0 4px" id="tot">${ring(avg(d),'xl')}</div>
+      <div class="meter sm" style="--v:${avg(d)*10};--c:${col(avg(d))};margin:26px auto 6px"><div class="meter-in"><div class="wz-val" style="color:var(--t1)">${f1(avg(d))}</div><div class="wz-word" style="color:${col(avg(d))}">${WORD(avg(d))}</div></div></div>
       <div class="hint" style="text-align:center;margin:0 0 4px">Deine Gesamtnote</div>
       <div class="grp" style="margin-top:16px">${CRITERIA.map((c,k)=>`<button class="cell cell-h" data-go="${k+1}" style="width:100%;text-align:left"><span>${c.label}</span><span style="display:flex;align-items:center;gap:10px"><b style="color:${col(d[c.key])}">${f1(d[c.key])}</b><span style="color:var(--t3)">${I.chev}</span></span></button>`).join('')}</div>
       <div class="grp" style="margin-top:12px"><div class="field"><label for="fd">Gesehen am</label><input type="date" id="fd" value="${esc(d.watched_on||'')}"></div></div>
@@ -802,7 +832,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '12';
+const APP_VERSION = '13';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
@@ -817,6 +847,7 @@ document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==
 (async()=>{
   try{ await DB.init(); state.user = await DB.getUser(); }catch(e){ toast(e.message); }
   state.user ? refresh() : renderAuth();
+  loadKino().then(()=>{ if(state.user) render(); });
 })();
 </script>
 </body>
