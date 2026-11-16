@@ -3,7 +3,7 @@
   "short_name": "Filmrating",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#0e0e12",
-  "theme_color": "#0e0e12",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [{ "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }]
 }
