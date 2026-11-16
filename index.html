@@ -169,6 +169,30 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .hint{color:var(--t2);font-size:13px;margin:8px 16px 0}
 
 
+/* Neu: Netflix-Startseite */
+.hero-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hero-rail::-webkit-scrollbar,.rail::-webkit-scrollbar{display:none}
+.hcard{flex:none;position:relative;width:min(74vw,330px);aspect-ratio:2/3;border-radius:28px;overflow:hidden;scroll-snap-align:center;background:#1c1c1e center/cover;text-align:left;box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 .5px rgba(255,255,255,.1);transition:transform .25s}
+.hcard:active{transform:scale(.97)}
+.hcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 22%,transparent 45%,rgba(0,0,0,.92) 100%)}
+.hc-in{position:absolute;left:0;right:0;bottom:0;padding:18px;z-index:1}
+.hc-t{font:800 26px/1.1 var(--f);letter-spacing:-.5px}
+.hc-m{font-size:14px;color:rgba(255,255,255,.75);margin-top:6px}
+.badges{position:absolute;top:14px;left:14px;right:14px;display:flex;flex-wrap:wrap;gap:6px;z-index:1}
+.badge{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:11px;font-size:11px;font-weight:800;letter-spacing:.3px;color:#fff;background:rgba(20,20,24,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.25)}
+.badge.new{color:#000;background:var(--tint)}
+.rowh{font:700 21px/1.2 var(--f);letter-spacing:-.4px;margin:28px 2px 10px}
+.rail{display:flex;gap:10px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scroll-snap-type:x proximity;scroll-padding:0 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.pcard{flex:none;width:116px;text-align:left;scroll-snap-align:start}
+.pcard .poster{width:116px;height:174px;border-radius:14px;position:relative}
+.pcard .badge{position:absolute;top:6px;left:6px;height:18px;padding:0 6px;font-size:9.5px}
+.pcard:active .poster{transform:scale(.96)}
+.pt{font-size:13px;font-weight:600;line-height:1.25;margin-top:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pm{font-size:12px;color:var(--t2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pring{position:absolute;right:5px;bottom:5px}
+.pring .ring.sm{width:36px;height:36px}.pring .ring.sm span{width:29px;height:29px;font-size:12px;background:#1c1c1e}
+.pill.fmt{color:var(--tint);background:rgba(255,179,64,.14)}
+
 /* Bewertungs-Assistent */
 .sh-foot{position:relative;z-index:2;padding:12px 16px calc(var(--sa-b) + 14px);background:#111113;box-shadow:0 -0.5px 0 rgba(255,255,255,.08)}
 .prog{display:flex;gap:5px;justify-content:center}
@@ -400,8 +424,8 @@ const Remote = {
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
-const state = {user:null, ratings:[], tab:'mine', q:'', sort:'date'};
-const TABS = [{id:'mine',label:'Meine',icon:I.film,title:'Meine Filme'},{id:'friends',label:'Freunde',icon:I.people,title:'Freunde'},{id:'top',label:'Top',icon:I.star,title:'Top-Liste'},{id:'kino',label:'Kino',icon:I.ticket,title:'Im Kino'}];
+const state = {user:null, ratings:[], tab:'neu', q:'', sort:'date'};
+const TABS = [{id:'neu',label:'Neu',icon:I.ticket,title:'Neu'},{id:'mine',label:'Meine',icon:I.film,title:'Meine Filme'},{id:'friends',label:'Freunde',icon:I.people,title:'Freunde'},{id:'top',label:'Top',icon:I.star,title:'Top-Liste'}];
 
 /* ================= Login ================= */
 function renderAuth(register=false){
@@ -453,7 +477,7 @@ function renderDock(){
 
 function render(){
   renderDock();
-  if(state.tab==='kino') return renderKino();
+  if(state.tab==='neu') return renderNeu();
   const me=state.user.id, top=state.tab==='top';
   let items = state.tab==='mine' ? state.ratings.filter(r=>r.user_id===me)
             : state.tab==='friends' ? state.ratings.filter(r=>r.user_id!==me)
@@ -490,66 +514,95 @@ function render(){
 }
 function fmtDate(d){ if(!d) return ''; const x=new Date(d); return isNaN(x)?d:x.toLocaleDateString('de-CH',{day:'numeric',month:'short',year:'numeric'}); }
 
-/* ================= Kino ================= */
+/* ================= Neu (Startseite im Netflix-Stil) ================= */
 const KINO_URL = 'https://raw.githubusercontent.com/liasoer/filmrating/main/kino.json';
+const GENRE_DE = {Action:'Action',Comedy:'Komödie',Drama:'Drama',Horror:'Horror',Thriller:'Thriller',Animation:'Animation',Family:'Familie',Fantasy:'Fantasy','Science-Fiction':'Science-Fiction','Science Fiction':'Science-Fiction',Romance:'Romantik',Documentary:'Dokumentarfilm',Adventure:'Abenteuer',Crime:'Krimi',Biopic:'Biografie',Musical:'Musik',Western:'Western',War:'Krieg'};
+const FMT_ROWS = [['IMAX','In IMAX'],['4DX','In 4DX'],['D-BOX','Mit D-BOX Sitzen'],['Dolby Atmos','In Dolby Atmos'],['ScreenX','In ScreenX'],['3D','In 3D'],['VIP & Premium','VIP & Premium'],['Kinderkino','Kinderkino']];
 async function loadKino(){
   if(state.kino) return state.kino;
-  try{ const r = await fetch(KINO_URL+'?h='+new Date().toISOString().slice(0,13)); if(!r.ok) throw 0; state.kino = await r.json(); }
-  catch(e){ state.kino = {now:[], soon:[], err:true}; }
+  try{ const r = await fetch(KINO_URL+'?h='+new Date().toISOString().slice(0,13)); if(!r.ok) throw 0; const k = await r.json();
+    k.all = [...(k.now||[]).map(m=>({...m,_soon:false})), ...(k.soon||[]).map(m=>({...m,_soon:true}))];
+    state.kino = k; }
+  catch(e){ state.kino = {now:[], soon:[], all:[], err:true}; }
   return state.kino;
 }
 function friendsFor(m){ return m.imdb_id ? state.ratings.filter(r=>r.imdb_id===m.imdb_id) : []; }
-function renderKino(){
-  state.kinoSec ||= 'now';
-  const k = state.kino;
-  if(!k) loadKino().then(()=>{ if(state.tab==='kino') render(); });
-  const q = state.q.toLowerCase();
-  const items = k ? (k[state.kinoSec]||[]).map((m,i)=>({...m,_i:i})).filter(m=>!q || m.title.toLowerCase().includes(q) || (m.cast||[]).join(' ').toLowerCase().includes(q)) : [];
-  const upd = k?.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
-  $('#app').innerHTML = `
-    <div class="hdr"><h1 class="large">Im Kino</h1><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
-    <label class="search">${I.search}<input id="q" type="search" placeholder="Film oder Schauspieler" value="${esc(state.q)}" enterkeyhint="search"></label>
-    <div class="chips"><button class="chip ${state.kinoSec==='now'?'on':''}" data-k="now">Jetzt im Kino</button><button class="chip ${state.kinoSec==='soon'?'on':''}" data-k="soon">Demnächst</button></div>
-    <div class="list">
-      ${!k ? `<div class="empty">Lade Kinoprogramm…</div>` : k.err ? `<div class="empty">${I.pop}Das Kinoprogramm konnte nicht geladen werden.</div>` :
-        items.length ? items.map(m=>{ const fr=friendsFor(m); const a=fr.length?Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10:null;
-        return `<button class="card" data-ki="${m._i}">
-          <div class="poster" ${posterStyle(m.poster)}>${m.poster?'':I.film}</div>
-          <div class="info">
-            <div class="title">${esc(m.title)}</div>
-            <div class="meta">${state.kinoSec==='soon'&&m.release?'Ab '+esc(fmtDate(m.release))+' · ':''}${[(m.genres||[]).slice(0,2).join(', '), m.duration?m.duration+' Min':''].filter(Boolean).map(esc).join(' · ')}</div>
-            ${extPills(m.ext)}
-          </div>
-          ${a!=null ? ring(a) : ''}
-        </button>`; }).join('') : `<div class="empty">${I.pop}Nichts gefunden.</div>`}
-    </div>
-    ${k && !k.err ? `<div class="hint" style="text-align:center;margin-top:18px">Programm von ${esc(k.source||'Pathé Schweiz')}${upd?', aktualisiert am '+esc(upd):''}</div>`:''}`;
-  const qi=$('#q'); qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
-  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ state.kinoSec=c.dataset.k; tick(); render(); });
-  $('#prof').onclick=openProfile;
-  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openKino(k[state.kinoSec][+c.dataset.ki]));
+const imdbNum = m => parseFloat(m.ext?.imdb)||0;
+const genresDe = m => (m.genres||[]).map(g=>GENRE_DE[g]||g);
+function badgeFor(m){ const f=(m.formats||[]).find(x=>x==='IMAX'||x==='4DX'||x==='ScreenX'); return f?`<span class="badge">${f}</span>`:''; }
+
+function pcard(m){
+  const fr=friendsFor(m); const a=fr.length?Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10:null;
+  const sub = m._soon && m.release ? 'Ab '+fmtDate(m.release).replace(/ \d{4}$/,'') : genresDe(m)[0]||'';
+  return `<button class="pcard" data-kid="${m._i}"><div class="poster" ${posterStyle(m.poster)}>${m.poster?'':I.film}${badgeFor(m)}${a!=null?`<div class="pring">${ring(a,'sm')}</div>`:''}</div><div class="pt">${esc(m.title)}</div><div class="pm">${esc(sub)}</div></button>`;
 }
+function row(title, list){ return list.length ? `<section><h3 class="rowh">${esc(title)}</h3><div class="rail">${list.map(pcard).join('')}</div></section>` : ''; }
+
+function renderNeu(){
+  const k = state.kino;
+  if(!k) loadKino().then(()=>{ if(state.tab==='neu') render(); });
+  const head = `<div class="hdr"><h1 class="large">Neu</h1><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>`;
+  if(!k || k.err){
+    $('#app').innerHTML = head + `<div class="empty">${!k?'Lade Kinoprogramm…':I.pop+'Das Kinoprogramm konnte nicht geladen werden.'}</div>`;
+    $('#prof').onclick=openProfile; return;
+  }
+  const all = k.all.map((m,i)=>({...m,_i:i}));
+  const now = all.filter(m=>!m._soon), soon = all.filter(m=>m._soon);
+  const days = m => m.release ? (Date.now()-new Date(m.release))/864e5 : 999;
+  let heroes = now.filter(m=>m.isNew || days(m)<=21).sort((a,b)=>(a.order||99)-(b.order||99)).slice(0,6);
+  if(heroes.length<4) heroes = [...heroes, ...now.filter(m=>!heroes.includes(m)).slice(0,4-heroes.length)];
+  const rated = all.filter(m=>friendsFor(m).length);
+  const genres = {}; now.forEach(m=>genresDe(m).forEach(g=>(genres[g] ||= []).push(m)));
+  const genreRows = Object.entries(genres).filter(([,l])=>l.length>=3).sort((a,b)=>b[1].length-a[1].length).slice(0,6);
+  const best = now.filter(m=>imdbNum(m)>=7).sort((a,b)=>imdbNum(b)-imdbNum(a));
+  const upd = k.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
+
+  $('#app').innerHTML = head + `
+    <div class="hero-rail">${heroes.map(m=>`
+      <button class="hcard" data-kid="${m._i}" ${posterStyle(m.poster)}>
+        <div class="badges">${m.isNew?'<span class="badge new">Neu</span>':''}${(m.formats||[]).filter(f=>f!=='VIP & Premium'&&f!=='Kinderkino').slice(0,3).map(f=>`<span class="badge">${f}</span>`).join('')}</div>
+        <div class="hc-in">
+          <div class="hc-t">${esc(m.title)}</div>
+          <div class="hc-m">${[genresDe(m).slice(0,2).join(', '), m.duration?m.duration+' Min':''].filter(Boolean).map(esc).join(' · ')}</div>
+          ${extPills(m.ext)}
+        </div>
+      </button>`).join('')}</div>
+    ${row('Von Freunden bewertet', rated)}
+    ${row('Jetzt im Kino', now)}
+    ${row('Top bewertet auf IMDb', best)}
+    ${FMT_ROWS.map(([f,t])=>row(t, all.filter(m=>(m.formats||[]).includes(f)))).join('')}
+    ${genreRows.map(([g,l])=>row(g,l)).join('')}
+    ${row('Auf Englisch', now.filter(m=>(m.languages||[]).includes('Englisch')))}
+    ${row('Demnächst im Kino', soon)}
+    <div class="hint" style="text-align:center;margin-top:26px">Programm von ${esc(k.source||'Pathé Schweiz')}${upd?', aktualisiert am '+esc(upd):''}</div>`;
+  $('#prof').onclick=openProfile;
+  document.querySelectorAll('[data-kid]').forEach(c=>c.onclick=()=>openKino(k.all[+c.dataset.kid]));
+}
+
 function openKino(m){
   const fr = friendsFor(m), mine = fr.find(r=>r.user_id===state.user.id), others = fr.filter(r=>r!==mine);
   const a = fr.length ? Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10 : null;
   openSheet({ body:`
     <div class="hero">
-      <div class="hero-bg" ${posterStyle(m.poster)}></div>
+      <div class="hero-bg" ${posterStyle(m.backdrop||m.poster)}></div>
       <div class="hero-in">
         <div class="poster" ${posterStyle(m.poster)}>${m.poster?'':I.film}</div>
         <h2>${esc(m.title)}</h2>
-        <div class="meta">${[(m.genres||[]).join(', '), m.duration?m.duration+' Min':'', m.age?'Ab '+m.age.split('/')[0]:''].filter(Boolean).map(esc).join(' · ')}</div>
+        <div class="meta">${[genresDe(m).join(', '), m.duration?m.duration+' Min':'', m.age?'Ab '+m.age.split('/')[0]:''].filter(Boolean).map(esc).join(' · ')}</div>
         ${m.release?`<div class="meta">${new Date(m.release)>new Date()?'Kinostart':'Im Kino seit'} ${esc(fmtDate(m.release))}</div>`:''}
         ${a!=null?`<div class="scorerow">${ring(a,'xl')}<div class="lbl"><b>Eure Wertung</b>${fr.length} Bewertung${fr.length>1?'en':''}</div></div>`:''}
         ${extPills(m.ext)}
+        ${(m.formats||[]).length?`<div class="ext">${m.formats.map(f=>`<span class="pill fmt">${esc(f)}</span>`).join('')}</div>`:''}
       </div>
     </div>
     ${mine ? `<button class="btn sec2" id="kd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="kr" style="margin-top:20px">Film bewerten</button>`}
     <a class="btn sec2" href="${esc(m.slug?`https://www.pathe.ch/de/films/${m.slug}`:m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Programm & Tickets bei Pathé</a>
+    ${m.synopsis && !/plot unknown|^n\/a$/i.test(m.synopsis)?`<div class="sec">Inhalt</div><div class="grp"><div class="cell" style="font-size:15px;line-height:1.45">${esc(m.synopsis)}</div></div>`:''}
     <div class="sec">Details</div>
     <div class="grp">
       ${(m.directors||[]).length?`<div class="cell cell-h"><span>Regie</span><b style="text-align:right">${esc(m.directors.join(', '))}</b></div>`:''}
       ${(m.cast||[]).filter(Boolean).length?`<div class="cell"><div style="color:var(--t2);font-size:14px">Besetzung</div><div style="margin-top:4px">${esc(m.cast.join(', '))}</div></div>`:''}
+      ${(m.languages||[]).length?`<div class="cell cell-h"><span>Sprachen</span><b style="text-align:right">${esc(m.languages.join(', '))}</b></div>`:''}
     </div>
     ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
@@ -749,7 +802,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '11';
+const APP_VERSION = '12';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
