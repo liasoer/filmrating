@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Filmrating">
 <meta name="theme-color" content="#000000">
 <meta name="format-detection" content="telephone=no">
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest?v=2">
 <link rel="apple-touch-icon" href="icon.png?v=3">
 <link rel="icon" href="icon.png?v=3">
 <title>Filmrating</title>
@@ -190,6 +190,11 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 
 /* Hinweis auf offene Freundschaftsanfragen */
 .avatar.badge-dot::after{content:"";position:absolute;top:2px;right:2px;width:11px;height:11px;border-radius:50%;background:#ff453a;box-shadow:0 0 0 2px #000}
+
+.stepn{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:700;background:rgba(10,132,255,.2);color:#4da3ff}
+.grp .cell svg{display:inline-block;vertical-align:-3px;width:17px;height:17px}
+.inst-banner{margin:0 0 16px}
+.inst-banner #insthide svg{width:14px;height:14px}
 
 /* Umschalter Filme / Serien */
 .seg{position:relative;display:flex;padding:3px;border-radius:14px;background:rgba(118,118,128,.24);height:40px}
@@ -517,8 +522,10 @@ function renderAuth(register=false){
       <button class="btn pri" style="margin-top:20px">${register?'Konto erstellen':'Anmelden'}</button>
     </form>
     <button class="link" id="sw">${register?'Ich habe schon ein Konto':'Neues Konto erstellen'}</button>
+    ${isStandalone()?'':'<button class="link" id="instl" style="margin-top:4px;color:var(--t2)">So installierst du die App</button>'}
     ${DB.mode==='demo'?'<div class="demo">Demo-Modus: Daten bleiben nur auf diesem Gerät.</div>':''}
   </div>`;
+  const il=$('#instl'); if(il) il.onclick=openInstall;
   $('#sw').onclick=()=>renderAuth(!register);
   $('#af').onsubmit=async e=>{
     e.preventDefault(); document.activeElement?.blur();
@@ -548,6 +555,52 @@ function nameTaken(wanted, got){
     try{ await DB.setUsername(n); toast(`Dein Nutzername ist jetzt @${n}`); closeSheet(); render(); }catch(e){ toast(e.message); }
   };
   $('#nn').oninput=e=>{ $('#nnok').textContent = e.target.value.trim().replace(/^@/,'').toLowerCase()===got ? 'Passt so' : 'Nutzername ändern'; };
+}
+
+/* ================= Installation ================= */
+const isStandalone = () => window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+const platform = () => /android/i.test(navigator.userAgent) ? 'android' : /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1) ? 'ios' : 'desktop';
+let installPrompt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; });
+window.addEventListener('appinstalled', () => { installPrompt = null; toast('App installiert'); });
+if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+function installSteps(){
+  const p = platform();
+  const step = (n,t) => `<div class="cell" style="display:flex;gap:14px;align-items:center"><span class="stepn">${n}</span><span>${t}</span></div>`;
+  if(p==='ios') return `<div class="grp">
+      ${step(1,'Öffne diese Seite in <b>Safari</b>')}
+      ${step(2,`Tippe unten auf <b>Teilen</b> ${I.share}`)}
+      ${step(3,'Wähle <b>«Zum Home-Bildschirm»</b>')}
+      ${step(4,'Tippe oben rechts auf <b>«Hinzufügen»</b>')}
+    </div>`;
+  if(p==='android') return (installPrompt?`<button class="btn pri" id="instbtn" style="margin-top:0">App installieren</button><div class="hint" style="text-align:center">Oder von Hand:</div>`:'') + `<div class="grp" style="margin-top:8px">
+      ${step(1,'Öffne diese Seite in <b>Chrome</b>')}
+      ${step(2,'Tippe oben rechts auf <b>⋮</b> (drei Punkte)')}
+      ${step(3,'Wähle <b>«App installieren»</b> oder <b>«Zum Startbildschirm hinzufügen»</b>')}
+      ${step(4,'Bestätige mit <b>«Installieren»</b>')}
+    </div>`;
+  return `<div class="grp"><div class="cell note" style="margin:0">Öffne <b>liasoer.github.io/filmrating</b> auf deinem Handy. Auf dem iPhone in Safari, auf Android in Chrome.</div></div>`;
+}
+function bindInstall(){ const b=$('#instbtn'); if(b) b.onclick=async()=>{ if(!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice.catch(()=>{}); installPrompt=null; closeSheet(); }; }
+function openInstall(){
+  openSheet({ title:'App installieren', body:`
+    <div style="text-align:center;margin:6px 0 18px"><div class="logo" style="width:84px;height:84px;margin:0 auto 14px"></div>
+    <h2 class="wz-h" style="font-size:24px">Filmrating auf deinen Home-Bildschirm</h2>
+    <p class="hint" style="margin:8px 10px 0;font-size:15px">Dann startet Filmrating wie eine normale App, im Vollbild und ohne Browserleiste.</p></div>
+    ${installSteps()}` });
+  bindInstall();
+}
+function installBanner(){
+  let hidden=false; try{ hidden = localStorage.getItem('fr-install-hidden')==='1'; }catch(e){}
+  if(isStandalone() || hidden || platform()==='desktop') return '';
+  return `<div class="grp inst-banner"><div class="cell" style="display:flex;align-items:center;gap:12px">
+    <div class="logo" style="width:44px;height:44px;margin:0;border-radius:11px;flex:none"></div>
+    <div style="flex:1;min-width:0"><b>Als App installieren</b><div class="meta" style="white-space:normal">Für Vollbild und schnellen Start vom Home-Bildschirm</div></div>
+    <button class="link" id="instopen">Anleitung</button><button class="link" id="insthide" style="color:var(--t3);padding-left:4px" aria-label="Ausblenden">${I.close}</button></div></div>`;
+}
+function bindBanner(){
+  const o=$('#instopen'); if(o) o.onclick=openInstall;
+  const h=$('#insthide'); if(h) h.onclick=()=>{ try{ localStorage.setItem('fr-install-hidden','1'); }catch(e){} document.querySelector('.inst-banner')?.remove(); };
 }
 
 /* ================= Hauptansicht ================= */
@@ -704,7 +757,7 @@ function renderNeu(){
   const best = now.filter(m=>imdbNum(m)>=7).sort((a,b)=>imdbNum(b)-imdbNum(a));
   const upd = k.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
 
-  $('#app').innerHTML = head + `
+  $('#app').innerHTML = head + installBanner() + `
     <div class="hero-rail">${heroes.map(m=>`
       <button class="hcard" data-kid="${m._i}" ${posterStyle(m.poster)}>
         <div class="badges">${m.isNew?'<span class="badge new">Neu</span>':''}${(m.formats||[]).filter(f=>f!=='VIP & Premium'&&f!=='Kinderkino').slice(0,2).map(f=>`<span class="badge">${f}</span>`).join('')}</div>
@@ -722,7 +775,7 @@ function renderNeu(){
     ${row('Auf Englisch', now.filter(m=>(m.languages||[]).includes('Englisch')))}
     ${row('Demnächst im Kino', soon)}
     <div class="hint" style="text-align:center;margin-top:26px">Programm von ${esc(k.source||'cineman.ch')}${upd?', aktualisiert am '+esc(upd):''}</div>`;
-  $('#prof').onclick=openProfile;
+  $('#prof').onclick=openProfile; bindBanner();
   document.querySelectorAll('[data-kid]').forEach(c=>c.onclick=()=>openKino(k.all[+c.dataset.kid]));
 }
 
@@ -949,12 +1002,11 @@ function openProfile(){
     <div class="sec">Dein Nutzername</div>
     <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="pn" style="text-align:left;color:var(--t1)" value="${esc(state.user.username||'')}" autocapitalize="off" autocorrect="off" autocomplete="username"></div></div>
     <button class="btn sec2" id="ps">Nutzername sichern</button>
-    <div class="sec">App installieren</div>
-    <div class="grp"><div class="cell note" style="margin:0">iPhone: In Safari auf Teilen tippen, dann «Zum Home-Bildschirm».</div></div>
+    ${isStandalone()?'':`<div class="sec">App installieren</div>${installSteps()}`}
     <button class="btn red" id="lo" style="margin-top:24px">Abmelden</button>
     ${DB.mode==='demo'?'<div class="demo">Demo-Modus aktiv.</div>':''}
   `});
-  $('#inv').onclick=invite;
+  $('#inv').onclick=invite; bindInstall();
   const uname=v=>v.trim().replace(/^@/,'').toLowerCase();
   $('#ps').onclick=async()=>{ const n=uname($('#pn').value); if(!/^[a-z0-9._]{3,20}$/.test(n)) return toast('3 bis 20 Zeichen: a-z, 0-9, Punkt, Unterstrich');
     try{ await DB.setUsername(n); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
@@ -967,7 +1019,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '25';
+const APP_VERSION = '26';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
