@@ -165,6 +165,27 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .link{color:var(--tint);font-weight:600}
 .hint{color:var(--t2);font-size:13px;margin:8px 16px 0}
 
+
+/* Bewertungs-Assistent */
+.sh-foot{position:relative;z-index:2;padding:12px 16px calc(var(--sa-b) + 14px);background:#111113;box-shadow:0 -0.5px 0 rgba(255,255,255,.08)}
+.prog{display:flex;gap:5px;justify-content:center}
+.prog i{width:18px;height:5px;border-radius:3px;background:rgba(255,255,255,.16);transition:all .3s}
+.prog i.d{background:rgba(255,179,64,.55)}
+.prog i.on{width:30px;background:var(--tint)}
+.wz.in-r{animation:inr .32s cubic-bezier(.2,.9,.3,1)}
+.wz.in-l{animation:inl .32s cubic-bezier(.2,.9,.3,1)}
+@keyframes inr{from{opacity:0;transform:translateX(28px)}}
+@keyframes inl{from{opacity:0;transform:translateX(-28px)}}
+.wz-h{font:800 28px/1.15 var(--f);letter-spacing:-.6px;text-align:center;margin-top:8px}
+.wz-film{display:flex;align-items:center;gap:12px;padding:10px;border-radius:var(--r-l);background:var(--grp)}
+.wz-film .poster{width:44px;height:66px;border-radius:10px}
+.wz-crit{display:flex;flex-direction:column;align-items:center;padding-top:6vh}
+.wz-step{font-size:13px;font-weight:700;color:var(--tint);text-transform:uppercase;letter-spacing:.6px}
+.wz-val{font:800 96px/1 var(--f);letter-spacing:-3px;margin:5vh 0 4vh;font-variant-numeric:tabular-nums;transition:color .2s}
+.wz-ctl{display:flex;align-items:center;gap:14px;width:100%}
+.wz-ctl input{flex:1}
+.wz-ctl .glass-btn{flex:none;width:48px;height:48px;color:var(--t1)}
+
 /* Login */
 .auth{min-height:calc(100dvh - var(--sa-t) - var(--sa-b) - 40px);display:flex;flex-direction:column;justify-content:center;padding-bottom:40px}
 .logo{width:96px;height:96px;margin:0 auto 22px;border-radius:24px;background:url(icon.png) center/cover;box-shadow:0 18px 50px rgba(255,140,50,.28),0 0 0 .5px rgba(255,255,255,.15)}
@@ -227,6 +248,10 @@ const I = {
   close:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   ticket:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 8V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a2.5 2.5 0 0 0 0 5v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a2.5 2.5 0 0 0 0-5z" transform="translate(0 1.5)"/><path d="M14 6.5v1.5M14 11v1.5M14 15.5V17" stroke-linecap="round"/></svg>',
   share:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 7.5L12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
+  back:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  chev:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+  minus:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12h14"/></svg>',
+  plus:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
   pop:'<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1.6 11.2a1 1 0 0 1-1 .8H7.6a1 1 0 0 1-1-.8z"/><path d="M5 9a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5-1 3 3 0 0 1 5 1 2.5 2.5 0 0 1 2 4"/><path d="M10 13v5M14 13v5"/></svg>'
 };
 
@@ -541,15 +566,15 @@ async function invite(){
 }
 
 /* ================= Sheets ================= */
-function openSheet({title='', right='', body}){
+function openSheet({title='', right='', body, footer='', swipe=true}){
   const sh=$('#sheet');
-  sh.innerHTML = `<div class="grab"></div><div class="sh-bar"><button class="glass glass-btn" id="shx" aria-label="Schliessen">${I.close}</button><h3>${title}</h3><div style="min-width:44px;display:flex;justify-content:flex-end">${right}</div></div><div class="sh-body" id="shb">${body}</div>`;
+  sh.innerHTML = `<div class="grab"></div><div class="sh-bar"><button class="glass glass-btn" id="shx" aria-label="Schliessen">${I.close}</button><h3>${title}</h3><div style="min-width:44px;display:flex;justify-content:flex-end">${right}</div></div><div class="sh-body" id="shb">${body}</div>${footer?`<div class="sh-foot" id="shf">${footer}</div>`:''}`;
   requestAnimationFrame(()=>{ $('#ov').classList.add('open'); sh.classList.add('open'); });
   document.body.classList.add('lock');
   $('#shx').onclick=closeSheet;
   // nach unten wischen zum Schliessen
   let y0=null, dy=0; const b=$('#shb');
-  sh.ontouchstart=e=>{ if(b.scrollTop<=0) { y0=e.touches[0].clientY; dy=0; } };
+  sh.ontouchstart=e=>{ if(swipe && b.scrollTop<=0 && !e.target.closest('input,textarea,button')) { y0=e.touches[0].clientY; dy=0; } };
   sh.ontouchmove=e=>{ if(y0==null) return; dy=e.touches[0].clientY-y0; if(dy>0){ sh.style.transition='none'; sh.style.transform=`translateY(${dy}px)`; } };
   sh.ontouchend=()=>{ if(y0==null) return; sh.style.transition=''; sh.style.transform=''; if(dy>120) closeSheet(); y0=null; };
 }
@@ -597,63 +622,103 @@ function openForm(r){
   const isEdit = !!r?.id;
   const d = r ? {...r} : {watched_on:new Date().toISOString().slice(0,10)};
   CRITERIA.forEach(c=>{ if(d[c.key]==null) d[c.key]=7; });
-  openSheet({ title: isEdit?'Bearbeiten':'Film bewerten', right:`<button class="done" id="sv">Sichern</button>`, body:`
-    <div class="grp" id="film"></div>
-    <div class="grp" style="margin-top:12px"><div class="field"><label for="fd">Gesehen am</label><input type="date" id="fd" value="${esc(d.watched_on||'')}"></div></div>
-    <div class="sec">Bewertung</div>
-    <div class="grp">
-      ${CRITERIA.map(c=>`
-        <div class="crit"><div class="h"><span>${c.label}</span><span class="v" id="v_${c.key}">${f1(d[c.key])}</span></div>
-        <input type="range" min="1" max="10" step="0.5" id="r_${c.key}" value="${d[c.key]}" aria-label="${c.label}">
-        <div class="ticks"><span>1</span><span>10</span></div></div>`).join('')}
-      <div class="cell total"><b>Gesamt</b><div id="tot"></div></div>
-    </div>
-    <div class="sec">Notiz</div>
-    <div class="grp"><textarea class="ta" id="fn" placeholder="Was ist dir aufgefallen?">${esc(d.note||'')}</textarea></div>
-    ${isEdit?'<button class="btn red" id="dl" style="margin-top:24px">Bewertung löschen</button>':''}
-  `});
+  const HINT = {story:'Handlung, Spannung, Ende', camera:'Bildsprache, Effekte, Farben', music:'Soundtrack, Score, Sound', acting:'Schauspiel und Besetzung'};
+  const steps = ['film', ...CRITERIA.map(c=>c.key), 'done'];
+  let i = d.title ? 1 : 0, dir = 1;
 
-  const upd=(el)=>{
-    CRITERIA.forEach(c=>{ const x=$('#r_'+c.key); d[c.key]=+x.value; $('#v_'+c.key).textContent=f1(x.value); x.style.setProperty('--p',((x.value-1)/9*100)+'%'); });
-    $('#tot').innerHTML=ring(avg(d));
-    if(el) tick();
-  };
-  CRITERIA.forEach(c=>$('#r_'+c.key).oninput=e=>upd(e.target)); upd();
+  openSheet({ swipe:false, title:`<div class="prog" id="prog"></div>`, body:`<div id="wz"></div>`, footer:`<button class="btn pri" id="nx" style="margin:0">Weiter</button>` });
+  const go = n => { dir = n>i?1:-1; i = n; tick(); draw(); };
 
-  const showPicked=()=>{
-    $('#film').innerHTML=`<div class="picked"><div class="poster" ${posterStyle(d.poster)}>${d.poster?'':I.film}</div>
-      <div class="info"><div class="title">${esc(d.title)}</div><div class="meta">${esc(d.year||'')}</div>${extPills(d.ext)}</div>
-      ${isEdit?'':'<button class="link" id="chg" style="padding:8px">Ändern</button>'}</div>`;
-    if(!isEdit) $('#chg').onclick=()=>{ d.title=''; d.poster=null; d.ext=null; d.imdb_id=null; showSearch(); };
-  };
-  const showSearch=()=>{
-    $('#film').innerHTML=`<div style="padding:10px"><label class="search">${I.search}<input id="fs" type="search" placeholder="Film suchen, z.B. «inters» oder «Der Pate»" enterkeyhint="search" autocomplete="off" autocorrect="off"></label></div><div id="sr"></div>`;
-    let t, seq=0; $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); if(q.length<2){$('#sr').innerHTML='';return;}
-      t=setTimeout(async()=>{ const my=++seq; $('#sr').innerHTML='<div class="hint" style="padding-bottom:14px">Suche…</div>';
-        try{ const res=await Finder.search(q); if(my!==seq) return;
-        $('#sr').innerHTML = (res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${esc(m.Year||'')}</div></div></button>`).join('')
-          : `<div class="hint" style="padding-bottom:12px">Nichts gefunden.</div>`) + `<div style="padding:4px 16px 14px"><button class="link" id="man">Manuell eintragen</button></div>`;
-        document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{
-          if(!Omdb.on()){ d.title=b.dataset.t; d.imdb_id=b.dataset.id; return showPicked(); }
-          try{ Object.assign(d, await Omdb.details(b.dataset.id)); document.activeElement?.blur(); tick(); showPicked(); }catch(err){toast(err.message);} });
-        $('#man').onclick=showManual;
-        if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,6).forEach(async m=>{ const p=await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
-      }catch(err){ if(my===seq) toast('Suche fehlgeschlagen'); } },350); };
-  };
-  const showManual=()=>{
-    $('#film').innerHTML=`<div class="field"><label>Titel</label><input id="ft" value="${esc(d.title||'')}" placeholder="Filmtitel"></div>
-      <div class="field"><label>Jahr</label><input id="fy" inputmode="numeric" value="${esc(d.year||'')}" placeholder="2026"></div>`;
-    $('#ft').oninput=e=>d.title=e.target.value; $('#fy').oninput=e=>d.year=parseInt(e.target.value)||null;
-  };
-  d.title ? showPicked() : showSearch();
+  function draw(){
+    const st = steps[i];
+    $('#prog').innerHTML = steps.map((s,k)=>`<i class="${k<i?'d':k===i?'on':''}"></i>`).join('');
+    const x = $('#shx');
+    if(i===0 || (i===1 && r?.title)){ x.innerHTML = I.close; x.onclick = closeSheet; }
+    else { x.innerHTML = I.back; x.onclick = ()=>go(i-1); }
+    const nx = $('#nx'), foot = $('#shf');
+    foot.style.display = st==='film' ? 'none' : '';
+    const wz = $('#wz');
+    wz.className = 'wz '+(dir>0?'in-r':'in-l');
+    void wz.offsetWidth;
 
-  $('#sv').onclick=async()=>{
-    if(!d.title||!d.title.trim()) return toast('Bitte zuerst einen Film wählen');
-    d.watched_on=$('#fd').value; d.note=$('#fn').value.trim(); d.overall=avg(d);
-    if(!isEdit){ const dup=state.ratings.find(x=>x.user_id===state.user.id&&filmKey(x)===filmKey(d)); if(dup) d.id=dup.id; }
-    try{ await DB.save(d); closeSheet(); toast('Gespeichert'); state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); }
-  };
-  if(isEdit) $('#dl').onclick=async()=>{ try{ await DB.remove(d.id); closeSheet(); toast('Gelöscht'); await refresh(); }catch(e){ toast(e.message); } };
+    if(st==='film'){
+      wz.innerHTML = `<h2 class="wz-h">Welchen Film hast du gesehen?</h2>
+        <label class="search" style="margin-top:18px">${I.search}<input id="fs" type="search" placeholder="Titel suchen" enterkeyhint="search" autocomplete="off" autocorrect="off"></label>
+        <div class="grp" id="sr" style="margin-top:12px;display:none"></div>
+        <div style="text-align:center;margin-top:18px"><button class="link" id="man">Film manuell eintragen</button></div>`;
+      setTimeout(()=>$('#fs')?.focus(), 350);
+      let t, seq=0;
+      $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); const sr=$('#sr'); if(q.length<2){ sr.style.display='none'; sr.innerHTML=''; return; }
+        t=setTimeout(async()=>{ const my=++seq; sr.style.display=''; sr.innerHTML='<div class="hint" style="padding:14px 0">Suche…</div>';
+          try{ const res=await Finder.search(q); if(my!==seq) return;
+            sr.innerHTML = res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}" data-y="${esc(m.Year||'')}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${esc(m.Year||'')}</div></div></button>`).join('') : `<div class="hint" style="padding:14px 0">Nichts gefunden.</div>`;
+            document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{
+              document.activeElement?.blur();
+              d.title=b.dataset.t; d.year=parseInt(b.dataset.y)||null; d.imdb_id=b.dataset.id;
+              const p=b.querySelector('.poster').style.backgroundImage.match(/url\(["']?(.*?)["']?\)/); d.poster=p?p[1]:null;
+              if(Omdb.on()){ try{ const x=await Omdb.details(b.dataset.id); d.ext=x.ext; d.poster=x.poster||d.poster; d.year=x.year||d.year; }catch(e){} }
+              const dup=state.ratings.find(x=>x.user_id===state.user.id&&filmKey(x)===filmKey(d));
+              if(dup && !isEdit){ Object.assign(d, {...dup, poster:d.poster||dup.poster, ext:d.ext||dup.ext}); toast('Du hast diesen Film schon bewertet, du bearbeitest ihn jetzt'); }
+              go(1);
+            });
+            if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,6).forEach(async m=>{ const p=await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
+          }catch(err){ if(my===seq) sr.innerHTML='<div class="hint" style="padding:14px 0">Suche fehlgeschlagen.</div>'; }
+        },300); };
+      $('#man').onclick=()=>{
+        wz.innerHTML = `<h2 class="wz-h">Film eintragen</h2>
+          <div class="grp" style="margin-top:18px"><div class="field"><label>Titel</label><input id="ft" placeholder="Filmtitel" value="${esc(d.title||'')}"></div><div class="field"><label>Jahr</label><input id="fy" inputmode="numeric" placeholder="2026" value="${esc(d.year||'')}"></div></div>`;
+        foot.style.display=''; nx.textContent='Weiter';
+        nx.onclick=()=>{ d.title=$('#ft').value.trim(); d.year=parseInt($('#fy').value)||null; if(!d.title) return toast('Bitte einen Titel eingeben'); d.imdb_id=null; d.poster=null; d.ext=null; go(1); };
+        setTimeout(()=>$('#ft').focus(),50);
+      };
+      return;
+    }
+
+    const filmHead = `<div class="wz-film"><div class="poster" ${posterStyle(d.poster)}>${d.poster?'':I.film}</div><div><div class="title">${esc(d.title)}</div><div class="meta">${esc(d.year||'')}</div></div></div>`;
+
+    if(st!=='done'){
+      const c = CRITERIA.find(c=>c.key===st), n = steps.indexOf(st);
+      wz.innerHTML = `${filmHead}
+        <div class="wz-crit">
+          <div class="wz-step">${n} von ${CRITERIA.length}</div>
+          <h2 class="wz-h">${c.label}</h2>
+          <div class="hint" style="margin:6px 0 0;text-align:center">${HINT[c.key]||''}</div>
+          <div class="wz-val" id="wv">${f1(d[st])}</div>
+          <div class="wz-ctl">
+            <button class="glass glass-btn" id="mn" aria-label="Weniger">${I.minus}</button>
+            <input type="range" min="1" max="10" step="0.5" id="rg" value="${d[st]}" aria-label="${c.label}">
+            <button class="glass glass-btn" id="pl" aria-label="Mehr">${I.plus}</button>
+          </div>
+          <div class="ticks" style="padding:0 64px;width:100%"><span>1</span><span>10</span></div>
+        </div>`;
+      const rg=$('#rg'), wv=$('#wv');
+      const set=v=>{ v=Math.min(10,Math.max(1,Math.round(v*2)/2)); if(v!==d[st]) tick(); d[st]=v; rg.value=v; wv.textContent=f1(v); wv.style.color=col(v); rg.style.setProperty('--p',((v-1)/9*100)+'%'); };
+      rg.oninput=()=>set(+rg.value); $('#mn').onclick=()=>set(d[st]-0.5); $('#pl').onclick=()=>set(d[st]+0.5);
+      set(d[st]);
+      nx.textContent = 'Weiter'; nx.onclick=()=>go(i+1);
+      return;
+    }
+
+    // Zusammenfassung
+    wz.innerHTML = `${filmHead}
+      <div style="display:flex;justify-content:center;margin:22px 0 4px" id="tot">${ring(avg(d),'xl')}</div>
+      <div class="hint" style="text-align:center;margin:0 0 4px">Deine Gesamtnote</div>
+      <div class="grp" style="margin-top:16px">${CRITERIA.map((c,k)=>`<button class="cell cell-h" data-go="${k+1}" style="width:100%;text-align:left"><span>${c.label}</span><span style="display:flex;align-items:center;gap:10px"><b style="color:${col(d[c.key])}">${f1(d[c.key])}</b><span style="color:var(--t3)">${I.chev}</span></span></button>`).join('')}</div>
+      <div class="grp" style="margin-top:12px"><div class="field"><label for="fd">Gesehen am</label><input type="date" id="fd" value="${esc(d.watched_on||'')}"></div></div>
+      <div class="sec">Notiz</div>
+      <div class="grp"><textarea class="ta" id="fn" placeholder="Was ist dir aufgefallen? (optional)">${esc(d.note||'')}</textarea></div>
+      ${d.id?'<button class="btn red" id="dl" style="margin-top:22px">Bewertung löschen</button>':''}`;
+    document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(+b.dataset.go));
+    $('#fd').onchange=e=>d.watched_on=e.target.value; $('#fn').oninput=e=>d.note=e.target.value;
+    nx.textContent='Bewertung sichern';
+    nx.onclick=async()=>{
+      d.note=($('#fn').value||'').trim(); d.overall=avg(d);
+      nx.disabled=true;
+      try{ await DB.save(d); closeSheet(); toast('Gespeichert'); state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); nx.disabled=false; }
+    };
+    if(d.id) $('#dl').onclick=async()=>{ try{ await DB.remove(d.id); closeSheet(); toast('Gelöscht'); await refresh(); }catch(e){ toast(e.message); } };
+  }
+  draw();
 }
 
 function openProfile(){
@@ -683,7 +748,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '8';
+const APP_VERSION = '9';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
