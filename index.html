@@ -682,6 +682,18 @@ function openProfile(){
   $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; closeSheet(); renderAuth(); };
 }
 
+/* ================= Auto-Update ================= */
+const APP_VERSION = '8';
+async function checkUpdate(){
+  try{
+    const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
+    const v = (t.match(/APP_VERSION = '(\d+)'/)||[])[1];
+    if(v && v!==APP_VERSION){ location.replace(location.pathname+'?v='+v); }
+  }catch(e){}
+}
+checkUpdate();
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') checkUpdate(); });
+
 /* ================= Start ================= */
 (async()=>{
   try{ await DB.init(); state.user = await DB.getUser(); }catch(e){ toast(e.message); }
