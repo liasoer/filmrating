@@ -24,8 +24,12 @@ def read_raw(path="pathe/raw.txt"):
     return out
 
 def raw_age_hours(path="pathe/raw.txt"):
+    """Alter der letzten iPhone-Lieferung, über die öffentliche GitHub-API (funktioniert auch bei flachem Checkout)."""
     try:
-        ts = int(subprocess.run(["git", "log", "-1", "--format=%ct", "--", path], capture_output=True, text=True).stdout.strip())
+        url = "https://api.github.com/repos/liasoer/filmrating/commits?" + urllib.parse.urlencode({"path": path, "per_page": 1})
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"Accept": "application/vnd.github+json"}), timeout=20) as r:
+            d = json.load(r)[0]["commit"]["committer"]["date"]
+        ts = datetime.datetime.fromisoformat(d.replace("Z", "+00:00")).timestamp()
         return (time.time() - ts) / 3600
     except Exception:
         return 1e9 if not os.path.exists(path) else (time.time() - os.path.getmtime(path)) / 3600
