@@ -720,7 +720,7 @@ function fmtDate(d){ if(!d) return ''; const x=new Date(d); return isNaN(x)?d:x.
 
 /* ================= Neu (Startseite im Netflix-Stil) ================= */
 const KINO_URL = 'https://raw.githubusercontent.com/liasoer/filmrating/main/kino.json';
-const GENRE_DE = {Action:'Action',Comedy:'Komödie',Drama:'Drama',Horror:'Horror',Thriller:'Thriller',Animation:'Animation',Family:'Familie',Fantasy:'Fantasy','Science-Fiction':'Science-Fiction','Science Fiction':'Science-Fiction',Romance:'Romantik',Documentary:'Dokumentarfilm',Adventure:'Abenteuer',Crime:'Krimi',Biopic:'Biografie',Musical:'Musik',Western:'Western',War:'Krieg'};
+const GENRE_DE = {Action:'Action',Comedy:'Komödie',Drama:'Drama',Horror:'Horror',Thriller:'Thriller',Animation:'Animation',Family:'Familie',Fantasy:'Fantasy','Science-Fiction':'Science-Fiction','Science Fiction':'Science-Fiction',Romance:'Romantik',Documentary:'Dokumentarfilm',Adventure:'Abenteuer',Crime:'Krimi',Mystery:'Mystery',Supernatural:'Übernatürlich',Anime:'Anime',Medical:'Medizin',Legal:'Justiz',Espionage:'Spionage',History:'Geschichte',Sports:'Sport',Music:'Musik',Children:'Kinder',Biopic:'Biografie',Musical:'Musik',Western:'Western',War:'Krieg'};
 const FMT_ROWS = [['IMAX','In IMAX'],['4DX','In 4DX'],['D-BOX','Mit D-BOX Sitzen'],['Dolby Atmos','In Dolby Atmos'],['ScreenX','In ScreenX'],['3D','In 3D'],['VIP & Premium','VIP & Premium'],['Kinderkino','Kinderkino']];
 async function loadKino(){
   if(state.kino) return state.kino;
@@ -751,13 +751,23 @@ function row(title, list){ return list.length ? `<section><h3 class="rowh">${esc
 
 function renderNeu(){
   const root = $('#neu'); const k = state.kino;
-  const sig = [k?.updated, k?.err, state.ratings.length, state.ratings.reduce((a,r)=>a+(+r.overall||0),0), state.friendIds?.size, state.user?.username].join('|');
+  const NK = state.neuKind||'movie'; const sd = state.series;
+  const sig = [NK, sd?.updated, sd?.err, k?.updated, k?.err, state.ratings.length, state.ratings.reduce((a,r)=>a+(+r.overall||0),0), state.friendIds?.size, state.user?.username].join('|');
   if(root.innerHTML && state.neuSig===sig) return;
+  const head = `<div class="hdr"><h1 class="large">Neu</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
+    <div class="seg" id="neukind" style="margin-bottom:14px"><i class="seg-ind" style="transform:translateX(${NK==='series'?'100%':'0'})"></i><button data-k="movie" class="${NK==='movie'?'on':''}">Filme</button><button data-k="series" class="${NK==='series'?'on':''}">Serien</button></div>`;
+  const bindHead = () => { root.querySelector('.prof').onclick=openProfile;
+    root.querySelectorAll('#neukind button').forEach(b=>b.onclick=()=>{ if((state.neuKind||'movie')!==b.dataset.k){ state.neuKind=b.dataset.k; tick();
+      root.querySelector('#neukind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(()=>{ render(); window.scrollTo({top:0}); },180); } }); };
+  if(NK==='series'){
+    if(!sd) loadSeries().then(()=>{ if(state.tab==='neu') render(); });
+    root.innerHTML = head + installBanner() + seriesBody();
+    bindHead(); bindBanner(); updateBadge(); bindSeries(root); state.neuSig = sig; return;
+  }
   if(!k) loadKino().then(()=>{ if(state.tab==='neu') render(); });
-  const head = `<div class="hdr"><h1 class="large">Neu</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>`;
   if(!k || k.err){
     root.innerHTML = head + `<div class="empty">${!k?'Lade Kinoprogramm…':I.pop+'Das Kinoprogramm konnte nicht geladen werden.'}</div>`;
-    root.querySelector('.prof').onclick=openProfile; return;
+    bindHead(); return;
   }
   const all = k.all.map((m,i)=>({...m,_i:i}));
   const now = all.filter(m=>!m._soon), soon = all.filter(m=>m._soon);
@@ -790,13 +800,98 @@ function renderNeu(){
       <div class="chips" id="gchips">${genreList.map(([g,l])=>`<button class="chip ${g===gSel?'on':''}" data-g="${esc(g)}">${esc(g)} <span style="opacity:.55">${l.length}</span></button>`).join('')}</div>
       <div class="pgrid" id="ggrid">${(genres[gSel]||[]).map(pcard).join('')}</div></section>` : ''}
     <div class="hint" style="text-align:center;margin-top:26px">Programm von ${esc(k.source||'cineman.ch')}${upd?', aktualisiert am '+esc(upd):''}</div>`;
-  root.querySelector('.prof').onclick=openProfile; bindBanner(); updateBadge();
+  bindHead(); bindBanner(); updateBadge();
   root.querySelectorAll('#gchips .chip').forEach(c=>c.onclick=()=>{ state.genre=c.dataset.g; tick();
     root.querySelectorAll('#gchips .chip').forEach(x=>x.classList.toggle('on',x===c));
     const g=$('#ggrid'); g.innerHTML=(genres[state.genre]||[]).map(pcard).join('');
     g.querySelectorAll('[data-kid]').forEach(x=>x.onclick=()=>openKino(k.all[+x.dataset.kid])); });
   root.querySelectorAll('[data-kid]').forEach(c=>c.onclick=()=>openKino(k.all[+c.dataset.kid]));
   state.neuSig = sig;
+}
+
+/* ================= Neu: Serien ================= */
+const SERIES_URL = 'https://raw.githubusercontent.com/liasoer/filmrating/main/series.json';
+const PLAT_ROWS = ['Netflix','Disney+','Apple TV+','Prime Video','HBO Max','Paramount+'];
+async function loadSeries(){
+  if(state.series) return state.series;
+  try{ const r=await fetch(SERIES_URL+'?h='+new Date().toISOString().slice(0,13)); if(!r.ok) throw 0; const d=await r.json();
+    d.shows=(d.shows||[]).map((m,i)=>({...m,_i:i})); state.series=d; }
+  catch(e){ state.series={shows:[],err:true}; }
+  return state.series;
+}
+const sGenresDe = m => (m.genres||[]).map(g=>GENRE_DE[g]||g);
+const dayDiff = d => d ? Math.round((new Date(d)-new Date(new Date().toISOString().slice(0,10)))/864e5) : null;
+function scard(m){
+  const fr=friendsFor(m); const a=fr.length?Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10:null;
+  const nd=dayDiff(m.next);
+  const sub = m.season ? `Staffel ${m.season}` : (sGenresDe(m)[0]||'');
+  return `<button class="pcard" data-sid="${m._i}"><div class="poster">${m.poster?`<img src="${esc(m.poster)}" loading="lazy" decoding="async" alt="">`:I.film}<span class="badge">${esc(m.platform)}</span>${a!=null?`<div class="pring">${ring(a,'sm')}</div>`:''}</div><div class="pt">${esc(m.title)}</div><div class="pm">${esc(sub)}${nd!=null&&nd>=0&&nd<=7?` · ${nd===0?'heute':nd===1?'morgen':'in '+nd+' T.'} neu`:''}</div></button>`;
+}
+function srow(title, list){ return list.length ? `<section><h3 class="rowh">${esc(title)}</h3><div class="rail">${list.map(scard).join('')}</div></section>` : ''; }
+function seriesBody(){
+  const d=state.series;
+  if(!d) return `<div class="empty">Lade Serien…</div>`;
+  if(d.err || !d.shows.length) return `<div class="empty">${I.pop}Die Serien konnten nicht geladen werden.</div>`;
+  const all=d.shows;
+  let heroes = all.filter(m=>m.premiere||m.isNew).slice(0,6);
+  if(heroes.length<4) heroes=[...heroes, ...all.filter(m=>!heroes.includes(m)).slice(0,4-heroes.length)];
+  const week = all.filter(m=>{ const x=dayDiff(m.latest); return x!=null && x>=-7 && x<=0; });
+  const rated = all.filter(m=>friendsFor(m).length);
+  const genres={}; all.forEach(m=>sGenresDe(m).forEach(g=>(genres[g] ||= []).push(m)));
+  const genreList=Object.entries(genres).sort((a,b)=>b[1].length-a[1].length);
+  const gSel = genres[state.sgenre] ? state.sgenre : genreList[0]?.[0];
+  state._sgenres = genres;
+  const upd = d.updated ? new Date(d.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
+  return `
+    <div class="hero-rail">${heroes.map(m=>`
+      <button class="hcard" data-sid="${m._i}" ${posterStyle(m.poster_l||m.poster)}>
+        <div class="badges">${m.premiere?`<span class="badge new">${m.season>1?'Neue Staffel':'Neu'}</span>`:''}<span class="badge">${esc(m.platform)}</span></div>
+        <div class="hc-in">
+          <div class="hc-t">${esc(m.title)}</div>
+          <div class="hc-m">${[m.season?'Staffel '+m.season:'', sGenresDe(m).slice(0,2).join(', ')].filter(Boolean).map(esc).join(' · ')}</div>
+          ${extPills(m.ext)}
+        </div>
+      </button>`).join('')}</div>
+    ${srow('Neue Folgen diese Woche', week)}
+    ${srow('Von Freunden bewertet', rated)}
+    ${PLAT_ROWS.map(p=>srow(p, all.filter(m=>m.platform===p))).join('')}
+    ${genreList.length ? `<section class="genre-sec"><h3 class="rowh">Nach Genre</h3>
+      <div class="chips" id="sgchips">${genreList.map(([g,l])=>`<button class="chip ${g===gSel?'on':''}" data-g="${esc(g)}">${esc(g)} <span style="opacity:.55">${l.length}</span></button>`).join('')}</div>
+      <div class="pgrid" id="sggrid">${(genres[gSel]||[]).map(scard).join('')}</div></section>` : ''}
+    <div class="hint" style="text-align:center;margin-top:26px">Serien-Daten von TVmaze${upd?', aktualisiert am '+esc(upd):''}</div>`;
+}
+function bindSeries(root){
+  const d=state.series; if(!d?.shows) return;
+  const bind = el => el.querySelectorAll('[data-sid]').forEach(c=>c.onclick=()=>openSeries(d.shows[+c.dataset.sid]));
+  bind(root);
+  root.querySelectorAll('#sgchips .chip').forEach(c=>c.onclick=()=>{ state.sgenre=c.dataset.g; tick();
+    root.querySelectorAll('#sgchips .chip').forEach(x=>x.classList.toggle('on',x===c));
+    const g=$('#sggrid'); g.innerHTML=(state._sgenres[state.sgenre]||[]).map(scard).join(''); bind(g); });
+}
+function openSeries(m){
+  const fr=friendsFor(m), mine=fr.find(r=>r.user_id===state.user.id), others=fr.filter(r=>r!==mine);
+  const a = fr.length ? Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10 : null;
+  const nd=dayDiff(m.next);
+  openSheet({ body:`
+    <div class="hero">
+      <div class="hero-bg" ${posterStyle(m.poster_l||m.poster)}></div>
+      <div class="hero-in">
+        <div class="poster" ${posterStyle(m.poster_l||m.poster)}>${m.poster?'':I.film}</div>
+        <h2>${esc(m.title)}</h2>
+        <div class="meta">${[m.platform, m.season?'Staffel '+m.season:'', m.ext?.seasons&&m.ext.seasons>1?m.ext.seasons+' Staffeln':'', sGenresDe(m).join(', ')].filter(Boolean).map(esc).join(' · ')}</div>
+        ${m.next?`<div class="meta">Nächste Folge: ${nd===0?'heute':nd===1?'morgen':esc(fmtDate(m.next))}</div>`:m.latest?`<div class="meta">Letzte Folge: ${esc(fmtDate(m.latest))}</div>`:''}
+        ${a!=null?`<div class="scorerow">${ring(a,'xl')}<div class="lbl"><b>Du und deine Freunde</b>${fr.length} Bewertung${fr.length>1?'en':''}</div></div>`:''}
+        ${extPills(m.ext)}
+      </div>
+    </div>
+    ${mine ? `<button class="btn sec2" id="sd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="sr2" style="margin-top:20px">Serie bewerten</button>`}
+    <a class="btn sec2" href="${esc(m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Wo streamen? (JustWatch)</a>
+    ${m.summary?`<div class="sec">Inhalt (Englisch)</div><div class="grp"><div class="cell" style="font-size:15px;line-height:1.45">${esc(m.summary)}</div></div>`:''}
+    ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
+      <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
+  `});
+  if(mine) $('#sd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
+  else $('#sr2').onclick=()=>openForm({title:m.title, year:null, poster:m.poster_l||m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'series'}});
 }
 
 function openKino(m){
@@ -1039,7 +1134,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '31';
+const APP_VERSION = '32';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
