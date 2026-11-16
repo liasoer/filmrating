@@ -224,6 +224,10 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .pcard .poster{overflow:hidden}
 .pcard .poster img{width:100%;height:100%;object-fit:cover;display:block}
 #neu section{content-visibility:auto;contain-intrinsic-size:auto 250px}
+#neu section.genre-sec{content-visibility:visible}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
+.pgrid .pcard{width:auto}
+.pgrid .pcard .poster{width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:2/3}
 .pcard .poster{transition:opacity .15s}
 .pcard.pressed .poster{opacity:.7}
 .pt{font-size:13px;font-weight:600;line-height:1.25;margin-top:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -762,7 +766,8 @@ function renderNeu(){
   if(heroes.length<4) heroes = [...heroes, ...now.filter(m=>!heroes.includes(m)).slice(0,4-heroes.length)];
   const rated = all.filter(m=>friendsFor(m).length);
   const genres = {}; now.forEach(m=>genresDe(m).forEach(g=>(genres[g] ||= []).push(m)));
-  const genreRows = Object.entries(genres).filter(([,l])=>l.length>=3).sort((a,b)=>b[1].length-a[1].length).slice(0,6);
+  const genreList = Object.entries(genres).sort((a,b)=>b[1].length-a[1].length);
+  const gSel = genres[state.genre] ? state.genre : genreList[0]?.[0];
   const best = now.filter(m=>imdbNum(m)>=7).sort((a,b)=>imdbNum(b)-imdbNum(a));
   const upd = k.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
 
@@ -776,15 +781,20 @@ function renderNeu(){
           ${extPills(m.ext)}
         </div>
       </button>`).join('')}</div>
-    ${row('Von Freunden bewertet', rated)}
     ${row('Jetzt im Kino', now)}
-    ${row('Top bewertet auf IMDb', best)}
-    ${FMT_ROWS.map(([f,t])=>row(t, all.filter(m=>(m.formats||[]).includes(f)))).join('')}
-    ${genreRows.map(([g,l])=>row(g,l)).join('')}
-    ${row('Auf Englisch', now.filter(m=>(m.languages||[]).includes('Englisch')))}
-    ${row('Demnächst im Kino', soon)}
+    ${row('Von Freunden bewertet', rated)}
+    ${row('In IMAX', all.filter(m=>(m.formats||[]).includes('IMAX')))}
+    ${row('In 4DX', all.filter(m=>(m.formats||[]).includes('4DX')))}
+    ${row('In 3D', all.filter(m=>(m.formats||[]).includes('3D')))}
+    ${genreList.length ? `<section class="genre-sec"><h3 class="rowh">Nach Genre</h3>
+      <div class="chips" id="gchips">${genreList.map(([g,l])=>`<button class="chip ${g===gSel?'on':''}" data-g="${esc(g)}">${esc(g)} <span style="opacity:.55">${l.length}</span></button>`).join('')}</div>
+      <div class="pgrid" id="ggrid">${(genres[gSel]||[]).map(pcard).join('')}</div></section>` : ''}
     <div class="hint" style="text-align:center;margin-top:26px">Programm von ${esc(k.source||'cineman.ch')}${upd?', aktualisiert am '+esc(upd):''}</div>`;
   root.querySelector('.prof').onclick=openProfile; bindBanner(); updateBadge();
+  root.querySelectorAll('#gchips .chip').forEach(c=>c.onclick=()=>{ state.genre=c.dataset.g; tick();
+    root.querySelectorAll('#gchips .chip').forEach(x=>x.classList.toggle('on',x===c));
+    const g=$('#ggrid'); g.innerHTML=(genres[state.genre]||[]).map(pcard).join('');
+    g.querySelectorAll('[data-kid]').forEach(x=>x.onclick=()=>openKino(k.all[+x.dataset.kid])); });
   root.querySelectorAll('[data-kid]').forEach(c=>c.onclick=()=>openKino(k.all[+c.dataset.kid]));
   state.neuSig = sig;
 }
@@ -1029,7 +1039,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '30';
+const APP_VERSION = '31';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
