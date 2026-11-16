@@ -9,9 +9,9 @@
 <meta name="apple-mobile-web-app-title" content="Filmrating">
 <meta name="theme-color" content="#000000">
 <meta name="format-detection" content="telephone=no">
-<link rel="manifest" href="manifest.webmanifest?v=2">
-<link rel="apple-touch-icon" href="icon.png?v=3">
-<link rel="icon" href="icon.png?v=3">
+<link rel="manifest" href="manifest.webmanifest?v=3">
+<link rel="apple-touch-icon" href="icon.png?v=4">
+<link rel="icon" href="icon.png?v=4">
 <title>Filmrating</title>
 <style>
 :root{
@@ -270,7 +270,7 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 
 /* Login */
 .auth{min-height:calc(100dvh - var(--sa-t) - var(--sa-b) - 40px);display:flex;flex-direction:column;justify-content:center;padding-bottom:40px}
-.logo{width:96px;height:96px;margin:0 auto 22px;border-radius:24px;background:url(icon.png?v=3) center/cover;box-shadow:0 18px 50px rgba(10,132,255,.35),0 0 0 .5px rgba(255,255,255,.15)}
+.logo{width:96px;height:96px;margin:0 auto 22px;border-radius:24px;background:url(icon.png?v=4) center/cover;box-shadow:0 18px 50px rgba(255,255,255,.12),0 0 0 .5px rgba(255,255,255,.25),0 0 0 .5px rgba(255,255,255,.15)}
 .auth h1{font:800 34px/1.1 var(--f);text-align:center;letter-spacing:-.8px}
 .auth p{text-align:center;color:var(--t2);margin:10px 20px 30px}
 .auth .grp .field input{text-align:left;color:var(--t1)}
@@ -1019,7 +1019,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '26';
+const APP_VERSION = '27';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
