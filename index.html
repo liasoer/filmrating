@@ -43,7 +43,10 @@ svg{display:block}
   background:radial-gradient(50% 50% at 25% 30%,rgba(255,150,60,.20),transparent 70%),radial-gradient(45% 45% at 80% 20%,rgba(140,90,255,.16),transparent 70%);filter:blur(10px)}
 
 /* ---------- Layout ---------- */
-#app{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:calc(var(--sa-t) + 8px) 16px calc(var(--sa-b) + 120px)}
+#app{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:calc(var(--sa-t) + 10px) 16px calc(var(--sa-b) + 96px)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 14px}
+.hdr .large{margin:0}
+.hdr .avatar{width:40px;height:40px;flex:none}
 .navbar{display:flex;justify-content:flex-end;align-items:center;height:48px;gap:10px}
 .avatar{font-weight:700;font-size:17px;color:var(--tint)}
 .large{font:800 34px/1.1 var(--f);letter-spacing:-.8px;margin:2px 4px 14px}
@@ -81,7 +84,7 @@ svg{display:block}
 .empty svg{margin:0 auto 14px;opacity:.5}
 
 /* ---------- Schwebende Tab-Leiste ---------- */
-.dock{position:fixed;left:0;right:0;bottom:calc(var(--sa-b) + 10px);z-index:10;display:flex;justify-content:center;align-items:center;gap:12px;padding:0 16px;pointer-events:none}
+.dock{position:fixed;left:0;right:0;bottom:max(12px, calc(var(--sa-b) - 14px));z-index:10;display:flex;justify-content:center;align-items:center;gap:12px;padding:0 16px;pointer-events:none}
 .tabbar{pointer-events:auto;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:370px}
 .tab{flex:1;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--t1);opacity:.75;transition:all .25s}
 .tab.on{opacity:1;color:var(--tint);background:rgba(255,255,255,.1)}
@@ -196,8 +199,8 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .demo{font-size:13px;color:var(--tint);text-align:center;margin-top:10px}
 
 /* Toast */
-.toast{position:fixed;left:50%;top:calc(var(--sa-t) + 10px);z-index:60;transform:translate(-50%,-140%);transition:transform .45s cubic-bezier(.2,1.2,.4,1);padding:12px 18px;border-radius:24px;font-size:15px;font-weight:600;max-width:90%;text-align:center}
-.toast.show{transform:translate(-50%,0)}
+.toast{position:fixed;left:50%;top:calc(var(--sa-t) + 10px);z-index:60;transform:translate(-50%,calc(-100% - var(--sa-t) - 30px));opacity:0;visibility:hidden;transition:transform .45s cubic-bezier(.2,1.2,.4,1),opacity .3s,visibility .45s;padding:12px 18px;border-radius:24px;font-size:15px;font-weight:600;max-width:90%;text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -464,8 +467,7 @@ function render(){
   const sorts = [['date',top?'Beste':'Neueste'],['score','Beste'],['title','A bis Z']].filter((x,i)=>!(top&&i===1));
 
   $('#app').innerHTML = `
-    <div class="navbar"><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
-    <h1 class="large">${TABS.find(t=>t.id===state.tab).title}</h1>
+    <div class="hdr"><h1 class="large">${TABS.find(t=>t.id===state.tab).title}</h1><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
     <label class="search">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
     <div class="chips">${sorts.map(([v,l])=>`<button class="chip ${state.sort===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>
     <div class="list">
@@ -505,8 +507,7 @@ function renderKino(){
   const items = k ? (k[state.kinoSec]||[]).map((m,i)=>({...m,_i:i})).filter(m=>!q || m.title.toLowerCase().includes(q) || (m.cast||[]).join(' ').toLowerCase().includes(q)) : [];
   const upd = k?.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
   $('#app').innerHTML = `
-    <div class="navbar"><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
-    <h1 class="large">Im Kino</h1>
+    <div class="hdr"><h1 class="large">Im Kino</h1><button class="glass glass-btn avatar" id="prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
     <label class="search">${I.search}<input id="q" type="search" placeholder="Film oder Schauspieler" value="${esc(state.q)}" enterkeyhint="search"></label>
     <div class="chips"><button class="chip ${state.kinoSec==='now'?'on':''}" data-k="now">Jetzt im Kino</button><button class="chip ${state.kinoSec==='soon'?'on':''}" data-k="soon">Demnächst</button></div>
     <div class="list">
@@ -748,7 +749,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '10';
+const APP_VERSION = '11';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
