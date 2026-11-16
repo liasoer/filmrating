@@ -352,8 +352,26 @@ function extPills(e, fm=[]){
   if(e.imdb) p.push(`<span class="pill">IMDb <b>${esc(e.imdb)}</b></span>`);
   if(e.rt)   p.push(`<span class="pill">🍅 <b>${esc(e.rt)}</b></span>`);
   if(e.mc)   p.push(`<span class="pill">MC <b>${esc(e.mc)}</b></span>`);
+  if(e.tvm)  p.push(`<span class="pill">TVmaze <b>${esc((+e.tvm).toFixed(1))}</b></span>`);
   return p.length ? `<div class="ext">${p.join('')}</div>` : '';
 }
+
+/* ================= TVmaze (Serien: Poster und Wertung) ================= */
+const Tvm = {
+  cache:{},
+  map(sh){ return { imdbID: sh.externals?.imdb || '', tvmId: sh.id, Title: sh.name, Year: (sh.premiered||'').slice(0,4), kind:'series',
+    Poster: sh.image?.medium || null, PosterL: sh.image?.original || sh.image?.medium || null, tvm: sh.rating?.average || null,
+    platform: (sh.webChannel||sh.network)?.name || null, weight: sh.weight||0, genres: sh.genres||[] }; },
+  async search(q){
+    try{ const r = await fetch('https://api.tvmaze.com/search/shows?q='+encodeURIComponent(q)).then(r=>r.json());
+      return r.filter(x=>x.show && x.score>0.3).map(x=>({...Tvm.map(x.show), score:x.score})).slice(0,8); }catch(e){ return []; }
+  },
+  async lookup({imdb, id}){
+    const key = imdb || 'id'+id; if(key in Tvm.cache) return Tvm.cache[key];
+    try{ const r = await fetch(imdb ? 'https://api.tvmaze.com/lookup/shows?imdb='+imdb : 'https://api.tvmaze.com/shows/'+id);
+      if(!r.ok) throw 0; return Tvm.cache[key] = Tvm.map(await r.json()); }catch(e){ return Tvm.cache[key] = null; }
+  }
+};
 
 /* ================= Filmsuche: Wikidata (Teilwörter, deutsche Titel) + OMDb ================= */
 const Finder = {
@@ -398,16 +416,20 @@ const Finder = {
     }).filter(r=>r.imdbID?.startsWith('tt') && r.m>0).sort((a,b)=>b.score-a.score);
   },
   async search(q){
-    const [wd, om] = await Promise.all([
+    const [wd, om, tv] = await Promise.all([
       Finder.wikidata(q).catch(()=>[]),
-      Omdb.on() ? Omdb.search(q).catch(()=>[]) : Promise.resolve([])
+      Omdb.on() ? Omdb.search(q).catch(()=>[]) : Promise.resolve([]),
+      Tvm.search(q)
     ]);
     const out=[], seen=new Set();
-    const add=r=>{ if(r.imdbID && !seen.has(r.imdbID)){ seen.add(r.imdbID); out.push(r); } };
+    const add=r=>{ const k=r.imdbID||('tvm'+r.tvmId); if(k && !seen.has(k)){ seen.add(k); out.push(r); }
+      else if(r.tvmId){ const o=out.find(x=>x.imdbID===r.imdbID); if(o){ o.Poster=o.Poster||r.Poster; o.PosterL=r.PosterL; o.tvmId=r.tvmId; o.tvm=r.tvm; o.kind='series'; } } };
     wd.filter(r=>r.m>=3).forEach(add);
+    tv.filter(r=>r.score>=0.6).forEach(add);
     om.forEach(r=>add({imdbID:r.imdbID,Title:r.Title,Year:r.Year,Poster:r.Poster!=='N/A'?r.Poster:null,kind:r.Type==='series'?'series':'movie'}));
     wd.forEach(add);
-    return out.slice(0,10);
+    tv.forEach(add);
+    return out.slice(0,12);
   },
   async poster(id){
     if(id in Finder.cache) return Finder.cache[id];
@@ -1021,17 +1043,19 @@ function openForm(r){
       $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); const sr=$('#sr'); if(q.length<2){ sr.style.display='none'; sr.innerHTML=''; return; }
         t=setTimeout(async()=>{ const my=++seq; sr.style.display=''; sr.innerHTML='<div class="hint" style="padding:14px 0">Suche…</div>';
           try{ const res=await Finder.search(q); if(my!==seq) return;
-            sr.innerHTML = res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}" data-y="${esc(m.Year||'')}" data-kind="${m.kind||'movie'}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${[m.kind==='series'?'Serie':'Film', m.Year].filter(Boolean).map(esc).join(' · ')}</div></div></button>`).join('') : `<div class="hint" style="padding:14px 0">Nichts gefunden.</div>`;
+            sr.innerHTML = res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}" data-y="${esc(m.Year||'')}" data-kind="${m.kind||'movie'}" data-tvm="${m.tvmId||''}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${[m.kind==='series'?'Serie':'Film', m.Year].filter(Boolean).map(esc).join(' · ')}</div></div></button>`).join('') : `<div class="hint" style="padding:14px 0">Nichts gefunden.</div>`;
             document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{
               document.activeElement?.blur();
-              d.title=b.dataset.t; d.year=parseInt(b.dataset.y)||null; d.imdb_id=b.dataset.id; d.ext={...(d.ext||{}), kind:b.dataset.kind||'movie'};
+              d.title=b.dataset.t; d.year=parseInt(b.dataset.y)||null; d.imdb_id=/^tt/.test(b.dataset.id)?b.dataset.id:null; d.ext={...(d.ext||{}), kind:b.dataset.kind||'movie'};
               const p=b.querySelector('.poster').style.backgroundImage.match(/url\(["']?(.*?)["']?\)/); d.poster=p?p[1]:null;
-              if(Omdb.on()){ try{ const x=await Omdb.details(b.dataset.id); d.ext={...x.ext, formats:d.ext?.formats}; d.poster=x.poster||d.poster; d.year=x.year||d.year; }catch(e){} }
+              if(Omdb.on() && d.imdb_id){ try{ const x=await Omdb.details(d.imdb_id); d.ext={...x.ext, formats:d.ext?.formats}; d.poster=x.poster||d.poster; d.year=x.year||d.year; }catch(e){} }
+              if(d.ext?.kind==='series' || b.dataset.tvm){ const t=await Tvm.lookup(d.imdb_id?{imdb:d.imdb_id}:{id:b.dataset.tvm});
+                if(t){ d.poster=t.PosterL||d.poster; d.ext={...(d.ext||{}), kind:'series', tvm:t.tvm, platform:t.platform}; d.year=d.year||parseInt(t.Year)||null; if(!d.imdb_id && t.imdbID) d.imdb_id=t.imdbID; } }
               const dup=state.ratings.find(x=>x.user_id===state.user.id&&filmKey(x)===filmKey(d));
               if(dup && !isEdit){ Object.assign(d, {...dup, poster:d.poster||dup.poster, ext:d.ext||dup.ext}); toast('Du hast diesen Film schon bewertet, du bearbeitest ihn jetzt'); }
               go(1);
             });
-            if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,6).forEach(async m=>{ const p=await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
+            if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,8).forEach(async m=>{ const p = m.kind==='series' ? (await Tvm.lookup({imdb:m.imdbID}))?.Poster || await Finder.poster(m.imdbID) : await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
           }catch(err){ if(my===seq) sr.innerHTML='<div class="hint" style="padding:14px 0">Suche fehlgeschlagen.</div>'; }
         },300); };
       $('#man').onclick=()=>{
@@ -1134,7 +1158,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '32';
+const APP_VERSION = '33';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
