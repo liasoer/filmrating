@@ -421,11 +421,18 @@ const Finder = {
       Omdb.on() ? Omdb.search(q).catch(()=>[]) : Promise.resolve([]),
       Tvm.search(q)
     ]);
+    // TVmaze-Treffer gleich bewerten wie Wikidata: Titelübereinstimmung zuerst, dann Bekanntheit
+    const nq=Finder.norm(q), qw=nq.split(' ').filter(Boolean);
+    tv.forEach(r=>{ let m=0; const t0=Finder.norm(r.Title);
+      for(const t of [t0, t0.replace(/^(the|a|an|der|die|das|le|la|les|il|el) /,'')]){
+        if(t===nq) m=Math.max(m,4); else if(t.startsWith(nq)) m=Math.max(m,3);
+        else if(qw.every(w=>t.split(' ').some(x=>x.startsWith(w)))) m=Math.max(m,2); else if(t.includes(nq)) m=Math.max(m,1); }
+      r.m=m; r.score=m*40+Math.min(120,(r.weight||0)*1.25); });
+    const strong=[...wd.filter(r=>r.m>=3), ...tv.filter(r=>r.m>=3)].sort((a,b)=>b.score-a.score);
     const out=[], seen=new Set();
     const add=r=>{ const k=r.imdbID||('tvm'+r.tvmId); if(k && !seen.has(k)){ seen.add(k); out.push(r); }
       else if(r.tvmId){ const o=out.find(x=>x.imdbID===r.imdbID); if(o){ o.Poster=o.Poster||r.Poster; o.PosterL=r.PosterL; o.tvmId=r.tvmId; o.tvm=r.tvm; o.kind='series'; } } };
-    wd.filter(r=>r.m>=3).forEach(add);
-    tv.filter(r=>r.score>=0.6).forEach(add);
+    strong.forEach(add);
     om.forEach(r=>add({imdbID:r.imdbID,Title:r.Title,Year:r.Year,Poster:r.Poster!=='N/A'?r.Poster:null,kind:r.Type==='series'?'series':'movie'}));
     wd.forEach(add);
     tv.forEach(add);
@@ -1158,7 +1165,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '33';
+const APP_VERSION = '34';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
