@@ -268,10 +268,11 @@ const Finder = {
       const imdb=x.claims?.P345?.[0]?.mainsnak?.datavalue?.value;
       const year=(x.claims?.P577?.[0]?.mainsnak?.datavalue?.value?.time||'').slice(1,5);
       let m=0;
-      for(const t of [de,en].map(Finder.norm)){ if(!t) continue;
+      for(const t0 of [de,en].map(Finder.norm)){ if(!t0) continue;
+        for(const t of [t0, t0.replace(/^(the|a|an|der|die|das|le|la|les|il|el) /,'')]){
         if(t===nq) m=Math.max(m,4); else if(t.startsWith(nq)) m=Math.max(m,3);
         else if(words.every(w=>t.split(' ').some(tw=>tw.startsWith(w)))) m=Math.max(m,2);
-        else if(t.includes(nq)) m=Math.max(m,1); }
+        else if(t.includes(nq)) m=Math.max(m,1); } }
       const pop=Object.keys(x.sitelinks||{}).length;
       return {imdbID:imdb, Title:de||en, Year:year, Poster:null, score:m*1000+pop, m};
     }).filter(r=>r.imdbID?.startsWith('tt') && r.m>0).sort((a,b)=>b.score-a.score);
