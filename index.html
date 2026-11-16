@@ -201,10 +201,9 @@ const CONFIG = {
 
 const CRITERIA = [
   {key:'story',  label:'Story'},
-  {key:'acting', label:'Cast'},
   {key:'camera', label:'Kamera & Bild'},
-  {key:'music',  label:'Soundtrack'},
-  {key:'fun',    label:'Unterhaltung'}
+  {key:'music',  label:'Musik'},
+  {key:'acting', label:'Cast'}
 ];
 
 /* ================= Helfer ================= */
@@ -245,15 +244,27 @@ const Finder = {
   async wikidata(q){
     const W='https://www.wikidata.org/w/api.php?format=json&origin=*';
     const words = Finder.norm(q).split(' ').filter(Boolean);
-    if(!words.length) return [];
-    const sr = words.map(w=>w+'*').join(' ')+' haswbstatement:P31=Q11424 haswbstatement:P345';
-    const s = await fetch(`${W}&action=query&list=search&srlimit=40&srsearch=${encodeURIComponent(sr)}`).then(r=>r.json());
-    const ids = (s.query?.search||[]).map(x=>x.title);
+    const tw = words.filter(w=>!/^\d{1,2}$/.test(w));
+    if(!tw.length) return [];
+    const sr = tw.map(w=>w+'*').join(' ')+' haswbstatement:P345';
+    const lbl = {};
+    const [s, sde, sen] = await Promise.all([
+      fetch(`${W}&action=query&list=search&srlimit=40&srsearch=${encodeURIComponent(sr+' haswbstatement:P31=Q11424')}`).then(r=>r.json()),
+      fetch(`${W}&action=wbsearchentities&type=item&limit=50&language=de&uselang=de&search=${encodeURIComponent(q)}`).then(r=>r.json()),
+      fetch(`${W}&action=wbsearchentities&type=item&limit=50&language=en&uselang=en&search=${encodeURIComponent(q)}`).then(r=>r.json())
+    ]);
+    [...(sde.search||[]),...(sen.search||[])].forEach(x=>{ lbl[x.id] ||= x.label; });
+    const ids = [...new Set([...(s.query?.search||[]).map(x=>x.title), ...Object.keys(lbl)])];
     if(!ids.length) return [];
-    const e = await fetch(`${W}&action=wbgetentities&props=claims|labels|sitelinks&languages=de|en&ids=${ids.join('|')}`).then(r=>r.json());
-    const nq = Finder.norm(q);
-    return ids.map(id=>e.entities?.[id]).filter(Boolean).map(x=>{
-      const de=x.labels?.de?.value, en=x.labels?.en?.value;
+    const chunks=[]; for(let i=0;i<ids.length;i+=50) chunks.push(ids.slice(i,i+50));
+    const ents = {};
+    (await Promise.all(chunks.map(c=>fetch(`${W}&action=wbgetentities&props=claims|labels|sitelinks&languages=de|en|mul&ids=${c.join('|')}`).then(r=>r.json()))))
+      .forEach(e=>Object.assign(ents, e.entities||{}));
+    const nq = tw.join(' ');
+    const OK = new Set(['Q11424','Q202866','Q24869','Q506240','Q5398426','Q581714','Q1259759','Q93204','Q226730','Q17517379']);
+    return ids.map(id=>ents[id]).filter(x=>x && (x.claims?.P31||[]).some(c=>OK.has(c.mainsnak?.datavalue?.value?.id))).map(x=>{
+      const de=x.labels?.de?.value, en=x.labels?.en?.value||x.labels?.mul?.value||lbl[x.id];
+      const words=tw;
       const imdb=x.claims?.P345?.[0]?.mainsnak?.datavalue?.value;
       const year=(x.claims?.P577?.[0]?.mainsnak?.datavalue?.value?.time||'').slice(1,5);
       let m=0;
