@@ -100,11 +100,12 @@ svg{display:block}
 .tab.on{opacity:1;color:#4da3ff}
 .tab.hover{transform:scale(1.14);opacity:1;color:#fff}
 .tabbar.drag .tab.on:not(.hover){color:var(--t1);opacity:.78}
-.lens{position:absolute;z-index:0;top:4px;bottom:4px;left:0;width:var(--w,80px);border-radius:27px;transform:translateX(var(--x,4px));
+.lens{position:absolute;z-index:0;top:4px;bottom:4px;left:0;width:var(--w,80px);border-radius:27px;will-change:transform;transform:translate3d(4px,0,0);
   background:rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.12);
-  transition:transform .5s cubic-bezier(.25,1.45,.4,1),background .25s,box-shadow .25s,scale .3s cubic-bezier(.3,1.5,.4,1)}
-.tabbar.drag .lens{transition:transform .07s linear,background .2s,box-shadow .2s,scale .3s cubic-bezier(.3,1.5,.4,1);scale:1.2 1.28;
-  background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(1.5px) saturate(240%) brightness(1.3);backdrop-filter:blur(1.5px) saturate(240%) brightness(1.3);
+  transition:transform .5s cubic-bezier(.25,1.45,.4,1),background .2s,box-shadow .2s}
+/* live: folgt dem Finger ohne Verzögerung */
+.tabbar.drag.live .lens{transition:background .2s,box-shadow .2s}
+.tabbar.drag .lens{transition:transform .16s cubic-bezier(.3,1.4,.5,1),background .2s,box-shadow .2s;background:rgba(255,255,255,.16);
   box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -1px 2px rgba(255,255,255,.18),inset 3px 0 4px rgba(255,90,140,.32),inset -3px 0 4px rgba(90,180,255,.42),0 10px 26px rgba(0,0,0,.4)}
 .addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#4da3ff;transition:transform .3s cubic-bezier(.3,1.5,.4,1)}
 .addbtn:active{transform:scale(.9)}
@@ -514,33 +515,37 @@ function renderDock(){
   if(!tb.dataset.built){
     tb.innerHTML = '<div class="lens" id="lens"></div>' + TABS.map(t=>`<div class="tab" data-t="${t.id}">${t.icon}<span>${t.label}</span></div>`).join('');
     tb.dataset.built='1'; setupDock(tb);
-    window.addEventListener('resize',()=>placeLens());
+    window.addEventListener('resize',()=>{ lensW=0; placeLens(); });
   }
   tb.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b.dataset.t===state.tab));
   requestAnimationFrame(()=>placeLens());
 }
-function placeLens(x){
+let lensW=0;
+function placeLens(x, big){
   const tb=$('#tabbar'), lens=$('#lens'); if(!lens) return;
-  const tabs=[...tb.querySelectorAll('.tab')]; const w=tabs[0].offsetWidth;
-  lens.style.setProperty('--w', w+'px');
-  if(x==null){ const a=tabs.find(b=>b.dataset.t===state.tab)||tabs[0]; x=a.offsetLeft; }
-  lens.style.setProperty('--x', x+'px');
+  if(x==null || !lensW){ const tabs=[...tb.querySelectorAll('.tab')]; lensW=tabs[0].offsetWidth; lens.style.setProperty('--w', lensW+'px');
+    if(x==null){ const a=tabs.find(b=>b.dataset.t===state.tab)||tabs[0]; x=a.offsetLeft; } }
+  lens.style.transform = `translate3d(${x}px,0,0)${big?' scale(1.2,1.28)':''}`;
 }
 function setupDock(tb){
-  let drag=false, cur=null;
-  const tabs=()=>[...tb.querySelectorAll('.tab')];
-  const at=cx=>{ const r=tb.getBoundingClientRect(), ts=tabs(), w=ts[0].offsetWidth;
+  let drag=false, cur=null, raf=0, lastX=0, rect=null, liveT=0;
+  const TS=[...tb.querySelectorAll('.tab')];
+  const tabs=()=>TS;
+  const at=cx=>{ const r=rect||tb.getBoundingClientRect(), ts=TS, w=lensW||ts[0].offsetWidth;
     let x=Math.max(4, Math.min(r.width-w-4, cx-r.left-w/2));
     const i=Math.max(0, Math.min(ts.length-1, Math.floor((cx-r.left-4)/((r.width-8)/ts.length))));
     return {x, t:ts[i]}; };
   const hover=t=>{ if(cur!==t){ cur=t; tick(); tabs().forEach(b=>b.classList.toggle('hover', b===t)); } };
-  tb.addEventListener('pointerdown',e=>{ drag=true; cur=null; try{ tb.setPointerCapture(e.pointerId); }catch(_){} const p=at(e.clientX); tb.classList.add('drag'); placeLens(p.x); hover(p.t); });
-  tb.addEventListener('pointermove',e=>{ if(!drag) return; const p=at(e.clientX); placeLens(p.x); hover(p.t); });
-  const end=e=>{ if(!drag) return; drag=false; tb.classList.remove('drag'); tabs().forEach(b=>b.classList.remove('hover'));
+  tb.addEventListener('pointerdown',e=>{ drag=true; cur=null; rect=tb.getBoundingClientRect(); try{ tb.setPointerCapture(e.pointerId); }catch(_){}
+    const p=at(e.clientX); tb.classList.add('drag'); placeLens(p.x,true); hover(p.t);
+    clearTimeout(liveT); liveT=setTimeout(()=>{ if(drag) tb.classList.add('live'); },170); });
+  tb.addEventListener('pointermove',e=>{ if(!drag) return; lastX=e.clientX;
+    if(!raf) raf=requestAnimationFrame(()=>{ raf=0; const p=at(lastX); placeLens(p.x,true); hover(p.t); }); },{passive:true});
+  const end=e=>{ if(!drag) return; drag=false; clearTimeout(liveT); if(raf){ cancelAnimationFrame(raf); raf=0; } tb.classList.remove('drag','live'); tabs().forEach(b=>b.classList.remove('hover'));
     const id=at(e.clientX).t.dataset.t;
     if(state.tab!==id){ state.tab=id; render(); window.scrollTo({top:0}); } else placeLens(); };
   tb.addEventListener('pointerup',end);
-  tb.addEventListener('pointercancel',()=>{ drag=false; tb.classList.remove('drag'); tabs().forEach(b=>b.classList.remove('hover')); placeLens(); });
+  tb.addEventListener('pointercancel',()=>{ drag=false; tb.classList.remove('drag','live'); tabs().forEach(b=>b.classList.remove('hover')); placeLens(); });
 }
 
 function render(){
@@ -880,7 +885,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '19';
+const APP_VERSION = '20';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
