@@ -57,7 +57,7 @@ for sid, x in shows.items():
          "genres": s.get("genres") or [], "season": cur.get("season"), "latest": past[-1]["date"] if past else None,
          "next": fut[0]["date"] if fut else None, "premiere": premiere, "isNew": bool(s.get("premiered") and s["premiered"] >= (today - datetime.timedelta(days=45)).isoformat()),
          "summary": clean(s.get("summary"))[:600], "url": f"https://www.justwatch.com/ch/Suche?q={urllib.parse.quote(s['name'])}",
-         "ext": {"kind": "series"}, "votes": 0}
+         "ext": {"kind": "series", "tvm": (s.get("rating") or {}).get("average"), "platform": x["platform"]}, "votes": 0}
     if imdb:
         d = omdb(imdb)
         if d:

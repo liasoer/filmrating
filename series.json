@@ -25,7 +25,9 @@
     "kind": "series",
     "imdb": "6.8",
     "seasons": "3",
-    "genre": "Action, Adventure, Drama"
+    "genre": "Action, Adventure, Drama",
+    "tvm": 7.1,
+    "platform": "Prime Video"
    },
    "votes": 445576
   },
@@ -52,7 +54,9 @@
     "kind": "series",
     "imdb": "9.0",
     "seasons": "2",
-    "genre": "Crime, Drama, Mystery"
+    "genre": "Crime, Drama, Mystery",
+    "tvm": 8.4,
+    "platform": "Paramount+"
    },
    "votes": 163193
   },
@@ -78,7 +82,9 @@
     "kind": "series",
     "imdb": "8.3",
     "seasons": "3",
-    "genre": "Crime, Drama"
+    "genre": "Crime, Drama",
+    "tvm": 8.1,
+    "platform": "Paramount+"
    },
    "votes": 131558
   },
@@ -105,7 +111,9 @@
     "kind": "series",
     "imdb": "7.9",
     "seasons": "4",
-    "genre": "Action, Crime, Drama"
+    "genre": "Action, Crime, Drama",
+    "tvm": 7.6,
+    "platform": "Paramount+"
    },
    "votes": 121614
   },
@@ -131,7 +139,9 @@
     "kind": "series",
     "imdb": "8.1",
     "seasons": "4",
-    "genre": "Drama"
+    "genre": "Drama",
+    "tvm": 7.6,
+    "platform": "HBO Max"
    },
    "votes": 54903
   },
@@ -158,7 +168,9 @@
     "kind": "series",
     "imdb": "7.9",
     "seasons": "3",
-    "genre": "Comedy, Drama"
+    "genre": "Comedy, Drama",
+    "tvm": 6.2,
+    "platform": "Disney+"
    },
    "votes": 20815
   },
@@ -184,7 +196,9 @@
     "kind": "series",
     "imdb": "7.2",
     "seasons": "2",
-    "genre": "Comedy, Sport"
+    "genre": "Comedy, Sport",
+    "tvm": 6.3,
+    "platform": "Apple TV+"
    },
    "votes": 20316
   },
@@ -211,7 +225,9 @@
     "kind": "series",
     "imdb": "7.8",
     "seasons": "1",
-    "genre": "Action"
+    "genre": "Action",
+    "tvm": 7.6,
+    "platform": "Disney+"
    },
    "votes": 14696
   },
@@ -238,7 +254,9 @@
     "kind": "series",
     "imdb": "6.3",
     "seasons": "2",
-    "genre": "Drama, Thriller"
+    "genre": "Drama, Thriller",
+    "tvm": 6.5,
+    "platform": "Prime Video"
    },
    "votes": 6292
   },
@@ -264,7 +282,9 @@
     "kind": "series",
     "imdb": "6.7",
     "seasons": "4",
-    "genre": "Crime, Drama, Thriller"
+    "genre": "Crime, Drama, Thriller",
+    "tvm": 4,
+    "platform": "Hulu"
    },
    "votes": 4339
   },
@@ -291,7 +311,9 @@
     "kind": "series",
     "imdb": "7.0",
     "seasons": "3",
-    "genre": "Crime, Drama, Mystery"
+    "genre": "Crime, Drama, Mystery",
+    "tvm": 6.6,
+    "platform": "BBC"
    },
    "votes": 2915
   },
@@ -317,7 +339,9 @@
     "kind": "series",
     "imdb": "6.5",
     "seasons": "2",
-    "genre": "Comedy, Crime, Drama"
+    "genre": "Comedy, Crime, Drama",
+    "tvm": 5.8,
+    "platform": "Apple TV+"
    },
    "votes": 1774
   },
@@ -340,7 +364,9 @@
     "kind": "series",
     "imdb": "7.0",
     "seasons": "73",
-    "genre": "Documentary, News"
+    "genre": "Documentary, News",
+    "tvm": 7.7,
+    "platform": "BBC"
    },
    "votes": 695
   },
@@ -367,7 +393,9 @@
     "kind": "series",
     "imdb": "5.7",
     "seasons": "3",
-    "genre": "Animation, Action, Adventure"
+    "genre": "Animation, Action, Adventure",
+    "tvm": 7.6,
+    "platform": "HBO Max"
    },
    "votes": 574
   },
@@ -394,7 +422,9 @@
     "kind": "series",
     "imdb": "6.6",
     "seasons": null,
-    "genre": "Crime, Drama"
+    "genre": "Crime, Drama",
+    "tvm": null,
+    "platform": "HBO Max"
    },
    "votes": 179
   },
@@ -419,7 +449,9 @@
     "kind": "series",
     "imdb": "5.9",
     "seasons": "8",
-    "genre": "Documentary, Reality-TV"
+    "genre": "Documentary, Reality-TV",
+    "tvm": null,
+    "platform": "Channel 4"
    },
    "votes": 176
   },
@@ -444,7 +476,9 @@
     "kind": "series",
     "imdb": "6.4",
     "seasons": "37",
-    "genre": "Documentary"
+    "genre": "Documentary",
+    "tvm": 7.5,
+    "platform": "BBC"
    },
    "votes": 173
   },
@@ -467,7 +501,9 @@
     "kind": "series",
     "imdb": "8.3",
     "seasons": "47",
-    "genre": "Documentary, News"
+    "genre": "Documentary, News",
+    "tvm": null,
+    "platform": "Channel 4"
    },
    "votes": 140
   },
@@ -492,7 +528,9 @@
     "kind": "series",
     "imdb": "8.6",
     "seasons": "2",
-    "genre": "Animation, Family, Fantasy"
+    "genre": "Animation, Family, Fantasy",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 65
   },
@@ -515,7 +553,9 @@
     "kind": "series",
     "imdb": "6.9",
     "seasons": null,
-    "genre": "Documentary, Crime"
+    "genre": "Documentary, Crime",
+    "tvm": null,
+    "platform": "Hulu"
    },
    "votes": 26
   },
@@ -542,7 +582,9 @@
     "kind": "series",
     "imdb": null,
     "seasons": "1",
-    "genre": "Crime, Drama, Thriller"
+    "genre": "Crime, Drama, Thriller",
+    "tvm": 7.7,
+    "platform": "Apple TV+"
    },
    "votes": 0
   },
@@ -565,7 +607,9 @@
    "summary": "Griff Rhys Jones takes on one of the world's most celebrated mountain ranges by train as he explores from Slovenia to France, uncovering how the Alps have shaped Europe's history, wars, trade, and communities.From Hannibal's famous elephant crossing in 218 BC, to Napoleon's Alpine campaigns, pilgrim trails, medieval traders, and WWII Escape Routes, The Alps have played a pivotal role in some of humanities greatest historical moments and influenced the spread and survival of culture for centuries.Starting with the Alp's eastern end at the stunning Lake Bled and ending on the Mediterranean beach",
    "url": "https://www.justwatch.com/ch/Suche?q=Griff%20Across%20the%20Alps",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
@@ -588,7 +632,9 @@
    "summary": "Animated comedy sketch show with silly jokes and hilarious characters including guinea pigs in wigs, accident-prone newsreaders, a very posh Pomeranian, and many, many more!",
    "url": "https://www.justwatch.com/ch/Suche?q=That%27s%20Jokes",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -613,7 +659,9 @@
     "kind": "series",
     "imdb": null,
     "seasons": "1",
-    "genre": "Animation, Adventure, Comedy"
+    "genre": "Animation, Adventure, Comedy",
+    "tvm": null,
+    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -635,7 +683,9 @@
    "summary": "Extreme weather events examined from the inside out, including Hurricane Helene, the December Tennessee tornado outbreak and the vicious Black Summer of Australian wildfires, charting how and why they happen and the devastation left behind using first-hand survivor and witness accounts and adrenaline-fuelled footage captured on the ground.",
    "url": "https://www.justwatch.com/ch/Suche?q=Megastorm",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -661,7 +711,9 @@
     "kind": "series",
     "imdb": null,
     "seasons": "1",
-    "genre": "Comedy, Drama, Mystery"
+    "genre": "Comedy, Drama, Mystery",
+    "tvm": 5.6,
+    "platform": "Hulu"
    },
    "votes": 0
   },
@@ -681,7 +733,9 @@
    "summary": "Deep in the manosphere, an underground movement promises to unlock human potential - bulging muscles, bigger penises, eternal youth. At its center is Dr. Tony Huge, a guru pushing homemade biohacks on a devoted following willing to risk everything for the cause. When Leo & Longevity, a penis-enlargement expert and one of Tony's closest allies, is found dead in Thailand, alpha-male influencers become online sleuths, running wild with theories and questioning Tony Huge and his right-hand man, Connor Murphy. Soon, a darker pattern emerges: Leo isn't the first of the inner circle to die under myst",
    "url": "https://www.justwatch.com/ch/Suche?q=Get%20Huge%3A%20Looksmaxxing%20to%20Death",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Hulu"
    },
    "votes": 0
   },
@@ -703,7 +757,9 @@
    "summary": "Stephen Nolan joins officers from the Police Service of Northern Ireland as they patrol the streets of Belfast in Peelers: The PSNI for Real.The series reflects the realities of 24/7 policing and its many challenges – including street disorder, substance abuse and domestic violence.It also gives viewers a revealing sense of what it's like to be a police officer and the teamwork that's required in fast-changing and often uncertain situations.",
    "url": "https://www.justwatch.com/ch/Suche?q=Peelers%3A%20The%20PSNI%20for%20Real",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -727,7 +783,9 @@
    "summary": "Sacrifice follows Daniella Hernandez, a highly sought-after entertainment lawyer, as she navigates the nefarious lives of her rich and famous clients.",
    "url": "https://www.justwatch.com/ch/Suche?q=Sacrifice",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 5.4,
+    "platform": "Paramount+"
    },
    "votes": 0
   },
@@ -754,7 +812,9 @@
     "kind": "series",
     "imdb": null,
     "seasons": "1",
-    "genre": "Drama, Horror, Thriller"
+    "genre": "Drama, Horror, Thriller",
+    "tvm": 5.2,
+    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -777,7 +837,9 @@
    "summary": "A team of female divorce attorneys leave a male-dominated firm to open their own powerhouse practice. Fierce, brilliant, and emotionally complicated, they navigate high-stakes breakups, scandalous secrets, and shifting allegiances—both in the courtroom and within their own ranks. In a world where money talks and love is a battleground, these women don't just play the game—they change it.",
    "url": "https://www.justwatch.com/ch/Suche?q=All%27s%20Fair",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 4.7,
+    "platform": "Hulu"
    },
    "votes": 0
   },
@@ -800,7 +862,9 @@
    "summary": "Alice Bell is a former nurse, and also the lover, and accomplice, of a notorious anaesthetist serial killer. She is presently living in Britain under a new identity. When, online, Fran Da Silva is accused of being Alice Bell, her happy family life implodes in a wave of mob hate. Then she discovers she's not the only woman to suffer this fate. Fran and the other accused women band together to fight back and clear their names. But as they battle to prove their innocence, what if one of the group is lying - and is the real Alice Bell…?",
    "url": "https://www.justwatch.com/ch/Suche?q=Hunting%20Alice%20Bell",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6.8,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
@@ -824,7 +888,9 @@
    "summary": "The Lowdown follows the gritty exploits of citizen journalist Lee Raybon, a self-proclaimed Tulsa \"truthstorian\" whose obsession with the truth is always getting him into trouble.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Lowdown",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6.4,
+    "platform": "FX"
    },
    "votes": 0
   },
@@ -847,7 +913,9 @@
    "summary": "Philomena Cunk will be asking experts all of the hard-hitting questions about the history of cinema, from the invention of the camera, to the New Wave filmmakers of the 60s, right up to the entrance of CGI and what the future of AI holds. Cunk will attempt to demystify it all while sitting in lumpy seats with stale popcorn, asking herself where did cinema come from? And why? What does it want? And why can't it tell us?",
    "url": "https://www.justwatch.com/ch/Suche?q=Cunk%20on%20Cinema",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -871,7 +939,9 @@
    "summary": "When the rebellious Elisabeth (\"Sisi\") meets Franz, the Emperor of Austria, the young couple's intoxicating love completely upsets the power structure at the Viennese court. After the wedding, the young empress must assert herself not only against her mother-in-law, the sovereign, power-hungry Sophie but also against Franz's brother Maxi, who himself longs for the throne (and for Sisi). As enemy troops form upon the borders of the Habsburg Empire, people in Vienna rise up in protest against the emperor. Elisabeth must find out who she can trust and how high the price is to be a true empress an",
    "url": "https://www.justwatch.com/ch/Suche?q=Die%20Kaiserin",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6.6,
+    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -893,7 +963,9 @@
    "summary": "A dismembered human torso is discovered in a Manchester woodland. With no DNA match, witnesses, murder weapon or obvious suspect, detectives open a murder investigation with almost nothing. And then more body parts appear across an unsettled city.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Jigsaw%20Puzzle%20Murder",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Paramount+"
    },
    "votes": 0
   },
@@ -916,7 +988,9 @@
    "summary": "The Good Daughter is a suspenseful crime drama where sisters Charlotte and Samantha Quinn have spent the last twenty-eight years trying to piece together the lives that were fractured by a single night of violence. When another attack splinters the small town of Pikeville, Charlotte is the first witness on the scene. Now a lawyer like her father, she's forced to confront her own demons as the case twists through one shocking revelation after another. In the end, both she and Samantha find themselves wondering if the price of being the good daughter was worth it after all.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Good%20Daughter",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 5.2,
+    "platform": "Peacock"
    },
    "votes": 0
   },
@@ -940,7 +1014,9 @@
    "summary": "War follows two of London's most prestigious rival firms – Cathcarts and Taylor & Byrne – as they go head-to-head in the divorce case of the century. Each side is certain they'll win. But as the case spirals and loyalties fracture, reputations are on the line, and everyone's playing to win.",
    "url": "https://www.justwatch.com/ch/Suche?q=War",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 5.6,
+    "platform": "HBO Max"
    },
    "votes": 0
   },
@@ -964,7 +1040,9 @@
    "summary": "The dark side of one of the most beautiful places on earth. Uncovering secrets and lies from the past.",
    "url": "https://www.justwatch.com/ch/Suche?q=Shetland",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 7.9,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -988,7 +1066,9 @@
    "summary": "Each episode of 12 12 12 unfolds across three timelines of a heist: the 12 months of planning, the 12 hours of the heist and the 12 days following it. The series follows a disgraced FBI agent and an American career criminal as they play a zero-sum game of cat and mouse across Europe. At the center of it all is the daring, epic raid on a bank vault deep beneath the streets of Zurich.",
    "url": "https://www.justwatch.com/ch/Suche?q=12%2012%2012",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 4.6,
+    "platform": "Apple TV+"
    },
    "votes": 0
   },
@@ -1011,7 +1091,9 @@
    "summary": "Clangold explores the spectacular 2017 theft of the 100-kilogram \"Big Maple Leaf\" gold coin from Berlin's Bode Museum. Through the perspectives of investigators, the four-part documentary follows the investigation into the Remmo clan, the subsequent trial, and the challenges faced by authorities in prosecuting organized crime in Germany.",
    "url": "https://www.justwatch.com/ch/Suche?q=Clangold",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "HBO Max"
    },
    "votes": 0
   },
@@ -1035,7 +1117,9 @@
    "summary": "Honey goes deep undercover in 1980s East Berlin to explore a shadowy world of counter espionage and risky but irresistible relations. East Berlin, 1982. Martha, 24, is a deep cover agent for MI6. Surrounded by enemies and constantly under threat of her cover being blown, she tries her hardest to avoid detection by Friedrich Bauman, the new Head of Counter Espionage for the Stasi. Finding herself caught between Friedrich and the reckless, arrogant (and incredibly attractive…) CIA operative Aaron Neeland, she is blind-sided by desire in this Cold War menage-a-trois. The risk of being garrotted o",
    "url": "https://www.justwatch.com/ch/Suche?q=Honey",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 4.5,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1055,7 +1139,9 @@
    "summary": "A continuation of the acclaimed series, \"The Proud Family: Louder and Prouder\" follows the adventures and misadventures of newly 14-year-old Penny Proud and her Proud Family as they navigate modern life with hilarity and heart. The 2020s brings new career highs for mom Trudy, wilder dreams for dad Oscar and new challenges for Penny, including a socially woke neighbor who thinks she has a lot to teach her, bullying social media influencers who want to cancel her and her own teenage hormones. Penny's friends return, including Dijonay, LaCienega, Zoey and Michael. Penny's Suga Mama also returns, ",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Proud%20Family%3A%20Louder%20and%20Prouder",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 8,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -1078,7 +1164,9 @@
    "summary": "The Chosen is the first-ever-multi-season TV show about the life of Jesus. Created outside of the Hollywood system, The Chosen allows us to see Him through the eyes of those who knew him. No matter where you are at in your journey with Jesus Christ, this TV show is for you.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Chosen",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 5,
+    "platform": "Prime Video"
    },
    "votes": 0
   },
@@ -1098,7 +1186,9 @@
    "summary": "Tech Now explores the latest innovation and technology shaping our lives. Bringing you the inside track on global trends and advancements happening in the tech space today - from AI and robotics, to health, climate, transport and gaming.",
    "url": "https://www.justwatch.com/ch/Suche?q=Tech%20Now",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1120,7 +1210,9 @@
    "summary": "Female-led drama anthology series of stand-alone programmes, starring some of Britain's leading actors.",
    "url": "https://www.justwatch.com/ch/Suche?q=I%20Am",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 7.8,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
@@ -1142,7 +1234,9 @@
    "summary": "Rav Wilding is hunting down the scammers plaguing our lives. Working with ethical hackers to hack into the fraudsters' illegal call centres, Rav uses cutting-edge technology to monitor the scammers' phone calls in an effort to stop victims losing out to real-time scams.",
    "url": "https://www.justwatch.com/ch/Suche?q=Scam%20Interceptors",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1165,7 +1259,9 @@
    "summary": "Vienna Game is about the Congress of Vienna, following the downfall of Napoleon Bonaparte following his exile to the island of Elba. Kings and crown princes, ministers, spies, noble ladies, mistresses, inventors, artists, and concubines, party and discuss the situation in Vienna. The fate of Europe is then played on the dance floor and in the boudoir.We see how the delegations of England, Russia, Austria, France, and Prussia contributed to the organization of the Congress, with powerful women using their influence to steer the peace talks. The show is about the political game of luck, money, l",
    "url": "https://www.justwatch.com/ch/Suche?q=Vienna%20Game",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -1188,7 +1284,9 @@
    "summary": "The Altruists tells the story of Sam Bankman-Fried and Caroline Ellison, two hyper-smart, ambitious young idealists who tried to remake the global financial system in the blink of an eye – and then seduced, coaxed and teased each other into stealing $8 billion.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Altruists",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -1210,7 +1308,9 @@
    "summary": "Bill's Included follows Bill Beam, a well meaning but over enthusiastic divorcee who rents his spare rooms to students to stay afloat.As Bill tries - and often fails to be both responsible landlord and honorary housemate, he and his mismatched lodgers muddle through chaos, growing pains and unexpected friendships.",
    "url": "https://www.justwatch.com/ch/Suche?q=Bill%27s%20Included",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1233,7 +1333,9 @@
    "summary": "Set against the sweeping Northumberland coastline and its surrounding market towns, the series centres on an unlikely crime-solving duo.Joe Ruby, a jack-of-all-trades whose life has been shaped by mistakes, regrets and missed opportunities, alongside Oxford-educated DI Rose O'Connell, a rarefied intellectual, a deep thinker with a brilliant mind and an ice-cool disposition.In a classic odd-couple pairing, Joe and Rose combine their talents as they frustrate, confound and ultimately surprise one another while unravelling a series of compelling crime mysteries.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Northumbria%20Mysteries",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6.3,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1257,7 +1359,9 @@
    "summary": "Yellowjackets follows a girls' high school soccer team. In 1975, the Dearborn High Yellowjackets became the first team in state history to qualify for the Girls' U.S. Soccer Championship Series in Manchester, NH. They never got the chance to compete. Equal parts survival epic, horror story and pitch black coming of age, Yellowjackets tells the story of the (un)lucky survivors of a plane crash deep in the Ontario wilderness, chronicling their descent from a friendly, cooperative team to warring, cannibalistic clans. At the same time, it follows the lives they've attempted to piece back together",
    "url": "https://www.justwatch.com/ch/Suche?q=Yellowjackets",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6.9,
+    "platform": "Paramount+"
    },
    "votes": 0
   },
@@ -1281,7 +1385,9 @@
    "summary": "12-year-old modern demigod Percy Jackson has just come to terms with his newfound supernatural powers when the sky god Zeus accuses him of stealing his master lightning bolt. Now Percy must trek across America to find it and restore order to Olympus.",
    "url": "https://www.justwatch.com/ch/Suche?q=Percy%20Jackson%20and%20the%20Olympians",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6.7,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -1301,7 +1407,9 @@
    "summary": "The series, titled Melania, The Series, offers new insight into the behind-the-scenes life of the first lady.The Series reveals never-before-told stories, offering unprecedented insight into Melania Trump's life, including the extraordinary days immediately following the 47th Presidential Inauguration,",
    "url": "https://www.justwatch.com/ch/Suche?q=Melania%2C%20The%20Series",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Prime Video"
    },
    "votes": 0
   },
@@ -1323,7 +1431,9 @@
    "summary": "Blue Planet III will build on its groundbreaking legacy, redefining the realm of possibility in underwater wildlife film-making. Taking the wonder, immersion, and discovery of the Blue Planet brand to extraordinary new depths, it will reveal brand new and untold stories from magical underwater worlds. Combining our deeper understanding of the oceans with a whole new generation of camera technology, we can now showcase stunning stories and extraordinary behaviours, previously impossible to film or only recently discovered.",
    "url": "https://www.justwatch.com/ch/Suche?q=Blue%20Planet%20III",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1346,7 +1456,9 @@
    "summary": "South Wales, 1989. Bill and Liz Rich leave London for Heol Fanog, a remote modern farmhouse in the foothills of the Brecon Beacons, determined to make a fresh start. At first, the isolation feels like freedom. But when, in the midst of a traumatic home birth, Liz becomes convinced she's seen a ghostly figure in the bedroom they start to feel increasingly afraid…What follows is a steady escalation of the chillingly uncanny - unexplained disturbances and an unsettling sense that they are not alone. As Bill and Liz begin to investigate, the house draws them deeper into a history that refuses to s",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Witch%20Farm",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1368,7 +1480,9 @@
    "summary": "Sunny days are here! This freshly reimagined \"Sesame Street\" series features characters you love, fan-favorite segments — and new ways to play.",
    "url": "https://www.justwatch.com/ch/Suche?q=Sesame%20Street",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 8,
+    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -1390,7 +1504,9 @@
    "summary": "Dig follows a team of dedicated archaeologists (and less-dedicated college students) who spend their summer working on a dig site in Greece. Their discovery of a rare artifact sends them on the adventure of a lifetime.",
    "url": "https://www.justwatch.com/ch/Suche?q=Dig",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Peacock"
    },
    "votes": 0
   },
@@ -1413,7 +1529,9 @@
    "summary": "Fifty years after the events of Blade Runner 2049, Los Angeles has been reborn, just not by humanity. Cora, a fugitive in a final bid to stop running, takes on one last identity: a Blade Runner. Forced to partner with Olwen, a Replicant days from dying, she hunts down a runaway hiding a truth that could collapse their fragile city.",
    "url": "https://www.justwatch.com/ch/Suche?q=Blade%20Runner%202099",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Prime Video"
    },
    "votes": 0
   },
@@ -1433,7 +1551,9 @@
    "summary": "A series of special animations featuring Mickey Mouse and his friends.",
    "url": "https://www.justwatch.com/ch/Suche?q=Mickey%20Mouse%20Specials",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": null,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -1457,7 +1577,9 @@
    "summary": "The Hunting Wives tells the story of Sophie O'Neil and her family's move from the East Coast to deep-red East Texas, where she succumbs to socialite Margo Banks‘ irresistible charms – and finds her life consumed by obsession, seduction, and murder.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Hunting%20Wives",
    "ext": {
-    "kind": "series"
+    "kind": "series",
+    "tvm": 6,
+    "platform": "Netflix"
    },
    "votes": 0
   }
