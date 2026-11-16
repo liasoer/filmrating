@@ -92,7 +92,7 @@ svg{display:block}
 
 /* ---------- Schwebende Tab-Leiste ---------- */
 .dock{position:fixed;left:0;right:0;bottom:max(12px, calc(var(--sa-b) - 14px));z-index:10;display:flex;justify-content:center;align-items:center;gap:12px;padding:0 16px;pointer-events:none}
-.tabbar,.addbtn{background:rgba(28,28,34,.36);-webkit-backdrop-filter:blur(28px) saturate(210%) brightness(1.08);backdrop-filter:blur(28px) saturate(210%) brightness(1.08);
+.tabbar,.addbtn{background:rgba(28,28,34,.46);-webkit-backdrop-filter:blur(28px) saturate(210%) brightness(1.08);backdrop-filter:blur(28px) saturate(210%) brightness(1.08);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 1px rgba(255,255,255,.07),inset 0 0 0 .5px rgba(255,255,255,.20),inset 0 0 18px rgba(255,255,255,.04),0 14px 34px rgba(0,0,0,.5)}
 .tabbar{pointer-events:auto;position:relative;display:flex;height:62px;border-radius:31px;padding:4px;flex:1;max-width:370px;touch-action:none;-webkit-user-select:none;user-select:none}
 .tab{position:relative;z-index:1;flex:1;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--t1);opacity:.78;pointer-events:none;
@@ -107,7 +107,7 @@ svg{display:block}
 .tabbar.drag.live .lens{transition:background .2s,box-shadow .2s}
 .tabbar.drag .lens{transition:transform .16s cubic-bezier(.3,1.4,.5,1),background .2s,box-shadow .2s;background:rgba(255,255,255,.16);
   box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -1px 2px rgba(255,255,255,.18),inset 3px 0 4px rgba(255,90,140,.32),inset -3px 0 4px rgba(90,180,255,.42),0 10px 26px rgba(0,0,0,.4)}
-.addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#4da3ff;transition:transform .3s cubic-bezier(.3,1.5,.4,1)}
+.addbtn{pointer-events:auto;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#4da3ff;background:rgba(28,28,34,.62);transition:transform .3s cubic-bezier(.3,1.5,.4,1)}
 .addbtn:active{transform:scale(.9)}
 
 /* ---------- Sheets ---------- */
@@ -536,15 +536,20 @@ function setupDock(tb){
     const i=Math.max(0, Math.min(ts.length-1, Math.floor((cx-r.left-4)/((r.width-8)/ts.length))));
     return {x, t:ts[i]}; };
   const hover=t=>{ if(cur!==t){ cur=t; tick(); tabs().forEach(b=>b.classList.toggle('hover', b===t)); } };
-  tb.addEventListener('pointerdown',e=>{ drag=true; cur=null; rect=tb.getBoundingClientRect(); try{ tb.setPointerCapture(e.pointerId); }catch(_){}
+  tb.addEventListener('pointerdown',e=>{ drag=true; cur=null; lastX=e.clientX; rect=tb.getBoundingClientRect(); try{ tb.setPointerCapture(e.pointerId); }catch(_){}
     const p=at(e.clientX); tb.classList.add('drag'); placeLens(p.x,true); hover(p.t);
     clearTimeout(liveT); liveT=setTimeout(()=>{ if(drag) tb.classList.add('live'); },170); });
   tb.addEventListener('pointermove',e=>{ if(!drag) return; lastX=e.clientX;
     if(!raf) raf=requestAnimationFrame(()=>{ raf=0; const p=at(lastX); placeLens(p.x,true); hover(p.t); }); },{passive:true});
   const end=e=>{ if(!drag) return; drag=false; clearTimeout(liveT); if(raf){ cancelAnimationFrame(raf); raf=0; } tb.classList.remove('drag','live'); tabs().forEach(b=>b.classList.remove('hover'));
-    const id=at(e.clientX).t.dataset.t;
+    const cx=(e && e.clientX!=null && !isNaN(e.clientX) && e.clientX!==0) ? e.clientX : (e?.changedTouches?.[0]?.clientX ?? lastX);
+    const id=at(cx).t.dataset.t;
     if(state.tab!==id){ state.tab=id; render(); window.scrollTo({top:0}); } else placeLens(); };
   tb.addEventListener('pointerup',end);
+  tb.addEventListener('lostpointercapture',end);
+  tb.addEventListener('touchend',end,{passive:true});
+  // Sicherheitsnetz: falls ein Ende-Ereignis verloren geht, Linse nach kurzer Zeit zurücksetzen
+  document.addEventListener('pointerup',()=>{ if(drag) end({clientX:lastX}); },true);
   tb.addEventListener('pointercancel',()=>{ drag=false; tb.classList.remove('drag','live'); tabs().forEach(b=>b.classList.remove('hover')); placeLens(); });
 }
 
@@ -885,7 +890,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '20';
+const APP_VERSION = '21';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
