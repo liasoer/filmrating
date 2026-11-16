@@ -110,3 +110,9 @@ out["soon"].sort(key=lambda e: e.get("release") or "9999")
 with open("kino.json", "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=1)
 print(len(out["now"]), "im Kino,", len(out["soon"]), "demnächst,", sum(1 for x in out["now"] if x.get("formats")), "mit Formaten")
+
+# In GitHub Actions: neuesten Stand holen, damit das anschliessende Hochladen nicht kollidiert
+if os.environ.get("GITHUB_ACTIONS"):
+    import subprocess
+    subprocess.run(["git", "-c", "user.name=kino-bot", "-c", "user.email=kino-bot@users.noreply.github.com",
+                    "pull", "--rebase", "--autostash", "-q"], check=False)
