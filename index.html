@@ -522,11 +522,31 @@ function renderAuth(register=false){
   $('#af').onsubmit=async e=>{
     e.preventDefault(); document.activeElement?.blur();
     try{
-      state.user = register ? await DB.signUp($('#ae').value.trim(),$('#ap').value,$('#au').value.trim().toLowerCase())
+      const wanted = register ? $('#au').value.trim().replace(/^@/,'').toLowerCase().replace(/[^a-z0-9._]/g,'') : null;
+      state.user = register ? await DB.signUp($('#ae').value.trim(),$('#ap').value,wanted)
                             : await DB.signIn($('#ae').value.trim(),$('#ap').value);
       await refresh();
+      if(register && wanted && state.user.username && state.user.username!==wanted) nameTaken(wanted, state.user.username);
     }catch(err){ toast(err.message||'Fehler bei der Anmeldung'); }
   };
+}
+
+function nameTaken(wanted, got){
+  openSheet({ title:'Willkommen', body:`
+    <div style="text-align:center;margin:20px 6px">
+      <h2 class="wz-h">Dein Nutzername ist<br><span style="color:#4da3ff">@${esc(got)}</span></h2>
+      <p class="hint" style="margin:14px 0 0;font-size:15px">«${esc(wanted)}» war leider schon vergeben, deshalb haben wir eine Zahl angehängt. Unter diesem Namen können dich deine Freunde hinzufügen.</p>
+    </div>
+    <div class="sec">Lieber einen anderen Namen?</div>
+    <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="nn" style="text-align:left;color:var(--t1)" value="${esc(got)}" autocapitalize="off" autocorrect="off"></div></div>
+    <button class="btn pri" id="nnok">Passt so</button>`});
+  $('#nnok').onclick=async()=>{
+    const n=$('#nn').value.trim().replace(/^@/,'').toLowerCase();
+    if(n===got) return closeSheet();
+    if(!/^[a-z0-9._]{3,20}$/.test(n)) return toast('3 bis 20 Zeichen: a-z, 0-9, Punkt, Unterstrich');
+    try{ await DB.setUsername(n); toast(`Dein Nutzername ist jetzt @${n}`); closeSheet(); render(); }catch(e){ toast(e.message); }
+  };
+  $('#nn').oninput=e=>{ $('#nnok').textContent = e.target.value.trim().replace(/^@/,'').toLowerCase()===got ? 'Passt so' : 'Nutzername ändern'; };
 }
 
 /* ================= Hauptansicht ================= */
@@ -946,7 +966,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '23';
+const APP_VERSION = '24';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
