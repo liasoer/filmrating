@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T04:51+00:00",
+ "updated": "2026-11-17T13:16+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -118,6 +118,63 @@
    "votes": 121614
   },
   {
+   "title": "Yellowjackets",
+   "tvmaze_id": 36672,
+   "imdb_id": "tt11041332",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1619412.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1619412.jpg",
+   "genres": [
+    "Drama",
+    "Horror",
+    "Supernatural"
+   ],
+   "season": 4,
+   "latest": null,
+   "next": "2026-11-20",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Yellowjackets follows a girls' high school soccer team. In 1975, the Dearborn High Yellowjackets became the first team in state history to qualify for the Girls' U.S. Soccer Championship Series in Manchester, NH. They never got the chance to compete. Equal parts survival epic, horror story and pitch black coming of age, Yellowjackets tells the story of the (un)lucky survivors of a plane crash deep in the Ontario wilderness, chronicling their descent from a friendly, cooperative team to warring, cannibalistic clans. At the same time, it follows the lives they've attempted to piece back together",
+   "url": "https://www.justwatch.com/ch/Suche?q=Yellowjackets",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.9,
+    "platform": "Paramount+",
+    "imdb": "7.7",
+    "seasons": "4",
+    "genre": "Drama, Horror, Mystery"
+   },
+   "votes": 117471
+  },
+  {
+   "title": "The Chosen",
+   "tvmaze_id": 47119,
+   "imdb_id": "tt5622316",
+   "platform": "Prime Video",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615872.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615872.jpg",
+   "genres": [
+    "Drama",
+    "History"
+   ],
+   "season": 6,
+   "latest": "2026-11-15",
+   "next": "2026-11-22",
+   "premiere": true,
+   "isNew": false,
+   "summary": "The Chosen is the first-ever-multi-season TV show about the life of Jesus. Created outside of the Hollywood system, The Chosen allows us to see Him through the eyes of those who knew him. No matter where you are at in your journey with Jesus Christ, this TV show is for you.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Chosen",
+   "ext": {
+    "kind": "series",
+    "tvm": 5,
+    "platform": "Prime Video",
+    "imdb": "9.1",
+    "seasons": "7",
+    "genre": "Biography, Drama, History"
+   },
+   "votes": 72475
+  },
+  {
    "title": "The Gilded Age",
    "tvmaze_id": 34685,
    "imdb_id": "tt4406178",
@@ -144,6 +201,93 @@
     "genre": "Drama"
    },
    "votes": 54903
+  },
+  {
+   "title": "Percy Jackson and the Olympians",
+   "tvmaze_id": 48108,
+   "imdb_id": "tt12324366",
+   "platform": "Disney+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628736.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628736.jpg",
+   "genres": [
+    "Adventure",
+    "Fantasy",
+    "Supernatural"
+   ],
+   "season": 3,
+   "latest": null,
+   "next": "2026-11-20",
+   "premiere": true,
+   "isNew": false,
+   "summary": "12-year-old modern demigod Percy Jackson has just come to terms with his newfound supernatural powers when the sky god Zeus accuses him of stealing his master lightning bolt. Now Percy must trek across America to find it and restore order to Olympus.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Percy%20Jackson%20and%20the%20Olympians",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.7,
+    "platform": "Disney+",
+    "imdb": "7.0",
+    "seasons": "3",
+    "genre": "Action, Adventure, Family"
+   },
+   "votes": 54328
+  },
+  {
+   "title": "Shetland",
+   "tvmaze_id": 1852,
+   "imdb_id": "tt2396135",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1627908.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1627908.jpg",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Mystery"
+   ],
+   "season": 11,
+   "latest": "2026-11-12",
+   "next": "2026-11-19",
+   "premiere": true,
+   "isNew": false,
+   "summary": "The dark side of one of the most beautiful places on earth. Uncovering secrets and lies from the past.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Shetland",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.9,
+    "platform": "BBC",
+    "imdb": "8.3",
+    "seasons": "10",
+    "genre": "Crime, Drama, Mystery"
+   },
+   "votes": 32828
+  },
+  {
+   "title": "Die Kaiserin",
+   "tvmaze_id": 59746,
+   "imdb_id": "tt13720112",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/554/1387123.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/554/1387123.jpg",
+   "genres": [
+    "Drama",
+    "Romance",
+    "History"
+   ],
+   "season": 3,
+   "latest": "2026-11-12",
+   "next": null,
+   "premiere": true,
+   "isNew": false,
+   "summary": "When the rebellious Elisabeth (\"Sisi\") meets Franz, the Emperor of Austria, the young couple's intoxicating love completely upsets the power structure at the Viennese court. After the wedding, the young empress must assert herself not only against her mother-in-law, the sovereign, power-hungry Sophie but also against Franz's brother Maxi, who himself longs for the throne (and for Sisi). As enemy troops form upon the borders of the Habsburg Empire, people in Vienna rise up in protest against the emperor. Elisabeth must find out who she can trust and how high the price is to be a true empress an",
+   "url": "https://www.justwatch.com/ch/Suche?q=Die%20Kaiserin",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.6,
+    "platform": "Netflix",
+    "imdb": "7.8",
+    "seasons": "3",
+    "genre": "Drama, History, Romance"
+   },
+   "votes": 22289
   },
   {
    "title": "Rivals",
@@ -203,6 +347,62 @@
    "votes": 20316
   },
   {
+   "title": "The Hunting Wives",
+   "tvmaze_id": 72427,
+   "imdb_id": "tt31038430",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1620785.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1620785.jpg",
+   "genres": [
+    "Drama",
+    "Thriller",
+    "Mystery"
+   ],
+   "season": 2,
+   "latest": null,
+   "next": "2026-11-26",
+   "premiere": true,
+   "isNew": false,
+   "summary": "The Hunting Wives tells the story of Sophie O'Neil and her family's move from the East Coast to deep-red East Texas, where she succumbs to socialite Margo Banks‘ irresistible charms – and finds her life consumed by obsession, seduction, and murder.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Hunting%20Wives",
+   "ext": {
+    "kind": "series",
+    "tvm": 6,
+    "platform": "Netflix",
+    "imdb": "6.8",
+    "seasons": "2",
+    "genre": "Drama, Mystery, Thriller"
+   },
+   "votes": 20023
+  },
+  {
+   "title": "Sesame Street",
+   "tvmaze_id": 6544,
+   "imdb_id": "tt0063951",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/597/1494633.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/597/1494633.jpg",
+   "genres": [
+    "Children"
+   ],
+   "season": 57,
+   "latest": null,
+   "next": "2026-11-23",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Sunny days are here! This freshly reimagined \"Sesame Street\" series features characters you love, fan-favorite segments — and new ways to play.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Sesame%20Street",
+   "ext": {
+    "kind": "series",
+    "tvm": 8,
+    "platform": "Netflix",
+    "imdb": "8.1",
+    "seasons": "57",
+    "genre": "Animation, Comedy, Drama"
+   },
+   "votes": 17351
+  },
+  {
    "title": "VisionQuest",
    "tvmaze_id": 64950,
    "imdb_id": "tt23112594",
@@ -230,6 +430,115 @@
     "genre": "Action"
    },
    "votes": 14696
+  },
+  {
+   "title": "All's Fair",
+   "tvmaze_id": 78300,
+   "imdb_id": "tt30291387",
+   "platform": "Hulu",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1625278.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1625278.jpg",
+   "genres": [
+    "Drama",
+    "Legal"
+   ],
+   "season": 2,
+   "latest": "2026-11-11",
+   "next": "2026-11-18",
+   "premiere": false,
+   "isNew": false,
+   "summary": "A team of female divorce attorneys leave a male-dominated firm to open their own powerhouse practice. Fierce, brilliant, and emotionally complicated, they navigate high-stakes breakups, scandalous secrets, and shifting allegiances—both in the courtroom and within their own ranks. In a world where money talks and love is a battleground, these women don't just play the game—they change it.",
+   "url": "https://www.justwatch.com/ch/Suche?q=All%27s%20Fair",
+   "ext": {
+    "kind": "series",
+    "tvm": 4.7,
+    "platform": "Hulu",
+    "imdb": "3.7",
+    "seasons": "2",
+    "genre": "Comedy, Drama"
+   },
+   "votes": 12450
+  },
+  {
+   "title": "The Lowdown",
+   "tvmaze_id": 84641,
+   "imdb_id": "tt31289994",
+   "platform": "FX",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/642/1606429.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/642/1606429.jpg",
+   "genres": [
+    "Drama",
+    "Comedy",
+    "Crime"
+   ],
+   "season": 2,
+   "latest": "2026-11-11",
+   "next": "2026-11-18",
+   "premiere": false,
+   "isNew": false,
+   "summary": "The Lowdown follows the gritty exploits of citizen journalist Lee Raybon, a self-proclaimed Tulsa \"truthstorian\" whose obsession with the truth is always getting him into trouble.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Lowdown",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.4,
+    "platform": "FX",
+    "imdb": "7.3",
+    "seasons": "2",
+    "genre": "Biography, Comedy, Crime"
+   },
+   "votes": 10435
+  },
+  {
+   "title": "The Proud Family: Louder and Prouder",
+   "tvmaze_id": 46457,
+   "imdb_id": "tt11871764",
+   "platform": "Disney+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/629/1573761.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/629/1573761.jpg",
+   "genres": [],
+   "season": 4,
+   "latest": "2026-11-14",
+   "next": null,
+   "premiere": false,
+   "isNew": false,
+   "summary": "A continuation of the acclaimed series, \"The Proud Family: Louder and Prouder\" follows the adventures and misadventures of newly 14-year-old Penny Proud and her Proud Family as they navigate modern life with hilarity and heart. The 2020s brings new career highs for mom Trudy, wilder dreams for dad Oscar and new challenges for Penny, including a socially woke neighbor who thinks she has a lot to teach her, bullying social media influencers who want to cancel her and her own teenage hormones. Penny's friends return, including Dijonay, LaCienega, Zoey and Michael. Penny's Suga Mama also returns, ",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Proud%20Family%3A%20Louder%20and%20Prouder",
+   "ext": {
+    "kind": "series",
+    "tvm": 8,
+    "platform": "Disney+",
+    "imdb": "3.3",
+    "seasons": "4",
+    "genre": "Animation, Adventure, Comedy"
+   },
+   "votes": 5688
+  },
+  {
+   "title": "Hollyoaks",
+   "tvmaze_id": 4175,
+   "imdb_id": "tt0112004",
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/625/1564536.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/625/1564536.jpg",
+   "genres": [
+    "Drama"
+   ],
+   "season": 32,
+   "latest": "2026-11-11",
+   "next": null,
+   "premiere": false,
+   "isNew": false,
+   "summary": "Hollyoaks follows the lives of a group of residents living in the fictional village of Chester.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Hollyoaks",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.7,
+    "platform": "Channel 4",
+    "imdb": "4.6",
+    "seasons": "1",
+    "genre": "Drama, Romance"
+   },
+   "votes": 4832
   },
   {
    "title": "Reasonable Doubt",
@@ -260,6 +569,61 @@
    "votes": 4339
   },
   {
+   "title": "Mandy",
+   "tvmaze_id": 49318,
+   "imdb_id": "tt10692232",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/602/1506174.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/602/1506174.jpg",
+   "genres": [
+    "Comedy"
+   ],
+   "season": 4,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Mandy is a woman with dreams. Big dreams. Most of all she dreams of breeding Doberman Pinchers. But there are hurdles to overcome before that dream can become a reality.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Mandy",
+   "ext": {
+    "kind": "series",
+    "tvm": 5.8,
+    "platform": "BBC",
+    "imdb": "7.4",
+    "seasons": "4",
+    "genre": "Comedy"
+   },
+   "votes": 3706
+  },
+  {
+   "title": "Mortimer and Whitehouse: Gone Fishing",
+   "tvmaze_id": 37076,
+   "imdb_id": "tt8641686",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1619649.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1619649.jpg",
+   "genres": [
+    "Comedy",
+    "Sports"
+   ],
+   "season": 9,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Two friends, beautiful places and a good natter. Bob Mortimer and Paul Whitehouse go on a life-affirming, funny journey, sharing their changed outlooks and trying to land a catch.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Mortimer%20and%20Whitehouse%3A%20Gone%20Fishing",
+   "ext": {
+    "kind": "series",
+    "tvm": 8.3,
+    "platform": "BBC",
+    "imdb": "9.0",
+    "seasons": "7",
+    "genre": "Documentary, Comedy, Game-Show"
+   },
+   "votes": 2561
+  },
+  {
    "title": "Where's Wanda?",
    "tvmaze_id": 71074,
    "imdb_id": "tt29011445",
@@ -286,6 +650,33 @@
     "genre": "Comedy, Crime, Drama"
    },
    "votes": 1774
+  },
+  {
+   "title": "I Am",
+   "tvmaze_id": 43081,
+   "imdb_id": "tt9165134",
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/207/518786.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/207/518786.jpg",
+   "genres": [
+    "Drama"
+   ],
+   "season": 4,
+   "latest": "2026-11-16",
+   "next": null,
+   "premiere": true,
+   "isNew": false,
+   "summary": "Female-led drama anthology series of stand-alone programmes, starring some of Britain's leading actors.",
+   "url": "https://www.justwatch.com/ch/Suche?q=I%20Am",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.8,
+    "platform": "Channel 4",
+    "imdb": "7.2",
+    "seasons": "3",
+    "genre": "Drama"
+   },
+   "votes": 980
   },
   {
    "title": "Batwheels",
@@ -373,6 +764,85 @@
    "votes": 173
   },
   {
+   "title": "Scam Interceptors",
+   "tvmaze_id": 60960,
+   "imdb_id": "tt19359688",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/402/1007153.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/402/1007153.jpg",
+   "genres": [
+    "Crime"
+   ],
+   "season": 6,
+   "latest": "2026-11-16",
+   "next": null,
+   "premiere": false,
+   "isNew": false,
+   "summary": "Rav Wilding is hunting down the scammers plaguing our lives. Working with ethical hackers to hack into the fraudsters' illegal call centres, Rav uses cutting-edge technology to monitor the scammers' phone calls in an effort to stop victims losing out to real-time scams.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Scam%20Interceptors",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC",
+    "imdb": "8.1",
+    "seasons": "3",
+    "genre": "Documentary, Crime"
+   },
+   "votes": 51
+  },
+  {
+   "title": "The Well",
+   "tvmaze_id": 95596,
+   "imdb_id": "tt33398233",
+   "platform": "Hulu",
+   "poster": "https://m.media-amazon.com/images/M/MV5BMjI3YTU4NzEtYzc3Ni00YWQyLThiYjktZGU5YjZhZjhkYzVlXkEyXkFqcGc@._V1_QL75_UY562_CR2,0,380,562_.jpg",
+   "poster_l": "https://m.media-amazon.com/images/M/MV5BMjI3YTU4NzEtYzc3Ni00YWQyLThiYjktZGU5YjZhZjhkYzVlXkEyXkFqcGc@._V1_QL75_UY562_CR2,0,380,562_.jpg",
+   "genres": [],
+   "season": 1,
+   "latest": "2026-11-09",
+   "next": null,
+   "premiere": true,
+   "isNew": true,
+   "summary": "Before an aging serial killer on death row takes his secrets to the grave, a team of detectives in California's rural Central Valley are thrust back into the decades-old \"Speed Freak Killers\" mystery. Guided by one of the killers himself, the female-led team hunts for undiscovered victims and seeks atonement for their department's past mistakes.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Well",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Hulu",
+    "imdb": "6.9",
+    "seasons": null,
+    "genre": "Documentary, Crime"
+   },
+   "votes": 26
+  },
+  {
+   "title": "Waffle's After School Club",
+   "tvmaze_id": 86711,
+   "imdb_id": "tt38351538",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/585/1463056.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/585/1463056.jpg",
+   "genres": [
+    "Children"
+   ],
+   "season": 2,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Sitcom fun with Waffle the Wonder Dog at after-school club. Mr Brooklyn-Bell is in charge, but with Waffle, Mrs Hobbs and George in the mix, there's plenty of mayhem, mess and laughter.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Waffle%27s%20After%20School%20Club",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC",
+    "imdb": "7.1",
+    "seasons": null,
+    "genre": "Comedy"
+   },
+   "votes": 9
+  },
+  {
    "title": "Griff Across the Alps",
    "tvmaze_id": 95143,
    "imdb_id": null,
@@ -393,30 +863,6 @@
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "Channel 4"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Hollyoaks",
-   "tvmaze_id": 4175,
-   "imdb_id": "tt0112004",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/625/1564536.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/625/1564536.jpg",
-   "genres": [
-    "Drama"
-   ],
-   "season": 32,
-   "latest": "2026-11-11",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "Hollyoaks follows the lives of a group of residents living in the fictional village of Chester.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Hollyoaks",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.7,
     "platform": "Channel 4"
    },
    "votes": 0
@@ -578,57 +1024,6 @@
    "votes": 0
   },
   {
-   "title": "All's Fair",
-   "tvmaze_id": 78300,
-   "imdb_id": "tt30291387",
-   "platform": "Hulu",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1625278.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1625278.jpg",
-   "genres": [
-    "Drama",
-    "Legal"
-   ],
-   "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
-   "premiere": false,
-   "isNew": false,
-   "summary": "A team of female divorce attorneys leave a male-dominated firm to open their own powerhouse practice. Fierce, brilliant, and emotionally complicated, they navigate high-stakes breakups, scandalous secrets, and shifting allegiances—both in the courtroom and within their own ranks. In a world where money talks and love is a battleground, these women don't just play the game—they change it.",
-   "url": "https://www.justwatch.com/ch/Suche?q=All%27s%20Fair",
-   "ext": {
-    "kind": "series",
-    "tvm": 4.7,
-    "platform": "Hulu"
-   },
-   "votes": 0
-  },
-  {
-   "title": "The Lowdown",
-   "tvmaze_id": 84641,
-   "imdb_id": "tt31289994",
-   "platform": "FX",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/642/1606429.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/642/1606429.jpg",
-   "genres": [
-    "Drama",
-    "Comedy",
-    "Crime"
-   ],
-   "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
-   "premiere": false,
-   "isNew": false,
-   "summary": "The Lowdown follows the gritty exploits of citizen journalist Lee Raybon, a self-proclaimed Tulsa \"truthstorian\" whose obsession with the truth is always getting him into trouble.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Lowdown",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.4,
-    "platform": "FX"
-   },
-   "votes": 0
-  },
-  {
    "title": "Cunk on Cinema",
    "tvmaze_id": 91301,
    "imdb_id": null,
@@ -650,32 +1045,6 @@
     "kind": "series",
     "tvm": null,
     "platform": "BBC"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Die Kaiserin",
-   "tvmaze_id": 59746,
-   "imdb_id": "tt13720112",
-   "platform": "Netflix",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/554/1387123.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/554/1387123.jpg",
-   "genres": [
-    "Drama",
-    "Romance",
-    "History"
-   ],
-   "season": 3,
-   "latest": "2026-11-12",
-   "next": null,
-   "premiere": true,
-   "isNew": false,
-   "summary": "When the rebellious Elisabeth (\"Sisi\") meets Franz, the Emperor of Austria, the young couple's intoxicating love completely upsets the power structure at the Viennese court. After the wedding, the young empress must assert herself not only against her mother-in-law, the sovereign, power-hungry Sophie but also against Franz's brother Maxi, who himself longs for the throne (and for Sisi). As enemy troops form upon the borders of the Habsburg Empire, people in Vienna rise up in protest against the emperor. Elisabeth must find out who she can trust and how high the price is to be a true empress an",
-   "url": "https://www.justwatch.com/ch/Suche?q=Die%20Kaiserin",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.6,
-    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -723,8 +1092,11 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Good%20Daughter",
    "ext": {
     "kind": "series",
-    "tvm": 5.2,
-    "platform": "Peacock"
+    "tvm": 5.7,
+    "platform": "Peacock",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Crime, Drama, Thriller"
    },
    "votes": 0
   },
@@ -750,33 +1122,10 @@
    "ext": {
     "kind": "series",
     "tvm": 5.6,
-    "platform": "HBO Max"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Shetland",
-   "tvmaze_id": 1852,
-   "imdb_id": "tt2396135",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1627908.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1627908.jpg",
-   "genres": [
-    "Drama",
-    "Crime",
-    "Mystery"
-   ],
-   "season": 11,
-   "latest": "2026-11-12",
-   "next": "2026-11-19",
-   "premiere": true,
-   "isNew": false,
-   "summary": "The dark side of one of the most beautiful places on earth. Uncovering secrets and lies from the past.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Shetland",
-   "ext": {
-    "kind": "series",
-    "tvm": 7.9,
-    "platform": "BBC"
+    "platform": "HBO Max",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Drama, Thriller"
    },
    "votes": 0
   },
@@ -831,7 +1180,10 @@
    "ext": {
     "kind": "series",
     "tvm": 4.6,
-    "platform": "Apple TV+"
+    "platform": "Apple TV+",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Crime, Drama, Thriller"
    },
    "votes": 0
   },
@@ -856,7 +1208,10 @@
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "HBO Max"
+    "platform": "HBO Max",
+    "imdb": null,
+    "seasons": null,
+    "genre": "Documentary, Crime"
    },
    "votes": 0
   },
@@ -882,109 +1237,41 @@
    "ext": {
     "kind": "series",
     "tvm": 4.5,
-    "platform": "BBC"
+    "platform": "BBC",
+    "imdb": null,
+    "seasons": null,
+    "genre": "Crime, Drama, Romance"
    },
    "votes": 0
   },
   {
-   "title": "The Proud Family: Louder and Prouder",
-   "tvmaze_id": 46457,
-   "imdb_id": "tt11871764",
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/629/1573761.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/629/1573761.jpg",
-   "genres": [],
-   "season": 4,
-   "latest": "2026-11-14",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "A continuation of the acclaimed series, \"The Proud Family: Louder and Prouder\" follows the adventures and misadventures of newly 14-year-old Penny Proud and her Proud Family as they navigate modern life with hilarity and heart. The 2020s brings new career highs for mom Trudy, wilder dreams for dad Oscar and new challenges for Penny, including a socially woke neighbor who thinks she has a lot to teach her, bullying social media influencers who want to cancel her and her own teenage hormones. Penny's friends return, including Dijonay, LaCienega, Zoey and Michael. Penny's Suga Mama also returns, ",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Proud%20Family%3A%20Louder%20and%20Prouder",
-   "ext": {
-    "kind": "series",
-    "tvm": 8,
-    "platform": "Disney+"
-   },
-   "votes": 0
-  },
-  {
-   "title": "The Chosen",
-   "tvmaze_id": 47119,
-   "imdb_id": "tt5622316",
-   "platform": "Prime Video",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615872.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615872.jpg",
-   "genres": [
-    "Drama",
-    "History"
-   ],
-   "season": 6,
-   "latest": "2026-11-15",
-   "next": "2026-11-22",
-   "premiere": true,
-   "isNew": false,
-   "summary": "The Chosen is the first-ever-multi-season TV show about the life of Jesus. Created outside of the Hollywood system, The Chosen allows us to see Him through the eyes of those who knew him. No matter where you are at in your journey with Jesus Christ, this TV show is for you.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Chosen",
-   "ext": {
-    "kind": "series",
-    "tvm": 5,
-    "platform": "Prime Video"
-   },
-   "votes": 0
-  },
-  {
-   "title": "I Am",
-   "tvmaze_id": 43081,
-   "imdb_id": "tt9165134",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/207/518786.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/207/518786.jpg",
-   "genres": [
-    "Drama"
-   ],
-   "season": 4,
-   "latest": "2026-11-16",
-   "next": null,
-   "premiere": true,
-   "isNew": false,
-   "summary": "Female-led drama anthology series of stand-alone programmes, starring some of Britain's leading actors.",
-   "url": "https://www.justwatch.com/ch/Suche?q=I%20Am",
-   "ext": {
-    "kind": "series",
-    "tvm": 7.8,
-    "platform": "Channel 4"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Scam Interceptors",
-   "tvmaze_id": 60960,
-   "imdb_id": "tt19359688",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/402/1007153.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/402/1007153.jpg",
+   "title": "He Said, She Said: Till Death Do Us Part",
+   "tvmaze_id": 95731,
+   "imdb_id": "tt49691783",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630020.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630020.jpg",
    "genres": [
     "Crime"
    ],
-   "season": 6,
-   "latest": "2026-11-16",
+   "season": 1,
+   "latest": "2026-11-17",
    "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "Rav Wilding is hunting down the scammers plaguing our lives. Working with ethical hackers to hack into the fraudsters' illegal call centres, Rav uses cutting-edge technology to monitor the scammers' phone calls in an effort to stop victims losing out to real-time scams.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Scam%20Interceptors",
+   "premiere": true,
+   "isNew": true,
+   "summary": "A toxic custody battle spirals into tragedy and a viral war over truth, blame and perception.",
+   "url": "https://www.justwatch.com/ch/Suche?q=He%20Said%2C%20She%20Said%3A%20Till%20Death%20Do%20Us%20Part",
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "BBC"
+    "platform": "Paramount+"
    },
    "votes": 0
   },
   {
    "title": "Vienna Game",
    "tvmaze_id": 75517,
-   "imdb_id": null,
+   "imdb_id": "tt31844371",
    "platform": "Disney+",
    "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1617078.jpg",
    "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1617078.jpg",
@@ -997,7 +1284,7 @@
    "next": "2026-11-18",
    "premiere": true,
    "isNew": true,
-   "summary": "Vienna Game is about the Congress of Vienna, following the downfall of Napoleon Bonaparte following his exile to the island of Elba. Kings and crown princes, ministers, spies, noble ladies, mistresses, inventors, artists, and concubines, party and discuss the situation in Vienna. The fate of Europe is then played on the dance floor and in the boudoir.We see how the delegations of England, Russia, Austria, France, and Prussia contributed to the organization of the Congress, with powerful women using their influence to steer the peace talks. The show is about the political game of luck, money, l",
+   "summary": "1814. The Congress of Vienna. Europe is at stake. Love, intrigues, and power plays shuffle the deck.",
    "url": "https://www.justwatch.com/ch/Suche?q=Vienna%20Game",
    "ext": {
     "kind": "series",
@@ -1011,8 +1298,8 @@
    "tvmaze_id": 85058,
    "imdb_id": "tt36786185",
    "platform": "Netflix",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1629723.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1629723.jpg",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630040.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630040.jpg",
    "genres": [
     "Drama",
     "Crime"
@@ -1022,12 +1309,15 @@
    "next": "2026-11-19",
    "premiere": true,
    "isNew": true,
-   "summary": "The Altruists tells the story of Sam Bankman-Fried and Caroline Ellison, two hyper-smart, ambitious young idealists who tried to remake the global financial system in the blink of an eye – and then seduced, coaxed and teased each other into stealing $8 billion.",
+   "summary": "Young, idealistic and suddenly worth billions, they tried to do good—but unleashed the worst in each other. A toxic love story inspired by a real fraud.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Altruists",
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "Netflix"
+    "platform": "Netflix",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Biography, Crime, Drama"
    },
    "votes": 0
   },
@@ -1052,59 +1342,10 @@
    "ext": {
     "kind": "series",
     "tvm": 6.3,
-    "platform": "BBC"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Yellowjackets",
-   "tvmaze_id": 36672,
-   "imdb_id": "tt11041332",
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1619412.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1619412.jpg",
-   "genres": [
-    "Drama",
-    "Horror",
-    "Supernatural"
-   ],
-   "season": 4,
-   "latest": null,
-   "next": "2026-11-20",
-   "premiere": true,
-   "isNew": false,
-   "summary": "Yellowjackets follows a girls' high school soccer team. In 1975, the Dearborn High Yellowjackets became the first team in state history to qualify for the Girls' U.S. Soccer Championship Series in Manchester, NH. They never got the chance to compete. Equal parts survival epic, horror story and pitch black coming of age, Yellowjackets tells the story of the (un)lucky survivors of a plane crash deep in the Ontario wilderness, chronicling their descent from a friendly, cooperative team to warring, cannibalistic clans. At the same time, it follows the lives they've attempted to piece back together",
-   "url": "https://www.justwatch.com/ch/Suche?q=Yellowjackets",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.9,
-    "platform": "Paramount+"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Percy Jackson and the Olympians",
-   "tvmaze_id": 48108,
-   "imdb_id": "tt12324366",
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628736.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628736.jpg",
-   "genres": [
-    "Adventure",
-    "Fantasy",
-    "Supernatural"
-   ],
-   "season": 3,
-   "latest": null,
-   "next": "2026-11-20",
-   "premiere": true,
-   "isNew": false,
-   "summary": "12-year-old modern demigod Percy Jackson has just come to terms with his newfound supernatural powers when the sky god Zeus accuses him of stealing his master lightning bolt. Now Percy must trek across America to find it and restore order to Olympus.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Percy%20Jackson%20and%20the%20Olympians",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.7,
-    "platform": "Disney+"
+    "platform": "BBC",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Crime, Drama, Mystery"
    },
    "votes": 0
   },
@@ -1180,30 +1421,6 @@
    "votes": 0
   },
   {
-   "title": "Sesame Street",
-   "tvmaze_id": 6544,
-   "imdb_id": "tt0063951",
-   "platform": "Netflix",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/597/1494633.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/597/1494633.jpg",
-   "genres": [
-    "Children"
-   ],
-   "season": 57,
-   "latest": null,
-   "next": "2026-11-23",
-   "premiere": true,
-   "isNew": false,
-   "summary": "Sunny days are here! This freshly reimagined \"Sesame Street\" series features characters you love, fan-favorite segments — and new ways to play.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Sesame%20Street",
-   "ext": {
-    "kind": "series",
-    "tvm": 8,
-    "platform": "Netflix"
-   },
-   "votes": 0
-  },
-  {
    "title": "Blade Runner 2099",
    "tvmaze_id": 60458,
    "imdb_id": "tt18224594",
@@ -1224,33 +1441,10 @@
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "Prime Video"
-   },
-   "votes": 0
-  },
-  {
-   "title": "The Hunting Wives",
-   "tvmaze_id": 72427,
-   "imdb_id": "tt31038430",
-   "platform": "Netflix",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1620785.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1620785.jpg",
-   "genres": [
-    "Drama",
-    "Thriller",
-    "Mystery"
-   ],
-   "season": 2,
-   "latest": null,
-   "next": "2026-11-26",
-   "premiere": true,
-   "isNew": false,
-   "summary": "The Hunting Wives tells the story of Sophie O'Neil and her family's move from the East Coast to deep-red East Texas, where she succumbs to socialite Margo Banks‘ irresistible charms – and finds her life consumed by obsession, seduction, and murder.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Hunting%20Wives",
-   "ext": {
-    "kind": "series",
-    "tvm": 6,
-    "platform": "Netflix"
+    "platform": "Prime Video",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Action, Drama, Mystery"
    },
    "votes": 0
   },
@@ -1276,7 +1470,10 @@
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "BBC"
+    "platform": "BBC",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Comedy, Drama"
    },
    "votes": 0
   },
@@ -1298,31 +1495,10 @@
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "BBC"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Waffle's After School Club",
-   "tvmaze_id": 86711,
-   "imdb_id": "tt38351538",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/585/1463056.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/585/1463056.jpg",
-   "genres": [
-    "Children"
-   ],
-   "season": 2,
-   "latest": null,
-   "next": "2026-11-27",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Sitcom fun with Waffle the Wonder Dog at after-school club. Mr Brooklyn-Bell is in charge, but with Waffle, Mrs Hobbs and George in the mix, there's plenty of mayhem, mess and laughter.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Waffle%27s%20After%20School%20Club",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "BBC"
+    "platform": "BBC",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Family"
    },
    "votes": 0
   }
