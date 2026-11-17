@@ -300,6 +300,34 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .apill .fav{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:rgba(77,163,255,.25);margin-left:-6px}
 .apill .ax{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(77,163,255,.22)}
 .apill .ax svg{width:10px;height:10px}
+.st-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.st-tile{padding:16px}
+.st-grid .grp{margin-top:0!important}
+.st-v{font-size:30px;font-weight:800;letter-spacing:-.8px;font-variant-numeric:tabular-nums}
+.st-l{font-size:13px;font-weight:600;color:var(--t2);margin-top:2px}
+.st-box{padding:16px}
+.st-row{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:12px;font-size:15px}
+.st-row+.st-row{margin-top:12px}
+.st-k{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t2)}
+.st-row b{font-variant-numeric:tabular-nums;font-size:14px;text-align:right}
+.st-bar{height:7px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.st-bar i{display:block;height:100%;border-radius:4px}
+.st-note{font-size:12px;color:var(--t3);margin-top:12px}
+.st-cols{display:flex;align-items:flex-end;gap:10px;height:180px;overflow-x:auto}
+.st-col{flex:1;min-width:38px;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
+.st-colbar{flex:1;width:100%;display:flex;align-items:flex-end}
+.st-colbar i{display:block;width:100%;border-radius:8px 8px 4px 4px;background:var(--tint);min-height:6px}
+.st-avg{font-size:11px;font-weight:700}
+.st-y{font-size:12px;color:var(--t2)}
+.st-places{display:flex;align-items:center;gap:20px}
+.st-donut{width:110px;height:110px;border-radius:50%;flex:none;position:relative}
+.st-donut span{position:absolute;inset:21px;border-radius:50%;background:#1f1f23}
+.st-prow{display:flex;align-items:center;gap:8px;font-size:15px}
+.st-prow+.st-prow{margin-top:10px}
+.st-prow i{width:9px;height:9px;border-radius:50%}
+.st-poster{width:34px;height:51px;border-radius:6px;background:var(--grp2) center/cover;flex:none}
+.st-top{gap:10px}
+#stkind{height:36px}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
@@ -432,6 +460,7 @@ const tick = (() => {
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2800); }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('Script konnte nicht geladen werden')); document.head.appendChild(s); }); }
 const I = {
+  chart:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 20V11M12 20V5M19 20v-6"/></svg>',
   filter:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></svg>',
   chev:'<svg class="fchev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
   bell:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>',
@@ -891,7 +920,7 @@ function render(){
 
   $('#app').innerHTML = `
     <div class="hdr"><h1 class="large">${state.tab==='mine'?(K==='series'?'Meine Serien':'Meine Filme'):TABS.find(t=>t.id===state.tab).title}</h1>
-      <div class="hbtns"><button class="glass glass-btn hb ${showSearch?'act':''}" id="sbtn" aria-label="Suchen">${I.search}</button>${top?'':`<button class="glass glass-btn hb ${filterActive()?'act':''}" id="fbtn" aria-label="Filter">${I.filter}</button>`}<button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div></div>
+      <div class="hbtns">${state.tab==='mine'?`<button class="glass glass-btn hb" id="stbtn" aria-label="Statistiken">${I.chart}</button>`:''}<button class="glass glass-btn hb ${showSearch?'act':''}" id="sbtn" aria-label="Suchen">${I.search}</button>${top?'':`<button class="glass glass-btn hb ${filterActive()?'act':''}" id="fbtn" aria-label="Filter">${I.filter}</button>`}<button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div></div>
     <div class="seg" id="kind"><i class="seg-ind" style="transform:translateX(${K==='series'?'100%':'0'})"></i><button data-k="movie" class="${K==='movie'?'on':''}">Filme</button><button data-k="series" class="${K==='series'?'on':''}">Serien</button></div>
     ${showSearch?`<div class="srow"><label class="search">${I.search}<input id="q" type="search" placeholder="Titel oder Name suchen" value="${esc(state.q)}" enterkeyhint="search"></label><button class="link" id="scl">Abbrechen</button></div>`:''}
     ${activePills(sorts, s)}
@@ -911,6 +940,7 @@ function render(){
     </div>`;
   const qi=$('#q'); if(qi){ qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
     if(state._focusQ){ state._focusQ=false; setTimeout(()=>qi.focus(),30); } }
+  const stb=$('#stbtn'); if(stb) stb.onclick=()=>{ tick(); openStats(); };
   $('#sbtn').onclick=()=>{ tick(); if(showSearch){ state.searchOpen=false; state.q=''; } else { state.searchOpen=true; state._focusQ=true; } render(); };
   const scl=$('#scl'); if(scl) scl.onclick=()=>{ tick(); state.searchOpen=false; state.q=''; render(); };
   const fb=$('#fbtn'); if(fb) fb.onclick=()=>{ tick(); openFilter(sorts); };
@@ -1016,6 +1046,66 @@ function slideSeg(sel, from, to){
   ind.style.transition='none'; ind.style.transform=x(from); void ind.offsetWidth;
   ind.style.transition=''; ind.style.transform=x(to);
 }
+/* ================= Statistiken ================= */
+function openStats(kind){
+  kind = kind || 'all';
+  const all = state.ratings.filter(r=>r.user_id===state.user.id);
+  const list = kind==='all' ? all : all.filter(r=>(r.ext?.kind==='series'?'series':'movie')===kind);
+  const mean = v => v.length ? Math.round(v.reduce((a,b)=>a+b,0)/v.length*10)/10 : 0;
+  const yearOf = r => parseInt((r.watched_on||r.created_at||'').slice(0,4))||null;
+  const P = r => r.ext?.p||{};
+  const yNow = new Date().getFullYear();
+  const tile = (v,l,c='var(--tint)') => `<div class="st-tile grp"><div class="st-v" style="color:${c==='var(--tint)'?'var(--t1)':c}">${v}</div><div class="st-l">${l}</div></div>`;
+  const barRows = (rows, maxV, valFn, colFn) => rows.map(([k,v,extra])=>`<div class="st-row"><span class="st-k">${esc(k)}</span><div class="st-bar"><i style="width:${Math.max(4,v/maxV*100)}%;background:${colFn?colFn(extra):'var(--tint)'}"></i></div><b>${valFn(v,extra)}</b></div>`).join('');
+  let body = '';
+  if(!list.length){
+    body = `<div class="empty">${I.pop}Noch keine Daten.<br>Bewerte ein paar Titel, dann erscheinen hier deine Statistiken.</div>`;
+  } else {
+    const avg = mean(list.map(avg_));
+    const kino = list.filter(r=>P(r).where==='Kino').length;
+    const sorted = [...list].sort((a,b)=>avg_(b)-avg_(a));
+    // Genres
+    const gmap = {}; list.forEach(r=>(r.ext?.genre||'').split(',').map(x=>x.trim()).filter(Boolean).forEach(g=>{ const n=GENRE_DE[g]||g; (gmap[n] ||= []).push(avg_(r)); }));
+    const genres = Object.entries(gmap).map(([g,v])=>[g,v.length,mean(v)]).sort((a,b)=>b[1]-a[1]||b[2]-a[2]).slice(0,8);
+    // Jahre
+    const ymap = {}; list.forEach(r=>{ const y=yearOf(r); if(y) (ymap[y] ||= []).push(avg_(r)); });
+    const years = Object.entries(ymap).sort((a,b)=>a[0]-b[0]).map(([y,v])=>[y,v.length,mean(v)]);
+    const ymax = Math.max(1,...years.map(x=>x[1]));
+    // Orte
+    const places = ['Kino','Streaming','TV'].map(w=>[w, list.filter(r=>P(r).where===w).length]).filter(x=>x[1]);
+    const ptotal = places.reduce((a,x)=>a+x[1],0);
+    const pcol = {Kino:'var(--tint)',Streaming:'#5e5ce6',TV:'var(--ok)'};
+    let acc=0; const conic = places.map(([w,n])=>{ const a=acc/ptotal*100, b=(acc+=n)/ptotal*100; return `${pcol[w]} ${a}% ${b}%`; }).join(',');
+    // Kategorien
+    const ck = kind==='series' ? 'series' : 'movie';
+    const sub = list.filter(r=>(r.ext?.kind==='series'?'series':'movie')===ck);
+    const crits = (ck==='series'?CRIT_SERIES:CRIT_MOVIE).map(c=>[c.label, mean(sub.map(r=>+r[c.key]))]);
+    // Mit wem, Momente
+    const count = arr => { const m={}; arr.forEach(x=>m[x]=(m[x]||0)+1); return Object.entries(m).sort((a,b)=>b[1]-a[1]); };
+    const withC = count(list.flatMap(r=>asList(P(r).with)));
+    const momC = count(list.flatMap(r=>asList(P(r).moments)));
+    const posterRow = (r,i) => `<button class="cell cell-h st-top" data-sk="${esc(filmKey(r))}" style="width:100%">
+      <span style="display:flex;align-items:center;gap:12px;min-width:0">${i!=null?`<b style="color:var(--t2);width:14px">${i}</b>`:''}<span class="st-poster" ${posterStyle(r.poster)}></span>
+      <span style="text-align:left;min-width:0"><b style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.title)}</b><span class="meta">${[r.year, r.ext?.kind==='series'?'Serie':'Film'].filter(Boolean).join(' · ')}</span></span></span>${ring(avg_(r),'sm')}</button>`;
+    body = `
+      <div class="st-grid">${tile(list.length,'Bewertungen')}${tile(f1(avg),'Dein Schnitt',col(avg))}${tile(list.filter(r=>yearOf(r)===yNow).length,'Dieses Jahr')}${tile(kino,'Im Kino')}</div>
+      <div class="sec">Deine Besten</div><div class="grp">${sorted.slice(0,3).map((r,i)=>posterRow(r,i+1)).join('')}</div>
+      ${sorted.length>3?`<div class="sec">Am wenigsten überzeugt</div><div class="grp">${posterRow(sorted[sorted.length-1],null)}</div>`:''}
+      ${genres.length?`<div class="sec">Lieblingsgenres</div><div class="grp st-box">${barRows(genres, Math.max(...genres.map(g=>g[1])), (v,a)=>`${v} · Ø ${f1(a)}`, a=>col(a))}<div class="st-note">Farbe zeigt deinen Schnitt im Genre</div></div>`:''}
+      ${years.length?`<div class="sec">Pro Jahr gesehen</div><div class="grp st-box"><div class="st-cols">${years.map(([y,n,a])=>`<div class="st-col"><span class="st-avg" style="color:${col(a)}">Ø ${f1(a)}</span><div class="st-colbar"><i style="height:${n/ymax*100}%"></i></div><b>${n}</b><span class="st-y">${y}</span></div>`).join('')}</div><div class="st-note">Balken = Anzahl Titel, oben dein Schnitt im Jahr</div></div>`:''}
+      ${ptotal?`<div class="sec">Wo du schaust</div><div class="grp st-box st-places"><div class="st-donut" style="background:conic-gradient(${conic})"><span></span></div><div style="flex:1">${places.map(([w,n])=>`<div class="st-prow"><i style="background:${pcol[w]}"></i><b>${w}</b><span style="flex:1"></span><b>${n}</b><span class="meta" style="width:44px;text-align:right">${Math.round(n/ptotal*100)} %</span></div>`).join('')}</div></div>`:''}
+      ${sub.length?`<div class="sec">Kategorien (${ck==='series'?'Serien':'Filme'})</div><div class="grp st-box">${barRows(crits.map(([l,v])=>[l,v,v]), 10, v=>f1(v), a=>col(a))}</div>`:''}
+      ${withC.length?`<div class="sec">Mit wem</div><div class="grp st-box">${barRows(withC, withC[0][1], v=>v+'×')}</div>`:''}
+      ${momC.length?`<div class="sec">Momente</div><div class="grp st-box">${barRows(momC, momC[0][1], v=>v+'×')}</div>`:''}`;
+  }
+  openSheet({ title:'Statistiken', body:`
+    <div class="seg" id="stkind" style="margin-top:4px"><i class="seg-ind" style="width:calc(33.33% - 2px);transform:translateX(${kind==='movie'?'100%':kind==='series'?'200%':'0'})"></i><button data-k="all" class="${kind==='all'?'on':''}">Alle</button><button data-k="movie" class="${kind==='movie'?'on':''}">Filme</button><button data-k="series" class="${kind==='series'?'on':''}">Serien</button></div>
+    ${body}` });
+  document.querySelectorAll('#stkind button').forEach(b=>b.onclick=()=>{ if(b.dataset.k!==kind){ tick(); openStats(b.dataset.k); } });
+  document.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(b.dataset.sk),350); });
+}
+const avg_ = r => avg(r);
+
 function fmtDate(d){ if(!d) return ''; const x=new Date(d); return isNaN(x)?d:x.toLocaleDateString('de-CH',{day:'numeric',month:'short',year:'numeric'}); }
 
 /* ================= Neu (Startseite im Netflix-Stil) ================= */
@@ -1446,19 +1536,39 @@ $('#ov').onclick=closeSheet;
 $('#add').onclick=()=>{ tick(); openForm(); };
 
 /* ================= Persönliche Kategorien (zählen nicht zum Schnitt) ================= */
-const PERS_SL = kind => kind==='series'
-  ? [['tension','Spannung'],['humor','Humor'],['binge','Suchtfaktor']]
-  : [['tension','Spannung'],['humor','Humor'],['rewatch','Rewatch-Wert']];
-const PERS_CH = kind => [
-  ['with','Gesehen mit',false,['Allein','Partner/in','Familie','Freunde']],
-  ['where','Wo',false,['Kino','Streaming','TV']],
-  ['moments','Momente',true,['Geweint','Eingeschlafen','Plottwist erwartet', kind==='series'?'Lieblingsserie':'Lieblingsfilm']]
+// Persönliche Kategorien: zwei Slider passend zum Hauptgenre plus Rewatch-Wert (Filme) oder Suchtfaktor (Serien)
+const PERS_GENRE = [
+  [['horror'], [['scare','Grusel'],['atmo','Atmosphäre']]],
+  [['comedy','komödie'], [['humor','Humor'],['timing','Timing']]],
+  [['thriller','crime','krimi','mystery'], [['tension','Spannung'],['twists','Wendungen']]],
+  [['sci-fi','science-fiction','science fiction','fantasy'], [['world','Welt'],['effects','Effekte']]],
+  [['action'], [['action','Action'],['pace','Tempo']]],
+  [['romance','romantik'], [['emotion','Emotion'],['chemistry','Chemie']]],
+  [['animation','family','familie','kinder','children'], [['charm','Charme'],['family','Familientauglich']]],
+  [['documentary','dokumentarfilm'], [['info','Informativ'],['relevance','Relevanz']]],
+  [['drama'], [['depth','Tiefgang'],['emotion','Emotion']]]
 ];
+const PERS_LABEL = Object.fromEntries([['tension','Spannung'],['humor','Humor'],['rewatch','Rewatch-Wert'],['binge','Suchtfaktor'], ...PERS_GENRE.flatMap(g=>g[1])]);
+const PERS_ORDER = [...new Set([...PERS_GENRE.flatMap(g=>g[1].map(x=>x[0])), 'tension','humor','rewatch','binge'])];
+function persSliders(r){
+  const genres=(r?.ext?.genre||'').toLowerCase().split(',').map(x=>x.trim());
+  let pick=[['tension','Spannung'],['humor','Humor']];
+  outer: for(const g of genres){ for(const [m,sl] of PERS_GENRE){ if(m.some(x=>g.includes(x))){ pick=sl; break outer; } } }
+  return [...pick, r?.ext?.kind==='series' ? ['binge','Suchtfaktor'] : ['rewatch','Rewatch-Wert']];
+}
+const PERS_CH = (kind, r) => [
+  ['with','Gesehen mit',true,['Allein','Partner/in','Familie','Freunde']],
+  ['where','Wo',false,['Kino','Streaming','TV']],
+  ...(persSliders(r).some(x=>x[0]==='pace') ? [] : [['tempo','Tempo',false,['Zu langsam','Passend','Zu schnell']]]),
+  ['ending','Ende',false,['Vorhersehbar','Überraschend','Offen']],
+  ['moments','Momente',true,['Gelacht','Geweint','Gänsehaut','Erschrocken','Mitgefiebert','Plottwist erwartet','Nebenbei am Handy','Eingeschlafen','Im Original geschaut','Schon mehrmals gesehen', ...(kind==='series'?['Durchgebingt','Lieblingsserie']:['Lieblingsfilm'])]]
+];
+const asList = v => Array.isArray(v) ? v : v ? [v] : [];
 function persBlock(r){
   const p=r.ext?.p; if(!p) return '';
   const kind=r.ext?.kind==='series'?'series':'movie';
-  const sl=PERS_SL(kind).filter(([k])=>p[k]);
-  const chips=[p.with, p.where, ...(p.moments||[])].filter(Boolean);
+  const sl=PERS_ORDER.filter(k=>p[k]).map(k=>[k, PERS_LABEL[k]||k]);
+  const chips=[...asList(p.with), p.where, p.tempo&&'Tempo: '+p.tempo, p.ending&&'Ende: '+p.ending, ...asList(p.moments)].filter(Boolean);
   if(!sl.length && !chips.length && !p.scene) return '';
   return `<div class="pers"><div class="pers-h">Persönlich <span>· zählt nicht zum Schnitt</span></div>
     ${sl.length?`<div class="pers-sl">${sl.map(([k,l])=>`<span>${l}</span><span class="dots">${[1,2,3,4,5].map(n=>`<i class="${n<=p[k]?'on':''}"></i>`).join('')}</span>`).join('')}</div>`:''}
@@ -1595,12 +1705,13 @@ function openForm(r){
       d.ext = {...(d.ext||{})}; const p = d.ext.p = {...(d.ext.p||{})};
       const kind = d.ext.kind==='series'?'series':'movie';
       if(!p.where && !d.id && (d.ext.formats||[]).length) p.where='Kino';
+      if(typeof p.with==='string') p.with=[p.with];
       wz.innerHTML = `${filmHead}
         <h2 class="wz-h" style="margin-top:18px">Persönlich</h2>
         <div class="hint" style="text-align:center;margin-top:4px">Zählt nicht zum Schnitt. Alles ist freiwillig.</div>
-        <div class="grp" style="margin-top:16px">${PERS_SL(kind).map(([k,l])=>`<div class="cell psl"><div class="cell-h"><span>${l}</span><b id="pv-${k}">${p[k]?p[k]+' / 5':'–'}</b></div>
+        <div class="grp" style="margin-top:16px">${persSliders(d).map(([k,l])=>`<div class="cell psl"><div class="cell-h"><span>${l}</span><b id="pv-${k}">${p[k]?p[k]+' / 5':'–'}</b></div>
           <input type="range" min="1" max="5" step="1" data-pk="${k}" value="${p[k]||3}" class="${p[k]?'':'unset'}" style="--p:${((p[k]||3)-1)/4*100}%"></div>`).join('')}</div>
-        ${PERS_CH(kind).map(([k,l,multi,opts])=>`<div class="sec">${l}</div><div class="chips pch" data-ck="${k}" data-multi="${multi?1:''}">${opts.map(o=>`<button class="chip ${(multi?(p[k]||[]).includes(o):p[k]===o)?'on':''}" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div>`).join('')}
+        ${PERS_CH(kind, d).map(([k,l,multi,opts])=>`<div class="sec">${l}</div><div class="chips pch" data-ck="${k}" data-multi="${multi?1:''}">${opts.map(o=>`<button class="chip ${(multi?(p[k]||[]).includes(o):p[k]===o)?'on':''}" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div>`).join('')}
         <div class="sec">Beste Szene oder Zitat</div>
         <div class="grp"><textarea class="ta" id="psc" maxlength="200" placeholder="Optional">${esc(p.scene||'')}</textarea></div>
         ${friendList().length?`<div class="sec">Freunden empfehlen</div>
@@ -1683,7 +1794,8 @@ function openProfile(){
       <h2 style="font:800 24px/1.2 var(--f);margin-top:14px">@${esc(state.user.username||'')}</h2>
       <div class="meta">${esc(state.user.email||'')}</div>
     </div>
-    <div class="grp" style="margin-top:20px"><div class="cell cell-h"><span>Bewertungen</span><b>${mine.length}</b></div><div class="cell cell-h"><span>Dein Schnitt</span>${ring(a,'sm')}</div></div>
+    <div class="grp" style="margin-top:20px"><button class="cell cell-h" id="pstats" style="width:100%"><span style="display:flex;align-items:center;gap:10px;color:var(--tint)">${I.chart}<b style="color:var(--t1);font-weight:400">Statistiken</b></span>${I.chev}</button></div>
+    <div class="grp" style="margin-top:12px"><div class="cell cell-h"><span>Bewertungen</span><b>${mine.length}</b></div><div class="cell cell-h"><span>Dein Schnitt</span>${ring(a,'sm')}</div></div>
     <div class="sec">Mitteilungen</div>
     <div class="grp"><div class="cell cell-h"><span>Freundschaftsanfragen<div class="meta" style="margin-top:2px">Neue und angenommene Anfragen</div></span><button class="tgl" id="pushtgl" aria-label="Mitteilungen"><i></i></button></div></div>
     <div class="hint" id="pushhint"></div>
@@ -1718,12 +1830,13 @@ function openProfile(){
   $('#fab2').onclick=add; $('#fa').onkeydown=e=>{ if(e.key==='Enter') add(); };
   document.querySelectorAll('[data-acc]').forEach(b=>b.onclick=async()=>{ try{ await DB.acceptFriend(b.dataset.acc); toast('Freundschaft bestätigt'); await refresh(); openProfile(); }catch(e){toast(e.message);} });
   document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{ try{ await DB.removeFriend(b.dataset.del); await refresh(); openProfile(); }catch(e){toast(e.message);} });
+  $('#pstats').onclick=()=>{ tick(); closeSheet(); setTimeout(openStats,350); };
   document.querySelectorAll('[data-fo]').forEach(b=>b.onclick=()=>{ tick(); closeSheet(); setTimeout(()=>openFriend(b.dataset.fo),350); });
   $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; state.isDev=null; closeSheet(); renderAuth(); };
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '55';
+const APP_VERSION = '56';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
