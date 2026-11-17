@@ -349,7 +349,20 @@ const filmKey = r => r.imdb_id || ((r.title||'').trim().toLowerCase()+'|'+(r.yea
 const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now()+''+Math.random());
 const posterStyle = p => p && p !== 'N/A' ? `style="background-image:url('${esc(p)}')"` : '';
 const ring = (n,cls='') => `<div class="ring ${cls}" style="--v:${n*10};--c:${col(n)}"><span>${f1(n)}</span></div>`;
-const tick = () => { try{ navigator.vibrate && navigator.vibrate(6); }catch(e){} };
+// Haptisches Feedback: Android über vibrate, iPhone (ab iOS 18) über einen versteckten Systemschalter, dessen Umschalten Safari mit einem Tick quittiert
+const tick = (() => {
+  let lbl = null, last = 0;
+  return () => {
+    const now = performance.now(); if(now - last < 35) return; last = now;
+    try{
+      if(navigator.vibrate){ navigator.vibrate(8); return; }
+      if(!lbl){ lbl = document.createElement('label'); lbl.setAttribute('aria-hidden','true');
+        lbl.style.cssText = 'position:fixed;left:-100px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden';
+        const c = document.createElement('input'); c.type = 'checkbox'; c.setAttribute('switch',''); c.tabIndex = -1; lbl.appendChild(c); document.body.appendChild(lbl); }
+      lbl.click();
+    }catch(e){}
+  };
+})();
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2800); }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('Script konnte nicht geladen werden')); document.head.appendChild(s); }); }
 const I = {
@@ -1307,7 +1320,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '40';
+const APP_VERSION = '41';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
