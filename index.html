@@ -283,6 +283,9 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .dots i{width:9px;height:9px;border-radius:50%;background:rgba(118,118,128,.35)}
 .dots i.on{background:var(--tint)}
 .pers-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+#prt>svg:last-child{color:var(--t3);transition:transform .2s}
+#prt.open>svg:last-child{transform:rotate(90deg)}
+#prt svg:first-child{color:var(--tint)}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
@@ -1554,12 +1557,25 @@ function openForm(r){
           <input type="range" min="1" max="5" step="1" data-pk="${k}" value="${p[k]||3}" class="${p[k]?'':'unset'}" style="--p:${((p[k]||3)-1)/4*100}%"></div>`).join('')}</div>
         ${PERS_CH(kind).map(([k,l,multi,opts])=>`<div class="sec">${l}</div><div class="chips pch" data-ck="${k}" data-multi="${multi?1:''}">${opts.map(o=>`<button class="chip ${(multi?(p[k]||[]).includes(o):p[k]===o)?'on':''}" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div>`).join('')}
         <div class="sec">Beste Szene oder Zitat</div>
-        <div class="grp"><textarea class="ta" id="psc" maxlength="200" placeholder="Optional">${esc(p.scene||'')}</textarea></div>`;
+        <div class="grp"><textarea class="ta" id="psc" maxlength="200" placeholder="Optional">${esc(p.scene||'')}</textarea></div>
+        ${friendList().length?`<div class="sec">Freunden empfehlen</div>
+        <div class="grp"><button class="cell cell-h" id="prt" style="width:100%"><span style="display:flex;align-items:center;gap:10px">${I.share}<span id="prl"></span></span>${I.chev}</button><div id="prlist" style="display:none"></div></div>`:''}`;
       wz.querySelectorAll('[data-pk]').forEach(rg=>rg.oninput=()=>{ const k=rg.dataset.pk, v=+rg.value; if(p[k]!==v) tick(); p[k]=v; rg.classList.remove('unset'); rg.style.setProperty('--p',((v-1)/4*100)+'%'); $('#pv-'+k).textContent=v+' / 5'; });
       wz.querySelectorAll('.pch').forEach(g=>g.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ tick(); const k=g.dataset.ck, o=c.dataset.o;
         if(g.dataset.multi){ const a=new Set(p[k]||[]); a.has(o)?a.delete(o):a.add(o); p[k]=[...a]; c.classList.toggle('on', a.has(o)); }
         else { p[k] = p[k]===o ? undefined : o; g.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on', x.dataset.o===p[k])); } }));
       $('#psc').oninput=e=>{ p.scene=e.target.value.trim()||undefined; };
+      if($('#prt')){
+        d._rec = d._rec || new Set(); const fl=friendList();
+        const lbl=()=>{ const n=d._rec.size; $('#prl').textContent = !n ? 'Niemand ausgewählt' : n===1 ? '@'+fl.find(f=>d._rec.has(f.id))?.username : `${n} Freunde ausgewählt`; };
+        const list=q=>fl.filter(f=>!q||(f.username||'').includes(q)).map(f=>`<button class="cell cell-h fpick ${d._rec.has(f.id)?'on':''}" data-pr="${esc(f.id)}"><span style="display:flex;align-items:center;gap:12px"><span class="glass glass-btn avatar" style="width:32px;height:32px;font-size:14px;flex:none">${esc((f.username||'?')[0].toUpperCase())}</span><b>@${esc(f.username)}</b></span><span class="rcheck">${d._rec.has(f.id)?I.check:''}</span></button>`).join('') || '<div class="cell note" style="margin:0">Niemand gefunden.</div>';
+        const bind=()=>wz.querySelectorAll('[data-pr]').forEach(b=>b.onclick=()=>{ tick(); const id=b.dataset.pr; d._rec.has(id)?d._rec.delete(id):d._rec.add(id); b.classList.toggle('on',d._rec.has(id)); b.querySelector('.rcheck').innerHTML=d._rec.has(id)?I.check:''; lbl(); });
+        const box=$('#prlist');
+        $('#prt').onclick=()=>{ tick(); const open=box.style.display==='none'; box.style.display=open?'':'none'; $('#prt').classList.toggle('open',open);
+          if(open){ box.innerHTML=(fl.length>6?`<div class="cell"><label class="search" style="margin:0">${I.search}<input id="prq" type="search" placeholder="Nutzername suchen" autocapitalize="off" autocorrect="off"></label></div>`:'')+`<div id="prl2">${list('')}</div>`; bind();
+            const q=$('#prq'); if(q) q.oninput=()=>{ $('#prl2').innerHTML=list(q.value.trim().replace(/^@/,'').toLowerCase()); bind(); }; } };
+        lbl();
+      }
       nx.textContent='Weiter'; nx.onclick=()=>go(i+1);
       return;
     }
@@ -1600,8 +1616,12 @@ function openForm(r){
     nx.textContent='Bewertung sichern';
     nx.onclick=async()=>{
       d.note=($('#fn').value||'').trim(); d.overall=avg(d);
+      const recTo=[...(d._rec||[])]; delete d._rec;
       nx.disabled=true;
-      try{ await DB.save(d); if(inWatch(d)){ await DB.watchRemove(filmKey(d)).catch(()=>{}); state.watch=state.watch.filter(w=>w.key!==filmKey(d)); } closeSheet(); toast('Gespeichert'); state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); nx.disabled=false; }
+      try{ await DB.save(d); if(inWatch(d)){ await DB.watchRemove(filmKey(d)).catch(()=>{}); state.watch=state.watch.filter(w=>w.key!==filmKey(d)); } closeSheet();
+        if(recTo.length){ try{ await DB.recSend(watchItem(d), recTo, ''); toast(recTo.length>1?`Gespeichert und an ${recTo.length} Freunde empfohlen`:'Gespeichert und empfohlen'); }catch(e){ toast('Gespeichert, Empfehlung fehlgeschlagen'); } }
+        else toast('Gespeichert');
+        state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); nx.disabled=false; }
     };
     if(d.id) $('#dl').onclick=async()=>{ try{ await DB.remove(d.id); closeSheet(); toast('Gelöscht'); await refresh(); }catch(e){ toast(e.message); } };
   }
@@ -1658,7 +1678,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '49';
+const APP_VERSION = '50';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
