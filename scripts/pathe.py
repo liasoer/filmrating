@@ -1,7 +1,8 @@
 """Baut kino.json aus Pathé-Daten, die der iPhone-Kurzbefehl täglich nach pathe/raw.txt hochlädt.
 Format von raw.txt: Blöcke '<<<URL>>> https://...' gefolgt vom JSON-Text der Seite, getrennt durch '<<<END>>>'.
 Schreibt ausserdem pathe/urls.txt: die Adressen, die der Kurzbefehl am nächsten Morgen holen soll."""
-import json, os, re, subprocess, time, urllib.request, urllib.parse, datetime
+import json, os, re, sys, subprocess, time, urllib.request, urllib.parse, datetime
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 OMDB = os.environ.get("OMDB_KEY", "9a64d183")
 SHOWS = "https://www.pathe.ch/api/shows?language=de"
@@ -35,15 +36,13 @@ def raw_age_hours(path="pathe/raw.txt"):
         return 1e9 if not os.path.exists(path) else (time.time() - os.path.getmtime(path)) / 3600
 
 def omdb(title, year, imdb=None):
+    import omdbcache
     tries = [{"i": imdb}] if imdb else []
     tries += [{"t": title, "y": year, "type": "movie"}, {"t": title, "type": "movie"}, {"t": re.sub(r"\s*[-:–].*$", "", title), "y": year, "type": "movie"}]
     for q in tries:
-        if not any(v for k, v in q.items() if k in ("i", "t")): continue
-        try:
-            with urllib.request.urlopen("https://www.omdbapi.com/?" + urllib.parse.urlencode({"apikey": OMDB, **{k: v for k, v in q.items() if v}}), timeout=20) as r:
-                d = json.load(r)
-            if d.get("Response") == "True": return d
-        except Exception: pass
+        if not (q.get("i") or q.get("t")): continue
+        d = omdbcache.get(q)
+        if d: return d
     return None
 
 def entry(s, det):
@@ -82,6 +81,7 @@ if __name__ == "__main__":
     age = raw_age_hours()
     print(f"pathe/raw.txt ist {age:.1f} Stunden alt")
     out = build() if age < 36 else None
+    import omdbcache; omdbcache.save(); print("OMDb:", omdbcache.stats)
     if out:
         json.dump(out, open("kino.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(len(out["now"]), "im Kino (Pathé),", sum(1 for x in out["now"] if x["formats"]), "mit Formaten")

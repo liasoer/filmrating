@@ -8,4 +8,4 @@ except Exception as e:
 if os.environ.get("GITHUB_ACTIONS"):
     subprocess.run(["git", "-c", "user.name=kino-bot", "-c", "user.email=kino-bot@users.noreply.github.com",
                     "pull", "--rebase", "--autostash", "-q"], check=False)
-    subprocess.run(["git", "add", "pathe/urls.txt", "series.json"], check=False)
+    subprocess.run(["git", "add", "pathe/urls.txt", "series.json", "cache/omdb.json"], check=False)

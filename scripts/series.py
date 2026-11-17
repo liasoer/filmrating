@@ -1,6 +1,7 @@
 """Aktuelle Serien und neue Staffeln der grossen Streamingdienste (Daten: TVmaze, CC BY-SA) plus IMDb via OMDb.
 Schreibt series.json für den Tab «Neu» (Serien)."""
-import json, os, re, time, html, datetime, urllib.request, urllib.parse
+import json, os, re, sys, time, html, datetime, urllib.request, urllib.parse
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 OMDB = os.environ.get("OMDB_KEY", "9a64d183")
 PLATFORMS = {"Netflix": "Netflix", "Disney+": "Disney+", "Apple TV+": "Apple TV+", "Apple TV": "Apple TV+", "Prime Video": "Prime Video",
@@ -37,11 +38,8 @@ for off in range(-10, 11):
         time.sleep(0.5)
 
 def omdb(imdb):
-    try:
-        with urllib.request.urlopen("https://www.omdbapi.com/?" + urllib.parse.urlencode({"apikey": OMDB, "i": imdb}), timeout=20) as r:
-            d = json.load(r)
-        return d if d.get("Response") == "True" else None
-    except Exception: return None
+    import omdbcache
+    return omdbcache.get({"i": imdb})
 
 out = []
 for sid, x in shows.items():
@@ -73,4 +71,5 @@ out.sort(key=lambda e: e["votes"], reverse=True)
 res = {"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "source": "TVmaze", "shows": out[:80]}
 if len(res["shows"]) >= 5:
     json.dump(res, open("series.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+import omdbcache; omdbcache.save()
 print(len(shows), "Serien gefunden,", len(res["shows"]), "gespeichert")
