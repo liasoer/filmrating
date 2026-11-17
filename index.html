@@ -321,13 +321,23 @@ const CONFIG = {
   OMDB_KEY: '9a64d183'
 };
 
-const CRITERIA = [
-  {key:'story',  label:'Story'},
-  {key:'camera', label:'Kamera & Bild'},
-  {key:'music',  label:'Musik'},
-  {key:'acting', label:'Cast'},
-  {key:'fun',    label:'Unterhaltung'}
+// Gleiche Datenbankspalten, aber eigene Kategorien für Filme und Serien
+const CRIT_MOVIE = [
+  {key:'story',  label:'Story',            hint:'Handlung, Spannung, Ende'},
+  {key:'acting', label:'Cast',             hint:'Schauspiel und Besetzung'},
+  {key:'camera', label:'Kamera & Bild',    hint:'Bildsprache, Effekte, Farben'},
+  {key:'music',  label:'Musik',            hint:'Soundtrack, Score, Sound'},
+  {key:'fun',    label:'Wirkung',          hint:'Wie sehr dich der Film mitgenommen hat'}
 ];
+const CRIT_SERIES = [
+  {key:'story',  label:'Story',             hint:'Handlung und Spannungsbogen'},
+  {key:'acting', label:'Figuren',           hint:'Tiefe und Entwicklung der Charaktere'},
+  {key:'music',  label:'Konstanz',          hint:'Qualität über alle Folgen, ohne Durchhänger'},
+  {key:'camera', label:'Look & Atmosphäre', hint:'Bildsprache, Stimmung, Welt'},
+  {key:'fun',    label:'Finale',            hint:'Wie gut das Staffel- oder Serienende ist'}
+];
+const critFor = r => r?.ext?.kind==='series' ? CRIT_SERIES : CRIT_MOVIE;
+const CRITERIA = CRIT_MOVIE;
 
 /* ================= Helfer ================= */
 const $ = s => document.querySelector(s);
@@ -1088,7 +1098,7 @@ $('#ov').onclick=closeSheet;
 $('#add').onclick=()=>{ tick(); openForm(); };
 
 function bars(r){
-  return `<div class="bars">${CRITERIA.map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%;background:${col(+r[c.key])}"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>`;
+  return `<div class="bars">${critFor(r).map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%;background:${col(+r[c.key])}"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>`;
 }
 
 function openDetail(key){
@@ -1127,8 +1137,7 @@ function openForm(r){
   const isEdit = !!r?.id;
   const d = r ? {...r} : {watched_on:new Date().toISOString().slice(0,10)};
   CRITERIA.forEach(c=>{ if(d[c.key]==null) d[c.key]=7; });
-  const HINT = {story:'Handlung, Spannung, Ende', camera:'Bildsprache, Effekte, Farben', music:'Soundtrack, Score, Sound', acting:'Schauspiel und Besetzung', fun:'Spass, Tempo, Kurzweil'};
-  const steps = ['film', ...CRITERIA.map(c=>c.key), 'done'];
+  const S = () => ['film', ...critFor(d).map(c=>c.key), 'done'];
   let i = d.title ? 1 : 0, dir = 1;
 
   openSheet({ swipe:false, title:`<div class="prog" id="prog"></div>`, body:`<div id="wz"></div>`, footer:`<button class="btn pri" id="nx" style="margin:0">Weiter</button>` });
@@ -1136,8 +1145,8 @@ function openForm(r){
   const go = n => { dir = n>i?1:-1; i = n; tick(); draw(); };
 
   function draw(){
-    const st = steps[i];
-    $('#prog').innerHTML = steps.map((s,k)=>`<i class="${k<i?'d':k===i?'on':''}"></i>`).join('');
+    const st = S()[i];
+    $('#prog').innerHTML = S().map((s,k)=>`<i class="${k<i?'d':k===i?'on':''}"></i>`).join('');
     const x = $('#shx');
     if(i===0 || (i===1 && r?.title)){ x.innerHTML = I.close; x.onclick = closeSheet; }
     else { x.innerHTML = I.back; x.onclick = ()=>go(i-1); }
@@ -1190,12 +1199,12 @@ function openForm(r){
     const WORD = v => v<3?'Schlecht':v<5?'Schwach':v<6.5?'Okay':v<8?'Gut':v<9.5?'Sehr gut':'Meisterwerk';
 
     if(st!=='done'){
-      const c = CRITERIA.find(c=>c.key===st), n = steps.indexOf(st);
+      const C = critFor(d), c = C.find(c=>c.key===st), n = S().indexOf(st);
       wz.innerHTML = `${filmHead}
         <div class="wz-crit">
-          <div class="wz-step">${n} von ${CRITERIA.length}</div>
+          <div class="wz-step">${n} von ${C.length}</div>
           <h2 class="wz-h">${c.label}</h2>
-          <div class="hint" style="margin:6px 0 0;text-align:center">${HINT[c.key]||''}</div>
+          <div class="hint" style="margin:6px 0 0;text-align:center">${c.hint||''}</div>
           <div class="meter" id="mt"><div class="meter-in"><div class="wz-val" id="wv">${f1(d[st])}</div><div class="wz-word" id="ww"></div></div></div>
           <div class="wz-ctl">
             <button class="glass glass-btn" id="mn" aria-label="Weniger">${I.minus}</button>
@@ -1216,7 +1225,7 @@ function openForm(r){
     wz.innerHTML = `${filmHead}
       <div class="meter sm" style="--v:${avg(d)*10};--c:${col(avg(d))};margin:26px auto 6px"><div class="meter-in"><div class="wz-val" style="color:var(--t1)">${f1(avg(d))}</div><div class="wz-word" style="color:${col(avg(d))}">${WORD(avg(d))}</div></div></div>
       <div class="hint" style="text-align:center;margin:0 0 4px">Deine Gesamtnote</div>
-      <div class="grp" style="margin-top:16px">${CRITERIA.map((c,k)=>`<button class="cell cell-h" data-go="${k+1}" style="width:100%;text-align:left"><span>${c.label}</span><span style="display:flex;align-items:center;gap:10px"><b style="color:${col(d[c.key])}">${f1(d[c.key])}</b><span style="color:var(--t3)">${I.chev}</span></span></button>`).join('')}</div>
+      <div class="grp" style="margin-top:16px">${critFor(d).map((c,k)=>`<button class="cell cell-h" data-go="${k+1}" style="width:100%;text-align:left"><span>${c.label}</span><span style="display:flex;align-items:center;gap:10px"><b style="color:${col(d[c.key])}">${f1(d[c.key])}</b><span style="color:var(--t3)">${I.chev}</span></span></button>`).join('')}</div>
       <div class="grp" style="margin-top:12px"><div class="field"><label for="fd">Gesehen am</label><input type="date" id="fd" value="${esc(d.watched_on||'')}"></div></div>
       <div class="sec">Notiz</div>
       <div class="grp"><textarea class="ta" id="fn" placeholder="Was ist dir aufgefallen? (optional)">${esc(d.note||'')}</textarea></div>
@@ -1283,7 +1292,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '37';
+const APP_VERSION = '38';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
