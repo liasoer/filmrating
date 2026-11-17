@@ -466,7 +466,8 @@ const Finder = {
     const pTv = Tvm.search(q);
     const [om, tv] = await Promise.all([pOm, pTv]);
     if(onPartial && !signal?.aborted) onPartial(Finder.merge(q, [], om, tv));
-    const wd = await pWd;
+    // Wikidata höchstens 3 s abwarten, sonst bleiben die schnellen Treffer stehen
+    const wd = await Promise.race([pWd, new Promise(r=>setTimeout(()=>r(null),3000))]);
     const res = Finder.merge(q, wd||[], om, tv);
     if(wd) Finder.qcache.set(key, res);
     return res;
