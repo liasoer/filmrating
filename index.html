@@ -236,9 +236,10 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .pcard .poster img{width:100%;height:100%;object-fit:cover;display:block}
 #neu section{content-visibility:auto;contain-intrinsic-size:auto 250px}
 #neu section.genre-sec{content-visibility:visible}
-#neu section.watch-sec{content-visibility:visible}
-.watch-empty{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:18px;text-align:left;color:var(--t2);font-size:15px;line-height:1.35}
-.watch-empty svg{width:24px;height:24px;flex:none;color:var(--tint)}
+#neu section.watch-sec{content-visibility:visible;margin-bottom:26px}
+#neu .watch-sec .rowh{margin-top:8px}
+.watch-empty{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:16px;text-align:left;color:var(--t2);font-size:14px;line-height:1.35}
+.watch-empty svg{width:20px;height:20px;flex:none;color:var(--tint)}
 .wbtn{display:flex;align-items:center;justify-content:center;gap:8px}
 .wbtn svg{width:20px;height:20px}
 .pick{display:flex;flex-direction:column;align-items:center}
@@ -893,7 +894,7 @@ function watchRow(kind){
   const list = (state.watch||[]).filter(w=>(w.ext?.kind||'movie')===kind);
   return `<section class="watch-sec"><h3 class="rowh">Merkliste${list.length?` <span style="opacity:.45;font-weight:600">${list.length}</span>`:''}</h3>
     ${list.length ? `<div class="rail">${list.map(wcard).join('')}</div>`
-      : `<button class="watch-empty glass" id="wadd">${I.bookmark}<span>Noch nichts gemerkt. Tippe auf ${kind==='series'?'eine Serie':'einen Film'} oder aufs Plus, um ${kind==='series'?'Serien':'Filme'} für später zu merken.</span></button>`}</section>`;
+      : `<button class="watch-empty glass" id="wadd">${I.bookmark}<span>Noch leer. Merke dir ${kind==='series'?'Serien':'Filme'} über das Plus oder in den Details.</span></button>`}</section>`;
 }
 function bindWatch(root){
   root.querySelectorAll('[data-wk]').forEach(c=>c.onclick=()=>{ const w=(state.watch||[]).find(x=>x.key===c.dataset.wk); if(w) openWatch(w); });
@@ -1410,7 +1411,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '43';
+const APP_VERSION = '44';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
