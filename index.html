@@ -201,6 +201,12 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .dev-stats b{display:block;font-size:26px;font-weight:800;letter-spacing:-.5px}
 .dev-stats span{font-size:12px;color:var(--t2)}
 
+.tgl{flex:none;width:51px;height:31px;border-radius:16px;background:rgba(120,120,128,.32);position:relative;transition:background .25s}
+.tgl i{position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
+.tgl.on{background:#30d158}
+.tgl.on i{transform:translateX(20px)}
+.tgl:disabled{opacity:.4}
+
 /* Umschalter Filme / Serien */
 .seg{position:relative;display:flex;padding:3px;border-radius:14px;background:rgba(118,118,128,.24);height:40px}
 .seg button{position:relative;z-index:1;flex:1;border-radius:11px;font-size:15px;font-weight:600;color:var(--t2);transition:color .2s}
@@ -505,7 +511,8 @@ const Local = {
   async friendships(){ return [{id:'d1',status:'accepted',other:{id:'demo1',username:'max'},incoming:false},{id:'d2',status:'accepted',other:{id:'demo2',username:'lea'},incoming:false}]; },
   async addFriend(n){ throw new Error('Im Demo-Modus nicht möglich'); },
   async acceptFriend(){}, async removeFriend(){},
-  async isDev(){ return false; }, async devUsers(){ return []; }
+  async isDev(){ return false; }, async devUsers(){ return []; },
+  async savePush(){ throw new Error('Im Demo-Modus nicht möglich'); }, async removePush(){}
 };
 
 /* ================= Datenschicht: Supabase (mit Login) ================= */
@@ -554,7 +561,9 @@ const Remote = {
   async acceptFriend(id){ const {error}=await this.sb.from('friendships').update({status:'accepted'}).eq('id',id); if(error) throw error; return 'accepted'; },
   async removeFriend(id){ const {error}=await this.sb.from('friendships').delete().eq('id',id); if(error) throw error; },
   async isDev(){ const {data,error}=await this.sb.rpc('is_dev'); return !error && data===true; },
-  async devUsers(){ const {data,error}=await this.sb.rpc('dev_users'); if(error) throw error; return data; }
+  async devUsers(){ const {data,error}=await this.sb.rpc('dev_users'); if(error) throw error; return data; },
+  async savePush(sub){ const j=sub.toJSON(); const {error}=await this.sb.from('push_subscriptions').upsert({endpoint:j.endpoint,user_id:state.user.id,p256dh:j.keys.p256dh,auth:j.keys.auth}); if(error) throw error; },
+  async removePush(endpoint){ await this.sb.from('push_subscriptions').delete().eq('endpoint',endpoint); }
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
@@ -664,7 +673,7 @@ async function refresh(){
   try{ const [r,f,dev] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev]); state.ratings=r; state.fr=f; state.isDev=dev;
     state.friendIds = new Set(f.filter(x=>x.status==='accepted').map(x=>x.other?.id)); }
   catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
-  render(); updateBadge(); setTimeout(healPosters, 1500);
+  render(); updateBadge(); setTimeout(healPosters, 1500); syncPush();
 }
 const isFriend = r => state.friendIds?.has(r.user_id);
 let healing = false;
@@ -990,6 +999,37 @@ function openKino(m){
   else $('#kr').onclick=()=>openForm({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), formats:m.formats||[]}});
 }
 
+/* ================= Push-Mitteilungen ================= */
+const PUSH_FN = 'https://vpdgwopcsevtvvaufegr.supabase.co/functions/v1/push';
+const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+const b64u = s => { const p='='.repeat((4-s.length%4)%4); const b=atob((s+p).replace(/-/g,'+').replace(/_/g,'/')); return Uint8Array.from(b,c=>c.charCodeAt(0)); };
+async function pushState(){
+  if(!pushSupported()) return 'unsupported';
+  if(Notification.permission==='denied') return 'denied';
+  try{ const reg=await navigator.serviceWorker.getRegistration(); const sub=await reg?.pushManager.getSubscription(); return sub?'on':'off'; }catch(e){ return 'off'; }
+}
+async function enablePush(){
+  if(platform()==='ios' && !isStandalone()){ toast('Installiere die App zuerst auf dem Home-Bildschirm'); openInstall(); return false; }
+  if(!pushSupported()){ toast('Dieses Gerät unterstützt keine Mitteilungen'); return false; }
+  const perm = await Notification.requestPermission();
+  if(perm!=='granted'){ toast('Mitteilungen wurden nicht erlaubt'); return false; }
+  const reg = await navigator.serviceWorker.register('sw.js'); await navigator.serviceWorker.ready;
+  const {publicKey} = await fetch(PUSH_FN+'?action=key').then(r=>r.json());
+  let sub = await reg.pushManager.getSubscription();
+  if(!sub) sub = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:b64u(publicKey)});
+  await DB.savePush(sub);
+  toast('Mitteilungen sind aktiv'); return true;
+}
+async function disablePush(){
+  try{ const reg=await navigator.serviceWorker.getRegistration(); const sub=await reg?.pushManager.getSubscription();
+    if(sub){ await DB.removePush(sub.endpoint); await sub.unsubscribe(); } }catch(e){}
+  toast('Mitteilungen ausgeschaltet');
+}
+// Bestehendes Abo bei jedem Start mit dem angemeldeten Konto verknüpfen
+async function syncPush(){ try{ const reg=await navigator.serviceWorker?.getRegistration(); const sub=await reg?.pushManager?.getSubscription(); if(sub) await DB.savePush(sub); }catch(e){} }
+navigator.serviceWorker?.addEventListener('message', e => { if(e.data?.type==='open-profile' && state.user){ refresh().then(openProfile); } });
+if(/[?&]profil/.test(location.search)) setTimeout(()=>{ if(state.user) openProfile(); }, 1500);
+
 /* ================= Entwickler ================= */
 async function openDev(){
   openSheet({ title:'Entwickler', body:`<div class="empty" style="padding:40px">Lade…</div>` });
@@ -1205,6 +1245,9 @@ function openProfile(){
       <div class="meta">${esc(state.user.email||'')}</div>
     </div>
     <div class="grp" style="margin-top:20px"><div class="cell cell-h"><span>Bewertungen</span><b>${mine.length}</b></div><div class="cell cell-h"><span>Dein Schnitt</span>${ring(a,'sm')}</div></div>
+    <div class="sec">Mitteilungen</div>
+    <div class="grp"><div class="cell cell-h"><span>Freundschaftsanfragen<div class="meta" style="margin-top:2px">Neue und angenommene Anfragen</div></span><button class="tgl" id="pushtgl" aria-label="Mitteilungen"><i></i></button></div></div>
+    <div class="hint" id="pushhint"></div>
     <div class="sec">Freund hinzufügen</div>
     <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="fa" style="text-align:left;color:var(--t1)" placeholder="Nutzername" autocapitalize="off" autocorrect="off" autocomplete="off" enterkeyhint="send"><button class="link" id="fab2" style="padding:8px 0 8px 8px">Hinzufügen</button></div></div>
     ${fr.filter(f=>f.incoming&&f.status==='pending').length?`<div class="sec">Anfragen</div><div class="grp">${fr.filter(f=>f.incoming&&f.status==='pending').map(f=>`<div class="cell cell-h"><b>@${esc(f.other?.username)}</b><span style="display:flex;gap:14px"><button class="link" data-acc="${f.id}">Annehmen</button><button class="link" style="color:var(--t2)" data-del="${f.id}">Ablehnen</button></span></div>`).join('')}</div>`:''}
@@ -1220,7 +1263,14 @@ function openProfile(){
     <button class="btn red" id="lo" style="margin-top:24px">Abmelden</button>
     ${DB.mode==='demo'?'<div class="demo">Demo-Modus aktiv.</div>':''}
   `});
-  $('#inv').onclick=invite; bindInstall(); const dv=$('#dev'); if(dv) dv.onclick=openDev;
+  $('#inv').onclick=invite; bindInstall();
+  (async()=>{ const t=$('#pushtgl'), h=$('#pushhint'); if(!t) return; let st=await pushState();
+    const show=()=>{ t.classList.toggle('on', st==='on'); t.disabled = st==='unsupported'||st==='denied';
+      h.textContent = st==='denied' ? 'Mitteilungen sind blockiert. Erlaube sie in den Einstellungen deines Handys für Filmrating.'
+        : st==='unsupported' ? (platform()==='ios' && !isStandalone() ? 'Auf dem iPhone funktionieren Mitteilungen nur, wenn die App auf dem Home-Bildschirm installiert ist.' : 'Dieses Gerät unterstützt keine Mitteilungen.') : ''; };
+    show();
+    t.onclick=async()=>{ t.disabled=true; try{ if(st==='on'){ await disablePush(); st='off'; } else { st = (await enablePush()) ? 'on' : await pushState(); } }catch(e){ toast(e.message); } t.disabled=false; show(); };
+  })(); const dv=$('#dev'); if(dv) dv.onclick=openDev;
   const uname=v=>v.trim().replace(/^@/,'').toLowerCase();
   $('#ps').onclick=async()=>{ const n=uname($('#pn').value); if(!/^[a-z0-9._]{3,20}$/.test(n)) return toast('3 bis 20 Zeichen: a-z, 0-9, Punkt, Unterstrich');
     try{ await DB.setUsername(n); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
@@ -1233,7 +1283,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '36';
+const APP_VERSION = '37';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
