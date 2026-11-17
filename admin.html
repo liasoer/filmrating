@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark"><meta name="robots" content="noindex,nofollow">
+<title>Admin · Screenreview</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;padding:max(28px,env(safe-area-inset-top)) 16px 50px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:30px;letter-spacing:-.5px;margin:0 0 4px}
+h2{font-size:13px;letter-spacing:.3px;text-transform:uppercase;color:rgba(235,235,245,.62);margin:26px 4px 8px;font-weight:600}
+.t2{color:rgba(235,235,245,.62)} .t3{color:rgba(235,235,245,.32);font-size:13px}
+.grp{background:rgba(44,44,50,.55);border:.6px solid rgba(255,255,255,.12);border-radius:22px;overflow:hidden}
+.row{padding:14px 16px;border-top:.5px solid rgba(255,255,255,.1)} .row:first-child{border-top:0}
+input{width:100%;height:50px;border:0;background:transparent;color:#fff;font:inherit;padding:0 16px;outline:none}
+input+input{border-top:.5px solid rgba(255,255,255,.12)}
+button{border:0;border-radius:20px;height:36px;padding:0 14px;font:600 14px/1 -apple-system,system-ui,sans-serif;cursor:pointer;background:rgba(118,118,128,.24);color:#fff}
+button.p{background:#0a84ff;width:100%;height:50px;border-radius:25px;font-size:17px;margin-top:14px}
+button.d{color:#ff453a} button.ok{color:#30d158}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(255,69,58,.2);color:#ff6961}
+.pill.done{background:rgba(48,209,88,.16);color:#30d158}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:10px 12px;text-align:left;border-top:.5px solid rgba(255,255,255,.1);white-space:nowrap}
+th{color:rgba(235,235,245,.62);font-weight:600;border-top:0}
+.scroll{overflow-x:auto}
+.err{color:#ff453a;min-height:20px;margin-top:10px}
+.hide{display:none}
+blockquote{margin:8px 0 0;padding:8px 12px;border-left:3px solid rgba(255,255,255,.2);color:rgba(235,235,245,.8);background:rgba(255,255,255,.04);border-radius:6px;white-space:pre-wrap}
+</style></head>
+<body><main>
+<div class="top"><div><h1>Admin</h1><div class="t2">Screenreview</div></div><button id="out" class="hide">Abmelden</button></div>
+
+<section id="login">
+<h2>Anmelden</h2>
+<div class="grp"><input id="em" type="email" placeholder="E-Mail" autocomplete="username"><input id="pw" type="password" placeholder="Passwort" autocomplete="current-password"></div>
+<button class="p" id="go">Anmelden</button>
+<div class="err" id="lerr"></div>
+</section>
+
+<section id="app" class="hide">
+<h2 id="rh">Meldungen</h2>
+<div id="reports"></div>
+<p class="t3">Apple verlangt, dass Meldungen innert 24 Stunden geprüft werden.</p>
+<h2 id="uh">Nutzer</h2>
+<div class="grp scroll"><table id="users"></table></div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const sb = supabase.createClient("https://vpdgwopcsevtvvaufegr.supabase.co", "sb_publishable_8igcj2eTIqMjcsjkAxum7A_jSyR96RY");
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const day = s => s ? new Date(s).toLocaleString("de-CH", {dateStyle:"medium", timeStyle:"short"}) : "–";
+
+async function show() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { $("login").classList.remove("hide"); $("app").classList.add("hide"); $("out").classList.add("hide"); return; }
+  const { data: dev } = await sb.rpc("is_dev");
+  if (dev !== true) { $("lerr").textContent = "Kein Zugriff mit diesem Konto."; await sb.auth.signOut(); return; }
+  $("login").classList.add("hide"); $("app").classList.remove("hide"); $("out").classList.remove("hide");
+  await Promise.all([loadReports(), loadUsers()]);
+}
+
+async function loadReports() {
+  const { data, error } = await sb.rpc("dev_reports");
+  if (error) { $("reports").innerHTML = `<div class="err">${esc(error.message)}</div>`; return; }
+  const open = data.filter(r => r.status === "open").length;
+  $("rh").textContent = `Meldungen (${open} offen)`;
+  if (!data.length) { $("reports").innerHTML = `<div class="grp"><div class="row t2">Keine Meldungen.</div></div>`; return; }
+  $("reports").innerHTML = `<div class="grp">` + data.map(r => {
+    const content = [
+      r.rating_title ? `Bewertung von «${esc(r.rating_title)}»` : "",
+      r.rating_note ? `<blockquote>${esc(r.rating_note)}</blockquote>` : "",
+      r.rating_personal?.scene ? `<blockquote>Beste Szene: ${esc(r.rating_personal.scene)}</blockquote>` : "",
+      r.rec_title ? `Empfehlung «${esc(r.rec_title)}»` : "",
+      r.rec_message ? `<blockquote>${esc(r.rec_message)}</blockquote>` : ""
+    ].join("");
+    const acts = r.status !== "open" ? "" : `<div class="acts">
+      ${r.rating_id ? `<button class="d" data-a="clear_note" data-id="${r.id}">Notiz entfernen</button><button class="d" data-a="delete_rating" data-id="${r.id}">Bewertung löschen</button>` : ""}
+      ${r.recommendation_id ? `<button class="d" data-a="delete_rec" data-id="${r.id}">Empfehlung löschen</button>` : ""}
+      ${r.reported_id ? `<button class="d" data-a="remove_avatar" data-id="${r.id}">Profilbild entfernen</button>` : ""}
+      <button class="ok" data-a="dismiss" data-id="${r.id}">Kein Verstoss</button></div>`;
+    return `<div class="row">
+      <div class="top"><b>${esc(r.reason)}</b><span class="pill ${r.status === "open" ? "" : "done"}">${r.status === "open" ? "offen" : r.status === "dismissed" ? "kein Verstoss" : "erledigt"}</span></div>
+      <div class="t2">@${esc(r.reported || "gelöscht")} gemeldet von @${esc(r.reporter || "gelöscht")} · ${day(r.created_at)}</div>
+      ${r.details ? `<blockquote>${esc(r.details)}</blockquote>` : ""}
+      ${content ? `<div style="margin-top:8px">${content}</div>` : ""}
+      ${acts}</div>`;
+  }).join("") + `</div>`;
+  document.querySelectorAll("[data-a]").forEach(b => b.onclick = async () => {
+    const labels = { delete_rating: "Bewertung endgültig löschen?", delete_rec: "Empfehlung löschen?", clear_note: "Notiz und beste Szene entfernen?", remove_avatar: "Profilbild entfernen?", dismiss: "Als «kein Verstoss» schliessen?" };
+    if (!confirm(labels[b.dataset.a])) return;
+    b.disabled = true;
+    const { error } = await sb.rpc("dev_moderate", { report: b.dataset.id, action: b.dataset.a });
+    if (error) { alert(error.message); b.disabled = false; return; }
+    loadReports();
+  });
+}
+
+async function loadUsers() {
+  const { data, error } = await sb.rpc("dev_users");
+  if (error) { $("users").innerHTML = `<tr><td class="err">${esc(error.message)}</td></tr>`; return; }
+  $("uh").textContent = `Nutzer (${data.length})`;
+  $("users").innerHTML = `<tr><th>Nutzer</th><th>E-Mail</th><th>Bewertungen</th><th>Freunde</th><th>Zuletzt aktiv</th><th>Seit</th></tr>` +
+    data.map(u => `<tr><td>@${esc(u.username)}</td><td>${esc(u.email)}</td><td>${u.ratings}</td><td>${u.friends}</td><td>${day(u.last_sign_in_at)}</td><td>${day(u.created_at)}</td></tr>`).join("");
+}
+
+$("go").onclick = async () => {
+  $("lerr").textContent = ""; $("go").disabled = true;
+  const { error } = await sb.auth.signInWithPassword({ email: $("em").value.trim(), password: $("pw").value });
+  $("go").disabled = false;
+  if (error) { $("lerr").textContent = /invalid/i.test(error.message) ? "E-Mail oder Passwort falsch." : error.message; return; }
+  show();
+};
+$("pw").onkeydown = e => { if (e.key === "Enter") $("go").click(); };
+$("out").onclick = async () => { await sb.auth.signOut(); show(); };
+show();
+</script>
+</body></html>
