@@ -196,6 +196,11 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .inst-banner{margin:0 0 16px}
 .inst-banner #insthide svg{width:14px;height:14px}
 
+.dev-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.dev-stats div{background:rgba(44,44,50,.55);border-radius:18px;padding:14px 8px;text-align:center;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.08)}
+.dev-stats b{display:block;font-size:26px;font-weight:800;letter-spacing:-.5px}
+.dev-stats span{font-size:12px;color:var(--t2)}
+
 /* Umschalter Filme / Serien */
 .seg{position:relative;display:flex;padding:3px;border-radius:14px;background:rgba(118,118,128,.24);height:40px}
 .seg button{position:relative;z-index:1;flex:1;border-radius:11px;font-size:15px;font-weight:600;color:var(--t2);transition:color .2s}
@@ -343,6 +348,7 @@ const I = {
   chev:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
   minus:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12h14"/></svg>',
   plus:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  code:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>',
   pop:'<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14l-1.6 11.2a1 1 0 0 1-1 .8H7.6a1 1 0 0 1-1-.8z"/><path d="M5 9a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5-1 3 3 0 0 1 5 1 2.5 2.5 0 0 1 2 4"/><path d="M10 13v5M14 13v5"/></svg>'
 };
 
@@ -488,7 +494,8 @@ const Local = {
   async setUsername(n){ this.data().user.username=n; this.save_(); },
   async friendships(){ return [{id:'d1',status:'accepted',other:{id:'demo1',username:'max'},incoming:false},{id:'d2',status:'accepted',other:{id:'demo2',username:'lea'},incoming:false}]; },
   async addFriend(n){ throw new Error('Im Demo-Modus nicht möglich'); },
-  async acceptFriend(){}, async removeFriend(){}
+  async acceptFriend(){}, async removeFriend(){},
+  async isDev(){ return false; }, async devUsers(){ return []; }
 };
 
 /* ================= Datenschicht: Supabase (mit Login) ================= */
@@ -535,7 +542,9 @@ const Remote = {
     return 'sent';
   },
   async acceptFriend(id){ const {error}=await this.sb.from('friendships').update({status:'accepted'}).eq('id',id); if(error) throw error; return 'accepted'; },
-  async removeFriend(id){ const {error}=await this.sb.from('friendships').delete().eq('id',id); if(error) throw error; }
+  async removeFriend(id){ const {error}=await this.sb.from('friendships').delete().eq('id',id); if(error) throw error; },
+  async isDev(){ const {data,error}=await this.sb.rpc('is_dev'); return !error && data===true; },
+  async devUsers(){ const {data,error}=await this.sb.rpc('dev_users'); if(error) throw error; return data; }
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
@@ -642,7 +651,7 @@ function bindBanner(){
 
 /* ================= Hauptansicht ================= */
 async function refresh(){
-  try{ const [r,f] = await Promise.all([DB.list(), DB.friendships().catch(()=>[])]); state.ratings=r; state.fr=f;
+  try{ const [r,f,dev] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev]); state.ratings=r; state.fr=f; state.isDev=dev;
     state.friendIds = new Set(f.filter(x=>x.status==='accepted').map(x=>x.other?.id)); }
   catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
   render(); updateBadge();
@@ -955,6 +964,38 @@ function openKino(m){
   else $('#kr').onclick=()=>openForm({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), formats:m.formats||[]}});
 }
 
+/* ================= Entwickler ================= */
+async function openDev(){
+  openSheet({ title:'Entwickler', body:`<div class="empty" style="padding:40px">Lade…</div>` });
+  let users=[];
+  try{ users = await DB.devUsers(); }catch(e){ $('#shb').innerHTML=`<div class="empty">${esc(e.message)}</div>`; return; }
+  const R=state.ratings, ser=R.filter(r=>r.ext?.kind==='series').length;
+  const ago = d => { if(!d) return 'nie'; const m=Math.round((Date.now()-new Date(d))/6e4); return m<60?`vor ${m} Min.`:m<1440?`vor ${Math.round(m/60)} Std.`:`vor ${Math.round(m/1440)} T.`; };
+  const day = d => d ? new Date(d).toLocaleDateString('de-CH',{day:'numeric',month:'short',year:'numeric'}) : '';
+  const k=state.kino, sd=state.series;
+  $('#shb').innerHTML = `
+    <div class="dev-stats">
+      <div><b>${users.length}</b><span>Nutzer</span></div>
+      <div><b>${R.length}</b><span>Bewertungen</span></div>
+      <div><b>${users.filter(u=>u.last_sign_in_at && Date.now()-new Date(u.last_sign_in_at)<7*864e5).length}</b><span>Aktiv (7 T.)</span></div>
+    </div>
+    <div class="sec">Alle Nutzer</div>
+    <div class="grp">${users.map(u=>`<div class="cell">
+      <div class="cell-h"><b>@${esc(u.username)}</b><span class="meta" style="margin:0">${u.ratings} Bew. · ${u.friends} Freunde</span></div>
+      <div class="meta" style="white-space:normal">${esc(u.email||'')}</div>
+      <div class="meta">Registriert ${esc(day(u.created_at))} · zuletzt angemeldet ${esc(ago(u.last_sign_in_at))}</div>
+    </div>`).join('')}</div>
+    <div class="sec">System</div>
+    <div class="grp">
+      <div class="cell cell-h"><span>Filme / Serien bewertet</span><b>${R.length-ser} / ${ser}</b></div>
+      <div class="cell cell-h"><span>Kinoprogramm</span><b style="text-align:right">${esc(k?.source||'–')}${k?.updated?' · '+esc(ago(k.updated)):''}</b></div>
+      <div class="cell cell-h"><span>Serien (TVmaze)</span><b style="text-align:right">${sd?.shows?.length||0}${sd?.updated?' · '+esc(ago(sd.updated)):''}</b></div>
+      <div class="cell cell-h"><span>App-Version</span><b>${APP_VERSION}</b></div>
+      <div class="cell cell-h"><span>Modus</span><b>${isStandalone()?'Installierte App':'Browser'} · ${platform()}</b></div>
+    </div>
+    <div class="hint">Nur für dein Konto sichtbar. Die Datenbank prüft das selbst, andere Nutzer bekommen keine Daten.</div>`;
+}
+
 /* ================= Freunde einladen ================= */
 async function invite(){
   const url = location.origin + location.pathname;
@@ -1149,10 +1190,11 @@ function openProfile(){
     <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="pn" style="text-align:left;color:var(--t1)" value="${esc(state.user.username||'')}" autocapitalize="off" autocorrect="off" autocomplete="username"></div></div>
     <button class="btn sec2" id="ps">Nutzername sichern</button>
     ${isStandalone()?'':`<div class="sec">App installieren</div>${installSteps()}`}
+    ${state.isDev?`<div class="sec">Entwickler</div><button class="btn sec2" id="dev" style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:8px">${I.code} Entwickler-Ansicht</button>`:''}
     <button class="btn red" id="lo" style="margin-top:24px">Abmelden</button>
     ${DB.mode==='demo'?'<div class="demo">Demo-Modus aktiv.</div>':''}
   `});
-  $('#inv').onclick=invite; bindInstall();
+  $('#inv').onclick=invite; bindInstall(); const dv=$('#dev'); if(dv) dv.onclick=openDev;
   const uname=v=>v.trim().replace(/^@/,'').toLowerCase();
   $('#ps').onclick=async()=>{ const n=uname($('#pn').value); if(!/^[a-z0-9._]{3,20}$/.test(n)) return toast('3 bis 20 Zeichen: a-z, 0-9, Punkt, Unterstrich');
     try{ await DB.setUsername(n); toast('Gespeichert'); closeSheet(); await refresh(); }catch(e){toast(e.message);} };
@@ -1161,11 +1203,11 @@ function openProfile(){
   $('#fab2').onclick=add; $('#fa').onkeydown=e=>{ if(e.key==='Enter') add(); };
   document.querySelectorAll('[data-acc]').forEach(b=>b.onclick=async()=>{ try{ await DB.acceptFriend(b.dataset.acc); toast('Freundschaft bestätigt'); await refresh(); openProfile(); }catch(e){toast(e.message);} });
   document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{ try{ await DB.removeFriend(b.dataset.del); await refresh(); openProfile(); }catch(e){toast(e.message);} });
-  $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; closeSheet(); renderAuth(); };
+  $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; state.isDev=null; closeSheet(); renderAuth(); };
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '34';
+const APP_VERSION = '35';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
