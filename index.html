@@ -866,7 +866,7 @@ function render(){
   items = items.map(r=>({...r,_s:r.count?r.overall:avg(r)}));
   const q=state.q.toLowerCase();
   if(q) items=items.filter(r=>(r.title||'').toLowerCase().includes(q)||(r.username||'').toLowerCase().includes(q));
-  const s = top && state.sort==='date' ? 'score' : state.sort;
+  const s = top ? 'score' : state.sort;
   items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
   const W = K==='series' ? ['Serien','deine erste Serie'] : ['Filme','deinen ersten Film'];
   const emptyTxt = {mine:`Noch keine ${W[0]} bewertet.<br>Tippe auf <b>+</b> und bewerte ${W[1]}.`,friends: state.friendIds?.size ? `Deine Freunde haben noch keine ${W[0]} bewertet.` : `Du hast noch keine Freunde.<br>Füge sie im Profil über ihren Nutzernamen hinzu.`,top:`Noch keine ${W[0]} bewertet.`}[state.tab];
@@ -877,7 +877,7 @@ function render(){
     <div class="seg" id="kind"><i class="seg-ind" style="transform:translateX(${K==='series'?'100%':'0'})"></i><button data-k="movie" class="${K==='movie'?'on':''}">Filme</button><button data-k="series" class="${K==='series'?'on':''}">Serien</button></div>
     <label class="search" style="margin-top:12px">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
     ${state.tab==='friends' ? friendChips() : ''}
-    <div class="chips">${sorts.map(([v,l])=>`<button class="chip ${s===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>
+    ${top ? '<div style="height:10px"></div>' : `<div class="chips">${sorts.map(([v,l])=>`<button class="chip ${s===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>`}
     <div class="list">
       ${items.length ? items.map((r,i)=>`
         <button class="card" data-k="${esc(r.count?r.key:filmKey(r))}">${r.poster?`<div class="card-bg" ${posterStyle(r.poster)}></div>`:''}
@@ -1451,13 +1451,15 @@ function openDetail(key){
       <div class="sec">Deine Bewertung</div>
       <div class="grp"><div class="cell"><div class="cell-h"><b>${fmtDate(mine.watched_on)||'Gesehen'}</b>${ring(avg(mine),'sm')}</div>${bars(mine)}${mine.note?`<div class="note">${esc(mine.note)}</div>`:''}</div></div>
       <button class="btn sec2" id="ed">Bewertung bearbeiten</button>`
-     :`<button class="btn pri" id="rate" style="margin-top:22px">${e?.kind==='series'?'Diese Serie':'Diesen Film'} bewerten</button>`}
+     :`<button class="btn pri" id="rate" style="margin-top:22px">${e?.kind==='series'?'Diese Serie':'Diesen Film'} bewerten</button>${watchBtn('dwl')}`}
     ${recBtn('drec')}
     ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   if(mine) $('#ed').onclick=()=>openForm(mine);
-  else $('#rate').onclick=()=>openForm({title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:e});
+  else { const it={title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:{...(e||{}), kind:e?.kind==='series'?'series':'movie'}};
+    $('#rate').onclick=()=>openForm({title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:e});
+    const b=$('#dwl'); setWatchBtn(b, inWatch(it)); b.onclick=()=>toggleWatch(it, b); }
   $('#drec').onclick=()=>openRecommend({title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:e});
 }
 
@@ -1678,7 +1680,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '50';
+const APP_VERSION = '51';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
