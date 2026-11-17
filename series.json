@@ -1,593 +1,7 @@
 {
- "updated": "2026-11-16T23:35+00:00",
+ "updated": "2026-11-17T04:51+00:00",
  "source": "TVmaze",
  "shows": [
-  {
-   "title": "The Lord of the Rings: The Rings of Power",
-   "tvmaze_id": 33352,
-   "imdb_id": "tt7631058",
-   "platform": "Prime Video",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1627263.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1627263.jpg",
-   "genres": [
-    "Action",
-    "Adventure",
-    "Fantasy"
-   ],
-   "season": 3,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
-   "premiere": true,
-   "isNew": false,
-   "summary": "Set thousands of years before the events of The Lord of the Rings, this epic drama follows an ensemble cast of characters, both familiar and new, as they confront the long-feared re-emergence of evil to Middle-earth.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Lord%20of%20the%20Rings%3A%20The%20Rings%20of%20Power",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.8",
-    "seasons": "3",
-    "genre": "Action, Adventure, Drama",
-    "tvm": 7.1,
-    "platform": "Prime Video"
-   },
-   "votes": 445576
-  },
-  {
-   "title": "Dexter: Resurrection",
-   "tvmaze_id": 78665,
-   "imdb_id": "tt33043892",
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/649/1623432.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/649/1623432.jpg",
-   "genres": [
-    "Drama",
-    "Crime",
-    "Mystery"
-   ],
-   "season": 2,
-   "latest": "2026-11-13",
-   "next": "2026-11-20",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Dexter Morgan awakens from a coma and sets out for New York City, determined to find Harrison and make things right. But when Miami Metro's Angel Batista arrives with questions, Dexter realizes his past is catching up to him fast.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Dexter%3A%20Resurrection",
-   "ext": {
-    "kind": "series",
-    "imdb": "9.0",
-    "seasons": "2",
-    "genre": "Crime, Drama, Mystery",
-    "tvm": 8.4,
-    "platform": "Paramount+"
-   },
-   "votes": 163193
-  },
-  {
-   "title": "MobLand",
-   "tvmaze_id": 75026,
-   "imdb_id": "tt31510819",
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/641/1604671.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/641/1604671.jpg",
-   "genres": [
-    "Drama",
-    "Crime"
-   ],
-   "season": 2,
-   "latest": "2026-11-13",
-   "next": "2026-11-20",
-   "premiere": false,
-   "isNew": false,
-   "summary": "With the most powerful clients in Europe, MobLand will see family fortunes and reputations at risk, odd alliances unfold, and betrayal around every corner; and while the family might be London's most elite fixers today, the nature of their business means there is no guarantee what's in store tomorrow.MobLand follows two generations of gangsters, the businesses they run, the complex relationships they weave and the man they call upon to fix their problem.",
-   "url": "https://www.justwatch.com/ch/Suche?q=MobLand",
-   "ext": {
-    "kind": "series",
-    "imdb": "8.3",
-    "seasons": "3",
-    "genre": "Crime, Drama",
-    "tvm": 8.1,
-    "platform": "Paramount+"
-   },
-   "votes": 131558
-  },
-  {
-   "title": "Tulsa King",
-   "tvmaze_id": 59344,
-   "imdb_id": "tt16358384",
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615902.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615902.jpg",
-   "genres": [
-    "Drama",
-    "Comedy",
-    "Crime"
-   ],
-   "season": 4,
-   "latest": "2026-11-13",
-   "next": "2026-11-20",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Tulsa King follows New York mafia capo Dwight \"The General\" Manfredi, just after he is released from prison after 25 years and unceremoniously exiled by his boss to set up shop in Tulsa, Oklahoma. Realizing that his mob family may not have his best interests in mind, Dwight slowly builds a \"crew\" from a group of unlikely characters, to help him establish a new criminal empire in a place that, to him, might as well be another planet.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Tulsa%20King",
-   "ext": {
-    "kind": "series",
-    "imdb": "7.9",
-    "seasons": "4",
-    "genre": "Action, Crime, Drama",
-    "tvm": 7.6,
-    "platform": "Paramount+"
-   },
-   "votes": 121614
-  },
-  {
-   "title": "The Gilded Age",
-   "tvmaze_id": 34685,
-   "imdb_id": "tt4406178",
-   "platform": "HBO Max",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1622443.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1622443.jpg",
-   "genres": [
-    "Drama",
-    "History"
-   ],
-   "season": 4,
-   "latest": "2026-11-15",
-   "next": "2026-11-22",
-   "premiere": false,
-   "isNew": false,
-   "summary": "The American Gilded Age was a period of immense economic change, of huge fortunes made and lost, and the rise of disparity between old money and new.Against this backdrop of change, the story begins in 1882 — introducing young Marian Brook, the orphaned daughter of a Union general, who moves into the New York City home of her thoroughly old money aunts Agnes van Rhijn and Ada Brook. Accompanied by Peggy Scott, an accomplished African-American woman, Marian inadvertently becomes enmeshed in a social war between one of her aunts, a scion of the old money set, and her stupendously rich neighbors,",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Gilded%20Age",
-   "ext": {
-    "kind": "series",
-    "imdb": "8.1",
-    "seasons": "4",
-    "genre": "Drama",
-    "tvm": 7.6,
-    "platform": "HBO Max"
-   },
-   "votes": 54903
-  },
-  {
-   "title": "Rivals",
-   "tvmaze_id": 64087,
-   "imdb_id": "tt21906238",
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/627/1567849.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/627/1567849.jpg",
-   "genres": [
-    "Drama",
-    "Comedy",
-    "Romance"
-   ],
-   "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Rivals dives headfirst into the cut-throat world of independent television in 1986, where the shoulder pads are big and ambitions even bigger. In the fictional upper-class county of Rutshire, a long-standing rivalry between two powerful men is about to boil over: ex-Olympian, Member of Parliament, and notorious womaniser Rupert Campbell-Black, and his Rutshire neighbour Tony Baddingham, controller of the independent TV franchise Corinium Television. As tensions rise and rivalries deepen, there are spilled secrets, forged alliances, and snatched liaisons that draw wives, lovers, colleagues, fri",
-   "url": "https://www.justwatch.com/ch/Suche?q=Rivals",
-   "ext": {
-    "kind": "series",
-    "imdb": "7.9",
-    "seasons": "3",
-    "genre": "Comedy, Drama",
-    "tvm": 6.2,
-    "platform": "Disney+"
-   },
-   "votes": 20815
-  },
-  {
-   "title": "Stick",
-   "tvmaze_id": 82227,
-   "imdb_id": "tt31710249",
-   "platform": "Apple TV+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615054.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615054.jpg",
-   "genres": [
-    "Comedy",
-    "Sports"
-   ],
-   "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Pryce Cahill is an over-the-hill, ex-pro golfer whose career was derailed prematurely 20 years ago. After the collapse of his marriage and getting fired from his job at an Indiana sporting goods store, Pryce hedges his bets, and future, entirely on a troubled 17-year-old golf phenom named Santi. Stick is a heartfelt, feel-good comedy about a found family and their relationships set within the world of golf as it's never been shown before.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Stick",
-   "ext": {
-    "kind": "series",
-    "imdb": "7.2",
-    "seasons": "2",
-    "genre": "Comedy, Sport",
-    "tvm": 6.3,
-    "platform": "Apple TV+"
-   },
-   "votes": 20316
-  },
-  {
-   "title": "VisionQuest",
-   "tvmaze_id": 64950,
-   "imdb_id": "tt23112594",
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/636/1592334.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/636/1592334.jpg",
-   "genres": [
-    "Drama",
-    "Action",
-    "Science-Fiction"
-   ],
-   "season": 1,
-   "latest": "2026-11-10",
-   "next": null,
-   "premiere": false,
-   "isNew": true,
-   "summary": "Vision, rebooted and having escaped from those who sought to weaponize him, has been in hiding. Searching for new meaning, he consults the AI personas embedded in his programming, including F.R.I.D.A.Y., E.D.I.T.H., J.A.R.V.I.S., and the infamous Ultron. His discreet existence ends when a bounty placed on his head thrusts him on the run with Thomas Shepard, a mysterious boy who may be Vision's son, reincarnate. As Vision evades capture, he must confront his nature, resist Ultron's influence, and unravel the enigma that is his young companion if he's to survive.",
-   "url": "https://www.justwatch.com/ch/Suche?q=VisionQuest",
-   "ext": {
-    "kind": "series",
-    "imdb": "7.8",
-    "seasons": "1",
-    "genre": "Action",
-    "tvm": 7.6,
-    "platform": "Disney+"
-   },
-   "votes": 14696
-  },
-  {
-   "title": "The Assassin",
-   "tvmaze_id": 79107,
-   "imdb_id": "tt33246591",
-   "platform": "Prime Video",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1625810.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1625810.jpg",
-   "genres": [
-    "Drama",
-    "Action",
-    "Thriller"
-   ],
-   "season": 2,
-   "latest": "2026-11-06",
-   "next": null,
-   "premiere": true,
-   "isNew": false,
-   "summary": "Secluded on a remote Greek island, retired assassin Julie has a somewhat thorny reunion with her estranged son, Edward, visiting from England. Armed with questions around new information on his paternity, Edward battles to find the right time to speak to his frustratingly distant mother. But, when the moment finally presents itself, things take a deadly turn as Julie's dangerous past catches up with her and they are forced to flee the island and go on the run together.Edward's quest for truth clashes with Julie's secrecy whilst they are forced to work together in a fight for survival, testing ",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Assassin",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.3",
-    "seasons": "2",
-    "genre": "Drama, Thriller",
-    "tvm": 6.5,
-    "platform": "Prime Video"
-   },
-   "votes": 6292
-  },
-  {
-   "title": "Reasonable Doubt",
-   "tvmaze_id": 61704,
-   "imdb_id": "tt11231226",
-   "platform": "Hulu",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1620423.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1620423.jpg",
-   "genres": [
-    "Drama",
-    "Legal"
-   ],
-   "season": 4,
-   "latest": "2026-11-10",
-   "next": "2026-11-17",
-   "premiere": false,
-   "isNew": false,
-   "summary": "In Reasonable Doubt, you'll judge Jax Stewart for her questionable ethics and wild interpretations of the law... until you're the one in trouble. Then you'll see her for what she is: the most brilliant and fearless defense attorney in Los Angeles who bucks the justice system at every chance she gets.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Reasonable%20Doubt",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.7",
-    "seasons": "4",
-    "genre": "Crime, Drama, Thriller",
-    "tvm": 4,
-    "platform": "Hulu"
-   },
-   "votes": 4339
-  },
-  {
-   "title": "Return to Paradise",
-   "tvmaze_id": 72575,
-   "imdb_id": "tt32059608",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615676.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615676.jpg",
-   "genres": [
-    "Drama",
-    "Crime",
-    "Mystery"
-   ],
-   "season": 3,
-   "latest": "2026-11-06",
-   "next": null,
-   "premiere": true,
-   "isNew": false,
-   "summary": "DI Mackenzie Clarke was meant to be back in the UK, living the life she's always wanted. Instead, she's still in Dolphin Cove. Lucky for Mack, her compulsion to solve impossible cases serves as a great distraction.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Return%20to%20Paradise",
-   "ext": {
-    "kind": "series",
-    "imdb": "7.0",
-    "seasons": "3",
-    "genre": "Crime, Drama, Mystery",
-    "tvm": 6.6,
-    "platform": "BBC"
-   },
-   "votes": 2915
-  },
-  {
-   "title": "Where's Wanda?",
-   "tvmaze_id": 71074,
-   "imdb_id": "tt29011445",
-   "platform": "Apple TV+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1607572.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1607572.jpg",
-   "genres": [
-    "Drama",
-    "Comedy"
-   ],
-   "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Where's Wanda? tells the story of Dedo and Carlotta Klatt, who are desperate to locate their missing 17-year-old daughter Wanda, who disappeared months ago without a trace. When the police fail to find her, the family takes matters into their own hands, obtaining surveillance devices with the help of their tech-savvy son Ole. Disguising themselves as employees of an electrical company, they bug first their neighborhood and then half their suburb, finding out that behind closed doors none of their neighbors are who they pretend to be.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Where%27s%20Wanda%3F",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.5",
-    "seasons": "2",
-    "genre": "Comedy, Crime, Drama",
-    "tvm": 5.8,
-    "platform": "Apple TV+"
-   },
-   "votes": 1774
-  },
-  {
-   "title": "Panorama",
-   "tvmaze_id": 8534,
-   "imdb_id": "tt0199257",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/596/1490794.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/596/1490794.jpg",
-   "genres": [],
-   "season": 2026,
-   "latest": "2026-11-09",
-   "next": "2026-11-17",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Panorama is a current affairs programme, featuring interviews and investigative reports on a wide variety of subjects.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Panorama",
-   "ext": {
-    "kind": "series",
-    "imdb": "7.0",
-    "seasons": "73",
-    "genre": "Documentary, News",
-    "tvm": 7.7,
-    "platform": "BBC"
-   },
-   "votes": 695
-  },
-  {
-   "title": "Batwheels",
-   "tvmaze_id": 51042,
-   "imdb_id": "tt13292830",
-   "platform": "HBO Max",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/607/1517673.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/607/1517673.jpg",
-   "genres": [
-    "Action",
-    "Adventure",
-    "Science-Fiction"
-   ],
-   "season": 3,
-   "latest": "2026-11-06",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "Bam, Redbird, Bibi, Batwing, and Buff are thrust into hilarious hijinks and draw-dropping action as they learn important lessons about teamwork, friendship, and so much more while helping Batman, Robin, and Batgirl defend Gotham.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Batwheels",
-   "ext": {
-    "kind": "series",
-    "imdb": "5.7",
-    "seasons": "3",
-    "genre": "Animation, Action, Adventure",
-    "tvm": 7.6,
-    "platform": "HBO Max"
-   },
-   "votes": 574
-  },
-  {
-   "title": "4 Blocks Zero",
-   "tvmaze_id": 89896,
-   "imdb_id": "tt39379365",
-   "platform": "HBO Max",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609928.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609928.jpg",
-   "genres": [
-    "Action",
-    "Crime",
-    "Thriller"
-   ],
-   "season": 1,
-   "latest": "2026-11-13",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "The prequel to the award-winning gangster drama ‘4 Blocks' tells the story of the Hamadys in 1990s Berlin: having fled Lebanon and only accepted as tolerated refugees in Germany, they struggle to gain a foothold in their new home. Who are they, how did the family become the most influential clan in the city, and how did Ali eventually become Toni?",
-   "url": "https://www.justwatch.com/ch/Suche?q=4%20Blocks%20Zero",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.6",
-    "seasons": null,
-    "genre": "Crime, Drama",
-    "tvm": null,
-    "platform": "HBO Max"
-   },
-   "votes": 179
-  },
-  {
-   "title": "A Place in the Sun",
-   "tvmaze_id": 55150,
-   "imdb_id": "tt0300839",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/476/1190336.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/476/1190336.jpg",
-   "genres": [
-    "Travel"
-   ],
-   "season": 2026,
-   "latest": "2026-11-13",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "Property experts help house hunters find their dream properties in the sun.",
-   "url": "https://www.justwatch.com/ch/Suche?q=A%20Place%20in%20the%20Sun",
-   "ext": {
-    "kind": "series",
-    "imdb": "5.9",
-    "seasons": "8",
-    "genre": "Documentary, Reality-TV",
-    "tvm": null,
-    "platform": "Channel 4"
-   },
-   "votes": 176
-  },
-  {
-   "title": "Countryfile",
-   "tvmaze_id": 6543,
-   "imdb_id": "tt0229118",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/592/1480564.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/592/1480564.jpg",
-   "genres": [
-    "Nature"
-   ],
-   "season": 38,
-   "latest": "2026-11-15",
-   "next": "2026-11-22",
-   "premiere": false,
-   "isNew": false,
-   "summary": "The people, places and stories making news in the British countryside.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Countryfile",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.4",
-    "seasons": "37",
-    "genre": "Documentary",
-    "tvm": 7.5,
-    "platform": "BBC"
-   },
-   "votes": 173
-  },
-  {
-   "title": "Unreported World",
-   "tvmaze_id": 8065,
-   "imdb_id": "tt0477545",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/595/1489328.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/595/1489328.jpg",
-   "genres": [],
-   "season": 2026,
-   "latest": "2026-11-13",
-   "next": "2026-11-20",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Unreported World is a foreign affairs programme produced by Quicksilver Media Productions and broadcast by Channel 4 in the United Kingdom. Over the course of its twenty-six series, reporters have travelled to dangerous locations all over the world in an attempt to uncover stories usually ignored by the world media.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Unreported%20World",
-   "ext": {
-    "kind": "series",
-    "imdb": "8.3",
-    "seasons": "47",
-    "genre": "Documentary, News",
-    "tvm": null,
-    "platform": "Channel 4"
-   },
-   "votes": 140
-  },
-  {
-   "title": "Colourblocks",
-   "tvmaze_id": 64127,
-   "imdb_id": "tt22087494",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/422/1055360.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/422/1055360.jpg",
-   "genres": [
-    "Children"
-   ],
-   "season": 3,
-   "latest": "2026-11-16",
-   "next": null,
-   "premiere": true,
-   "isNew": false,
-   "summary": "The animated adventures of friends who bring colour to the world. Learn about colours through adventure and play with the Colourblocks.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Colourblocks",
-   "ext": {
-    "kind": "series",
-    "imdb": "8.6",
-    "seasons": "2",
-    "genre": "Animation, Family, Fantasy",
-    "tvm": null,
-    "platform": "BBC"
-   },
-   "votes": 65
-  },
-  {
-   "title": "The Well",
-   "tvmaze_id": 95596,
-   "imdb_id": "tt33398233",
-   "platform": "Hulu",
-   "poster": "https://m.media-amazon.com/images/M/MV5BMjI3YTU4NzEtYzc3Ni00YWQyLThiYjktZGU5YjZhZjhkYzVlXkEyXkFqcGc@._V1_QL75_UY562_CR2,0,380,562_.jpg",
-   "poster_l": "https://m.media-amazon.com/images/M/MV5BMjI3YTU4NzEtYzc3Ni00YWQyLThiYjktZGU5YjZhZjhkYzVlXkEyXkFqcGc@._V1_QL75_UY562_CR2,0,380,562_.jpg",
-   "genres": [],
-   "season": 1,
-   "latest": "2026-11-09",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Before an aging serial killer on death row takes his secrets to the grave, a team of detectives in California's rural Central Valley are thrust back into the decades-old \"Speed Freak Killers\" mystery. Guided by one of the killers himself, the female-led team hunts for undiscovered victims and seeks atonement for their department's past mistakes.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Well",
-   "ext": {
-    "kind": "series",
-    "imdb": "6.9",
-    "seasons": null,
-    "genre": "Documentary, Crime",
-    "tvm": null,
-    "platform": "Hulu"
-   },
-   "votes": 26
-  },
-  {
-   "title": "Nocturne",
-   "tvmaze_id": 66811,
-   "imdb_id": "tt26598805",
-   "platform": "Apple TV+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609134.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609134.jpg",
-   "genres": [
-    "Drama",
-    "Crime",
-    "Thriller"
-   ],
-   "season": 1,
-   "latest": "2026-11-13",
-   "next": "2026-11-20",
-   "premiere": false,
-   "isNew": true,
-   "summary": "Nocturne tells the story of Jonah Lynn, an ex-soldier turned homicide detective who, tired of working the tough streets of Philadelphia, moves to a small town in Western Pennsylvania for a quiet life. But, as the town and his family come under attack from the diabolically cunning serial killer Jurek Walter, Jonah must protect all that he holds dear. When the desperate search for Jurek's last missing victim forces Jonah to send his adopted daughter, FBI Agent Saga Bauer, up against Jurek, how far will Jonah go?",
-   "url": "https://www.justwatch.com/ch/Suche?q=Nocturne",
-   "ext": {
-    "kind": "series",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Crime, Drama, Thriller",
-    "tvm": 7.7,
-    "platform": "Apple TV+"
-   },
-   "votes": 0
-  },
   {
    "title": "Griff Across the Alps",
    "tvmaze_id": 95143,
@@ -614,27 +28,75 @@
    "votes": 0
   },
   {
-   "title": "That's Jokes",
-   "tvmaze_id": 95500,
-   "imdb_id": null,
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1626432.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1626432.jpg",
+   "title": "The Gilded Age",
+   "tvmaze_id": 34685,
+   "imdb_id": "tt4406178",
+   "platform": "HBO Max",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1622443.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1622443.jpg",
    "genres": [
-    "Comedy",
-    "Children"
+    "Drama",
+    "History"
    ],
-   "season": 1,
-   "latest": "2026-11-09",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Animated comedy sketch show with silly jokes and hilarious characters including guinea pigs in wigs, accident-prone newsreaders, a very posh Pomeranian, and many, many more!",
-   "url": "https://www.justwatch.com/ch/Suche?q=That%27s%20Jokes",
+   "season": 4,
+   "latest": "2026-11-15",
+   "next": "2026-11-22",
+   "premiere": false,
+   "isNew": false,
+   "summary": "The American Gilded Age was a period of immense economic change, of huge fortunes made and lost, and the rise of disparity between old money and new.Against this backdrop of change, the story begins in 1882 — introducing young Marian Brook, the orphaned daughter of a Union general, who moves into the New York City home of her thoroughly old money aunts Agnes van Rhijn and Ada Brook. Accompanied by Peggy Scott, an accomplished African-American woman, Marian inadvertently becomes enmeshed in a social war between one of her aunts, a scion of the old money set, and her stupendously rich neighbors,",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Gilded%20Age",
    "ext": {
     "kind": "series",
-    "tvm": null,
+    "tvm": 7.6,
+    "platform": "HBO Max"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Countryfile",
+   "tvmaze_id": 6543,
+   "imdb_id": "tt0229118",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/592/1480564.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/592/1480564.jpg",
+   "genres": [
+    "Nature"
+   ],
+   "season": 38,
+   "latest": "2026-11-15",
+   "next": "2026-11-22",
+   "premiere": false,
+   "isNew": false,
+   "summary": "The people, places and stories making news in the British countryside.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Countryfile",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.5,
     "platform": "BBC"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Hollyoaks",
+   "tvmaze_id": 4175,
+   "imdb_id": "tt0112004",
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/625/1564536.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/625/1564536.jpg",
+   "genres": [
+    "Drama"
+   ],
+   "season": 32,
+   "latest": "2026-11-11",
+   "next": null,
+   "premiere": false,
+   "isNew": false,
+   "summary": "Hollyoaks follows the lives of a group of residents living in the fictional village of Chester.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Hollyoaks",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.7,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
@@ -657,11 +119,34 @@
    "url": "https://www.justwatch.com/ch/Suche?q=Doozie%27s%20Doghouse",
    "ext": {
     "kind": "series",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Animation, Adventure, Comedy",
     "tvm": null,
     "platform": "Netflix"
+   },
+   "votes": 0
+  },
+  {
+   "title": "VisionQuest",
+   "tvmaze_id": 64950,
+   "imdb_id": "tt23112594",
+   "platform": "Disney+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/636/1592334.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/636/1592334.jpg",
+   "genres": [
+    "Drama",
+    "Action",
+    "Science-Fiction"
+   ],
+   "season": 1,
+   "latest": "2026-11-10",
+   "next": null,
+   "premiere": false,
+   "isNew": true,
+   "summary": "Vision, rebooted and having escaped from those who sought to weaponize him, has been in hiding. Searching for new meaning, he consults the AI personas embedded in his programming, including F.R.I.D.A.Y., E.D.I.T.H., J.A.R.V.I.S., and the infamous Ultron. His discreet existence ends when a bounty placed on his head thrusts him on the run with Thomas Shepard, a mysterious boy who may be Vision's son, reincarnate. As Vision evades capture, he must confront his nature, resist Ultron's influence, and unravel the enigma that is his young companion if he's to survive.",
+   "url": "https://www.justwatch.com/ch/Suche?q=VisionQuest",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.6,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -676,8 +161,8 @@
     "Nature"
    ],
    "season": 1,
-   "latest": "2026-11-10",
-   "next": "2026-11-17",
+   "latest": "2026-11-17",
+   "next": "2026-11-24",
    "premiere": false,
    "isNew": true,
    "summary": "Extreme weather events examined from the inside out, including Hurricane Helene, the December Tennessee tornado outbreak and the vicious Black Summer of Australian wildfires, charting how and why they happen and the devastation left behind using first-hand survivor and witness accounts and adrenaline-fuelled footage captured on the ground.",
@@ -686,6 +171,31 @@
     "kind": "series",
     "tvm": null,
     "platform": "Disney+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Reasonable Doubt",
+   "tvmaze_id": 61704,
+   "imdb_id": "tt11231226",
+   "platform": "Hulu",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1620423.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1620423.jpg",
+   "genres": [
+    "Drama",
+    "Legal"
+   ],
+   "season": 4,
+   "latest": "2026-11-17",
+   "next": "2026-11-24",
+   "premiere": false,
+   "isNew": false,
+   "summary": "In Reasonable Doubt, you'll judge Jax Stewart for her questionable ethics and wild interpretations of the law... until you're the one in trouble. Then you'll see her for what she is: the most brilliant and fearless defense attorney in Los Angeles who bucks the justice system at every chance she gets.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Reasonable%20Doubt",
+   "ext": {
+    "kind": "series",
+    "tvm": 4,
+    "platform": "Hulu"
    },
    "votes": 0
   },
@@ -701,17 +211,14 @@
     "Mystery"
    ],
    "season": 1,
-   "latest": "2026-11-10",
-   "next": "2026-11-17",
+   "latest": "2026-11-17",
+   "next": "2026-11-24",
    "premiere": false,
    "isNew": true,
    "summary": "Phony is a coming-of-age mystery about a teenager who wakes up in the hospital after a car accident to discover his mom - his only parent and his best friend - appears to have been replaced by an impostor.",
    "url": "https://www.justwatch.com/ch/Suche?q=Phony",
    "ext": {
     "kind": "series",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Comedy, Drama, Mystery",
     "tvm": 5.6,
     "platform": "Hulu"
    },
@@ -740,26 +247,28 @@
    "votes": 0
   },
   {
-   "title": "Peelers: The PSNI for Real",
-   "tvmaze_id": 91626,
-   "imdb_id": null,
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1627298.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1627298.jpg",
+   "title": "The Lord of the Rings: The Rings of Power",
+   "tvmaze_id": 33352,
+   "imdb_id": "tt7631058",
+   "platform": "Prime Video",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1627263.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1627263.jpg",
    "genres": [
-    "Crime"
+    "Action",
+    "Adventure",
+    "Fantasy"
    ],
-   "season": 2,
+   "season": 3,
    "latest": "2026-11-11",
-   "next": null,
+   "next": "2026-11-18",
    "premiere": true,
    "isNew": false,
-   "summary": "Stephen Nolan joins officers from the Police Service of Northern Ireland as they patrol the streets of Belfast in Peelers: The PSNI for Real.The series reflects the realities of 24/7 policing and its many challenges – including street disorder, substance abuse and domestic violence.It also gives viewers a revealing sense of what it's like to be a police officer and the teamwork that's required in fast-changing and often uncertain situations.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Peelers%3A%20The%20PSNI%20for%20Real",
+   "summary": "Set thousands of years before the events of The Lord of the Rings, this epic drama follows an ensemble cast of characters, both familiar and new, as they confront the long-feared re-emergence of evil to Middle-earth.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Lord%20of%20the%20Rings%3A%20The%20Rings%20of%20Power",
    "ext": {
     "kind": "series",
-    "tvm": null,
-    "platform": "BBC"
+    "tvm": 7.1,
+    "platform": "Prime Video"
    },
    "votes": 0
   },
@@ -790,6 +299,82 @@
    "votes": 0
   },
   {
+   "title": "Rivals",
+   "tvmaze_id": 64087,
+   "imdb_id": "tt21906238",
+   "platform": "Disney+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/627/1567849.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/627/1567849.jpg",
+   "genres": [
+    "Drama",
+    "Comedy",
+    "Romance"
+   ],
+   "season": 2,
+   "latest": "2026-11-11",
+   "next": "2026-11-18",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Rivals dives headfirst into the cut-throat world of independent television in 1986, where the shoulder pads are big and ambitions even bigger. In the fictional upper-class county of Rutshire, a long-standing rivalry between two powerful men is about to boil over: ex-Olympian, Member of Parliament, and notorious womaniser Rupert Campbell-Black, and his Rutshire neighbour Tony Baddingham, controller of the independent TV franchise Corinium Television. As tensions rise and rivalries deepen, there are spilled secrets, forged alliances, and snatched liaisons that draw wives, lovers, colleagues, fri",
+   "url": "https://www.justwatch.com/ch/Suche?q=Rivals",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.2,
+    "platform": "Disney+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Where's Wanda?",
+   "tvmaze_id": 71074,
+   "imdb_id": "tt29011445",
+   "platform": "Apple TV+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1607572.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1607572.jpg",
+   "genres": [
+    "Drama",
+    "Comedy"
+   ],
+   "season": 2,
+   "latest": "2026-11-11",
+   "next": "2026-11-18",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Where's Wanda? tells the story of Dedo and Carlotta Klatt, who are desperate to locate their missing 17-year-old daughter Wanda, who disappeared months ago without a trace. When the police fail to find her, the family takes matters into their own hands, obtaining surveillance devices with the help of their tech-savvy son Ole. Disguising themselves as employees of an electrical company, they bug first their neighborhood and then half their suburb, finding out that behind closed doors none of their neighbors are who they pretend to be.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Where%27s%20Wanda%3F",
+   "ext": {
+    "kind": "series",
+    "tvm": 5.8,
+    "platform": "Apple TV+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Stick",
+   "tvmaze_id": 82227,
+   "imdb_id": "tt31710249",
+   "platform": "Apple TV+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615054.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615054.jpg",
+   "genres": [
+    "Comedy",
+    "Sports"
+   ],
+   "season": 2,
+   "latest": "2026-11-11",
+   "next": "2026-11-18",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Pryce Cahill is an over-the-hill, ex-pro golfer whose career was derailed prematurely 20 years ago. After the collapse of his marriage and getting fired from his job at an Indiana sporting goods store, Pryce hedges his bets, and future, entirely on a troubled 17-year-old golf phenom named Santi. Stick is a heartfelt, feel-good comedy about a found family and their relationships set within the world of golf as it's never been shown before.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Stick",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.3,
+    "platform": "Apple TV+"
+   },
+   "votes": 0
+  },
+  {
    "title": "The Body",
    "tvmaze_id": 87480,
    "imdb_id": "tt8014982",
@@ -810,9 +395,6 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Body",
    "ext": {
     "kind": "series",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Drama, Horror, Thriller",
     "tvm": 5.2,
     "platform": "Netflix"
    },
@@ -840,31 +422,6 @@
     "kind": "series",
     "tvm": 4.7,
     "platform": "Hulu"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Hunting Alice Bell",
-   "tvmaze_id": 86963,
-   "imdb_id": "tt37253101",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/649/1624411.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/649/1624411.jpg",
-   "genres": [
-    "Crime",
-    "Thriller"
-   ],
-   "season": 1,
-   "latest": "2026-11-11",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Alice Bell is a former nurse, and also the lover, and accomplice, of a notorious anaesthetist serial killer. She is presently living in Britain under a new identity. When, online, Fran Da Silva is accused of being Alice Bell, her happy family life implodes in a wave of mob hate. Then she discovers she's not the only woman to suffer this fate. Fran and the other accused women band together to fight back and clear their names. But as they battle to prove their innocence, what if one of the group is lying - and is the real Alice Bell…?",
-   "url": "https://www.justwatch.com/ch/Suche?q=Hunting%20Alice%20Bell",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.8,
-    "platform": "Channel 4"
    },
    "votes": 0
   },
@@ -1047,6 +604,109 @@
    "votes": 0
   },
   {
+   "title": "Tulsa King",
+   "tvmaze_id": 59344,
+   "imdb_id": "tt16358384",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615902.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615902.jpg",
+   "genres": [
+    "Drama",
+    "Comedy",
+    "Crime"
+   ],
+   "season": 4,
+   "latest": "2026-11-13",
+   "next": "2026-11-20",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Tulsa King follows New York mafia capo Dwight \"The General\" Manfredi, just after he is released from prison after 25 years and unceremoniously exiled by his boss to set up shop in Tulsa, Oklahoma. Realizing that his mob family may not have his best interests in mind, Dwight slowly builds a \"crew\" from a group of unlikely characters, to help him establish a new criminal empire in a place that, to him, might as well be another planet.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Tulsa%20King",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.6,
+    "platform": "Paramount+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Nocturne",
+   "tvmaze_id": 66811,
+   "imdb_id": "tt26598805",
+   "platform": "Apple TV+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609134.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609134.jpg",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Thriller"
+   ],
+   "season": 1,
+   "latest": "2026-11-13",
+   "next": "2026-11-20",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Nocturne tells the story of Jonah Lynn, an ex-soldier turned homicide detective who, tired of working the tough streets of Philadelphia, moves to a small town in Western Pennsylvania for a quiet life. But, as the town and his family come under attack from the diabolically cunning serial killer Jurek Walter, Jonah must protect all that he holds dear. When the desperate search for Jurek's last missing victim forces Jonah to send his adopted daughter, FBI Agent Saga Bauer, up against Jurek, how far will Jonah go?",
+   "url": "https://www.justwatch.com/ch/Suche?q=Nocturne",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.7,
+    "platform": "Apple TV+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "MobLand",
+   "tvmaze_id": 75026,
+   "imdb_id": "tt31510819",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/641/1604671.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/641/1604671.jpg",
+   "genres": [
+    "Drama",
+    "Crime"
+   ],
+   "season": 2,
+   "latest": "2026-11-13",
+   "next": "2026-11-20",
+   "premiere": false,
+   "isNew": false,
+   "summary": "With the most powerful clients in Europe, MobLand will see family fortunes and reputations at risk, odd alliances unfold, and betrayal around every corner; and while the family might be London's most elite fixers today, the nature of their business means there is no guarantee what's in store tomorrow.MobLand follows two generations of gangsters, the businesses they run, the complex relationships they weave and the man they call upon to fix their problem.",
+   "url": "https://www.justwatch.com/ch/Suche?q=MobLand",
+   "ext": {
+    "kind": "series",
+    "tvm": 8.1,
+    "platform": "Paramount+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Dexter: Resurrection",
+   "tvmaze_id": 78665,
+   "imdb_id": "tt33043892",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/649/1623432.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/649/1623432.jpg",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Mystery"
+   ],
+   "season": 2,
+   "latest": "2026-11-13",
+   "next": "2026-11-20",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Dexter Morgan awakens from a coma and sets out for New York City, determined to find Harrison and make things right. But when Miami Metro's Angel Batista arrives with questions, Dexter realizes his past is catching up to him fast.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Dexter%3A%20Resurrection",
+   "ext": {
+    "kind": "series",
+    "tvm": 8.4,
+    "platform": "Paramount+"
+   },
+   "votes": 0
+  },
+  {
    "title": "12 12 12",
    "tvmaze_id": 84261,
    "imdb_id": "tt32375763",
@@ -1069,6 +729,32 @@
     "kind": "series",
     "tvm": 4.6,
     "platform": "Apple TV+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "4 Blocks Zero",
+   "tvmaze_id": 89896,
+   "imdb_id": "tt39379365",
+   "platform": "HBO Max",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609928.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609928.jpg",
+   "genres": [
+    "Action",
+    "Crime",
+    "Thriller"
+   ],
+   "season": 1,
+   "latest": "2026-11-13",
+   "next": null,
+   "premiere": false,
+   "isNew": false,
+   "summary": "The prequel to the award-winning gangster drama ‘4 Blocks' tells the story of the Hamadys in 1990s Berlin: having fled Lebanon and only accepted as tolerated refugees in Germany, they struggle to gain a foothold in their new home. Who are they, how did the family become the most influential clan in the city, and how did Ali eventually become Toni?",
+   "url": "https://www.justwatch.com/ch/Suche?q=4%20Blocks%20Zero",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "HBO Max"
    },
    "votes": 0
   },
@@ -1171,28 +857,6 @@
    "votes": 0
   },
   {
-   "title": "Tech Now",
-   "tvmaze_id": 84203,
-   "imdb_id": null,
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/564/1411802.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/564/1411802.jpg",
-   "genres": [],
-   "season": 2026,
-   "latest": "2026-11-14",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "Tech Now explores the latest innovation and technology shaping our lives. Bringing you the inside track on global trends and advancements happening in the tech space today - from AI and robotics, to health, climate, transport and gaming.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Tech%20Now",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "BBC"
-   },
-   "votes": 0
-  },
-  {
    "title": "I Am",
    "tvmaze_id": 43081,
    "imdb_id": "tt9165134",
@@ -1287,30 +951,6 @@
     "kind": "series",
     "tvm": null,
     "platform": "Netflix"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Bill's Included",
-   "tvmaze_id": 91004,
-   "imdb_id": "tt39276740",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/649/1624412.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/649/1624412.jpg",
-   "genres": [
-    "Comedy"
-   ],
-   "season": 1,
-   "latest": null,
-   "next": "2026-11-20",
-   "premiere": true,
-   "isNew": true,
-   "summary": "Bill's Included follows Bill Beam, a well meaning but over enthusiastic divorcee who rents his spare rooms to students to stay afloat.As Bill tries - and often fails to be both responsible landlord and honorary housemate, he and his mismatched lodgers muddle through chaos, growing pains and unexpected friendships.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Bill%27s%20Included",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1487,30 +1127,6 @@
    "votes": 0
   },
   {
-   "title": "Dig",
-   "tvmaze_id": 84536,
-   "imdb_id": "tt36843594",
-   "platform": "Peacock",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/648/1620742.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/648/1620742.jpg",
-   "genres": [
-    "Comedy"
-   ],
-   "season": 1,
-   "latest": null,
-   "next": "2026-11-23",
-   "premiere": true,
-   "isNew": true,
-   "summary": "Dig follows a team of dedicated archaeologists (and less-dedicated college students) who spend their summer working on a dig site in Greece. Their discovery of a rare artifact sends them on the adventure of a lifetime.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Dig",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Peacock"
-   },
-   "votes": 0
-  },
-  {
    "title": "Blade Runner 2099",
    "tvmaze_id": 60458,
    "imdb_id": "tt18224594",
@@ -1532,28 +1148,6 @@
     "kind": "series",
     "tvm": null,
     "platform": "Prime Video"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Mickey Mouse Specials",
-   "tvmaze_id": 70700,
-   "imdb_id": null,
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/473/1183492.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/473/1183492.jpg",
-   "genres": [],
-   "season": 2026,
-   "latest": null,
-   "next": "2026-11-26",
-   "premiere": true,
-   "isNew": false,
-   "summary": "A series of special animations featuring Mickey Mouse and his friends.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Mickey%20Mouse%20Specials",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -1580,6 +1174,104 @@
     "kind": "series",
     "tvm": 6,
     "platform": "Netflix"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Dexter Procter: The 10-Year-Old Doctor ",
+   "tvmaze_id": 86591,
+   "imdb_id": "tt37974449",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/600/1500053.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/600/1500053.jpg",
+   "genres": [
+    "Comedy",
+    "Children",
+    "Medical"
+   ],
+   "season": 1,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Dexter Procter: The 10-Year-Old Doctor tells the story of Dexter Procter, a 10-year-old paediatrician trying to solve – frequently disgusting – medical mysteries, save his job, and find his place in the world.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Dexter%20Procter%3A%20The%2010-Year-Old%20Doctor%E2%80%AF",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Batwheels",
+   "tvmaze_id": 51042,
+   "imdb_id": "tt13292830",
+   "platform": "HBO Max",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/607/1517673.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/607/1517673.jpg",
+   "genres": [
+    "Action",
+    "Adventure",
+    "Science-Fiction"
+   ],
+   "season": 4,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Bam, Redbird, Bibi, Batwing, and Buff are thrust into hilarious hijinks and draw-dropping action as they learn important lessons about teamwork, friendship, and so much more while helping Batman, Robin, and Batgirl defend Gotham.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Batwheels",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.6,
+    "platform": "HBO Max"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Mojo Swoptops",
+   "tvmaze_id": 72011,
+   "imdb_id": "tt33781802",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/538/1345788.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/538/1345788.jpg",
+   "genres": [],
+   "season": 2,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Pre-schoolers will also get to meet Mojo Swoptops, the little truck that can SWOP her TOP! A vehicle with a difference using her ‘cardrobe' of swoptops, Mojo finds creative solutions to the problems facing her local community, the town of Swopsea.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Mojo%20Swoptops",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Waffle's After School Club",
+   "tvmaze_id": 86711,
+   "imdb_id": "tt38351538",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/585/1463056.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/585/1463056.jpg",
+   "genres": [
+    "Children"
+   ],
+   "season": 2,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Sitcom fun with Waffle the Wonder Dog at after-school club. Mr Brooklyn-Bell is in charge, but with Waffle, Mrs Hobbs and George in the mix, there's plenty of mayhem, mess and laughter.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Waffle%27s%20After%20School%20Club",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
    },
    "votes": 0
   }
