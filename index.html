@@ -349,17 +349,17 @@ const filmKey = r => r.imdb_id || ((r.title||'').trim().toLowerCase()+'|'+(r.yea
 const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now()+''+Math.random());
 const posterStyle = p => p && p !== 'N/A' ? `style="background-image:url('${esc(p)}')"` : '';
 const ring = (n,cls='') => `<div class="ring ${cls}" style="--v:${n*10};--c:${col(n)}"><span>${f1(n)}</span></div>`;
-// Haptisches Feedback: Android über vibrate, iPhone (ab iOS 18) über einen versteckten Systemschalter, dessen Umschalten Safari mit einem Tick quittiert
+// Haptisches Feedback: iPhone (ab iOS 18) über einen Systemschalter, dessen Umschalten Safari mit einem Tick quittiert; Android über vibrate
+const IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
 const tick = (() => {
-  let lbl = null, last = 0;
+  let last = 0;
   return () => {
-    const now = performance.now(); if(now - last < 35) return; last = now;
+    const now = performance.now(); if(now - last < 30) return; last = now;
     try{
-      if(navigator.vibrate){ navigator.vibrate(8); return; }
-      if(!lbl){ lbl = document.createElement('label'); lbl.setAttribute('aria-hidden','true');
-        lbl.style.cssText = 'position:fixed;left:-100px;top:0;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden';
-        const c = document.createElement('input'); c.type = 'checkbox'; c.setAttribute('switch',''); c.tabIndex = -1; lbl.appendChild(c); document.body.appendChild(lbl); }
-      lbl.click();
+      if(!IOS && navigator.vibrate){ navigator.vibrate(8); return; }
+      const lbl = document.createElement('label'); lbl.ariaHidden = 'true'; lbl.style.display = 'none';
+      const c = document.createElement('input'); c.type = 'checkbox'; c.setAttribute('switch', ''); lbl.appendChild(c);
+      document.head.appendChild(lbl); lbl.click(); lbl.remove();
     }catch(e){}
   };
 })();
@@ -1320,7 +1320,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '41';
+const APP_VERSION = '42';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
