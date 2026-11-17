@@ -236,6 +236,13 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .pcard .poster img{width:100%;height:100%;object-fit:cover;display:block}
 #neu section{content-visibility:auto;contain-intrinsic-size:auto 250px}
 #neu section.genre-sec{content-visibility:visible}
+#neu section.watch-sec{content-visibility:visible}
+.watch-empty{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:18px;text-align:left;color:var(--t2);font-size:15px;line-height:1.35}
+.watch-empty svg{width:24px;height:24px;flex:none;color:var(--tint)}
+.wbtn{display:flex;align-items:center;justify-content:center;gap:8px}
+.wbtn svg{width:20px;height:20px}
+.pick{display:flex;flex-direction:column;align-items:center}
+.pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
 .pgrid .pcard{width:auto}
 .pgrid .pcard .poster{width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:2/3}
@@ -366,6 +373,8 @@ const tick = (() => {
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2800); }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('Script konnte nicht geladen werden')); document.head.appendChild(s); }); }
 const I = {
+  bookmark:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4-6.5 4v-16a1 1 0 0 1 1-1z"/></svg>',
+  check:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   film:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4"/></svg>',
   people:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17.5 14.5c2.2.3 3.6 1.9 4 4.5"/></svg>',
   star:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg>',
@@ -547,7 +556,10 @@ const Local = {
   async addFriend(n){ throw new Error('Im Demo-Modus nicht möglich'); },
   async acceptFriend(){}, async removeFriend(){},
   async isDev(){ return false; }, async devUsers(){ return []; },
-  async savePush(){ throw new Error('Im Demo-Modus nicht möglich'); }, async removePush(){}
+  async savePush(){ throw new Error('Im Demo-Modus nicht möglich'); }, async removePush(){},
+  async watchList(){ return this.data().watch || []; },
+  async watchAdd(w){ const d=this.data(); d.watch=(d.watch||[]).filter(x=>x.key!==w.key); d.watch.unshift({...w,created_at:new Date().toISOString()}); this.save_(); },
+  async watchRemove(key){ const d=this.data(); d.watch=(d.watch||[]).filter(x=>x.key!==key); this.save_(); }
 };
 
 /* ================= Datenschicht: Supabase (mit Login) ================= */
@@ -598,7 +610,10 @@ const Remote = {
   async isDev(){ const {data,error}=await this.sb.rpc('is_dev'); return !error && data===true; },
   async devUsers(){ const {data,error}=await this.sb.rpc('dev_users'); if(error) throw error; return data; },
   async savePush(sub){ const j=sub.toJSON(); const {error}=await this.sb.from('push_subscriptions').upsert({endpoint:j.endpoint,user_id:state.user.id,p256dh:j.keys.p256dh,auth:j.keys.auth}); if(error) throw error; },
-  async removePush(endpoint){ await this.sb.from('push_subscriptions').delete().eq('endpoint',endpoint); }
+  async removePush(endpoint){ await this.sb.from('push_subscriptions').delete().eq('endpoint',endpoint); },
+  async watchList(){ const {data,error}=await this.sb.from('watchlist').select('*').order('created_at',{ascending:false}); if(error) throw error; return data; },
+  async watchAdd(w){ const {error}=await this.sb.from('watchlist').upsert({user_id:state.user.id,key:w.key,title:w.title,year:w.year||null,imdb_id:w.imdb_id||null,poster:w.poster||null,ext:w.ext||null},{onConflict:'user_id,key'}); if(error) throw error; },
+  async watchRemove(key){ const {error}=await this.sb.from('watchlist').delete().eq('user_id',state.user.id).eq('key',key); if(error) throw error; }
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
@@ -705,7 +720,7 @@ function bindBanner(){
 
 /* ================= Hauptansicht ================= */
 async function refresh(){
-  try{ const [r,f,dev] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev]); state.ratings=r; state.fr=f; state.isDev=dev;
+  try{ const [r,f,dev,w] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev, DB.watchList().catch(()=>state.watch||[])]); state.ratings=r; state.fr=f; state.isDev=dev; state.watch=w;
     state.friendIds = new Set(f.filter(x=>x.status==='accepted').map(x=>x.other?.id)); }
   catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
   render(); updateBadge(); setTimeout(healPosters, 1500); syncPush();
@@ -855,27 +870,81 @@ function pcard(m){
   const src = m.poster ? m.poster.replace('/lg/','/md/') : '';
   return `<button class="pcard" data-kid="${m._i}"><div class="poster">${src?`<img src="${esc(src)}" loading="lazy" decoding="async" alt="">`:I.film}${badgeFor(m)}${a!=null?`<div class="pring">${ring(a,'sm')}</div>`:''}</div><div class="pt">${esc(m.title)}</div><div class="pm">${esc(sub)}</div></button>`;
 }
+/* ================= Merkliste ================= */
+const watchItem = m => ({ key:filmKey(m), title:m.title, year:m.year||null, imdb_id:m.imdb_id||null, poster:m.poster||null, ext:m.ext||null });
+const inWatch = m => (state.watch||[]).some(w=>w.key===filmKey(m));
+async function toggleWatch(m, btn){
+  const w = watchItem(m), on = inWatch(m);
+  tick();
+  state.watch = on ? state.watch.filter(x=>x.key!==w.key) : [{...w, created_at:new Date().toISOString()}, ...(state.watch||[])];
+  if(btn) setWatchBtn(btn, !on);
+  state.neuSig = null; if(state.tab==='neu') render();
+  try{ on ? await DB.watchRemove(w.key) : await DB.watchAdd(w); toast(on ? 'Von der Merkliste entfernt' : 'Auf der Merkliste'); }
+  catch(e){ toast('Fehler: '+e.message); state.watch = await DB.watchList().catch(()=>state.watch); state.neuSig=null; if(state.tab==='neu') render(); }
+}
+function setWatchBtn(b, on){ b.innerHTML = on ? `${I.check}Auf der Merkliste` : `${I.bookmark}Auf die Merkliste`; b.classList.toggle('on', on); }
+function watchBtn(id){ return `<button class="btn sec2 wbtn" id="${id}"></button>`; }
+function wcard(w){
+  const src = w.poster ? w.poster.replace('/lg/','/md/') : '';
+  const sub = [w.year, (w.ext?.genre||'').split(',')[0]].filter(Boolean).join(' · ');
+  return `<button class="pcard" data-wk="${esc(w.key)}"><div class="poster">${src?`<img src="${esc(src)}" loading="lazy" decoding="async" alt="">`:I.film}</div><div class="pt">${esc(w.title)}</div><div class="pm">${esc(sub)}</div></button>`;
+}
+function watchRow(kind){
+  const list = (state.watch||[]).filter(w=>(w.ext?.kind||'movie')===kind);
+  return `<section class="watch-sec"><h3 class="rowh">Merkliste${list.length?` <span style="opacity:.45;font-weight:600">${list.length}</span>`:''}</h3>
+    ${list.length ? `<div class="rail">${list.map(wcard).join('')}</div>`
+      : `<button class="watch-empty glass" id="wadd">${I.bookmark}<span>Noch nichts gemerkt. Tippe auf ${kind==='series'?'eine Serie':'einen Film'} oder aufs Plus, um ${kind==='series'?'Serien':'Filme'} für später zu merken.</span></button>`}</section>`;
+}
+function bindWatch(root){
+  root.querySelectorAll('[data-wk]').forEach(c=>c.onclick=()=>{ const w=(state.watch||[]).find(x=>x.key===c.dataset.wk); if(w) openWatch(w); });
+  const e=root.querySelector('#wadd'); if(e) e.onclick=()=>{ tick(); openForm(); };
+}
+function openWatch(w){
+  const e=w.ext||{}, fr=friendsFor(w), others=fr.filter(r=>r.user_id!==state.user.id);
+  const a = fr.length ? Math.round(fr.reduce((s,r)=>s+avg(r),0)/fr.length*10)/10 : null;
+  openSheet({ body:`
+    <div class="hero">
+      <div class="hero-bg" ${posterStyle(w.poster)}></div>
+      <div class="hero-in">
+        <div class="poster" ${posterStyle(w.poster)}>${w.poster?'':I.film}</div>
+        <h2>${esc(w.title)}</h2>
+        <div class="meta">${[e.kind==='series'?'Serie':'Film', w.year, e.platform, e.genre, e.runtime].filter(x=>x&&x!=='N/A').map(esc).join(' · ')}</div>
+        ${e.director&&e.director!=='N/A'?`<div class="meta">Regie: ${esc(e.director)}</div>`:''}
+        ${a!=null?`<div class="scorerow">${ring(a,'xl')}<div class="lbl"><b>Deine Freunde</b>${fr.length} Bewertung${fr.length>1?'en':''}</div></div>`:''}
+        ${extPills(e)}
+      </div>
+    </div>
+    <button class="btn pri" id="wr" style="margin-top:20px">Jetzt bewerten</button>
+    <button class="btn sec2" id="wx">Von der Merkliste entfernen</button>
+    ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
+      <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
+  `});
+  $('#wr').onclick=()=>openForm({title:w.title, year:w.year, poster:w.poster, imdb_id:w.imdb_id, ext:e});
+  $('#wx').onclick=()=>{ toggleWatch(w); closeSheet(); };
+}
+
 function row(title, list){ return list.length ? `<section><h3 class="rowh">${esc(title)}</h3><div class="rail">${list.map(pcard).join('')}</div></section>` : ''; }
 
 function renderNeu(){
   const root = $('#neu'); const k = state.kino;
   const NK = state.neuKind||'movie'; const sd = state.series;
-  const sig = [NK, sd?.updated, sd?.err, k?.updated, k?.err, state.ratings.length, state.ratings.reduce((a,r)=>a+(+r.overall||0),0), state.friendIds?.size, state.user?.username].join('|');
+  const sig = [NK, sd?.updated, sd?.err, k?.updated, k?.err, state.ratings.length, state.ratings.reduce((a,r)=>a+(+r.overall||0),0), state.friendIds?.size, state.user?.username, (state.watch||[]).map(w=>w.key).join(',')].join('|');
   if(root.innerHTML && state.neuSig===sig) return;
   const head = `<div class="hdr"><h1 class="large">Neu</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
-    <div class="seg" id="neukind" style="margin-bottom:14px"><i class="seg-ind" style="transform:translateX(${NK==='series'?'100%':'0'})"></i><button data-k="movie" class="${NK==='movie'?'on':''}">Filme</button><button data-k="series" class="${NK==='series'?'on':''}">Serien</button></div>`;
+    <div class="seg" id="neukind" style="margin-bottom:14px"><i class="seg-ind" style="transform:translateX(${NK==='series'?'100%':'0'})"></i><button data-k="movie" class="${NK==='movie'?'on':''}">Filme</button><button data-k="series" class="${NK==='series'?'on':''}">Serien</button></div>
+    ${watchRow(NK)}`;
   const bindHead = () => { root.querySelector('.prof').onclick=openProfile;
     root.querySelectorAll('#neukind button').forEach(b=>b.onclick=()=>{ if((state.neuKind||'movie')!==b.dataset.k){ state.neuKind=b.dataset.k; tick();
       root.querySelector('#neukind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(()=>{ render(); window.scrollTo({top:0}); },180); } }); };
   if(NK==='series'){
     if(!sd) loadSeries().then(()=>{ if(state.tab==='neu') render(); });
     root.innerHTML = head + installBanner() + seriesBody();
-    bindHead(); bindBanner(); updateBadge(); bindSeries(root); state.neuSig = sig; return;
+    bindHead(); bindBanner(); updateBadge(); bindSeries(root); bindWatch(root); state.neuSig = sig; return;
   }
   if(!k) loadKino().then(()=>{ if(state.tab==='neu') render(); });
   if(!k || k.err){
     root.innerHTML = head + `<div class="empty">${!k?'Lade Kinoprogramm…':I.pop+'Das Kinoprogramm konnte nicht geladen werden.'}</div>`;
-    bindHead(); return;
+    bindHead(); bindWatch(root); return;
   }
   const all = k.all.map((m,i)=>({...m,_i:i}));
   const now = all.filter(m=>!m._soon), soon = all.filter(m=>m._soon);
@@ -908,7 +977,7 @@ function renderNeu(){
       <div class="chips" id="gchips">${genreList.map(([g,l])=>`<button class="chip ${g===gSel?'on':''}" data-g="${esc(g)}">${esc(g)} <span style="opacity:.55">${l.length}</span></button>`).join('')}</div>
       <div class="pgrid" id="ggrid">${(genres[gSel]||[]).map(pcard).join('')}</div></section>` : ''}
     <div class="hint" style="text-align:center;margin-top:26px">Programm von ${esc(k.source||'cineman.ch')}${upd?', aktualisiert am '+esc(upd):''}</div>`;
-  bindHead(); bindBanner(); updateBadge();
+  bindHead(); bindBanner(); updateBadge(); bindWatch(root);
   root.querySelectorAll('#gchips .chip').forEach(c=>c.onclick=()=>{ state.genre=c.dataset.g; tick();
     root.querySelectorAll('#gchips .chip').forEach(x=>x.classList.toggle('on',x===c));
     const g=$('#ggrid'); g.innerHTML=(genres[state.genre]||[]).map(pcard).join('');
@@ -993,13 +1062,15 @@ function openSeries(m){
       </div>
     </div>
     ${mine ? `<button class="btn sec2" id="sd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="sr2" style="margin-top:20px">Serie bewerten</button>`}
+    ${mine?'':watchBtn('swl')}
     <a class="btn sec2" href="${esc(m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Wo streamen? (JustWatch)</a>
     ${m.summary?`<div class="sec">Inhalt (Englisch)</div><div class="grp"><div class="cell" style="font-size:15px;line-height:1.45">${esc(m.summary)}</div></div>`:''}
     ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   if(mine) $('#sd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
-  else $('#sr2').onclick=()=>openForm({title:m.title, year:null, poster:m.poster_l||m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'series'}});
+  else { const it={title:m.title, year:null, poster:m.poster_l||m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'series', platform:m.platform}};
+    $('#sr2').onclick=()=>openForm(it); const b=$('#swl'); setWatchBtn(b, inWatch(it)); b.onclick=()=>toggleWatch(it, b); }
 }
 
 function openKino(m){
@@ -1019,6 +1090,7 @@ function openKino(m){
       </div>
     </div>
     ${mine ? `<button class="btn sec2" id="kd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="kr" style="margin-top:20px">Film bewerten</button>`}
+    ${mine?'':watchBtn('kwl')}
     <a class="btn sec2" href="${esc(m.url||'https://www.cineman.ch')}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Kinoprogramm & Tickets${(m.url||'').includes('cineman')?' (Cineman)':''}</a>
     ${m.synopsis && !/plot unknown|^n\/a$/i.test(m.synopsis)?`<div class="sec">Inhalt</div><div class="grp"><div class="cell" style="font-size:15px;line-height:1.45">${esc(m.synopsis)}</div></div>`:''}
     <div class="sec">Details</div>
@@ -1031,7 +1103,8 @@ function openKino(m){
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   if(mine) $('#kd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
-  else $('#kr').onclick=()=>openForm({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), formats:m.formats||[]}});
+  else { const it={title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'movie', genre:genresDe(m).join(', '), formats:m.formats||[]}};
+    $('#kr').onclick=()=>openForm(it); const b=$('#kwl'); setWatchBtn(b, inWatch(it)); b.onclick=()=>toggleWatch(it, b); }
 }
 
 /* ================= Push-Mitteilungen ================= */
@@ -1182,7 +1255,7 @@ function openForm(r){
     void wz.offsetWidth;
 
     if(st==='film'){
-      wz.innerHTML = `<h2 class="wz-h">Was hast du gesehen?</h2>
+      wz.innerHTML = `<h2 class="wz-h">${r ? 'Was hast du gesehen?' : 'Film oder Serie suchen'}</h2>
         <label class="search" style="margin-top:18px">${I.search}<input id="fs" type="search" placeholder="Film oder Serie suchen" enterkeyhint="search" autocomplete="off" autocorrect="off"></label>
         <div class="grp" id="sr" style="margin-top:12px;display:none"></div>
         <div style="text-align:center;margin-top:18px"><button class="link" id="man">Manuell eintragen</button></div>`;
@@ -1204,10 +1277,27 @@ function openForm(r){
               if(d.ext?.kind==='series' || b.dataset.tvm){ const t=await Tvm.lookup(d.imdb_id?{imdb:d.imdb_id}:{id:b.dataset.tvm});
                 if(t){ d.poster=t.PosterL||d.poster; d.ext={...(d.ext||{}), kind:'series', tvm:t.tvm, platform:t.platform}; d.year=d.year||parseInt(t.Year)||null; if(!d.imdb_id && t.imdbID) d.imdb_id=t.imdbID; } }
               const dup=state.ratings.find(x=>x.user_id===state.user.id&&filmKey(x)===filmKey(d));
-              if(dup && !isEdit){ Object.assign(d, {...dup, poster:d.poster||dup.poster, ext:d.ext||dup.ext}); toast('Du hast diesen Film schon bewertet, du bearbeitest ihn jetzt'); }
-              go(1);
+              if(dup && !isEdit){ Object.assign(d, {...dup, poster:d.poster||dup.poster, ext:d.ext||dup.ext}); toast('Du hast diesen Film schon bewertet, du bearbeitest ihn jetzt'); return go(1); }
+              if(r) return go(1);
+              choose();
             });
             if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,8).forEach(async m=>{ const p = m.kind==='series' ? (await Tvm.lookup({imdb:m.imdbID}))?.Poster || await Finder.poster(m.imdbID) : await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
+      };
+      const choose=()=>{
+        const e=d.ext||{}, on=inWatch(d);
+        wz.innerHTML = `<div class="pick">
+            <div class="poster" ${posterStyle(d.poster)}>${d.poster?'':I.film}</div>
+            <h2 class="wz-h" style="margin-top:16px">${esc(d.title)}</h2>
+            <div class="hint" style="text-align:center;margin-top:4px">${[e.kind==='series'?'Serie':'Film', d.year, e.genre].filter(x=>x&&x!=='N/A').map(esc).join(' · ')}</div>
+            ${extPills(e)}
+          </div>
+          <button class="btn pri" id="cr" style="margin-top:24px">Jetzt bewerten</button>
+          ${watchBtn('cw')}
+          <div style="text-align:center;margin-top:14px"><button class="link" id="cb">Andere Suche</button></div>`;
+        $('#cr').onclick=()=>go(1);
+        const b=$('#cw'); setWatchBtn(b, on);
+        b.onclick=async()=>{ await toggleWatch(d, b); if(!on) setTimeout(closeSheet, 450); };
+        $('#cb').onclick=()=>draw();
       };
       $('#man').onclick=()=>{
         wz.innerHTML = `<h2 class="wz-h">Film eintragen</h2>
@@ -1264,7 +1354,7 @@ function openForm(r){
     nx.onclick=async()=>{
       d.note=($('#fn').value||'').trim(); d.overall=avg(d);
       nx.disabled=true;
-      try{ await DB.save(d); closeSheet(); toast('Gespeichert'); state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); nx.disabled=false; }
+      try{ await DB.save(d); if(inWatch(d)){ await DB.watchRemove(filmKey(d)).catch(()=>{}); state.watch=state.watch.filter(w=>w.key!==filmKey(d)); } closeSheet(); toast('Gespeichert'); state.tab='mine'; await refresh(); }catch(e){ toast('Fehler: '+e.message); nx.disabled=false; }
     };
     if(d.id) $('#dl').onclick=async()=>{ try{ await DB.remove(d.id); closeSheet(); toast('Gelöscht'); await refresh(); }catch(e){ toast(e.message); } };
   }
@@ -1320,7 +1410,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '42';
+const APP_VERSION = '43';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
