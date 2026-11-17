@@ -9,13 +9,15 @@ self.addEventListener('fetch', e => {
 self.addEventListener('push', e => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (_) { d = { body: e.data && e.data.text() }; }
-  e.waitUntil(self.registration.showNotification(d.title || 'Screenreview', {
+  // Offene App sofort informieren, damit neue Empfehlungen ohne Neustart erscheinen
+  const tell = self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(cs => cs.forEach(c => c.postMessage({ type: 'push' })));
+  e.waitUntil(Promise.all([tell, self.registration.showNotification(d.title || 'Screenreview', {
     body: d.body || '',
     icon: 'icon-192.png?v=4',
     badge: 'icon-192.png?v=4',
-    tag: 'freunde',
+    tag: d.url && d.url.includes('empfehlung') ? 'empfehlung-' + Date.now() : 'freunde',
     data: { url: d.url || './' }
-  }));
+  })]));
 });
 
 self.addEventListener('notificationclick', e => {

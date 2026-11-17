@@ -286,6 +286,7 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 #prt>svg:last-child{color:var(--t3);transition:transform .2s}
 #prt.open>svg:last-child{transform:rotate(90deg)}
 #prt svg:first-child{color:var(--tint)}
+.pcard.recd .pm{color:var(--tint)}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
@@ -856,7 +857,8 @@ function render(){
   renderDock();
   const neu = state.tab==='neu';
   $('#neu').style.display = neu ? '' : 'none'; $('#app').style.display = neu ? 'none' : '';
-  if(neu) return renderNeu();
+  if(neu){ if(state._lastTab!=='neu') setTimeout(syncLive,0); state._lastTab='neu'; return renderNeu(); }
+  state._lastTab=state.tab;
   const me=state.user.id, top=state.tab==='top', K=state.kind||'movie';
   const kindOf = r => r?.ext?.kind==='series' ? 'series' : 'movie';
   const base = state.ratings.filter(r=>kindOf(r)===K);
@@ -1007,8 +1009,9 @@ function setWatchBtn(b, on){ b.innerHTML = on ? `${I.check}Auf der Merkliste` : 
 function watchBtn(id){ return `<button class="btn sec2 wbtn" id="${id}"></button>`; }
 function wcard(w){
   const src = w.poster ? w.poster.replace('/lg/','/md/') : '';
-  const sub = [w.year, (w.ext?.genre||'').split(',')[0]].filter(Boolean).join(' · ');
-  return `<button class="pcard" data-wk="${esc(w.key)}"><div class="poster">${src?`<img src="${esc(src)}" loading="lazy" decoding="async" alt="">`:I.film}</div><div class="pt">${esc(w.title)}</div><div class="pm">${esc(sub)}</div></button>`;
+  const rf = (w.ext?.recs||[]).map(r=>'@'+userName(r.from));
+  const sub = rf.length ? 'von '+rf.join(', ') : [w.year, (w.ext?.genre||'').split(',')[0]].filter(Boolean).join(' · ');
+  return `<button class="pcard${rf.length?' recd':''}" data-wk="${esc(w.key)}"><div class="poster">${src?`<img src="${esc(src)}" loading="lazy" decoding="async" alt="">`:I.film}</div><div class="pt">${esc(w.title)}</div><div class="pm">${esc(sub)}</div></button>`;
 }
 const userName = id => (state.fr||[]).find(f=>f.other?.id===id)?.other?.username || 'jemand';
 function recBlock(kind){
@@ -1025,9 +1028,12 @@ function recBlock(kind){
 async function answerRec(id, yes){
   const x=(state.recs||[]).find(r=>r.id===id); if(!x) return;
   tick(); state.recs=state.recs.filter(r=>r.id!==id);
-  if(yes && !inWatch(x)) state.watch=[{...watchItem(x), created_at:new Date().toISOString()}, ...(state.watch||[])];
+  const old=(state.watch||[]).find(w=>w.key===x.key);
+  const recs=[...(old?.ext?.recs||[]).filter(r=>r.from!==x.from_user), {from:x.from_user, msg:x.message||null}];
+  const wi={...watchItem(x), poster:old?.poster||x.poster, ext:{...(old?.ext||x.ext||{}), recs}};
+  if(yes) state.watch=[{...wi, created_at:old?.created_at||new Date().toISOString()}, ...(state.watch||[]).filter(w=>w.key!==x.key)];
   state.neuSig=null; if(state.tab==='neu') render();
-  try{ if(yes && !(await DB.watchList()).some(w=>w.key===x.key)) await DB.watchAdd(watchItem(x)); await DB.recSet(id, yes?'accepted':'declined'); toast(yes?'Auf der Merkliste':'Empfehlung abgelehnt'); }
+  try{ if(yes) await DB.watchAdd(wi); await DB.recSet(id, yes?'accepted':'declined'); toast(yes?'Auf der Merkliste':'Empfehlung abgelehnt'); }
   catch(e){ toast('Fehler: '+e.message); refresh(); }
 }
 function watchRow(kind){
@@ -1092,6 +1098,7 @@ function openWatch(w){
         ${extPills(e)}
       </div>
     </div>
+    ${(e.recs||[]).length?`<div class="sec">Empfohlen von</div><div class="grp">${e.recs.map(r=>`<div class="cell"><b>@${esc(userName(r.from))}</b>${r.msg?`<div class="note">${esc(r.msg)}</div>`:''}</div>`).join('')}</div>`:''}
     <button class="btn pri" id="wr" style="margin-top:20px">Jetzt bewerten</button>
     <button class="btn sec2" id="wx">Von der Merkliste entfernen</button>
     ${recBtn('wrec')}
@@ -1680,7 +1687,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '51';
+const APP_VERSION = '52';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
@@ -1689,7 +1696,27 @@ async function checkUpdate(){
   }catch(e){}
 }
 checkUpdate();
-document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') checkUpdate(); });
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible'){ checkUpdate(); syncLive(); } });
+// Empfehlungen und Freundschaften laufend nachladen: beim Zurückkehren in die App, beim Wechsel in den Neu-Tab, bei einer Push-Mitteilung und jede Minute
+let syncing=false, lastSync=0;
+async function syncLive(force){
+  if(!state.user || DB.mode!=='online' || syncing || (!force && Date.now()-lastSync<5000)) return;
+  syncing=true; lastSync=Date.now();
+  try{
+    const [rc,f]=await Promise.all([DB.recList(), DB.friendships()]);
+    const sig=x=>JSON.stringify(x.map(r=>r.id+(r.status||'')));
+    const changed = sig(rc)!==sig(state.recs||[]) || sig(f)!==sig(state.fr||[]);
+    if(changed){
+      const newFriend = f.some(x=>x.status==='accepted' && !state.friendIds?.has(x.other?.id));
+      if(newFriend){ syncing=false; return refresh(); }
+      state.recs=rc; state.fr=f; state.neuSig=null; updateBadge();
+      if(!$('#sheet').classList.contains('open')) render();
+    }
+  }catch(e){}
+  syncing=false;
+}
+setInterval(()=>{ if(document.visibilityState==='visible') syncLive(); }, 60000);
+navigator.serviceWorker?.addEventListener('message', e => { if(e.data?.type==='push') syncLive(true); });
 
 /* ================= Start ================= */
 (async()=>{
