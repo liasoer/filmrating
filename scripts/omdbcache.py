@@ -1,10 +1,12 @@
 """Zwischenspeicher für OMDb-Abfragen (cache/omdb.json), damit das Tageslimit von 1000 Abfragen reicht.
-Erfolgreiche Antworten gelten 3 Tage, «nicht gefunden» 7 Tage. Bei erreichtem Limit wird nicht weiter abgefragt."""
+Gefundene Filme bleiben dauerhaft gespeichert (Poster, IMDb-Nummer usw.), nur die Wertungen werden einmal pro Woche aufgefrischt.
+«Nicht gefunden» gilt 7 Tage. Bei erreichtem Limit wird nicht weiter abgefragt und der gespeicherte Stand verwendet."""
 import json, os, time, urllib.request, urllib.parse
 
 PATH = "cache/omdb.json"
 KEY = os.environ.get("OMDB_KEY", "9a64d183")
-TTL_OK, TTL_MISS = 3 * 86400, 7 * 86400
+TTL_OK, TTL_MISS = 7 * 86400, 7 * 86400
+FIELDS = ("Title", "Year", "imdbID", "Type", "Poster", "imdbRating", "imdbVotes", "Metascore", "Ratings", "Genre", "Director", "Runtime", "totalSeasons", "Plot", "Response")
 _cache = None
 _limit = False
 stats = {"hit": 0, "call": 0}
@@ -20,7 +22,8 @@ def save():
     if _cache is None: return
     os.makedirs("cache", exist_ok=True)
     now = time.time()
-    keep = {k: v for k, v in _cache.items() if now - v.get("ts", 0) < TTL_MISS}
+    # Gefundene Einträge nie löschen, nur «nicht gefunden» nach 7 Tagen
+    keep = {k: v for k, v in _cache.items() if v.get("d") or now - v.get("ts", 0) < TTL_MISS}
     json.dump(keep, open(PATH, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 
 def get(params):
@@ -42,6 +45,11 @@ def get(params):
     if d.get("Response") != "True" and "limit" in (d.get("Error") or "").lower():
         _limit = True
         return e["d"] if e else None
-    d = d if d.get("Response") == "True" else None
+    if d.get("Response") == "True":
+        d = {k: d[k] for k in FIELDS if k in d}
+    elif e and e.get("d"):
+        return e["d"]  # vorher gefunden: alten Stand behalten
+    else:
+        d = None
     c[key] = {"ts": time.time(), "d": d}
     return d
