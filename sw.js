@@ -24,7 +24,7 @@ self.addEventListener('notificationclick', e => {
   const url = new URL(raw, self.registration.scope).href;
   e.waitUntil((async () => {
     const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    for (const c of all) { if ('focus' in c) { c.postMessage({ type: 'open-profile' }); return c.focus(); } }
+    for (const c of all) { if ('focus' in c) { c.postMessage({ type: 'open-profile', url }); return c.focus(); } }
     return self.clients.openWindow(url);
   })());
 });

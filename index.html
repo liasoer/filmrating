@@ -256,6 +256,33 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .fpick{width:100%}
 .fpick>svg{color:var(--tint);flex:none}
 .flink{cursor:pointer}
+.recs{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.rec{display:flex;align-items:center;gap:8px;padding:8px 10px 8px 8px;border-radius:16px}
+.rec-main{display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-align:left}
+.rec .poster{width:46px;height:69px;flex:none;border-radius:8px;background:var(--grp) center/cover;display:grid;place-items:center}
+.rec .info{min-width:0}
+.rec .title{font-weight:650;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-msg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-style:italic}
+.rec-act{display:flex;gap:8px;flex:none}
+.rec-act button{width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.rec-no{background:rgba(118,118,128,.24);color:var(--t2)}
+.rec-no svg{width:13px;height:13px}
+.rec-yes{background:var(--tint);color:#fff}
+.rec-yes svg{width:20px;height:20px}
+.rcheck{width:24px;height:24px;border-radius:50%;border:2px solid rgba(235,235,245,.3);display:grid;place-items:center;flex:none}
+.fpick.on .rcheck{background:var(--tint);border-color:var(--tint);color:#fff}
+.rcheck svg{width:15px;height:15px}
+.psl input[type=range]{width:100%;margin:10px 0 2px}
+.psl input.unset{opacity:.45}
+.pch{margin-top:0;flex-wrap:wrap;overflow:visible;margin-left:0;margin-right:0;padding:0}
+.pers{margin-top:12px;padding-top:12px;border-top:.5px solid var(--sep,rgba(84,84,88,.4))}
+.pers-h{font-size:13px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.3px}
+.pers-h span{text-transform:none;font-weight:400;letter-spacing:0}
+.pers-sl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:center;margin-top:8px;font-size:15px}
+.dots{display:flex;gap:5px}
+.dots i{width:9px;height:9px;border-radius:50%;background:rgba(118,118,128,.35)}
+.dots i.on{background:var(--tint)}
+.pers-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
@@ -576,7 +603,11 @@ const Local = {
   async savePush(){ throw new Error('Im Demo-Modus nicht möglich'); }, async removePush(){},
   async watchList(){ return this.data().watch || []; },
   async watchAdd(w){ const d=this.data(); d.watch=(d.watch||[]).filter(x=>x.key!==w.key); d.watch.unshift({...w,created_at:new Date().toISOString()}); this.save_(); },
-  async watchRemove(key){ const d=this.data(); d.watch=(d.watch||[]).filter(x=>x.key!==key); this.save_(); }
+  async watchRemove(key){ const d=this.data(); d.watch=(d.watch||[]).filter(x=>x.key!==key); this.save_(); },
+  async recList(){ const d=this.data(); if(!d.recs) d.recs=[{id:'r1',from_user:'demo1',to_user:'local',key:'tt15398776',title:'Oppenheimer',year:2023,imdb_id:'tt15398776',poster:null,ext:{kind:'movie',genre:'Drama'},message:'Musst du im Kino sehen!',status:'pending',created_at:new Date().toISOString()}];
+    return d.recs.filter(r=>r.status==='pending'); },
+  async recSend(item, ids, msg){ const d=this.data(); d.sent=(d.sent||[]); ids.forEach(id=>d.sent.push({...item,to_user:id,message:msg})); this.save_(); return ids.length; },
+  async recSet(id, status){ const d=this.data(); const r=(d.recs||[]).find(x=>x.id===id); if(r) r.status=status; this.save_(); }
 };
 
 /* ================= Datenschicht: Supabase (mit Login) ================= */
@@ -630,7 +661,12 @@ const Remote = {
   async removePush(endpoint){ await this.sb.from('push_subscriptions').delete().eq('endpoint',endpoint); },
   async watchList(){ const {data,error}=await this.sb.from('watchlist').select('*').order('created_at',{ascending:false}); if(error) throw error; return data; },
   async watchAdd(w){ const {error}=await this.sb.from('watchlist').upsert({user_id:state.user.id,key:w.key,title:w.title,year:w.year||null,imdb_id:w.imdb_id||null,poster:w.poster||null,ext:w.ext||null},{onConflict:'user_id,key'}); if(error) throw error; },
-  async watchRemove(key){ const {error}=await this.sb.from('watchlist').delete().eq('user_id',state.user.id).eq('key',key); if(error) throw error; }
+  async watchRemove(key){ const {error}=await this.sb.from('watchlist').delete().eq('user_id',state.user.id).eq('key',key); if(error) throw error; },
+  async recList(){ const {data,error}=await this.sb.from('recommendations').select('*').eq('to_user',state.user.id).eq('status','pending').order('created_at',{ascending:false}); if(error) throw error; return data; },
+  async recSend(item, ids, msg){
+    const rows=ids.map(id=>({from_user:state.user.id,to_user:id,key:item.key,title:item.title,year:item.year||null,imdb_id:item.imdb_id||null,poster:item.poster||null,ext:item.ext||null,message:msg||null}));
+    const {data,error}=await this.sb.from('recommendations').upsert(rows,{onConflict:'from_user,to_user,key',ignoreDuplicates:true}).select('id'); if(error) throw error; return (data||[]).length; },
+  async recSet(id, status){ const {error}=await this.sb.from('recommendations').update({status}).eq('id',id); if(error) throw error; }
 };
 
 const DB = CONFIG.SUPABASE_URL ? Remote : Local;
@@ -738,7 +774,7 @@ function bindBanner(){
 
 /* ================= Hauptansicht ================= */
 async function refresh(){
-  try{ const [r,f,dev,w] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev, DB.watchList().catch(()=>state.watch||[])]); state.ratings=r; state.fr=f; state.isDev=dev; state.watch=w;
+  try{ const [r,f,dev,w,rc] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev, DB.watchList().catch(()=>state.watch||[]), DB.recList().catch(()=>state.recs||[])]); state.ratings=r; state.fr=f; state.isDev=dev; state.watch=w; state.recs=rc;
     state.friendIds = new Set(f.filter(x=>x.status==='accepted').map(x=>x.other?.id)); }
   catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
   render(); updateBadge(); setTimeout(healPosters, 1500); syncPush();
@@ -971,15 +1007,72 @@ function wcard(w){
   const sub = [w.year, (w.ext?.genre||'').split(',')[0]].filter(Boolean).join(' · ');
   return `<button class="pcard" data-wk="${esc(w.key)}"><div class="poster">${src?`<img src="${esc(src)}" loading="lazy" decoding="async" alt="">`:I.film}</div><div class="pt">${esc(w.title)}</div><div class="pm">${esc(sub)}</div></button>`;
 }
+const userName = id => (state.fr||[]).find(f=>f.other?.id===id)?.other?.username || 'jemand';
+function recBlock(kind){
+  const recs=(state.recs||[]).filter(x=>(x.ext?.kind||'movie')===kind);
+  if(!recs.length) return '';
+  return `<div class="recs">${recs.map(x=>`
+    <div class="rec glass">
+      <button class="rec-main" data-ro="${esc(x.id)}"><div class="poster" ${posterStyle(x.poster)}>${x.poster?'':I.film}</div>
+        <div class="info"><div class="meta" style="color:var(--tint);font-weight:600">@${esc(userName(x.from_user))} empfiehlt</div><div class="title">${esc(x.title)}</div>
+        ${x.message?`<div class="meta rec-msg">«${esc(x.message)}»</div>`:`<div class="meta">${[x.year, (x.ext?.genre||'').split(',')[0]].filter(Boolean).map(esc).join(' · ')}</div>`}</div></button>
+      <div class="rec-act"><button class="rec-no" data-rn="${esc(x.id)}" aria-label="Ablehnen">${I.close}</button><button class="rec-yes" data-ry="${esc(x.id)}" aria-label="Annehmen">${I.check}</button></div>
+    </div>`).join('')}</div>`;
+}
+async function answerRec(id, yes){
+  const x=(state.recs||[]).find(r=>r.id===id); if(!x) return;
+  tick(); state.recs=state.recs.filter(r=>r.id!==id);
+  if(yes && !inWatch(x)) state.watch=[{...watchItem(x), created_at:new Date().toISOString()}, ...(state.watch||[])];
+  state.neuSig=null; if(state.tab==='neu') render();
+  try{ if(yes && !(await DB.watchList()).some(w=>w.key===x.key)) await DB.watchAdd(watchItem(x)); await DB.recSet(id, yes?'accepted':'declined'); toast(yes?'Auf der Merkliste':'Empfehlung abgelehnt'); }
+  catch(e){ toast('Fehler: '+e.message); refresh(); }
+}
 function watchRow(kind){
   const list = (state.watch||[]).filter(w=>(w.ext?.kind||'movie')===kind);
+  const recs = recBlock(kind);
   return `<section class="watch-sec"><h3 class="rowh">Merkliste${list.length?` <span style="opacity:.45;font-weight:600">${list.length}</span>`:''}</h3>
+    ${recs}
     ${list.length ? `<div class="rail">${list.map(wcard).join('')}</div>`
-      : `<button class="watch-empty glass" id="wadd">${I.bookmark}<span>Noch leer. Merke dir ${kind==='series'?'Serien':'Filme'} über das Plus oder in den Details.</span></button>`}</section>`;
+      : recs ? '' : `<button class="watch-empty glass" id="wadd">${I.bookmark}<span>Noch leer. Merke dir ${kind==='series'?'Serien':'Filme'} über das Plus oder in den Details.</span></button>`}</section>`;
 }
 function bindWatch(root){
   root.querySelectorAll('[data-wk]').forEach(c=>c.onclick=()=>{ const w=(state.watch||[]).find(x=>x.key===c.dataset.wk); if(w) openWatch(w); });
   const e=root.querySelector('#wadd'); if(e) e.onclick=()=>{ tick(); openForm(); };
+  root.querySelectorAll('[data-ry]').forEach(b=>b.onclick=()=>answerRec(b.dataset.ry, true));
+  root.querySelectorAll('[data-rn]').forEach(b=>b.onclick=()=>answerRec(b.dataset.rn, false));
+  root.querySelectorAll('[data-ro]').forEach(b=>b.onclick=()=>{ const x=(state.recs||[]).find(r=>r.id===b.dataset.ro); if(x) openRecDetail(x); });
+}
+function recBtn(id){ return `<button class="btn sec2 wbtn" id="${id}">${I.share}Freunden empfehlen</button>`; }
+function openRecommend(m){
+  const item=watchItem(m), fl=friendList();
+  if(!fl.length){ toast('Füge zuerst Freunde im Profil hinzu'); return; }
+  const sel=new Set();
+  openSheet({ title:'Empfehlen', body:`
+    <div class="wz-film" style="margin-top:4px"><div class="poster" ${posterStyle(item.poster)}>${item.poster?'':I.film}</div><div class="info"><div class="title">${esc(item.title)}</div><div class="meta">${[item.ext?.kind==='series'?'Serie':'Film', item.year].filter(Boolean).map(esc).join(' · ')}</div></div></div>
+    <div class="sec">An wen?</div>
+    <div class="grp">${fl.map(f=>`<button class="cell cell-h fpick" data-rs="${esc(f.id)}"><span style="display:flex;align-items:center;gap:12px"><span class="glass glass-btn avatar" style="width:34px;height:34px;font-size:14px;flex:none">${esc((f.username||'?')[0].toUpperCase())}</span><b>@${esc(f.username)}</b></span><span class="rcheck"></span></button>`).join('')}</div>
+    <div class="sec">Nachricht (optional)</div>
+    <div class="grp"><textarea class="ta" id="rmsg" maxlength="140" placeholder="Zum Beispiel: Musst du unbedingt sehen!"></textarea></div>
+    <button class="btn pri" id="rsend" disabled style="margin-top:20px">Empfehlen</button>` });
+  const upd=()=>{ const b=$('#rsend'); b.disabled=!sel.size; b.textContent = sel.size>1 ? `An ${sel.size} Freunde empfehlen` : 'Empfehlen'; };
+  document.querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>{ tick(); const id=b.dataset.rs; sel.has(id)?sel.delete(id):sel.add(id); b.classList.toggle('on', sel.has(id)); b.querySelector('.rcheck').innerHTML=sel.has(id)?I.check:''; upd(); });
+  $('#rsend').onclick=async()=>{ const b=$('#rsend'); b.disabled=true;
+    try{ const n=await DB.recSend(item, [...sel], ($('#rmsg').value||'').trim()); closeSheet(); toast(n ? (sel.size>1?`An ${sel.size} Freunde empfohlen`:'Empfohlen') : 'Schon empfohlen'); }
+    catch(e){ toast('Fehler: '+e.message); b.disabled=false; } };
+}
+function openRecDetail(x){
+  const e=x.ext||{};
+  openSheet({ body:`
+    <div class="hero"><div class="hero-bg" ${posterStyle(x.poster)}></div><div class="hero-in">
+      <div class="poster" ${posterStyle(x.poster)}>${x.poster?'':I.film}</div>
+      <h2>${esc(x.title)}</h2>
+      <div class="meta">${[e.kind==='series'?'Serie':'Film', x.year, e.platform, e.genre].filter(v=>v&&v!=='N/A').map(esc).join(' · ')}</div>
+      ${extPills(e)}</div></div>
+    <div class="grp" style="margin-top:18px"><div class="cell"><b>@${esc(userName(x.from_user))} empfiehlt dir das</b>${x.message?`<div class="note">${esc(x.message)}</div>`:''}</div></div>
+    <button class="btn pri" id="rya" style="margin-top:20px">Auf die Merkliste</button>
+    <button class="btn sec2" id="rna">Ablehnen</button>` });
+  $('#rya').onclick=()=>{ closeSheet(); answerRec(x.id, true); };
+  $('#rna').onclick=()=>{ closeSheet(); answerRec(x.id, false); };
 }
 function openWatch(w){
   const e=w.ext||{}, fr=friendsFor(w), others=fr.filter(r=>r.user_id!==state.user.id);
@@ -998,11 +1091,13 @@ function openWatch(w){
     </div>
     <button class="btn pri" id="wr" style="margin-top:20px">Jetzt bewerten</button>
     <button class="btn sec2" id="wx">Von der Merkliste entfernen</button>
+    ${recBtn('wrec')}
     ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   $('#wr').onclick=()=>openForm({title:w.title, year:w.year, poster:w.poster, imdb_id:w.imdb_id, ext:e});
   $('#wx').onclick=()=>{ toggleWatch(w); closeSheet(); };
+  $('#wrec').onclick=()=>openRecommend(w);
 }
 
 function row(title, list){ return list.length ? `<section><h3 class="rowh">${esc(title)}</h3><div class="rail">${list.map(pcard).join('')}</div></section>` : ''; }
@@ -1010,7 +1105,7 @@ function row(title, list){ return list.length ? `<section><h3 class="rowh">${esc
 function renderNeu(){
   const root = $('#neu'); const k = state.kino;
   const NK = state.neuKind||'movie'; const sd = state.series;
-  const sig = [NK, sd?.updated, sd?.err, k?.updated, k?.err, state.ratings.length, state.ratings.reduce((a,r)=>a+(+r.overall||0),0), state.friendIds?.size, state.user?.username, (state.watch||[]).map(w=>w.key).join(',')].join('|');
+  const sig = [NK, sd?.updated, sd?.err, k?.updated, k?.err, state.ratings.length, state.ratings.reduce((a,r)=>a+(+r.overall||0),0), state.friendIds?.size, state.user?.username, (state.watch||[]).map(w=>w.key).join(','), (state.recs||[]).map(x=>x.id).join(',')].join('|');
   if(root.innerHTML && state.neuSig===sig) return;
   const head = `<div class="hdr"><h1 class="large">Neu</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
     <div class="seg" id="neukind" style="margin-bottom:14px"><i class="seg-ind" style="transform:translateX(${NK==='series'?'100%':'0'})"></i><button data-k="movie" class="${NK==='movie'?'on':''}">Filme</button><button data-k="series" class="${NK==='series'?'on':''}">Serien</button></div>
@@ -1145,6 +1240,7 @@ function openSeries(m){
     </div>
     ${mine ? `<button class="btn sec2" id="sd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="sr2" style="margin-top:20px">Serie bewerten</button>`}
     ${mine?'':watchBtn('swl')}
+    ${recBtn('srec')}
     <a class="btn sec2" href="${esc(m.url)}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Wo streamen? (JustWatch)</a>
     ${m.summary?`<div class="sec">Inhalt (Englisch)</div><div class="grp"><div class="cell" style="font-size:15px;line-height:1.45">${esc(m.summary)}</div></div>`:''}
     ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
@@ -1153,6 +1249,7 @@ function openSeries(m){
   if(mine) $('#sd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
   else { const it={title:m.title, year:null, poster:m.poster_l||m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'series', platform:m.platform}};
     $('#sr2').onclick=()=>openForm(it); const b=$('#swl'); setWatchBtn(b, inWatch(it)); b.onclick=()=>toggleWatch(it, b); }
+  $('#srec').onclick=()=>openRecommend({title:m.title, year:null, poster:m.poster_l||m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'series', platform:m.platform}});
 }
 
 function openKino(m){
@@ -1173,6 +1270,7 @@ function openKino(m){
     </div>
     ${mine ? `<button class="btn sec2" id="kd">Deine Bewertung ansehen</button>` : `<button class="btn pri" id="kr" style="margin-top:20px">Film bewerten</button>`}
     ${mine?'':watchBtn('kwl')}
+    ${recBtn('krec')}
     <a class="btn sec2" href="${esc(m.url||'https://www.cineman.ch')}" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">Kinoprogramm & Tickets${(m.url||'').includes('cineman')?' (Cineman)':''}</a>
     ${m.synopsis && !/plot unknown|^n\/a$/i.test(m.synopsis)?`<div class="sec">Inhalt</div><div class="grp"><div class="cell" style="font-size:15px;line-height:1.45">${esc(m.synopsis)}</div></div>`:''}
     <div class="sec">Details</div>
@@ -1187,6 +1285,7 @@ function openKino(m){
   if(mine) $('#kd').onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(filmKey(mine)),350); };
   else { const it={title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'movie', genre:genresDe(m).join(', '), formats:m.formats||[]}};
     $('#kr').onclick=()=>openForm(it); const b=$('#kwl'); setWatchBtn(b, inWatch(it)); b.onclick=()=>toggleWatch(it, b); }
+  $('#krec').onclick=()=>openRecommend({title:m.title, year:parseInt(m.release)||null, poster:m.poster, imdb_id:m.imdb_id||null, ext:{...(m.ext||{}), kind:'movie', genre:genresDe(m).join(', ')}});
 }
 
 /* ================= Push-Mitteilungen ================= */
@@ -1217,8 +1316,9 @@ async function disablePush(){
 }
 // Bestehendes Abo bei jedem Start mit dem angemeldeten Konto verknüpfen
 async function syncPush(){ try{ const reg=await navigator.serviceWorker?.getRegistration(); const sub=await reg?.pushManager?.getSubscription(); if(sub) await DB.savePush(sub); }catch(e){} }
-navigator.serviceWorker?.addEventListener('message', e => { if(e.data?.type==='open-profile' && state.user){ refresh().then(openProfile); } });
+navigator.serviceWorker?.addEventListener('message', e => { if(!state.user) return; if(e.data?.type==='open-profile'){ /empfehlung/.test(e.data.url||'') ? refresh().then(()=>{ state.tab='neu'; render(); }) : refresh().then(openProfile); } });
 if(/[?&]profil/.test(location.search)) setTimeout(()=>{ if(state.user) openProfile(); }, 1500);
+if(/[?&]empfehlung/.test(location.search)) setTimeout(()=>{ if(state.user){ state.tab='neu'; render(); } }, 1200);
 
 // Einmaliges Popup nach dem Start: fragt nach Mitteilungen, bevor iOS selbst fragt (iOS zeigt seine Abfrage nur nach einem Antippen)
 async function maybePushPrompt(){
@@ -1299,8 +1399,29 @@ function closeSheet(){ $('#ov').classList.remove('open'); $('#sheet').classList.
 $('#ov').onclick=closeSheet;
 $('#add').onclick=()=>{ tick(); openForm(); };
 
+/* ================= Persönliche Kategorien (zählen nicht zum Schnitt) ================= */
+const PERS_SL = kind => kind==='series'
+  ? [['tension','Spannung'],['humor','Humor'],['binge','Suchtfaktor']]
+  : [['tension','Spannung'],['humor','Humor'],['rewatch','Rewatch-Wert']];
+const PERS_CH = kind => [
+  ['with','Gesehen mit',false,['Allein','Partner/in','Familie','Freunde']],
+  ['where','Wo',false,['Kino','Streaming','TV']],
+  ['moments','Momente',true,['Geweint','Eingeschlafen','Plottwist erwartet', kind==='series'?'Lieblingsserie':'Lieblingsfilm']]
+];
+function persBlock(r){
+  const p=r.ext?.p; if(!p) return '';
+  const kind=r.ext?.kind==='series'?'series':'movie';
+  const sl=PERS_SL(kind).filter(([k])=>p[k]);
+  const chips=[p.with, p.where, ...(p.moments||[])].filter(Boolean);
+  if(!sl.length && !chips.length && !p.scene) return '';
+  return `<div class="pers"><div class="pers-h">Persönlich <span>· zählt nicht zum Schnitt</span></div>
+    ${sl.length?`<div class="pers-sl">${sl.map(([k,l])=>`<span>${l}</span><span class="dots">${[1,2,3,4,5].map(n=>`<i class="${n<=p[k]?'on':''}"></i>`).join('')}</span>`).join('')}</div>`:''}
+    ${chips.length?`<div class="pers-ch">${chips.map(c=>`<span class="pill">${esc(c)}</span>`).join('')}</div>`:''}
+    ${p.scene?`<div class="note" style="margin-top:8px">Beste Szene: ${esc(p.scene)}</div>`:''}</div>`;
+}
+
 function bars(r){
-  return `<div class="bars">${critFor(r).map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%;background:${col(+r[c.key])}"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>`;
+  return `<div class="bars">${critFor(r).map(c=>`<span>${c.label}</span><div class="bar"><i style="width:${(+r[c.key])*10}%;background:${col(+r[c.key])}"></i></div><b>${f1(r[c.key])}</b>`).join('')}</div>${persBlock(r)}`;
 }
 
 function openDetail(key){
@@ -1327,19 +1448,21 @@ function openDetail(key){
       <div class="sec">Deine Bewertung</div>
       <div class="grp"><div class="cell"><div class="cell-h"><b>${fmtDate(mine.watched_on)||'Gesehen'}</b>${ring(avg(mine),'sm')}</div>${bars(mine)}${mine.note?`<div class="note">${esc(mine.note)}</div>`:''}</div></div>
       <button class="btn sec2" id="ed">Bewertung bearbeiten</button>`
-     :`<button class="btn pri" id="rate" style="margin-top:22px">Diesen Film bewerten</button>`}
+     :`<button class="btn pri" id="rate" style="margin-top:22px">${e?.kind==='series'?'Diese Serie':'Diesen Film'} bewerten</button>`}
+    ${recBtn('drec')}
     ${others.length?`<div class="sec">Freunde</div><div class="grp">`+others.map(r=>`
       <div class="cell"><div class="cell-h"><b>${esc(r.username||'Unbekannt')}</b>${ring(avg(r),'sm')}</div>${bars(r)}${r.note?`<div class="note">${esc(r.note)}</div>`:''}</div>`).join('')+`</div>`:''}
   `});
   if(mine) $('#ed').onclick=()=>openForm(mine);
   else $('#rate').onclick=()=>openForm({title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:e});
+  $('#drec').onclick=()=>openRecommend({title:f.title,year:f.year,poster:f.poster,imdb_id:f.imdb_id,ext:e});
 }
 
 function openForm(r){
   const isEdit = !!r?.id;
   const d = r ? {...r} : {watched_on:new Date().toISOString().slice(0,10)};
   CRITERIA.forEach(c=>{ if(d[c.key]==null) d[c.key]=7; });
-  const S = () => ['film', ...critFor(d).map(c=>c.key), 'done'];
+  const S = () => ['film', ...critFor(d).map(c=>c.key), 'pers', 'done'];
   let i = d.title ? 1 : 0, dir = 1;
 
   openSheet({ swipe:false, title:`<div class="prog" id="prog"></div>`, body:`<div id="wz"></div>`, footer:`<button class="btn pri" id="nx" style="margin:0">Weiter</button>` });
@@ -1420,6 +1543,26 @@ function openForm(r){
     const filmHead = `<div class="wz-film"><div class="poster" ${posterStyle(d.poster)}>${d.poster?'':I.film}</div><div class="info"><div class="title">${esc(d.title)}</div><div class="meta">${esc(d.year||'')}</div>${fm.length?`<div class="ext">${fm.map(f=>`<span class="pill fmt">${esc(f)}</span>`).join('')}</div>`:''}</div></div>`;
     const WORD = v => v<3?'Schlecht':v<5?'Schwach':v<6.5?'Okay':v<8?'Gut':v<9.5?'Sehr gut':'Meisterwerk';
 
+    if(st==='pers'){
+      d.ext = {...(d.ext||{})}; const p = d.ext.p = {...(d.ext.p||{})};
+      const kind = d.ext.kind==='series'?'series':'movie';
+      if(!p.where && !d.id && (d.ext.formats||[]).length) p.where='Kino';
+      wz.innerHTML = `${filmHead}
+        <h2 class="wz-h" style="margin-top:18px">Persönlich</h2>
+        <div class="hint" style="text-align:center;margin-top:4px">Zählt nicht zum Schnitt. Alles ist freiwillig.</div>
+        <div class="grp" style="margin-top:16px">${PERS_SL(kind).map(([k,l])=>`<div class="cell psl"><div class="cell-h"><span>${l}</span><b id="pv-${k}">${p[k]?p[k]+' / 5':'–'}</b></div>
+          <input type="range" min="1" max="5" step="1" data-pk="${k}" value="${p[k]||3}" class="${p[k]?'':'unset'}" style="--p:${((p[k]||3)-1)/4*100}%"></div>`).join('')}</div>
+        ${PERS_CH(kind).map(([k,l,multi,opts])=>`<div class="sec">${l}</div><div class="chips pch" data-ck="${k}" data-multi="${multi?1:''}">${opts.map(o=>`<button class="chip ${(multi?(p[k]||[]).includes(o):p[k]===o)?'on':''}" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div>`).join('')}
+        <div class="sec">Beste Szene oder Zitat</div>
+        <div class="grp"><textarea class="ta" id="psc" maxlength="200" placeholder="Optional">${esc(p.scene||'')}</textarea></div>`;
+      wz.querySelectorAll('[data-pk]').forEach(rg=>rg.oninput=()=>{ const k=rg.dataset.pk, v=+rg.value; if(p[k]!==v) tick(); p[k]=v; rg.classList.remove('unset'); rg.style.setProperty('--p',((v-1)/4*100)+'%'); $('#pv-'+k).textContent=v+' / 5'; });
+      wz.querySelectorAll('.pch').forEach(g=>g.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ tick(); const k=g.dataset.ck, o=c.dataset.o;
+        if(g.dataset.multi){ const a=new Set(p[k]||[]); a.has(o)?a.delete(o):a.add(o); p[k]=[...a]; c.classList.toggle('on', a.has(o)); }
+        else { p[k] = p[k]===o ? undefined : o; g.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on', x.dataset.o===p[k])); } }));
+      $('#psc').oninput=e=>{ p.scene=e.target.value.trim()||undefined; };
+      nx.textContent='Weiter'; nx.onclick=()=>go(i+1);
+      return;
+    }
     if(st!=='done'){
       const C = critFor(d), c = C.find(c=>c.key===st), n = S().indexOf(st);
       wz.innerHTML = `${filmHead}
@@ -1515,7 +1658,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '48';
+const APP_VERSION = '49';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
