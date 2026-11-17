@@ -415,19 +415,22 @@ const Finder = {
     const sr = tw.map(w=>w+'*').join(' ')+' haswbstatement:P345';
     const j = u => fetch(u,{signal}).then(r=>r.json());
     // 1. Kandidaten suchen (drei schnelle, kleine Abfragen parallel)
-    const [s, sde, sen] = await Promise.all([
-      j(`${W}&action=query&list=search&srlimit=30&srprop=&srsearch=${encodeURIComponent(sr+' haswbstatement:P31=Q11424')}`),
+    const cq = encodeURIComponent(sr+' haswbstatement:P31=Q11424');
+    const [s, sp2, sde, sen] = await Promise.all([
+      j(`${W}&action=query&list=search&srlimit=25&srprop=&srsearch=${cq}`),
+      j(`${W}&action=query&list=search&srlimit=15&srprop=&srsort=incoming_links_desc&srsearch=${cq}`),
       j(`${W}&action=wbsearchentities&type=item&limit=30&language=de&uselang=de&search=${encodeURIComponent(q)}`),
       j(`${W}&action=wbsearchentities&type=item&limit=30&language=en&uselang=en&search=${encodeURIComponent(q)}`)
     ]);
     const lbl={}; [...(sde.search||[]),...(sen.search||[])].forEach(x=>{ lbl[x.id] ||= x.label; });
-    const ids = [...new Set([...(s.query?.search||[]).map(x=>x.title), ...Object.keys(lbl)])].slice(0,80);
+    const ids = [...new Set([...(s.query?.search||[]).map(x=>x.title), ...(sp2.query?.search||[]).map(x=>x.title), ...Object.keys(lbl)])].slice(0,80);
     if(!ids.length) return [];
     // 2. Nur die benötigten Angaben gezielt abfragen (statt aller Daten jedes Treffers)
-    const sp = `SELECT ?i ?imdb ?t ?y ?de ?en ?sl WHERE { VALUES ?i { ${ids.map(i=>'wd:'+i).join(' ')} }
+    const sp = `SELECT ?i ?imdb ?t ?y ?de ?en ?mul ?sl WHERE { VALUES ?i { ${ids.map(i=>'wd:'+i).join(' ')} }
       ?i wdt:P345 ?imdb . FILTER(STRSTARTS(?imdb,"tt")) ?i wdt:P31 ?t .
       OPTIONAL{ ?i wdt:P577 ?d . BIND(YEAR(?d) AS ?y) } OPTIONAL{ ?i rdfs:label ?de FILTER(LANG(?de)="de") }
-      OPTIONAL{ ?i rdfs:label ?en FILTER(LANG(?en)="en") } OPTIONAL{ ?i wikibase:sitelinks ?sl } }`;
+      OPTIONAL{ ?i rdfs:label ?en FILTER(LANG(?en)="en") }
+      OPTIONAL{ ?i rdfs:label ?mul FILTER(LANG(?mul)="mul") } OPTIONAL{ ?i wikibase:sitelinks ?sl } }`;
     const rows = (await j('https://query.wikidata.org/sparql?format=json&query='+encodeURIComponent(sp))).results?.bindings || [];
     const OK = new Set(['Q11424','Q202866','Q24869','Q506240','Q5398426','Q581714','Q1259759','Q93204','Q226730','Q17517379','Q117467246','Q63952888']);
     const SER = new Set(['Q5398426','Q581714','Q1259759','Q117467246','Q63952888']);
@@ -435,7 +438,7 @@ const Finder = {
     rows.forEach(r=>{ const id=r.i.value.split('/').pop(), t=r.t?.value.split('/').pop();
       const x = by[id] ||= {id, imdb:r.imdb.value, types:new Set(), year:null, de:null, en:null, sl:0};
       if(t) x.types.add(t); if(r.y) x.year = x.year ? Math.min(x.year, +r.y.value) : +r.y.value;
-      x.de ||= r.de?.value; x.en ||= r.en?.value; x.sl = Math.max(x.sl, +(r.sl?.value||0)); });
+      x.de ||= r.de?.value; x.en ||= r.en?.value || r.mul?.value; x.sl = Math.max(x.sl, +(r.sl?.value||0)); });
     return Object.values(by).filter(x=>[...x.types].some(t=>OK.has(t))).map(x=>{
       const title = x.de || x.en || lbl[x.id];
       const m = Math.max(Finder.match(x.de,q), Finder.match(x.en||lbl[x.id],q));
@@ -445,7 +448,7 @@ const Finder = {
   },
   merge(q, wd, om, tv){
     tv.forEach(r=>{ r.m=Finder.match(r.Title,q); r.score=r.m*40+Math.min(120,(r.weight||0)*1.25); });
-    const strong=[...wd.filter(r=>r.m>=3), ...tv.filter(r=>r.m>=3)].sort((a,b)=>b.score-a.score);
+    const strong=[...wd.filter(r=>r.m>=3), ...tv.filter(r=>r.m>=3)].sort((a,b)=>(b.score+(b.m>3?40:0))-(a.score+(a.m>3?40:0)));
     const out=[], seen=new Set();
     const add=r=>{ const k=r.imdbID||('tvm'+r.tvmId); if(k && !seen.has(k)){ seen.add(k); out.push({...r}); }
       else if(r.tvmId){ const o=out.find(x=>x.imdbID===r.imdbID); if(o){ o.Poster=o.Poster||r.Poster; o.PosterL=r.PosterL; o.tvmId=r.tvmId; o.tvm=r.tvm; o.kind='series'; } } };
