@@ -245,6 +245,12 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .pushask{display:flex;flex-direction:column;align-items:center;padding-top:28px}
 .pushask-ic{width:76px;height:76px;border-radius:22px;background:var(--tint);color:#fff;display:grid;place-items:center}
 .pushask-ic svg{width:40px;height:40px}
+.fchips{margin-top:12px}
+.fchip{display:flex;align-items:center;gap:7px}
+.fchip .fav{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:rgba(77,163,255,.22);color:#4da3ff;margin-left:-8px}
+.fchip.on .fav{background:rgba(0,0,0,.12);color:#000}
+.fbar{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:10px 14px;border-radius:16px}
+.flink{cursor:pointer}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
@@ -810,7 +816,7 @@ function render(){
   const kindOf = r => r?.ext?.kind==='series' ? 'series' : 'movie';
   const base = state.ratings.filter(r=>kindOf(r)===K);
   let items = state.tab==='mine' ? base.filter(r=>r.user_id===me)
-            : state.tab==='friends' ? base.filter(isFriend)
+            : state.tab==='friends' ? base.filter(r=>isFriend(r) && (!state.friendF || r.user_id===state.friendF))
             : aggregate(base);
   items = items.map(r=>({...r,_s:r.count?r.overall:avg(r)}));
   const q=state.q.toLowerCase();
@@ -825,6 +831,7 @@ function render(){
     <div class="hdr"><h1 class="large">${state.tab==='mine'?(K==='series'?'Meine Serien':'Meine Filme'):TABS.find(t=>t.id===state.tab).title}</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
     <div class="seg" id="kind"><i class="seg-ind" style="transform:translateX(${K==='series'?'100%':'0'})"></i><button data-k="movie" class="${K==='movie'?'on':''}">Filme</button><button data-k="series" class="${K==='series'?'on':''}">Serien</button></div>
     <label class="search" style="margin-top:12px">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
+    ${state.tab==='friends' ? friendChips() : ''}
     <div class="chips">${sorts.map(([v,l])=>`<button class="chip ${s===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>
     <div class="list">
       ${items.length ? items.map((r,i)=>`
@@ -840,11 +847,61 @@ function render(){
         </button>`).join('') : `<div class="empty">${I.pop}${emptyTxt}</div>`}
     </div>`;
   const qi=$('#q'); qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
-  document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ state.sort=c.dataset.s; tick(); render(); });
+  document.querySelectorAll('.chip[data-s]').forEach(c=>c.onclick=()=>{ state.sort=c.dataset.s; tick(); render(); });
+  document.querySelectorAll('.fchip').forEach(c=>c.onclick=()=>{ const id=c.dataset.u||null; tick(); if(id && state.friendF===id) return openFriend(id); state.friendF=id; render(); });
+  const fp=$('#fprof'); if(fp) fp.onclick=()=>openFriend(state.friendF);
   document.querySelectorAll('#kind button').forEach(b=>b.onclick=()=>{ if(state.kind!==b.dataset.k){ state.kind=b.dataset.k; tick(); $('#kind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(render,180); } });
   $('#app .prof').onclick=openProfile;
   document.querySelectorAll('#app .card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
 }
+/* ================= Freunde: Filter und Profil ================= */
+function friendList(){
+  const acc=(state.fr||[]).filter(f=>f.status==='accepted' && f.other?.id).map(f=>f.other);
+  const n=id=>state.ratings.filter(r=>r.user_id===id).length;
+  return acc.sort((a,b)=>n(b.id)-n(a.id) || (a.username||'').localeCompare(b.username||''));
+}
+function friendChips(){
+  const fl=friendList(); if(!fl.length) return '';
+  if(state.friendF && !fl.some(f=>f.id===state.friendF)) state.friendF=null;
+  const sel=fl.find(f=>f.id===state.friendF);
+  return `<div class="chips fchips"><button class="chip fchip ${!sel?'on':''}" data-u="">Alle</button>${fl.map(f=>`<button class="chip fchip ${f.id===state.friendF?'on':''}" data-u="${esc(f.id)}"><span class="fav">${esc((f.username||'?')[0].toUpperCase())}</span>${esc(f.username||'')}</button>`).join('')}</div>
+    ${sel?`<button class="fbar glass" id="fprof"><span class="glass glass-btn avatar" style="width:36px;height:36px;font-size:15px">${esc((sel.username||'?')[0].toUpperCase())}</span><span style="flex:1;text-align:left"><b>@${esc(sel.username)}</b><span class="meta" style="display:block">${friendStats(sel.id).line}</span></span><span class="link">Profil</span></button>`:''}`;
+}
+function friendStats(id){
+  const rs=state.ratings.filter(r=>r.user_id===id);
+  const mv=rs.filter(r=>r.ext?.kind!=='series').length, sv=rs.length-mv;
+  const a=rs.length?Math.round(rs.reduce((s,r)=>s+avg(r),0)/rs.length*10)/10:0;
+  return {rs, mv, sv, a, line:[`${mv} Film${mv===1?'':'e'}`, `${sv} Serie${sv===1?'':'n'}`, rs.length?`Schnitt ${f1(a)}`:''].filter(Boolean).join(' · ')};
+}
+function openFriend(id, kind){
+  const f=friendList().find(x=>x.id===id); if(!f) return;
+  const st=friendStats(id); kind = kind || (st.mv>=st.sv?'movie':'series');
+  const mine=state.ratings.filter(r=>r.user_id===state.user.id);
+  const both=st.rs.map(r=>({r, m:mine.find(x=>filmKey(x)===filmKey(r))})).filter(x=>x.m);
+  const diff=both.length?Math.round(both.reduce((s,x)=>s+Math.abs(avg(x.r)-avg(x.m)),0)/both.length*10)/10:null;
+  const list=st.rs.filter(r=>(r.ext?.kind==='series'?'series':'movie')===kind).sort((a,b)=>avg(b)-avg(a));
+  openSheet({ title:'', body:`
+    <div style="text-align:center;margin:6px 0 6px">
+      <div class="glass glass-btn avatar" style="width:84px;height:84px;margin:0 auto;font-size:34px">${esc((f.username||'?')[0].toUpperCase())}</div>
+      <h2 style="font:800 24px/1.2 var(--f);margin-top:14px">@${esc(f.username||'')}</h2>
+      <div class="meta">${esc(st.line)}</div>
+    </div>
+    ${both.length?`<div class="grp" style="margin-top:18px"><div class="cell cell-h"><span>Gemeinsam bewertet</span><b>${both.length}</b></div><div class="cell cell-h"><span>Unterschied im Schnitt</span><b>${f1(diff)}</b></div></div>`:''}
+    <div class="seg" id="fkind" style="margin-top:20px"><i class="seg-ind" style="transform:translateX(${kind==='series'?'100%':'0'})"></i><button data-k="movie" class="${kind==='movie'?'on':''}">Filme ${st.mv}</button><button data-k="series" class="${kind==='series'?'on':''}">Serien ${st.sv}</button></div>
+    <div class="list" style="margin-top:12px">${list.length ? list.map(r=>{ const m=mine.find(x=>filmKey(x)===filmKey(r)); return `
+      <button class="card" data-fk="${esc(filmKey(r))}">${r.poster?`<div class="card-bg" ${posterStyle(r.poster)}></div>`:''}
+        <div class="poster" ${posterStyle(r.poster)}>${r.poster?'':I.film}</div>
+        <div class="info"><div class="title">${esc(r.title)}</div>
+          <div class="meta">${[r.year, fmtDate(r.watched_on)].filter(Boolean).map(esc).join(' · ')}</div>
+          ${m?`<div class="meta" style="margin-top:4px">Du: <b style="color:${col(avg(m))}">${f1(avg(m))}</b></div>`:''}
+          ${r.note?`<div class="meta" style="margin-top:4px;font-style:italic;white-space:normal">«${esc(r.note)}»</div>`:''}
+        </div>${ring(avg(r))}</button>`; }).join('') : `<div class="empty">${I.pop}Noch keine ${kind==='series'?'Serien':'Filme'} bewertet.</div>`}</div>
+    <button class="btn sec2" id="ffilter">Im Freunde-Tab filtern</button>` });
+  document.querySelectorAll('#fkind button').forEach(b=>b.onclick=()=>{ if(b.dataset.k!==kind){ tick(); openFriend(id, b.dataset.k); } });
+  document.querySelectorAll('[data-fk]').forEach(c=>c.onclick=()=>{ closeSheet(); setTimeout(()=>openDetail(c.dataset.fk),350); });
+  $('#ffilter').onclick=()=>{ state.friendF=id; state.tab='friends'; state.kind=kind; closeSheet(); render(); window.scrollTo({top:0}); };
+}
+
 function fmtDate(d){ if(!d) return ''; const x=new Date(d); return isNaN(x)?d:x.toLocaleDateString('de-CH',{day:'numeric',month:'short',year:'numeric'}); }
 
 /* ================= Neu (Startseite im Netflix-Stil) ================= */
@@ -1407,7 +1464,7 @@ function openProfile(){
     <div class="grp"><div class="field"><span style="color:var(--t3)">@</span><input id="fa" style="text-align:left;color:var(--t1)" placeholder="Nutzername" autocapitalize="off" autocorrect="off" autocomplete="off" enterkeyhint="send"><button class="link" id="fab2" style="padding:8px 0 8px 8px">Hinzufügen</button></div></div>
     ${fr.filter(f=>f.incoming&&f.status==='pending').length?`<div class="sec">Anfragen</div><div class="grp">${fr.filter(f=>f.incoming&&f.status==='pending').map(f=>`<div class="cell cell-h"><b>@${esc(f.other?.username)}</b><span style="display:flex;gap:14px"><button class="link" data-acc="${f.id}">Annehmen</button><button class="link" style="color:var(--t2)" data-del="${f.id}">Ablehnen</button></span></div>`).join('')}</div>`:''}
     <div class="sec">Deine Freunde (${fr.filter(f=>f.status==='accepted').length})</div>
-    <div class="grp">${fr.filter(f=>f.status!=='pending'||!f.incoming).map(f=>`<div class="cell cell-h"><span><b>@${esc(f.other?.username)}</b>${f.status==='pending'?' <span class="meta" style="display:inline">· Anfrage gesendet</span>':''}</span><button class="link" style="color:var(--t2)" data-del="${f.id}">${f.status==='pending'?'Zurückziehen':'Entfernen'}</button></div>`).join('') || '<div class="cell note" style="margin:0">Noch keine Freunde. Füge sie oben über ihren Nutzernamen hinzu.</div>'}</div>
+    <div class="grp">${fr.filter(f=>f.status!=='pending'||!f.incoming).map(f=>`<div class="cell cell-h"><span ${f.status==='accepted'?`class="flink" data-fo="${esc(f.other?.id)}"`:''}><b>@${esc(f.other?.username)}</b>${f.status==='pending'?' <span class="meta" style="display:inline">· Anfrage gesendet</span>':' <span class="meta" style="display:inline">· '+esc(friendStats(f.other?.id).line.split(' · ').slice(0,2).join(', '))+'</span>'}</span><button class="link" style="color:var(--t2)" data-del="${f.id}">${f.status==='pending'?'Zurückziehen':'Entfernen'}</button></div>`).join('') || '<div class="cell note" style="margin:0">Noch keine Freunde. Füge sie oben über ihren Nutzernamen hinzu.</div>'}</div>
     <button class="btn sec2" id="inv" style="display:flex;align-items:center;justify-content:center;gap:8px">${I.share}App mit Freunden teilen</button>
     <div class="hint">Freunde sehen deine Bewertungen erst, wenn ihr euch gegenseitig bestätigt habt. Im Tab «Top» fliessen alle Bewertungen anonym in den Schnitt ein.</div>
     <div class="sec">Dein Nutzername</div>
@@ -1434,11 +1491,12 @@ function openProfile(){
   $('#fab2').onclick=add; $('#fa').onkeydown=e=>{ if(e.key==='Enter') add(); };
   document.querySelectorAll('[data-acc]').forEach(b=>b.onclick=async()=>{ try{ await DB.acceptFriend(b.dataset.acc); toast('Freundschaft bestätigt'); await refresh(); openProfile(); }catch(e){toast(e.message);} });
   document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{ try{ await DB.removeFriend(b.dataset.del); await refresh(); openProfile(); }catch(e){toast(e.message);} });
+  document.querySelectorAll('[data-fo]').forEach(b=>b.onclick=()=>{ tick(); closeSheet(); setTimeout(()=>openFriend(b.dataset.fo),350); });
   $('#lo').onclick=async()=>{ await DB.signOut(); state.user=null; state.isDev=null; closeSheet(); renderAuth(); };
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '46';
+const APP_VERSION = '47';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
