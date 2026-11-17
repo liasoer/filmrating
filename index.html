@@ -916,7 +916,7 @@ function render(){
   const fb=$('#fbtn'); if(fb) fb.onclick=()=>{ tick(); openFilter(sorts); };
   document.querySelectorAll('[data-clr]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); tick(); if(b.dataset.clr==='friend') state.friendF=null; else state.sort='score'; render(); });
   const ap=$('#apf'); if(ap) ap.onclick=()=>openFriend(state.friendF);
-  document.querySelectorAll('#kind button').forEach(b=>b.onclick=()=>{ if(state.kind!==b.dataset.k){ state.kind=b.dataset.k; tick(); $('#kind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(render,180); } });
+  document.querySelectorAll('#kind button').forEach(b=>b.onclick=()=>{ if(state.kind!==b.dataset.k){ const from=state.kind||'movie'; state.kind=b.dataset.k; tick(); render(); slideSeg('#kind', from, state.kind); } });
   $('#app .prof').onclick=openProfile;
   document.querySelectorAll('#app .card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
 }
@@ -1009,6 +1009,13 @@ function openFriend(id, kind){
   $('#ffilter').onclick=()=>{ state.friendF=id; state.tab='friends'; state.kind=kind; closeSheet(); render(); window.scrollTo({top:0}); };
 }
 
+// Umschalter sofort wechseln und die Anzeige danach von der alten zur neuen Position gleiten lassen
+function slideSeg(sel, from, to){
+  const ind=document.querySelector(sel+' .seg-ind'); if(!ind) return;
+  const x=k=>`translateX(${k==='series'?'100%':'0'})`;
+  ind.style.transition='none'; ind.style.transform=x(from); void ind.offsetWidth;
+  ind.style.transition=''; ind.style.transform=x(to);
+}
 function fmtDate(d){ if(!d) return ''; const x=new Date(d); return isNaN(x)?d:x.toLocaleDateString('de-CH',{day:'numeric',month:'short',year:'numeric'}); }
 
 /* ================= Neu (Startseite im Netflix-Stil) ================= */
@@ -1169,7 +1176,7 @@ function renderNeu(){
     ${watchRow(NK)}`;
   const bindHead = () => { root.querySelector('.prof').onclick=openProfile;
     root.querySelectorAll('#neukind button').forEach(b=>b.onclick=()=>{ if((state.neuKind||'movie')!==b.dataset.k){ state.neuKind=b.dataset.k; tick();
-      root.querySelector('#neukind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(()=>{ render(); window.scrollTo({top:0}); },180); } }); };
+      render(); window.scrollTo({top:0}); slideSeg('#neukind', b.dataset.k==='series'?'movie':'series', b.dataset.k); } }); };
   if(NK==='series'){
     if(!sd) loadSeries().then(()=>{ if(state.tab==='neu') render(); });
     root.innerHTML = head + installBanner() + seriesBody();
@@ -1716,7 +1723,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '54';
+const APP_VERSION = '55';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
