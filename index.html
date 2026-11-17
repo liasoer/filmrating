@@ -245,11 +245,16 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .pushask{display:flex;flex-direction:column;align-items:center;padding-top:28px}
 .pushask-ic{width:76px;height:76px;border-radius:22px;background:var(--tint);color:#fff;display:grid;place-items:center}
 .pushask-ic svg{width:40px;height:40px}
-.fchips{margin-top:12px}
-.fchip{display:flex;align-items:center;gap:7px}
-.fchip .fav{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:rgba(77,163,255,.22);color:#4da3ff;margin-left:-8px}
-.fchip.on .fav{background:rgba(0,0,0,.12);color:#000}
-.fbar{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:10px 14px;border-radius:16px}
+.fbar{display:flex;align-items:center;gap:12px;width:100%;margin-top:12px;padding:8px 10px 8px 12px;border-radius:16px;min-height:52px}
+.fbar-all{font-weight:600;font-size:16px}
+.fbar-all>svg:first-child{width:22px;height:22px;color:var(--tint)}
+.fbar .fchev{color:var(--t2);flex:none}
+.fname{display:flex;align-items:center;gap:5px}
+.fbar-main{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.fclr{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(118,118,128,.24);color:var(--t2);flex:none}
+.fclr svg{width:12px;height:12px}
+.fpick{width:100%}
+.fpick>svg{color:var(--tint);flex:none}
 .flink{cursor:pointer}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
@@ -383,6 +388,7 @@ const tick = (() => {
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2800); }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('Script konnte nicht geladen werden')); document.head.appendChild(s); }); }
 const I = {
+  chev:'<svg class="fchev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
   bell:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>',
   bookmark:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4-6.5 4v-16a1 1 0 0 1 1-1z"/></svg>',
   check:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
@@ -848,8 +854,9 @@ function render(){
     </div>`;
   const qi=$('#q'); qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
   document.querySelectorAll('.chip[data-s]').forEach(c=>c.onclick=()=>{ state.sort=c.dataset.s; tick(); render(); });
-  document.querySelectorAll('.fchip').forEach(c=>c.onclick=()=>{ const id=c.dataset.u||null; tick(); if(id && state.friendF===id) return openFriend(id); state.friendF=id; render(); });
+  const fs=$('#fsel'); if(fs) fs.onclick=()=>{ tick(); pickFriend(); };
   const fp=$('#fprof'); if(fp) fp.onclick=()=>openFriend(state.friendF);
+  const fc=$('#fclr'); if(fc) fc.onclick=()=>{ tick(); state.friendF=null; render(); };
   document.querySelectorAll('#kind button').forEach(b=>b.onclick=()=>{ if(state.kind!==b.dataset.k){ state.kind=b.dataset.k; tick(); $('#kind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(render,180); } });
   $('#app .prof').onclick=openProfile;
   document.querySelectorAll('#app .card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
@@ -864,8 +871,20 @@ function friendChips(){
   const fl=friendList(); if(!fl.length) return '';
   if(state.friendF && !fl.some(f=>f.id===state.friendF)) state.friendF=null;
   const sel=fl.find(f=>f.id===state.friendF);
-  return `<div class="chips fchips"><button class="chip fchip ${!sel?'on':''}" data-u="">Alle</button>${fl.map(f=>`<button class="chip fchip ${f.id===state.friendF?'on':''}" data-u="${esc(f.id)}"><span class="fav">${esc((f.username||'?')[0].toUpperCase())}</span>${esc(f.username||'')}</button>`).join('')}</div>
-    ${sel?`<button class="fbar glass" id="fprof"><span class="glass glass-btn avatar" style="width:36px;height:36px;font-size:15px">${esc((sel.username||'?')[0].toUpperCase())}</span><span style="flex:1;text-align:left"><b>@${esc(sel.username)}</b><span class="meta" style="display:block">${friendStats(sel.id).line}</span></span><span class="link">Profil</span></button>`:''}`;
+  return sel
+    ? `<div class="fbar glass"><button class="fbar-main" id="fsel"><span class="glass glass-btn avatar" style="width:36px;height:36px;font-size:15px">${esc((sel.username||'?')[0].toUpperCase())}</span><span style="flex:1;min-width:0;text-align:left"><span class="fname"><b>@${esc(sel.username)}</b>${I.chev}</span><span class="meta" style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${friendStats(sel.id).line}</span></span></button><button class="link" id="fprof">Profil</button><button class="fclr" id="fclr" aria-label="Filter entfernen">${I.close}</button></div>`
+    : `<button class="fbar glass fbar-all" id="fsel">${I.people}<span style="flex:1;text-align:left">Alle Freunde <span class="meta" style="display:inline">· ${fl.length}</span></span>${I.chev}</button>`;
+}
+function pickFriend(){
+  const fl=friendList();
+  const rowsHtml = q => [{id:'',username:null}, ...fl.filter(f=>!q || (f.username||'').includes(q.toLowerCase()))].map(f=> f.id ? `
+      <button class="cell cell-h fpick" data-u="${esc(f.id)}"><span style="display:flex;align-items:center;gap:12px;min-width:0"><span class="glass glass-btn avatar" style="width:36px;height:36px;font-size:15px;flex:none">${esc((f.username||'?')[0].toUpperCase())}</span><span style="text-align:left;min-width:0"><b>@${esc(f.username)}</b><span class="meta" style="display:block">${friendStats(f.id).line}</span></span></span>${state.friendF===f.id?I.check:''}</button>`
+    : q ? '' : `<button class="cell cell-h fpick" data-u=""><b>Alle Freunde</b>${!state.friendF?I.check:''}</button>`).join('') || '<div class="cell note" style="margin:0">Niemand gefunden.</div>';
+  openSheet({ title:'Freund wählen', body:`
+    ${fl.length>6?`<label class="search" style="margin-top:4px">${I.search}<input id="fq" type="search" placeholder="Nutzername suchen" autocapitalize="off" autocorrect="off" autocomplete="off"></label>`:''}
+    <div class="grp" id="fpl" style="margin-top:12px">${rowsHtml('')}</div>` });
+  const bind=()=>document.querySelectorAll('.fpick').forEach(b=>b.onclick=()=>{ tick(); state.friendF=b.dataset.u||null; closeSheet(); render(); });
+  bind(); const fq=$('#fq'); if(fq) fq.oninput=()=>{ $('#fpl').innerHTML=rowsHtml(fq.value.trim().replace(/^@/,'')); bind(); };
 }
 function friendStats(id){
   const rs=state.ratings.filter(r=>r.user_id===id);
@@ -1496,7 +1515,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '47';
+const APP_VERSION = '48';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
