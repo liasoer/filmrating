@@ -236,7 +236,7 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 .pcard .poster img{width:100%;height:100%;object-fit:cover;display:block}
 #neu section{content-visibility:auto;contain-intrinsic-size:auto 250px}
 #neu section.genre-sec{content-visibility:visible}
-#neu section.watch-sec{content-visibility:visible;margin-bottom:26px}
+#neu section.watch-sec{content-visibility:visible;margin-bottom:4px}
 #neu .watch-sec .rowh{margin-top:8px}
 .watch-empty{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:16px;text-align:left;color:var(--t2);font-size:14px;line-height:1.35}
 .watch-empty svg{width:20px;height:20px;flex:none;color:var(--tint)}
@@ -1193,15 +1193,6 @@ function renderNeu(){
   const upd = k.updated ? new Date(k.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
 
   root.innerHTML = head + installBanner() + `
-    <div class="hero-rail">${heroes.map(m=>`
-      <button class="hcard" data-kid="${m._i}" ${posterStyle(m.poster)}>
-        <div class="badges">${m.isNew?'<span class="badge new">Neu</span>':''}${(m.formats||[]).filter(f=>f!=='VIP & Premium'&&f!=='Kinderkino').slice(0,2).map(f=>`<span class="badge">${f}</span>`).join('')}</div>
-        <div class="hc-in">
-          <div class="hc-t">${esc(m.title)}</div>
-          <div class="hc-m">${[genresDe(m).slice(0,2).join(', '), m.duration?m.duration+' Min':''].filter(Boolean).map(esc).join(' · ')}</div>
-          ${extPills(m.ext)}
-        </div>
-      </button>`).join('')}</div>
     ${row('Jetzt im Kino', now)}
     ${row('Von Freunden bewertet', rated)}
     ${row('In IMAX', all.filter(m=>(m.formats||[]).includes('IMAX')))}
@@ -1254,15 +1245,6 @@ function seriesBody(){
   state._sgenres = genres;
   const upd = d.updated ? new Date(d.updated).toLocaleDateString('de-CH',{day:'numeric',month:'long'}) : '';
   return `
-    <div class="hero-rail">${heroes.map(m=>`
-      <button class="hcard" data-sid="${m._i}" ${posterStyle(m.poster_l||m.poster)}>
-        <div class="badges">${m.premiere?`<span class="badge new">${m.season>1?'Neue Staffel':'Neu'}</span>`:''}<span class="badge">${esc(m.platform)}</span></div>
-        <div class="hc-in">
-          <div class="hc-t">${esc(m.title)}</div>
-          <div class="hc-m">${[m.season?'Staffel '+m.season:'', sGenresDe(m).slice(0,2).join(', ')].filter(Boolean).map(esc).join(' · ')}</div>
-          ${extPills(m.ext)}
-        </div>
-      </button>`).join('')}</div>
     ${srow('Neue Folgen diese Woche', week)}
     ${srow('Von Freunden bewertet', rated)}
     ${PLAT_ROWS.map(p=>srow(p, all.filter(m=>m.platform===p))).join('')}
@@ -1734,7 +1716,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '53';
+const APP_VERSION = '54';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
