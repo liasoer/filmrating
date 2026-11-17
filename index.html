@@ -453,13 +453,23 @@ const Finder = {
 /* ================= OMDb (Poster + externe Ratings) ================= */
 const Omdb = {
   on: () => !!CONFIG.OMDB_KEY,
+  limitUntil: 0,
+  // Antworten auf dem Gerät zwischenspeichern, damit das Tageslimit von OMDb reicht
+  async get(params, days){
+    const key = 'omdb:'+params;
+    try{ const c = JSON.parse(localStorage.getItem(key)||'null'); if(c && Date.now()-c.t < days*864e5) return c.d; }catch(e){}
+    if(Date.now() < Omdb.limitUntil) throw new Error('OMDb-Tageslimit erreicht');
+    const d = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&${params}`).then(r=>r.json());
+    if(d.Response==='False' && /limit/i.test(d.Error||'')){ Omdb.limitUntil = Date.now()+30*6e4; throw new Error('OMDb-Tageslimit erreicht'); }
+    try{ localStorage.setItem(key, JSON.stringify({t:Date.now(), d})); }catch(e){}
+    return d;
+  },
   async search(q){
-    const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&s=${encodeURIComponent(q)}`);
-    const d = await r.json(); return (d.Search || []).filter(x=>x.Type==='movie'||x.Type==='series');
+    const d = await Omdb.get('s='+encodeURIComponent(q.trim().toLowerCase()), 2);
+    return (d.Search || []).filter(x=>x.Type==='movie'||x.Type==='series');
   },
   async details(id){
-    const r = await fetch(`https://www.omdbapi.com/?apikey=${CONFIG.OMDB_KEY}&i=${id}`);
-    const d = await r.json(); if(d.Response==='False') throw new Error(d.Error);
+    const d = await Omdb.get('i='+id, 7); if(d.Response==='False') throw new Error(d.Error);
     const find = s => (d.Ratings||[]).find(x=>x.Source===s)?.Value;
     return {
       imdb_id:d.imdbID, title:d.Title, year:parseInt(d.Year)||null,
@@ -654,9 +664,25 @@ async function refresh(){
   try{ const [r,f,dev] = await Promise.all([DB.list(), DB.friendships().catch(()=>[]), state.isDev==null ? DB.isDev().catch(()=>false) : state.isDev]); state.ratings=r; state.fr=f; state.isDev=dev;
     state.friendIds = new Set(f.filter(x=>x.status==='accepted').map(x=>x.other?.id)); }
   catch(e){ toast('Laden fehlgeschlagen: '+e.message); }
-  render(); updateBadge();
+  render(); updateBadge(); setTimeout(healPosters, 1500);
 }
 const isFriend = r => state.friendIds?.has(r.user_id);
+let healing = false;
+async function healPosters(){
+  if(healing || DB.mode!=='online') return; healing = true;
+  const todo = state.ratings.filter(r=>r.user_id===state.user.id && !r.poster && (r.imdb_id || r.ext?.kind==='series')).slice(0,6);
+  let changed = false;
+  for(const r of todo){
+    try{
+      let poster=null, ext=r.ext||{};
+      if(ext.kind==='series'){ const t=await Tvm.lookup(r.imdb_id?{imdb:r.imdb_id}:{id:0}); if(t){ poster=t.PosterL||t.Poster; ext={...ext, tvm:ext.tvm??t.tvm, platform:ext.platform||t.platform}; } }
+      if(!poster && r.imdb_id && Omdb.on()){ const x=await Omdb.details(r.imdb_id); poster=x.poster; ext={...x.ext, ...ext, imdb:ext.imdb||x.ext.imdb, rt:ext.rt||x.ext.rt, mc:ext.mc||x.ext.mc}; }
+      if(poster){ await DB.save({...r, poster, ext}); r.poster=poster; r.ext=ext; changed=true; }
+    }catch(e){ if(/limit/i.test(e.message)) break; }
+  }
+  healing = false;
+  if(changed){ state.neuSig=null; render(); }
+}
 const isMeOrFriend = r => r.user_id===state.user.id || isFriend(r);
 function updateBadge(){ const n=(state.fr||[]).filter(f=>f.incoming&&f.status==='pending').length; document.querySelectorAll('.prof').forEach(a=>a.classList.toggle('badge-dot', n>0)); }
 
@@ -1207,7 +1233,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '35';
+const APP_VERSION = '36';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
