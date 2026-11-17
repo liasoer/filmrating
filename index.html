@@ -399,66 +399,74 @@ const Tvm = {
 const Finder = {
   cache:{},
   norm: s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim(),
-  async wikidata(q){
+  qcache: new Map(),
+  match(title, q){
+    const nq=Finder.norm(q), qw=nq.split(' ').filter(w=>!/^\d{1,2}$/.test(w)); let m=0; const t0=Finder.norm(title);
+    if(!t0) return 0;
+    for(const t of [t0, t0.replace(/^(the|a|an|der|die|das|le|la|les|il|el) /,'')]){
+      if(t===nq) m=Math.max(m,4); else if(t.startsWith(nq)) m=Math.max(m,3);
+      else if(qw.length && qw.every(w=>t.split(' ').some(x=>x.startsWith(w)))) m=Math.max(m,2); else if(t.includes(nq)) m=Math.max(m,1); }
+    return m;
+  },
+  async wikidata(q, signal){
     const W='https://www.wikidata.org/w/api.php?format=json&origin=*';
-    const words = Finder.norm(q).split(' ').filter(Boolean);
-    const tw = words.filter(w=>!/^\d{1,2}$/.test(w));
+    const tw = Finder.norm(q).split(' ').filter(w=>w && !/^\d{1,2}$/.test(w));
     if(!tw.length) return [];
     const sr = tw.map(w=>w+'*').join(' ')+' haswbstatement:P345';
-    const lbl = {};
+    const j = u => fetch(u,{signal}).then(r=>r.json());
+    // 1. Kandidaten suchen (drei schnelle, kleine Abfragen parallel)
     const [s, sde, sen] = await Promise.all([
-      fetch(`${W}&action=query&list=search&srlimit=40&srsearch=${encodeURIComponent(sr+' haswbstatement:P31=Q11424')}`).then(r=>r.json()),
-      fetch(`${W}&action=wbsearchentities&type=item&limit=50&language=de&uselang=de&search=${encodeURIComponent(q)}`).then(r=>r.json()),
-      fetch(`${W}&action=wbsearchentities&type=item&limit=50&language=en&uselang=en&search=${encodeURIComponent(q)}`).then(r=>r.json())
+      j(`${W}&action=query&list=search&srlimit=30&srprop=&srsearch=${encodeURIComponent(sr+' haswbstatement:P31=Q11424')}`),
+      j(`${W}&action=wbsearchentities&type=item&limit=30&language=de&uselang=de&search=${encodeURIComponent(q)}`),
+      j(`${W}&action=wbsearchentities&type=item&limit=30&language=en&uselang=en&search=${encodeURIComponent(q)}`)
     ]);
-    [...(sde.search||[]),...(sen.search||[])].forEach(x=>{ lbl[x.id] ||= x.label; });
-    const ids = [...new Set([...(s.query?.search||[]).map(x=>x.title), ...Object.keys(lbl)])];
+    const lbl={}; [...(sde.search||[]),...(sen.search||[])].forEach(x=>{ lbl[x.id] ||= x.label; });
+    const ids = [...new Set([...(s.query?.search||[]).map(x=>x.title), ...Object.keys(lbl)])].slice(0,80);
     if(!ids.length) return [];
-    const chunks=[]; for(let i=0;i<ids.length;i+=50) chunks.push(ids.slice(i,i+50));
-    const ents = {};
-    (await Promise.all(chunks.map(c=>fetch(`${W}&action=wbgetentities&props=claims|labels|sitelinks&languages=de|en|mul&ids=${c.join('|')}`).then(r=>r.json()))))
-      .forEach(e=>Object.assign(ents, e.entities||{}));
-    const nq = tw.join(' ');
+    // 2. Nur die benötigten Angaben gezielt abfragen (statt aller Daten jedes Treffers)
+    const sp = `SELECT ?i ?imdb ?t ?y ?de ?en ?sl WHERE { VALUES ?i { ${ids.map(i=>'wd:'+i).join(' ')} }
+      ?i wdt:P345 ?imdb . FILTER(STRSTARTS(?imdb,"tt")) ?i wdt:P31 ?t .
+      OPTIONAL{ ?i wdt:P577 ?d . BIND(YEAR(?d) AS ?y) } OPTIONAL{ ?i rdfs:label ?de FILTER(LANG(?de)="de") }
+      OPTIONAL{ ?i rdfs:label ?en FILTER(LANG(?en)="en") } OPTIONAL{ ?i wikibase:sitelinks ?sl } }`;
+    const rows = (await j('https://query.wikidata.org/sparql?format=json&query='+encodeURIComponent(sp))).results?.bindings || [];
     const OK = new Set(['Q11424','Q202866','Q24869','Q506240','Q5398426','Q581714','Q1259759','Q93204','Q226730','Q17517379','Q117467246','Q63952888']);
-    return ids.map(id=>ents[id]).filter(x=>x && (x.claims?.P31||[]).some(c=>OK.has(c.mainsnak?.datavalue?.value?.id))).map(x=>{
-      const de=x.labels?.de?.value, en=x.labels?.en?.value||x.labels?.mul?.value||lbl[x.id];
-      const words=tw;
-      const imdb=x.claims?.P345?.[0]?.mainsnak?.datavalue?.value;
-      const year=(x.claims?.P577?.[0]?.mainsnak?.datavalue?.value?.time||'').slice(1,5);
-      let m=0;
-      for(const t0 of [de,en].map(Finder.norm)){ if(!t0) continue;
-        for(const t of [t0, t0.replace(/^(the|a|an|der|die|das|le|la|les|il|el) /,'')]){
-        if(t===nq) m=Math.max(m,4); else if(t.startsWith(nq)) m=Math.max(m,3);
-        else if(words.every(w=>t.split(' ').some(tw=>tw.startsWith(w)))) m=Math.max(m,2);
-        else if(t.includes(nq)) m=Math.max(m,1); } }
-      const pop=Object.keys(x.sitelinks||{}).length;
-      const SER=new Set(['Q5398426','Q581714','Q1259759','Q117467246','Q63952888']);
-      const kind=(x.claims?.P31||[]).some(c=>SER.has(c.mainsnak?.datavalue?.value?.id))?'series':'movie';
-      return {imdbID:imdb, Title:de||en, Year:year, Poster:null, kind, score:m*40+Math.min(pop,120), m};
-    }).filter(r=>r.imdbID?.startsWith('tt') && r.m>0).sort((a,b)=>b.score-a.score);
+    const SER = new Set(['Q5398426','Q581714','Q1259759','Q117467246','Q63952888']);
+    const by = {};
+    rows.forEach(r=>{ const id=r.i.value.split('/').pop(), t=r.t?.value.split('/').pop();
+      const x = by[id] ||= {id, imdb:r.imdb.value, types:new Set(), year:null, de:null, en:null, sl:0};
+      if(t) x.types.add(t); if(r.y) x.year = x.year ? Math.min(x.year, +r.y.value) : +r.y.value;
+      x.de ||= r.de?.value; x.en ||= r.en?.value; x.sl = Math.max(x.sl, +(r.sl?.value||0)); });
+    return Object.values(by).filter(x=>[...x.types].some(t=>OK.has(t))).map(x=>{
+      const title = x.de || x.en || lbl[x.id];
+      const m = Math.max(Finder.match(x.de,q), Finder.match(x.en||lbl[x.id],q));
+      return {imdbID:x.imdb, Title:title, Year:x.year?String(x.year):'', Poster:null,
+        kind:[...x.types].some(t=>SER.has(t))?'series':'movie', score:m*40+Math.min(x.sl,120), m};
+    }).filter(r=>r.m>0).sort((a,b)=>b.score-a.score);
   },
-  async search(q){
-    const [wd, om, tv] = await Promise.all([
-      Finder.wikidata(q).catch(()=>[]),
-      Omdb.on() ? Omdb.search(q).catch(()=>[]) : Promise.resolve([]),
-      Tvm.search(q)
-    ]);
-    // TVmaze-Treffer gleich bewerten wie Wikidata: Titelübereinstimmung zuerst, dann Bekanntheit
-    const nq=Finder.norm(q), qw=nq.split(' ').filter(Boolean);
-    tv.forEach(r=>{ let m=0; const t0=Finder.norm(r.Title);
-      for(const t of [t0, t0.replace(/^(the|a|an|der|die|das|le|la|les|il|el) /,'')]){
-        if(t===nq) m=Math.max(m,4); else if(t.startsWith(nq)) m=Math.max(m,3);
-        else if(qw.every(w=>t.split(' ').some(x=>x.startsWith(w)))) m=Math.max(m,2); else if(t.includes(nq)) m=Math.max(m,1); }
-      r.m=m; r.score=m*40+Math.min(120,(r.weight||0)*1.25); });
+  merge(q, wd, om, tv){
+    tv.forEach(r=>{ r.m=Finder.match(r.Title,q); r.score=r.m*40+Math.min(120,(r.weight||0)*1.25); });
     const strong=[...wd.filter(r=>r.m>=3), ...tv.filter(r=>r.m>=3)].sort((a,b)=>b.score-a.score);
     const out=[], seen=new Set();
-    const add=r=>{ const k=r.imdbID||('tvm'+r.tvmId); if(k && !seen.has(k)){ seen.add(k); out.push(r); }
+    const add=r=>{ const k=r.imdbID||('tvm'+r.tvmId); if(k && !seen.has(k)){ seen.add(k); out.push({...r}); }
       else if(r.tvmId){ const o=out.find(x=>x.imdbID===r.imdbID); if(o){ o.Poster=o.Poster||r.Poster; o.PosterL=r.PosterL; o.tvmId=r.tvmId; o.tvm=r.tvm; o.kind='series'; } } };
     strong.forEach(add);
     om.forEach(r=>add({imdbID:r.imdbID,Title:r.Title,Year:r.Year,Poster:r.Poster!=='N/A'?r.Poster:null,kind:r.Type==='series'?'series':'movie'}));
-    wd.forEach(add);
-    tv.forEach(add);
+    wd.forEach(add); tv.forEach(add);
     return out.slice(0,12);
+  },
+  // Liefert schnelle Treffer sofort über onPartial, die vollständige Liste als Rückgabewert
+  async search(q, onPartial, signal){
+    const key = Finder.norm(q);
+    if(Finder.qcache.has(key)) return Finder.qcache.get(key);
+    const pWd = Finder.wikidata(q, signal).catch(()=>null);
+    const pOm = Omdb.on() ? Omdb.search(q).catch(()=>[]) : Promise.resolve([]);
+    const pTv = Tvm.search(q);
+    const [om, tv] = await Promise.all([pOm, pTv]);
+    if(onPartial && !signal?.aborted) onPartial(Finder.merge(q, [], om, tv));
+    const wd = await pWd;
+    const res = Finder.merge(q, wd||[], om, tv);
+    if(wd) Finder.qcache.set(key, res);
+    return res;
   },
   async poster(id){
     if(id in Finder.cache) return Finder.cache[id];
@@ -1162,10 +1170,14 @@ function openForm(r){
         <div class="grp" id="sr" style="margin-top:12px;display:none"></div>
         <div style="text-align:center;margin-top:18px"><button class="link" id="man">Manuell eintragen</button></div>`;
       setTimeout(()=>$('#fs')?.focus(), 350);
-      let t, seq=0;
+      let t, seq=0, ctrl=null;
       $('#fs').oninput=e=>{ clearTimeout(t); const q=e.target.value.trim(); const sr=$('#sr'); if(q.length<2){ sr.style.display='none'; sr.innerHTML=''; return; }
-        t=setTimeout(async()=>{ const my=++seq; sr.style.display=''; sr.innerHTML='<div class="hint" style="padding:14px 0">Suche…</div>';
-          try{ const res=await Finder.search(q); if(my!==seq) return;
+        t=setTimeout(async()=>{ const my=++seq; sr.style.display=''; if(!sr.querySelector('.res')) sr.innerHTML='<div class="hint" style="padding:14px 0">Suche…</div>';
+          ctrl?.abort(); ctrl=new AbortController();
+          try{ const res=await Finder.search(q, part=>{ if(my===seq && part.length) show(part, false); }, ctrl.signal); if(my!==seq) return; show(res, true); }
+          catch(err){ if(my===seq && err.name!=='AbortError') sr.innerHTML='<div class="hint" style="padding:14px 0">Suche fehlgeschlagen.</div>'; }
+        },220); };
+      const show=(res, final)=>{ const sr=$('#sr'); if(!sr) return;
             sr.innerHTML = res.length ? res.map(m=>`<button class="res" data-id="${m.imdbID}" data-t="${esc(m.Title)}" data-y="${esc(m.Year||'')}" data-kind="${m.kind||'movie'}" data-tvm="${m.tvmId||''}"><div class="poster" data-p="${m.imdbID}" ${posterStyle(m.Poster)}>${m.Poster?'':I.film}</div><div class="info"><div class="title">${esc(m.Title)}</div><div class="meta">${[m.kind==='series'?'Serie':'Film', m.Year].filter(Boolean).map(esc).join(' · ')}</div></div></button>`).join('') : `<div class="hint" style="padding:14px 0">Nichts gefunden.</div>`;
             document.querySelectorAll('.res').forEach(b=>b.onclick=async()=>{
               document.activeElement?.blur();
@@ -1179,8 +1191,7 @@ function openForm(r){
               go(1);
             });
             if(Omdb.on()) res.filter(m=>!m.Poster).slice(0,8).forEach(async m=>{ const p = m.kind==='series' ? (await Tvm.lookup({imdb:m.imdbID}))?.Poster || await Finder.poster(m.imdbID) : await Finder.poster(m.imdbID); const el=document.querySelector(`[data-p="${m.imdbID}"]`); if(p&&el){ el.style.backgroundImage=`url('${p}')`; el.innerHTML=''; } });
-          }catch(err){ if(my===seq) sr.innerHTML='<div class="hint" style="padding:14px 0">Suche fehlgeschlagen.</div>'; }
-        },300); };
+      };
       $('#man').onclick=()=>{
         wz.innerHTML = `<h2 class="wz-h">Film eintragen</h2>
           <div class="grp" style="margin-top:18px"><div class="field"><label>Titel</label><input id="ft" placeholder="Filmtitel" value="${esc(d.title||'')}"></div><div class="field"><label>Jahr</label><input id="fy" inputmode="numeric" placeholder="2026" value="${esc(d.year||'')}"></div></div>
@@ -1292,7 +1303,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '38';
+const APP_VERSION = '39';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
