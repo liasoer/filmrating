@@ -6,13 +6,13 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Filmrating">
+<meta name="apple-mobile-web-app-title" content="Screenreview">
 <meta name="theme-color" content="#000000">
 <meta name="format-detection" content="telephone=no">
-<link rel="manifest" href="manifest.webmanifest?v=3">
+<link rel="manifest" href="manifest.webmanifest?v=5">
 <link rel="apple-touch-icon" href="icon.png?v=4">
 <link rel="icon" href="icon.png?v=4">
-<title>Filmrating</title>
+<title>Screenreview</title>
 <style>
 :root{
   --bg:#000;--bg2:#0d0d10;--grp:#1c1c1e;--grp2:#2c2c2e;--sep:rgba(84,84,88,.45);
@@ -631,7 +631,7 @@ function renderAuth(register=false){
   $('#app').innerHTML = `
   <div class="auth">
     <div class="logo"></div>
-    <h1>Filmrating</h1>
+    <h1>Screenreview</h1>
     <p>Bewerte Filme und vergleiche mit deinen Freunden.</p>
     <form id="af" autocomplete="on">
       <div class="grp">
@@ -706,8 +706,8 @@ function bindInstall(){ const b=$('#instbtn'); if(b) b.onclick=async()=>{ if(!in
 function openInstall(){
   openSheet({ title:'App installieren', body:`
     <div style="text-align:center;margin:6px 0 18px"><div class="logo" style="width:84px;height:84px;margin:0 auto 14px"></div>
-    <h2 class="wz-h" style="font-size:24px">Filmrating auf deinen Home-Bildschirm</h2>
-    <p class="hint" style="margin:8px 10px 0;font-size:15px">Dann startet Filmrating wie eine normale App, im Vollbild und ohne Browserleiste.</p></div>
+    <h2 class="wz-h" style="font-size:24px">Screenreview auf deinen Home-Bildschirm</h2>
+    <p class="hint" style="margin:8px 10px 0;font-size:15px">Dann startet Screenreview wie eine normale App, im Vollbild und ohne Browserleiste.</p></div>
     ${installSteps()}` });
   bindInstall();
 }
@@ -1201,8 +1201,8 @@ async function openDev(){
 /* ================= Freunde einladen ================= */
 async function invite(){
   const url = location.origin + location.pathname;
-  const text = 'Bewerte mit mir Filme in Filmrating! Registrier dich hier:';
-  try{ if(navigator.share){ await navigator.share({title:'Filmrating', text, url}); return; } }catch(e){ if(e.name==='AbortError') return; }
+  const text = 'Bewerte mit mir Filme und Serien in Screenreview! Registrier dich hier:';
+  try{ if(navigator.share){ await navigator.share({title:'Screenreview', text, url}); return; } }catch(e){ if(e.name==='AbortError') return; }
   try{ await navigator.clipboard.writeText(text+' '+url); toast('Link kopiert'); }catch(e){ toast(url); }
 }
 
@@ -1421,7 +1421,7 @@ function openProfile(){
   $('#inv').onclick=invite; bindInstall();
   (async()=>{ const t=$('#pushtgl'), h=$('#pushhint'); if(!t) return; let st=await pushState();
     const show=()=>{ t.classList.toggle('on', st==='on'); t.disabled = st==='unsupported'||st==='denied';
-      h.textContent = st==='denied' ? 'Mitteilungen sind blockiert. Erlaube sie in den Einstellungen deines Handys für Filmrating.'
+      h.textContent = st==='denied' ? 'Mitteilungen sind blockiert. Erlaube sie in den Einstellungen deines Handys für Screenreview.'
         : st==='unsupported' ? (platform()==='ios' && !isStandalone() ? 'Auf dem iPhone funktionieren Mitteilungen nur, wenn die App auf dem Home-Bildschirm installiert ist.' : 'Dieses Gerät unterstützt keine Mitteilungen.') : ''; };
     show();
     t.onclick=async()=>{ t.disabled=true; try{ if(st==='on'){ await disablePush(); st='off'; } else { st = (await enablePush()) ? 'on' : await pushState(); } }catch(e){ toast(e.message); } t.disabled=false; show(); };
@@ -1438,7 +1438,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '45';
+const APP_VERSION = '46';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());

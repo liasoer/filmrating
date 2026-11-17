@@ -9,7 +9,7 @@ self.addEventListener('fetch', e => {
 self.addEventListener('push', e => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (_) { d = { body: e.data && e.data.text() }; }
-  e.waitUntil(self.registration.showNotification(d.title || 'Filmrating', {
+  e.waitUntil(self.registration.showNotification(d.title || 'Screenreview', {
     body: d.body || '',
     icon: 'icon-192.png?v=4',
     badge: 'icon-192.png?v=4',

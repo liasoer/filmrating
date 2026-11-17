@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "Filmrating",
-  "short_name": "Filmrating",
+  "name": "Screenreview",
+  "short_name": "Screenreview",
   "description": "Filme und Serien bewerten und mit Freunden vergleichen",
   "lang": "de-CH",
   "start_url": "./",
