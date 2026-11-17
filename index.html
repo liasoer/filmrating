@@ -287,6 +287,19 @@ textarea.ta::placeholder,.field input::placeholder{color:var(--t3)}
 #prt.open>svg:last-child{transform:rotate(90deg)}
 #prt svg:first-child{color:var(--tint)}
 .pcard.recd .pm{color:var(--tint)}
+.hbtns{display:flex;gap:8px;align-items:center}
+.hb{width:40px;height:40px;color:var(--t1)}
+.hb svg{width:18px;height:18px}
+.hb svg *{stroke:currentColor}
+.hb.act{background:var(--tint)!important;color:#fff}
+.srow{display:flex;gap:12px;align-items:center;margin-top:12px}
+.srow .search{flex:1;min-width:0}
+.srow .link{flex:none;font-size:17px}
+.apills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.apill{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 6px 0 12px;border-radius:16px;background:rgba(10,132,255,.18);color:#4da3ff;font-size:15px;font-weight:600}
+.apill .fav{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:rgba(77,163,255,.25);margin-left:-6px}
+.apill .ax{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(77,163,255,.22)}
+.apill .ax svg{width:10px;height:10px}
 .pick{display:flex;flex-direction:column;align-items:center}
 .pick .poster{width:132px!important;height:198px!important;flex:none;border-radius:14px;background:var(--grp) center/cover;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:16px 10px;margin-top:12px}
@@ -419,6 +432,7 @@ const tick = (() => {
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2800); }
 function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('Script konnte nicht geladen werden')); document.head.appendChild(s); }); }
 const I = {
+  filter:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></svg>',
   chev:'<svg class="fchev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
   bell:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg>',
   bookmark:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4-6.5 4v-16a1 1 0 0 1 1-1z"/></svg>',
@@ -872,14 +886,16 @@ function render(){
   items.sort((a,b)=> s==='score'?b._s-a._s : s==='title'?a.title.localeCompare(b.title) : String(b.watched_on||b.created_at).localeCompare(String(a.watched_on||a.created_at)));
   const W = K==='series' ? ['Serien','deine erste Serie'] : ['Filme','deinen ersten Film'];
   const emptyTxt = {mine:`Noch keine ${W[0]} bewertet.<br>Tippe auf <b>+</b> und bewerte ${W[1]}.`,friends: state.friendIds?.size ? `Deine Freunde haben noch keine ${W[0]} bewertet.` : `Du hast noch keine Freunde.<br>Füge sie im Profil über ihren Nutzernamen hinzu.`,top:`Noch keine ${W[0]} bewertet.`}[state.tab];
+  const showSearch = !!(state.searchOpen || state.q);
   const sorts = top ? [['score','Beste'],['title','A bis Z']] : [['score','Beste'],['date','Neueste'],['title','A bis Z']];
 
   $('#app').innerHTML = `
-    <div class="hdr"><h1 class="large">${state.tab==='mine'?(K==='series'?'Meine Serien':'Meine Filme'):TABS.find(t=>t.id===state.tab).title}</h1><button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div>
+    <div class="hdr"><h1 class="large">${state.tab==='mine'?(K==='series'?'Meine Serien':'Meine Filme'):TABS.find(t=>t.id===state.tab).title}</h1>
+      <div class="hbtns"><button class="glass glass-btn hb ${showSearch?'act':''}" id="sbtn" aria-label="Suchen">${I.search}</button>${top?'':`<button class="glass glass-btn hb ${filterActive()?'act':''}" id="fbtn" aria-label="Filter">${I.filter}</button>`}<button class="glass glass-btn avatar prof">${esc((state.user.username||'?')[0].toUpperCase())}</button></div></div>
     <div class="seg" id="kind"><i class="seg-ind" style="transform:translateX(${K==='series'?'100%':'0'})"></i><button data-k="movie" class="${K==='movie'?'on':''}">Filme</button><button data-k="series" class="${K==='series'?'on':''}">Serien</button></div>
-    <label class="search" style="margin-top:12px">${I.search}<input id="q" type="search" placeholder="Suchen" value="${esc(state.q)}" enterkeyhint="search"></label>
-    ${state.tab==='friends' ? friendChips() : ''}
-    ${top ? '<div style="height:10px"></div>' : `<div class="chips">${sorts.map(([v,l])=>`<button class="chip ${s===v?'on':''}" data-s="${v}">${l}</button>`).join('')}</div>`}
+    ${showSearch?`<div class="srow"><label class="search">${I.search}<input id="q" type="search" placeholder="Titel oder Name suchen" value="${esc(state.q)}" enterkeyhint="search"></label><button class="link" id="scl">Abbrechen</button></div>`:''}
+    ${activePills(sorts, s)}
+    <div style="height:10px"></div>
     <div class="list">
       ${items.length ? items.map((r,i)=>`
         <button class="card" data-k="${esc(r.count?r.key:filmKey(r))}">${r.poster?`<div class="card-bg" ${posterStyle(r.poster)}></div>`:''}
@@ -893,11 +909,13 @@ function render(){
           ${ring(r._s)}
         </button>`).join('') : `<div class="empty">${I.pop}${emptyTxt}</div>`}
     </div>`;
-  const qi=$('#q'); qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
-  document.querySelectorAll('.chip[data-s]').forEach(c=>c.onclick=()=>{ state.sort=c.dataset.s; tick(); render(); });
-  const fs=$('#fsel'); if(fs) fs.onclick=()=>{ tick(); pickFriend(); };
-  const fp=$('#fprof'); if(fp) fp.onclick=()=>openFriend(state.friendF);
-  const fc=$('#fclr'); if(fc) fc.onclick=()=>{ tick(); state.friendF=null; render(); };
+  const qi=$('#q'); if(qi){ qi.oninput=()=>{ state.q=qi.value; const p=qi.selectionStart; render(); const n=$('#q'); n.focus(); n.setSelectionRange(p,p); };
+    if(state._focusQ){ state._focusQ=false; setTimeout(()=>qi.focus(),30); } }
+  $('#sbtn').onclick=()=>{ tick(); if(showSearch){ state.searchOpen=false; state.q=''; } else { state.searchOpen=true; state._focusQ=true; } render(); };
+  const scl=$('#scl'); if(scl) scl.onclick=()=>{ tick(); state.searchOpen=false; state.q=''; render(); };
+  const fb=$('#fbtn'); if(fb) fb.onclick=()=>{ tick(); openFilter(sorts); };
+  document.querySelectorAll('[data-clr]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); tick(); if(b.dataset.clr==='friend') state.friendF=null; else state.sort='score'; render(); });
+  const ap=$('#apf'); if(ap) ap.onclick=()=>openFriend(state.friendF);
   document.querySelectorAll('#kind button').forEach(b=>b.onclick=()=>{ if(state.kind!==b.dataset.k){ state.kind=b.dataset.k; tick(); $('#kind .seg-ind').style.transform=`translateX(${b.dataset.k==='series'?'100%':'0'})`; setTimeout(render,180); } });
   $('#app .prof').onclick=openProfile;
   document.querySelectorAll('#app .card').forEach(c=>c.onclick=()=>openDetail(c.dataset.k));
@@ -915,6 +933,35 @@ function friendChips(){
   return sel
     ? `<div class="fbar glass"><button class="fbar-main" id="fsel"><span class="glass glass-btn avatar" style="width:36px;height:36px;font-size:15px">${esc((sel.username||'?')[0].toUpperCase())}</span><span style="flex:1;min-width:0;text-align:left"><span class="fname"><b>@${esc(sel.username)}</b>${I.chev}</span><span class="meta" style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${friendStats(sel.id).line}</span></span></button><button class="link" id="fprof">Profil</button><button class="fclr" id="fclr" aria-label="Filter entfernen">${I.close}</button></div>`
     : `<button class="fbar glass fbar-all" id="fsel">${I.people}<span style="flex:1;text-align:left">Alle Freunde <span class="meta" style="display:inline">· ${fl.length}</span></span>${I.chev}</button>`;
+}
+const filterActive = () => (state.tab==='friends' && !!state.friendF) || (state.sort && state.sort!=='score');
+function activePills(sorts, s){
+  const out=[];
+  if(state.tab==='friends' && state.friendF){ const f=friendList().find(x=>x.id===state.friendF); if(f) out.push(`<button class="apill" id="apf"><span class="fav">${esc((f.username||'?')[0].toUpperCase())}</span>@${esc(f.username)}<span class="ax" data-clr="friend">${I.close}</span></button>`); }
+  if(s!=='score'){ const l=(sorts.find(x=>x[0]===s)||[])[1]; if(l) out.push(`<button class="apill">${esc(l)}<span class="ax" data-clr="sort">${I.close}</span></button>`); }
+  return out.length?`<div class="apills">${out.join('')}</div>`:'';
+}
+function openFilter(sorts){
+  const fl = state.tab==='friends' ? friendList() : [];
+  const body = q => `
+    <div class="sec" style="margin-top:4px">Sortieren</div>
+    <div class="grp">${sorts.map(([v,l])=>`<button class="cell cell-h fpick" data-fs="${v}"><span>${l}</span>${(state.sort||'score')===v?I.check:''}</button>`).join('')}</div>
+    ${fl.length?`<div class="sec">Freund</div>
+      ${fl.length>6?`<label class="search" style="margin-bottom:10px">${I.search}<input id="ffq" type="search" placeholder="Nutzername suchen" value="${esc(q)}" autocapitalize="off" autocorrect="off"></label>`:''}
+      <div class="grp" id="ffl">${friendRows(fl,q)}</div>`:''}
+    <button class="btn pri" id="fdone" style="margin-top:22px">Fertig</button>`;
+  openSheet({ title:'Filter', body: body('') });
+  const bind=()=>{
+    document.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>{ tick(); state.sort=b.dataset.fs; render(); document.querySelectorAll('[data-fs]').forEach(x=>x.lastElementChild?.tagName==='svg'&&x.lastElementChild.remove()); b.insertAdjacentHTML('beforeend', I.check); });
+    document.querySelectorAll('[data-ff]').forEach(b=>b.onclick=()=>{ tick(); state.friendF=b.dataset.ff||null; render(); const q=$('#ffq')?.value||''; $('#ffl').innerHTML=friendRows(fl,q); bind(); });
+  };
+  bind();
+  const q=$('#ffq'); if(q) q.oninput=()=>{ $('#ffl').innerHTML=friendRows(fl,q.value.trim().replace(/^@/,'').toLowerCase()); bind(); };
+  $('#fdone').onclick=closeSheet;
+}
+function friendRows(fl,q){
+  return (q?'':`<button class="cell cell-h fpick" data-ff=""><b>Alle Freunde</b>${!state.friendF?I.check:''}</button>`) +
+    (fl.filter(f=>!q||(f.username||'').includes(q)).map(f=>`<button class="cell cell-h fpick" data-ff="${esc(f.id)}"><span style="display:flex;align-items:center;gap:12px;min-width:0"><span class="glass glass-btn avatar" style="width:34px;height:34px;font-size:14px;flex:none">${esc((f.username||'?')[0].toUpperCase())}</span><span style="text-align:left;min-width:0"><b>@${esc(f.username)}</b><span class="meta" style="display:block">${friendStats(f.id).line}</span></span></span>${state.friendF===f.id?I.check:''}</button>`).join('') || '<div class="cell note" style="margin:0">Niemand gefunden.</div>');
 }
 function pickFriend(){
   const fl=friendList();
@@ -1687,7 +1734,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '52';
+const APP_VERSION = '53';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
