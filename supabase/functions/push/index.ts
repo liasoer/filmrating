@@ -1,6 +1,6 @@
-// Filmrating: Push-Mitteilungen bei Freundschaftsanfragen und angenommenen Anfragen.
+// Screenreview: Push-Mitteilungen bei Freundschaftsanfragen, angenommenen Anfragen und Empfehlungen.
 // GET  /push?action=key   -> öffentlicher Push-Schlüssel (wird beim ersten Aufruf erzeugt und in push_keys gespeichert)
-// POST /push {type:'friendship', id}  -> vom Datenbank-Trigger aufgerufen
+// POST /push {type:'friendship'|'recommendation', id}  -> vom Datenbank-Trigger aufgerufen
 import webpush from "npm:web-push@3.6.7";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
@@ -17,15 +17,15 @@ async function keys() {
   return again!;
 }
 
-async function sendTo(userId: string, title: string, body: string) {
+async function sendTo(userId: string, title: string, body: string, link = "./?profil") {
   const k = await keys();
-  webpush.setVapidDetails("https://liasoer.github.io/filmrating/", k.public_key, k.private_key);
+  webpush.setVapidDetails("https://screenreview.liasoertig.ch/", k.public_key, k.private_key);
   const { data: subs } = await db.from("push_subscriptions").select("endpoint, p256dh, auth").eq("user_id", userId);
   let sent = 0;
   for (const s of subs ?? []) {
     try {
       await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } },
-        JSON.stringify({ title, body, url: "/filmrating/?profil" }), { TTL: 86400 });
+        JSON.stringify({ title, body, url: link }), { TTL: 86400 });
       sent++;
     } catch (e) {
       const code = (e as { statusCode?: number }).statusCode;
@@ -42,7 +42,17 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "not found" }, 404);
 
   const { type, id } = await req.json().catch(() => ({}));
-  if (type !== "friendship" || !id) return json({ error: "bad request" }, 400);
+  if (!id || (type !== "friendship" && type !== "recommendation")) return json({ error: "bad request" }, 400);
+
+  if (type === "recommendation") {
+    // Nur einmal senden: pushed von false auf true setzen, sonst überspringen
+    const { data: rec } = await db.from("recommendations").update({ pushed: true })
+      .eq("id", id).eq("pushed", false).select("from_user, to_user, title").maybeSingle();
+    if (!rec) return json({ skipped: "unknown or already sent" });
+    const { data: p } = await db.from("profiles").select("username").eq("id", rec.from_user).maybeSingle();
+    const sent = await sendTo(rec.to_user, "Neue Empfehlung", `@${p?.username ?? "jemand"} empfiehlt dir «${rec.title}»`, "./?empfehlung");
+    return json({ sent });
+  }
 
   // Daten immer selbst aus der Datenbank lesen, nie der Anfrage vertrauen
   const { data: f } = await db.from("friendships")
