@@ -666,7 +666,7 @@ function installSteps(){
       ${step(3,'Wähle <b>«App installieren»</b> oder <b>«Zum Startbildschirm hinzufügen»</b>')}
       ${step(4,'Bestätige mit <b>«Installieren»</b>')}
     </div>`;
-  return `<div class="grp"><div class="cell note" style="margin:0">Öffne <b>liasoer.github.io/filmrating</b> auf deinem Handy. Auf dem iPhone in Safari, auf Android in Chrome.</div></div>`;
+  return `<div class="grp"><div class="cell note" style="margin:0">Öffne <b>screenreview.liasoertig.ch</b> auf deinem Handy. Auf dem iPhone in Safari, auf Android in Chrome.</div></div>`;
 }
 function bindInstall(){ const b=$('#instbtn'); if(b) b.onclick=async()=>{ if(!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice.catch(()=>{}); installPrompt=null; closeSheet(); }; }
 function openInstall(){
@@ -1307,7 +1307,7 @@ function openProfile(){
 }
 
 /* ================= Auto-Update ================= */
-const APP_VERSION = '39';
+const APP_VERSION = '40';
 async function checkUpdate(){
   try{
     const t = await fetch(location.pathname+'?nocache='+Date.now(), {cache:'no-store'}).then(r=>r.text());
