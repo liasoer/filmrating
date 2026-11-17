@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark"><meta name="robots" content="noindex">
+<title>Neues Passwort · Screenreview</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#000;color:#fff;font:17px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;display:flex;justify-content:center;padding:max(60px,env(safe-area-inset-top)) 24px 40px}
+main{width:100%;max-width:380px;text-align:center}
+.ic{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;background:#0a84ff;display:grid;place-items:center;font-size:30px}
+h1{font-size:28px;font-weight:700;letter-spacing:-.4px;margin:0 0 8px}
+p{color:rgba(235,235,245,.62);margin:0 0 22px}
+.grp{background:rgba(44,44,50,.55);border:.6px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden;margin-bottom:14px;text-align:left}
+input{width:100%;height:52px;border:0;background:transparent;color:#fff;font:inherit;padding:0 16px;outline:none}
+input+input{border-top:.5px solid rgba(255,255,255,.12)}
+button{width:100%;height:50px;border:0;border-radius:25px;background:#0a84ff;color:#fff;font:600 17px/1 inherit;font-family:inherit;cursor:pointer}
+button:disabled{opacity:.4}
+.err{color:#ff453a;font-size:15px;min-height:20px;margin:0 0 12px}
+.hide{display:none}
+</style></head>
+<body><main>
+<div class="ic">🔑</div>
+<section id="form">
+<h1>Neues Passwort</h1>
+<p>Wähle ein neues Passwort für dein Screenreview-Konto.</p>
+<div class="grp">
+<input id="p1" type="password" placeholder="Neues Passwort" autocomplete="new-password" minlength="6">
+<input id="p2" type="password" placeholder="Wiederholen" autocomplete="new-password" minlength="6">
+</div>
+<div class="err" id="err"></div>
+<button id="go" disabled>Passwort speichern</button>
+</section>
+<section id="done" class="hide">
+<h1>Geschafft</h1>
+<p>Dein Passwort ist geändert. Öffne Screenreview und melde dich mit dem neuen Passwort an.</p>
+</section>
+<section id="bad" class="hide">
+<h1>Link abgelaufen</h1>
+<p id="badmsg">Dieser Link ist nicht mehr gültig. Fordere in der App unter «Passwort vergessen?» einen neuen an.</p>
+</section>
+</main>
+<script>
+const URL_="https://vpdgwopcsevtvvaufegr.supabase.co",KEY="sb_publishable_8igcj2eTIqMjcsjkAxum7A_jSyR96RY";
+const h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search);
+const token=h.get("access_token");
+const $=id=>document.getElementById(id);
+history.replaceState(null,"",location.pathname); // Token nicht in der Adresszeile lassen
+if(!token||h.get("error")||q.get("error")){$("form").classList.add("hide");$("bad").classList.remove("hide")}
+const check=()=>{const a=$("p1").value,b=$("p2").value;$("go").disabled=a.length<6||a!==b;$("err").textContent=b&&a!==b?"Die Passwörter stimmen nicht überein.":""};
+$("p1").oninput=check;$("p2").oninput=check;
+$("go").onclick=async()=>{
+  $("go").disabled=true;$("err").textContent="";
+  try{
+    const r=await fetch(URL_+"/auth/v1/user",{method:"PUT",headers:{apikey:KEY,Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({password:$("p1").value})});
+    if(r.ok){$("form").classList.add("hide");$("done").classList.remove("hide");return}
+    const j=await r.json().catch(()=>({}));const m=(j.msg||j.message||j.error_description||"")+"";
+    if(r.status===401||r.status===403){$("form").classList.add("hide");$("bad").classList.remove("hide");return}
+    $("err").textContent=/different|same/i.test(m)?"Das neue Passwort muss sich vom alten unterscheiden.":/should be|weak/i.test(m)?"Das Passwort ist zu kurz oder zu einfach.":"Fehler: "+(m||r.status);
+  }catch(e){$("err").textContent="Keine Internetverbindung."}
+  check();
+};
+</script>
+</body></html>
