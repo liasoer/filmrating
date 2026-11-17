@@ -75,11 +75,13 @@ async function loadReports() {
       r.rating_note ? `<blockquote>${esc(r.rating_note)}</blockquote>` : "",
       r.rating_personal?.scene ? `<blockquote>Beste Szene: ${esc(r.rating_personal.scene)}</blockquote>` : "",
       r.rec_title ? `Empfehlung «${esc(r.rec_title)}»` : "",
-      r.rec_message ? `<blockquote>${esc(r.rec_message)}</blockquote>` : ""
+      r.rec_message ? `<blockquote>${esc(r.rec_message)}</blockquote>` : "",
+      r.wish_body ? `Wunsch<blockquote>${esc(r.wish_body)}</blockquote>` : ""
     ].join("");
     const acts = r.status !== "open" ? "" : `<div class="acts">
       ${r.rating_id ? `<button class="d" data-a="clear_note" data-id="${r.id}">Notiz entfernen</button><button class="d" data-a="delete_rating" data-id="${r.id}">Bewertung löschen</button>` : ""}
       ${r.recommendation_id ? `<button class="d" data-a="delete_rec" data-id="${r.id}">Empfehlung löschen</button>` : ""}
+      ${r.wish_id ? `<button class="d" data-a="delete_wish" data-id="${r.id}">Wunsch löschen</button>` : ""}
       ${r.reported_id ? `<button class="d" data-a="remove_avatar" data-id="${r.id}">Profilbild entfernen</button>` : ""}
       <button class="ok" data-a="dismiss" data-id="${r.id}">Kein Verstoss</button></div>`;
     return `<div class="row">
@@ -90,7 +92,7 @@ async function loadReports() {
       ${acts}</div>`;
   }).join("") + `</div>`;
   document.querySelectorAll("[data-a]").forEach(b => b.onclick = async () => {
-    const labels = { delete_rating: "Bewertung endgültig löschen?", delete_rec: "Empfehlung löschen?", clear_note: "Notiz und beste Szene entfernen?", remove_avatar: "Profilbild entfernen?", dismiss: "Als «kein Verstoss» schliessen?" };
+    const labels = { delete_rating: "Bewertung endgültig löschen?", delete_rec: "Empfehlung löschen?", delete_wish: "Wunsch löschen?", clear_note: "Notiz und beste Szene entfernen?", remove_avatar: "Profilbild entfernen?", dismiss: "Als «kein Verstoss» schliessen?" };
     if (!confirm(labels[b.dataset.a])) return;
     b.disabled = true;
     const { error } = await sb.rpc("dev_moderate", { report: b.dataset.id, action: b.dataset.a });
