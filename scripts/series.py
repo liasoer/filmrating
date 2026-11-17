@@ -41,6 +41,10 @@ def omdb(imdb):
     import omdbcache
     return omdbcache.get({"i": imdb})
 
+try:
+    OLD = {x["tvmaze_id"]: x for x in json.load(open("series.json", encoding="utf-8")).get("shows", [])}
+except Exception:
+    OLD = {}
 out = []
 for sid, x in shows.items():
     s = x["s"]; eps = sorted(x["eps"], key=lambda e: e["date"])
@@ -58,6 +62,9 @@ for sid, x in shows.items():
          "ext": {"kind": "series", "tvm": (s.get("rating") or {}).get("average"), "platform": x["platform"]}, "votes": 0}
     if imdb:
         d = omdb(imdb)
+        if not d and sid in OLD:  # Limit erreicht: Werte vom Vortag behalten
+            e["ext"].update({k: v for k, v in (OLD[sid].get("ext") or {}).items() if k in ("imdb", "seasons", "genre")})
+            e["votes"] = OLD[sid].get("votes", 0)
         if d:
             e["ext"].update({"imdb": None if d.get("imdbRating") == "N/A" else d.get("imdbRating"),
                              "seasons": None if d.get("totalSeasons") in (None, "N/A") else d.get("totalSeasons"),

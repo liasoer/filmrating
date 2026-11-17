@@ -45,6 +45,12 @@ def omdb(title, year, imdb=None):
         if d: return d
     return None
 
+try:
+    _old = json.load(open("kino.json", encoding="utf-8"))
+    OLD = {x.get("slug"): x for x in _old.get("now", []) + _old.get("soon", []) if x.get("slug")}
+except Exception:
+    OLD = {}
+
 def entry(s, det):
     tags = {t.lower() for t in (det.get("tags") or [])}
     rel = (s.get("releaseAt") or {}).get("CH_DE") or (s.get("releaseAt") or {}).get("CH_FR")
@@ -56,6 +62,10 @@ def entry(s, det):
          "formats": [n for n, keys in FORMATS if tags & keys], "languages": [LANGS[t] for t in sorted(tags) if t in LANGS],
          "synopsis": re.sub(r"<[^>]+>", "", det.get("synopsis") or "").strip()[:600]}
     d = omdb(s["title"], (rel or "")[:4] or None)
+    if not d and s["slug"] in OLD:  # Limit erreicht oder nicht gefunden: Werte vom Vortag behalten
+        o = OLD[s["slug"]]
+        if o.get("ext"): e["ext"] = o["ext"]
+        if o.get("imdb_id"): e["imdb_id"] = o["imdb_id"]
     if d:
         rt = next((r["Value"] for r in d.get("Ratings", []) if r["Source"] == "Rotten Tomatoes"), None)
         e["imdb_id"] = d.get("imdbID")
