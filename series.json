@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T13:16+00:00",
+ "updated": "2026-11-18T13:00+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -15,8 +15,8 @@
     "Fantasy"
    ],
    "season": 3,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": true,
    "isNew": false,
    "summary": "Set thousands of years before the events of The Lord of the Rings, this epic drama follows an ensemble cast of characters, both familiar and new, as they confront the long-feared re-emergence of evil to Middle-earth.",
@@ -302,8 +302,8 @@
     "Romance"
    ],
    "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": false,
    "isNew": false,
    "summary": "Rivals dives headfirst into the cut-throat world of independent television in 1986, where the shoulder pads are big and ambitions even bigger. In the fictional upper-class county of Rutshire, a long-standing rivalry between two powerful men is about to boil over: ex-Olympian, Member of Parliament, and notorious womaniser Rupert Campbell-Black, and his Rutshire neighbour Tony Baddingham, controller of the independent TV franchise Corinium Television. As tensions rise and rivalries deepen, there are spilled secrets, forged alliances, and snatched liaisons that draw wives, lovers, colleagues, fri",
@@ -330,8 +330,8 @@
     "Sports"
    ],
    "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": false,
    "isNew": false,
    "summary": "Pryce Cahill is an over-the-hill, ex-pro golfer whose career was derailed prematurely 20 years ago. After the collapse of his marriage and getting fired from his job at an Indiana sporting goods store, Pryce hedges his bets, and future, entirely on a troubled 17-year-old golf phenom named Santi. Stick is a heartfelt, feel-good comedy about a found family and their relationships set within the world of golf as it's never been shown before.",
@@ -443,8 +443,8 @@
     "Legal"
    ],
    "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": false,
    "isNew": false,
    "summary": "A team of female divorce attorneys leave a male-dominated firm to open their own powerhouse practice. Fierce, brilliant, and emotionally complicated, they navigate high-stakes breakups, scandalous secrets, and shifting allegiances—both in the courtroom and within their own ranks. In a world where money talks and love is a battleground, these women don't just play the game—they change it.",
@@ -472,8 +472,8 @@
     "Crime"
    ],
    "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": false,
    "isNew": false,
    "summary": "The Lowdown follows the gritty exploits of citizen journalist Lee Raybon, a self-proclaimed Tulsa \"truthstorian\" whose obsession with the truth is always getting him into trouble.",
@@ -635,8 +635,8 @@
     "Comedy"
    ],
    "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": false,
    "isNew": false,
    "summary": "Where's Wanda? tells the story of Dedo and Carlotta Klatt, who are desperate to locate their missing 17-year-old daughter Wanda, who disappeared months ago without a trace. When the police fail to find her, the family takes matters into their own hands, obtaining surveillance devices with the help of their tech-savvy son Ole. Disguising themselves as employees of an electrical company, they bug first their neighborhood and then half their suburb, finding out that behind closed doors none of their neighbors are who they pretend to be.",
@@ -843,31 +843,6 @@
    "votes": 9
   },
   {
-   "title": "Griff Across the Alps",
-   "tvmaze_id": 95143,
-   "imdb_id": null,
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1618817.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1618817.jpg",
-   "genres": [
-    "Adventure",
-    "Travel"
-   ],
-   "season": 1,
-   "latest": "2026-11-14",
-   "next": "2026-11-21",
-   "premiere": false,
-   "isNew": true,
-   "summary": "Griff Rhys Jones takes on one of the world's most celebrated mountain ranges by train as he explores from Slovenia to France, uncovering how the Alps have shaped Europe's history, wars, trade, and communities.From Hannibal's famous elephant crossing in 218 BC, to Napoleon's Alpine campaigns, pilgrim trails, medieval traders, and WWII Escape Routes, The Alps have played a pivotal role in some of humanities greatest historical moments and influenced the spread and survival of culture for centuries.Starting with the Alp's eastern end at the stunning Lake Bled and ending on the Mediterranean beach",
-   "url": "https://www.justwatch.com/ch/Suche?q=Griff%20Across%20the%20Alps",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Channel 4"
-   },
-   "votes": 0
-  },
-  {
    "title": "Doozie's Doghouse",
    "tvmaze_id": 94673,
    "imdb_id": "tt47596905",
@@ -981,8 +956,8 @@
     "Legal"
    ],
    "season": 2,
-   "latest": "2026-11-11",
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
    "premiere": false,
    "isNew": false,
    "summary": "Sacrifice follows Daniella Hernandez, a highly sought-after entertainment lawyer, as she navigates the nefarious lives of her rich and famous clients.",
@@ -1092,7 +1067,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Good%20Daughter",
    "ext": {
     "kind": "series",
-    "tvm": 5.7,
+    "tvm": 5.9,
     "platform": "Peacock",
     "imdb": null,
     "seasons": "1",
@@ -1121,7 +1096,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=War",
    "ext": {
     "kind": "series",
-    "tvm": 5.6,
+    "tvm": 6,
     "platform": "HBO Max",
     "imdb": null,
     "seasons": "1",
@@ -1179,7 +1154,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=12%2012%2012",
    "ext": {
     "kind": "series",
-    "tvm": 4.6,
+    "tvm": 4.5,
     "platform": "Apple TV+",
     "imdb": null,
     "seasons": "1",
@@ -1245,6 +1220,31 @@
    "votes": 0
   },
   {
+   "title": "Griff Across the Alps",
+   "tvmaze_id": 95143,
+   "imdb_id": null,
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1618817.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1618817.jpg",
+   "genres": [
+    "Adventure",
+    "Travel"
+   ],
+   "season": 1,
+   "latest": "2026-11-14",
+   "next": "2026-11-21",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Griff Rhys Jones takes on one of the world's most celebrated mountain ranges by train as he explores from Slovenia to France, uncovering how the Alps have shaped Europe's history, wars, trade, and communities.From Hannibal's famous elephant crossing in 218 BC, to Napoleon's Alpine campaigns, pilgrim trails, medieval traders, and WWII Escape Routes, The Alps have played a pivotal role in some of humanities greatest historical moments and influenced the spread and survival of culture for centuries.Starting with the Alp's eastern end at the stunning Lake Bled and ending on the Mediterranean beach",
+   "url": "https://www.justwatch.com/ch/Suche?q=Griff%20Across%20the%20Alps",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Channel 4"
+   },
+   "votes": 0
+  },
+  {
    "title": "He Said, She Said: Till Death Do Us Part",
    "tvmaze_id": 95731,
    "imdb_id": "tt49691783",
@@ -1280,8 +1280,8 @@
     "History"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-18",
+   "latest": "2026-11-18",
+   "next": null,
    "premiere": true,
    "isNew": true,
    "summary": "1814. The Congress of Vienna. Europe is at stake. Love, intrigues, and power plays shuffle the deck.",
@@ -1417,6 +1417,55 @@
     "kind": "series",
     "tvm": null,
     "platform": "BBC"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Lucy Worsley's Keys to the Castle",
+   "tvmaze_id": 95692,
+   "imdb_id": "tt50614077",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630394.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630394.jpg",
+   "genres": [
+    "History"
+   ],
+   "season": 1,
+   "latest": null,
+   "next": "2026-11-23",
+   "premiere": true,
+   "isNew": true,
+   "summary": "Lucy Worsley's Keys to the Castle opens up the hidden rooms, sealed archives and private spaces, to uncover the untold stories behind the buildings and the people who lived in them.Across four episodes, Lucy unlocks the secrets of Britain's majestic Blenheim Palace (birthplace of Winston Churchill); the glittering Versailles Palace in France - and one of its most infamous residents, Queen Marie Antoinette; the fairytale castle Neuschwanstein in Germany; and Venice's intriguing Doge's Palace.While these spectacular palaces host millions of visitors every year, Lucy Worsley's Keys To The Castle ",
+   "url": "https://www.justwatch.com/ch/Suche?q=Lucy%20Worsley%27s%20Keys%20to%20the%20Castle",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "BBC"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Love Cheats",
+   "tvmaze_id": 80197,
+   "imdb_id": null,
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/539/1349372.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/539/1349372.jpg",
+   "genres": [
+    "Crime",
+    "Romance"
+   ],
+   "season": 3,
+   "latest": null,
+   "next": "2026-11-23",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Extraordinary stories of romance fraud, exposing the lies and jaw-dropping scams of heartless manipulators; and the fight to bring them to justice.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Love%20Cheats",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
