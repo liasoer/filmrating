@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T13:00+00:00",
+ "updated": "2026-11-19T12:57+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -244,8 +244,8 @@
     "Mystery"
    ],
    "season": 11,
-   "latest": "2026-11-12",
-   "next": "2026-11-19",
+   "latest": "2026-11-19",
+   "next": "2026-11-26",
    "premiere": true,
    "isNew": false,
    "summary": "The dark side of one of the most beautiful places on earth. Uncovering secrets and lies from the past.",
@@ -480,7 +480,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Lowdown",
    "ext": {
     "kind": "series",
-    "tvm": 6.4,
+    "tvm": 6.5,
     "platform": "FX",
     "imdb": "7.3",
     "seasons": "2",
@@ -990,7 +990,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Body",
    "ext": {
     "kind": "series",
-    "tvm": 5.2,
+    "tvm": 6,
     "platform": "Netflix",
     "imdb": null,
     "seasons": "1",
@@ -1018,7 +1018,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=Cunk%20on%20Cinema",
    "ext": {
     "kind": "series",
-    "tvm": null,
+    "tvm": 6.8,
     "platform": "BBC"
    },
    "votes": 0
@@ -1067,7 +1067,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Good%20Daughter",
    "ext": {
     "kind": "series",
-    "tvm": 5.9,
+    "tvm": 6.1,
     "platform": "Peacock",
     "imdb": null,
     "seasons": "1",
@@ -1088,8 +1088,8 @@
     "Legal"
    ],
    "season": 1,
-   "latest": "2026-11-12",
-   "next": "2026-11-19",
+   "latest": "2026-11-19",
+   "next": null,
    "premiere": false,
    "isNew": false,
    "summary": "War follows two of London's most prestigious rival firms – Cathcarts and Taylor & Byrne – as they go head-to-head in the divorce case of the century. Each side is certain they'll win. But as the case spirals and loyalties fracture, reputations are on the line, and everyone's playing to win.",
@@ -1305,8 +1305,8 @@
     "Crime"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-19",
+   "latest": "2026-11-19",
+   "next": null,
    "premiere": true,
    "isNew": true,
    "summary": "Young, idealistic and suddenly worth billions, they tried to do good—but unleashed the worst in each other. A toxic love story inspired by a real fraud.",
