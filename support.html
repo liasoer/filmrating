@@ -1,8 +1,13 @@
 <!doctype html>
-<html lang="de"><head>
+<html lang="de" class="de"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>Hilfe · Screenreview</title>
+<link rel="icon" href="icon-192.png?v=4">
+<script>
+// Sprache: ?lang=de oder ?lang=en, sonst die Sprache des Browsers (Deutsch, sonst Englisch)
+(function(){var q=new URLSearchParams(location.search).get("lang");var l=q==="de"||q==="en"?q:((navigator.language||"de").toLowerCase().indexOf("de")===0?"de":"en");document.documentElement.className=l;document.documentElement.lang=l})();
+</script>
 <style>
 body{margin:0;background:#000;color:#fff;font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;padding:max(40px,env(safe-area-inset-top)) 18px 50px}
 main{max-width:640px;margin:0 auto}
@@ -11,15 +16,31 @@ h1{font-size:32px;letter-spacing:-.5px;margin:0 0 4px}
 .grp{background:rgba(44,44,50,.55);border:.6px solid rgba(255,255,255,.12);border-radius:22px;padding:16px;margin-bottom:14px}
 h2{font-size:17px;margin:0 0 8px}
 p{color:rgba(235,235,245,.62);margin:0 0 8px;font-size:15px} p:last-child{margin:0}
+a{color:#0a84ff;text-decoration:none}
+.foot{text-align:center;margin-top:24px;font-size:14px;color:rgba(235,235,245,.38)}
+[data-l]{display:none} html.de [data-l=de],html.en [data-l=en]{display:revert}
 </style></head><body><main>
-<h1>Hilfe</h1>
-<p class="st">Screenreview · Support</p>
-<div class="grp"><h2>Kontakt</h2><p>Am schnellsten geht es in der App unter Profil &gt; Feedback und Wünsche. Dort antworte ich persönlich.</p><p>Per E-Mail: <a href="mailto:lias.oertig@gmail.com" style="color:#0a84ff;text-decoration:none">lias.oertig@gmail.com</a></p></div>
-<div class="grp"><h2>Wie finde ich meine Freunde?</h2><p>Unter Profil &gt; Freund hinzufügen den Nutzernamen eingeben. Sobald die Anfrage angenommen ist, seht ihr gegenseitig eure Bewertungen.</p></div>
+<div data-l="de"><h1>Hilfe</h1><p class="st">Screenreview · Support</p>
+<div class="grp"><h2>Kontakt</h2><p>Am schnellsten geht es in der App unter Profil &gt; Feedback und Wünsche. Dort antworte ich persönlich.</p><p>Per E-Mail: <a href="mailto:lias.oertig@gmail.com">lias.oertig@gmail.com</a></p></div>
+<div class="grp"><h2>Wie finde ich meine Freunde?</h2><p>Im Profil unter «Dein Freundeslink»: Link teilen, QR-Code scannen lassen oder über «Kontakt» jemanden einladen. Wer den Link öffnet, schickt dir direkt eine Freundschaftsanfrage.</p><p>Du kannst Freunde auch im Profil unter «Freund hinzufügen» über ihren Nutzernamen suchen. Sobald die Anfrage angenommen ist, seht ihr gegenseitig eure Bewertungen.</p></div>
 <div class="grp"><h2>Wer sieht meine Bewertungen?</h2><p>Nur deine bestätigten Freunde. In der Top-Liste erscheint pro Titel nur der Schnitt aller Bewertungen, ohne Namen.</p></div>
-<div class="grp"><h2>Ich habe mein Passwort vergessen</h2><p>Tippe beim Anmelden auf «Passwort vergessen». Du bekommst eine E-Mail mit einem Link, über den du ein neues Passwort festlegst.</p></div>
+<div class="grp"><h2>Sprache und Land</h2><p>Screenreview folgt der Sprache deines iPhones: Deutsch oder Englisch. Kinoprogramm und Streaming-Angebote richten sich nach dem Land deines iPhones. Ändern kannst du das Land im Profil.</p></div>
+<div class="grp"><h2>Ich habe mein Passwort vergessen</h2><p>Tippe beim Anmelden auf «Passwort vergessen?». Du bekommst eine E-Mail mit einem Link, der Screenreview öffnet. Dort wählst du ein neues Passwort.</p></div>
 <div class="grp"><h2>Ich bekomme keine Mitteilungen</h2><p>Prüfe in den iPhone-Einstellungen unter Mitteilungen &gt; Screenreview, ob sie erlaubt sind. Öffne die App danach einmal, damit sie sich neu anmeldet.</p></div>
 <div class="grp"><h2>Inhalte melden</h2><p>Über das Menü «…» an einer Bewertung oder Empfehlung kannst du sie melden oder die Person blockieren. Meldungen prüfe ich innert 24 Stunden.</p></div>
 <div class="grp"><h2>Konto löschen</h2><p>Unter Profil &gt; Konto löschen. Dein Konto wird mit allen Bewertungen, Freundschaften, der Merkliste und Empfehlungen sofort und endgültig gelöscht.</p></div>
-<p class="st" style="text-align:center;margin-top:24px"><a href="datenschutz.html" style="color:#0a84ff;text-decoration:none">Datenschutz</a></p>
-</main></body></html>
+<p class="foot"><a href="datenschutz.html">Datenschutz</a> · <a href="./">Screenreview</a></p></div>
+<div data-l="en"><h1>Help</h1><p class="st">Screenreview · Support</p>
+<div class="grp"><h2>Contact</h2><p>The quickest way is in the app under Profile &gt; Feedback and wishes. I reply personally.</p><p>By email: <a href="mailto:lias.oertig@gmail.com">lias.oertig@gmail.com</a></p></div>
+<div class="grp"><h2>How do I find my friends?</h2><p>In your profile under “Your friend link”: share the link, let someone scan the QR code or invite someone via “Contact”. Whoever opens the link sends you a friend request right away.</p><p>You can also search for friends by username under “Add friend” in your profile. Once the request is accepted, you can see each other's ratings.</p></div>
+<div class="grp"><h2>Who can see my ratings?</h2><p>Only your confirmed friends. The top list only shows the average of all ratings per title, without names.</p></div>
+<div class="grp"><h2>Language and country</h2><p>Screenreview follows your iPhone's language: German or English. Showtimes and streaming offers depend on your iPhone's country. You can change the country in your profile.</p></div>
+<div class="grp"><h2>I forgot my password</h2><p>Tap “Forgot password?” when signing in. You'll get an email with a link that opens Screenreview, where you choose a new password.</p></div>
+<div class="grp"><h2>I don't get notifications</h2><p>Check in your iPhone settings under Notifications &gt; Screenreview whether they're allowed. Then open the app once so it registers again.</p></div>
+<div class="grp"><h2>Report content</h2><p>Use the “…” menu on a rating or recommendation to report it or block the person. I review reports within 24 hours.</p></div>
+<div class="grp"><h2>Delete account</h2><p>Under Profile &gt; Delete account. Your account is deleted immediately and permanently, with all ratings, friendships, your watchlist and recommendations.</p></div>
+<p class="foot"><a href="datenschutz.html?lang=en">Privacy</a> · <a href="./?lang=en">Screenreview</a></p></div>
+<p class="foot"><a href="?lang=de">Deutsch</a> · <a href="?lang=en">English</a></p>
+</main>
+<script>document.title=document.documentElement.lang==="en"?"Help \u00b7 Screenreview":"Hilfe \u00b7 Screenreview"</script>
+</body></html>

@@ -1,8 +1,13 @@
 <!doctype html>
-<html lang="de"><head>
+<html lang="de" class="de"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <title>Datenschutz · Screenreview</title>
+<link rel="icon" href="icon-192.png?v=4">
+<script>
+// Sprache: ?lang=de oder ?lang=en, sonst die Sprache des Browsers (Deutsch, sonst Englisch)
+(function(){var q=new URLSearchParams(location.search).get("lang");var l=q==="de"||q==="en"?q:((navigator.language||"de").toLowerCase().indexOf("de")===0?"de":"en");document.documentElement.className=l;document.documentElement.lang=l})();
+</script>
 <style>
 body{margin:0;background:#000;color:#fff;font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;padding:max(40px,env(safe-area-inset-top)) 18px 50px}
 main{max-width:640px;margin:0 auto}
@@ -11,16 +16,33 @@ h1{font-size:32px;letter-spacing:-.5px;margin:0 0 4px}
 .grp{background:rgba(44,44,50,.55);border:.6px solid rgba(255,255,255,.12);border-radius:22px;padding:16px;margin-bottom:14px}
 h2{font-size:17px;margin:0 0 8px}
 p{color:rgba(235,235,245,.62);margin:0 0 8px;font-size:15px} p:last-child{margin:0}
+a{color:#0a84ff;text-decoration:none}
+.foot{text-align:center;margin-top:24px;font-size:14px;color:rgba(235,235,245,.38)}
+[data-l]{display:none} html.de [data-l=de],html.en [data-l=en]{display:revert}
 </style></head><body><main>
-<h1>Datenschutz</h1>
-<p class="st">Screenreview · Stand: 19. November 2026</p>
+<div data-l="de"><h1>Datenschutz</h1><p class="st">Screenreview · Stand: 20. November 2026</p>
 <div class="grp"><h2>Wer ist verantwortlich?</h2><p>Screenreview ist ein privates Projekt von Lias Oertig, Frauenfeld, Schweiz. Bei Fragen zum Datenschutz erreichst du mich über liasoertig.ch.</p></div>
 <div class="grp"><h2>Welche Daten speichert Screenreview?</h2><p>Für dein Konto: E-Mail-Adresse, Nutzername, freiwillig ein Profilbild und dein Passwort (nur verschlüsselt gespeichert, niemand kann es lesen).</p><p>Was du in der App erfasst: Bewertungen mit Noten, Notizen, persönlichen Angaben (z. B. mit wem und wo du geschaut hast), deine Merkliste, Empfehlungen an Freunde und Freundschaften.</p><p>Wenn du jemanden blockierst oder meldest: wen du blockiert hast und den Inhalt deiner Meldung. Meldungen sieht nur Lias, um sie zu prüfen.</p><p>Als Betreiber kann Lias die Konten einsehen (Nutzername, E-Mail, Anzahl Bewertungen und Freunde, letzte Anmeldung), um die App zu betreiben, Fehler zu beheben und Meldungen zu prüfen. Gemeldete Inhalte kann er entfernen.</p></div>
 <div class="grp"><h2>Wofür werden die Daten verwendet?</h2><p>Nur damit die App funktioniert: Anmelden, deine Bewertungen auf allen Geräten anzeigen und sie mit deinen Freunden teilen. Es gibt keine Werbung, kein Tracking und keine Analyse deines Verhaltens. Daten werden nicht verkauft.</p></div>
 <div class="grp"><h2>Wer sieht meine Bewertungen?</h2><p>Deine Bewertungen, Notizen und persönlichen Angaben sehen nur deine bestätigten Freunde. In der Top-Liste erscheint nur der Schnitt pro Titel, ohne Namen und ohne einzelne Bewertungen. Dein Nutzername und dein Profilbild sind für andere sichtbar, damit sie dich als Freund finden können.</p><p>Deine Merkliste sehen deine bestätigten Freunde, damit die App zeigt, was ihr beide sehen wollt. Ändern können sie sie nicht. Das lässt sich im Profil unter «Merkliste für Freunde sichtbar» ausschalten. Gemeinsame Listen und ihre Titel sehen nur deren Mitglieder.</p></div>
 <div class="grp"><h2>Wo liegen die Daten?</h2><p>Die Daten liegen bei Supabase in einem Rechenzentrum in Stockholm (EU). Supabase verarbeitet sie nur in meinem Auftrag. Die Verbindung ist immer verschlüsselt.</p></div>
-<div class="grp"><h2>Andere Dienste</h2><p>Für Poster, Infos und Bewertungen fragt die App bei TMDB, OMDb, TVmaze, Wikidata und Wikipedia nach, für das Kinoprogramm bei Pathé. Dabei werden nur Suchbegriffe und Titel übermittelt, keine Angaben zu deiner Person. Diese Dienste sehen technisch bedingt deine IP-Adresse.</p><p>Trailer kommen von YouTube im erweiterten Datenschutzmodus (youtube-nocookie.com) und werden erst geladen, wenn du einen Trailer antippst. Dann gelten die Datenschutzbestimmungen von Google.</p><p>Mitteilungen laufen über den Apple Push Notification Service. Erlaubst du Mitteilungen, speichert Screenreview dazu ein Geräte-Token von Apple, das zu deinem Konto gehört. Beim Abmelden wird es gelöscht.</p></div>
-<div class="grp"><h2>Auf deinem Gerät</h2><p>Die Anmeldung liegt sicher im Schlüsselbund des iPhones. Damit die App auch ohne Netz startet, speichert sie eine Kopie deiner Daten auf dem Gerät. Beim Abmelden wird sie gelöscht.</p></div>
+<div class="grp"><h2>Andere Dienste</h2><p>Für Poster, Infos und Bewertungen fragt die App bei TMDB, OMDb, TVmaze, Wikidata und Wikipedia nach, für das Kinoprogramm bei Pathé. Dabei werden nur Suchbegriffe und Titel übermittelt, keine Angaben zu deiner Person. Diese Dienste sehen technisch bedingt deine IP-Adresse. Trailer kommen von YouTube im erweiterten Datenschutzmodus (youtube-nocookie.com) und werden erst geladen, wenn du einen Trailer antippst. Dann gelten die Datenschutzbestimmungen von Google.</p><p>Mitteilungen laufen über den Apple Push Notification Service. Erlaubst du Mitteilungen, speichert Screenreview dazu ein Geräte-Token von Apple, das zu deinem Konto gehört. Beim Abmelden wird es gelöscht.</p></div>
+<div class="grp"><h2>Auf deinem Gerät</h2><p>Die Anmeldung liegt sicher im Schlüsselbund des iPhones. Damit die App auch ohne Netz startet, speichert sie eine Kopie deiner Daten auf dem Gerät. Beim Abmelden wird sie gelöscht.</p><p>Lädst du über «Kontakt» jemanden ein, wählst du ihn in der Kontaktauswahl von Apple. Die App liest nur die Nummer oder E-Mail-Adresse dieses Kontakts, um die Nachricht vorzubereiten, und speichert oder überträgt davon nichts.</p></div>
 <div class="grp"><h2>Deine Rechte</h2><p>Du kannst deine Daten jederzeit in der App ansehen, ändern und löschen. Unter Profil &gt; Konto löschen entfernst du dein Konto mit allen Bewertungen, Freundschaften, der Merkliste und Empfehlungen sofort und endgültig. Es gelten das Schweizer Datenschutzgesetz (DSG) und, wo anwendbar, die DSGVO.</p></div>
 <div class="grp"><h2>Änderungen</h2><p>Wenn sich an dieser Erklärung etwas ändert, steht die neue Version hier und auf screenreview.ch/datenschutz.html.</p></div>
-</main></body></html>
+<p class="foot"><a href="support.html">Hilfe</a> · <a href="./">Screenreview</a></p></div>
+<div data-l="en"><h1>Privacy</h1><p class="st">Screenreview · Last updated: November 20, 2026</p>
+<div class="grp"><h2>Who is responsible?</h2><p>Screenreview is a private project by Lias Oertig, Frauenfeld, Switzerland. For questions about privacy, you can reach me via liasoertig.ch.</p></div>
+<div class="grp"><h2>What data does Screenreview store?</h2><p>For your account: email address, username, optionally a profile picture, and your password (stored only in encrypted form, nobody can read it).</p><p>What you enter in the app: ratings with scores, notes, personal details (e.g. who you watched with and where), your watchlist, recommendations to friends and friendships.</p><p>If you block or report someone: who you blocked and the content of your report. Only Lias sees reports, in order to review them.</p><p>As the operator, Lias can view accounts (username, email, number of ratings and friends, last sign-in) to run the app, fix bugs and review reports. He can remove reported content.</p></div>
+<div class="grp"><h2>What is the data used for?</h2><p>Only to make the app work: signing in, showing your ratings on all your devices and sharing them with your friends. There are no ads, no tracking and no analysis of your behavior. Data is never sold.</p></div>
+<div class="grp"><h2>Who can see my ratings?</h2><p>Only your confirmed friends can see your ratings, notes and personal details. The top list only shows the average per title, without names and without individual ratings. Your username and profile picture are visible to others so they can find you as a friend.</p><p>Your confirmed friends can see your watchlist so the app can show what you both want to watch. They can&#x27;t change it. You can turn this off in your profile under “Watchlist visible to friends”. Shared lists and their titles are only visible to their members.</p></div>
+<div class="grp"><h2>Where is the data stored?</h2><p>The data is stored with Supabase in a data center in Stockholm (EU). Supabase only processes it on my behalf. The connection is always encrypted.</p></div>
+<div class="grp"><h2>Other services</h2><p>For posters, info and ratings the app queries TMDB, OMDb, TVmaze, Wikidata and Wikipedia, and Pathé for cinema showtimes. Only search terms and titles are sent, no personal details. For technical reasons these services see your IP address. Trailers come from YouTube in privacy-enhanced mode (youtube-nocookie.com) and only load when you tap a trailer. Google&#x27;s privacy policy then applies.</p><p>Notifications are delivered via the Apple Push Notification service. If you allow notifications, Screenreview stores a device token from Apple that belongs to your account. It is deleted when you sign out.</p></div>
+<div class="grp"><h2>On your device</h2><p>Your sign-in is stored securely in the iPhone&#x27;s keychain. So the app can start without a connection, it keeps a copy of your data on the device. It is deleted when you sign out.</p><p>If you invite someone via “Contact”, you pick them in Apple&#x27;s contact picker. The app only reads that contact&#x27;s number or email address to prepare the message and doesn&#x27;t store or send any of it.</p></div>
+<div class="grp"><h2>Your rights</h2><p>You can view, change and delete your data in the app at any time. Under Profile &gt; Delete account you remove your account with all ratings, friendships, your watchlist and recommendations immediately and permanently. The Swiss Federal Act on Data Protection (FADP) and, where applicable, the GDPR apply.</p></div>
+<div class="grp"><h2>Changes</h2><p>If anything in this policy changes, the new version will be here and at screenreview.ch/datenschutz.html.</p></div>
+<p class="foot"><a href="support.html?lang=en">Help</a> · <a href="./?lang=en">Screenreview</a></p></div>
+<p class="foot"><a href="?lang=de">Deutsch</a> · <a href="?lang=en">English</a></p>
+</main>
+<script>document.title=document.documentElement.lang==="en"?"Privacy \u00b7 Screenreview":"Datenschutz \u00b7 Screenreview"</script>
+</body></html>

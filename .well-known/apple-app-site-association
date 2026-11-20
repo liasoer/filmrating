@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["598NC2JK7H.ch.liasoertig.screenreview"],
+        "components": [
+          { "/": "/add.html", "comment": "Freundeslink: öffnet die App und schickt eine Anfrage" },
+          { "/": "/add", "comment": "Freundeslink in Kurzform" }
+        ]
+      }
+    ]
+  }
+}
