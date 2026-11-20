@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark"><meta name="robots" content="noindex">
+<title>Screenreview</title>
+<meta property="og:title" content="Screenreview">
+<meta property="og:description" content="Bewerte Filme und Serien mit deinen Freunden.">
+<meta property="og:image" content="https://screenreview.ch/icon-512.png">
+<link rel="icon" href="icon-192.png">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#000;color:#fff;font:17px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;display:flex;justify-content:center;padding:max(64px,env(safe-area-inset-top)) 24px 40px}
+main{width:100%;max-width:380px;text-align:center}
+.ic{width:84px;height:84px;margin:0 auto 20px;border-radius:20px;display:block}
+h1{font-size:28px;font-weight:700;letter-spacing:-.4px;margin:0 0 8px}
+p{color:rgba(235,235,245,.62);margin:0 0 26px}
+a.btn{display:flex;align-items:center;justify-content:center;width:100%;height:52px;border-radius:26px;background:#0a84ff;color:#fff;font-weight:600;text-decoration:none;margin-bottom:12px}
+a.btn.sec{background:rgba(120,120,128,.24)}
+small{display:block;color:rgba(235,235,245,.38);font-size:13px;margin-top:18px}
+</style></head>
+<body><main>
+<img class="ic" src="icon-192.png" alt="">
+<h1 id="t">Screenreview</h1>
+<p id="d"></p>
+<a class="btn" id="open" href="screenreview://">In Screenreview öffnen</a>
+<a class="btn sec" id="get" href="https://testflight.apple.com/join/AKTDkQ2c">App installieren</a>
+<small id="h"></small>
+</main>
+<script>
+// Freundeslink: add.html?u=nutzername. «Öffnen» schickt in der App sofort eine Freundschaftsanfrage.
+const u=(new URLSearchParams(location.search).get("u")||"").toLowerCase().replace(/[^a-z0-9._]/g,"");
+const de=(navigator.language||"de").toLowerCase().startsWith("de");
+const T=de?{
+  t:u?"@"+u+" lädt dich ein":"Screenreview",
+  d:"Bewerte Filme und Serien und vergleiche mit deinen Freunden.",
+  open:u?"@"+u+" hinzufügen":"In Screenreview öffnen", get:"App installieren",
+  h:"Noch keine App? Erst installieren, dann hier auf «hinzufügen» tippen."
+}:{
+  t:u?"@"+u+" invited you":"Screenreview",
+  d:"Rate movies and shows and compare with your friends.",
+  open:u?"Add @"+u:"Open in Screenreview", get:"Install the app",
+  h:"No app yet? Install it first, then come back and tap “Add”."
+};
+document.documentElement.lang=de?"de":"en";
+document.title=T.t+" · Screenreview";
+document.getElementById("t").textContent=T.t;
+document.getElementById("d").textContent=T.d;
+document.getElementById("open").textContent=T.open;
+document.getElementById("get").textContent=T.get;
+document.getElementById("h").textContent=u?T.h:"";
+if(u)document.getElementById("open").href="screenreview://add/"+encodeURIComponent(u);
+</script>
+</body></html>
