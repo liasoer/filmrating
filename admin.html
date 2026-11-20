@@ -27,6 +27,24 @@ th{color:rgba(235,235,245,.62);font-weight:600;border-top:0}
 .scroll{overflow-x:auto}
 .err{color:#ff453a;min-height:20px;margin-top:10px}
 .hide{display:none}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{background:rgba(44,44,50,.55);border:.6px solid rgba(255,255,255,.12);border-radius:18px;padding:12px 14px}
+.tile b{display:block;font-size:26px;letter-spacing:-.4px;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:rgba(235,235,245,.62)}
+.chart{padding:14px 14px 10px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:120px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;min-width:0}
+.bar i{display:block;width:100%;background:#0a84ff;min-height:2px}
+.bar i:first-child{border-radius:4px 4px 0 0}
+.bar i.s{background:#bf5af2}
+.bar small{font-size:10px;text-align:center;color:rgba(235,235,245,.62);margin-bottom:3px;font-variant-numeric:tabular-nums}
+.blab{display:flex;gap:4px;margin-top:5px;font-size:10px;color:rgba(235,235,245,.38)} .blab span{flex:1;text-align:center;min-width:0;overflow:hidden}
+.legend{font-size:12px;color:rgba(235,235,245,.62);margin-top:8px} .legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin:0 5px 0 10px;vertical-align:0} .legend i:first-child{margin-left:0}
+.hrow{display:flex;align-items:center;gap:10px;padding:9px 16px;border-top:.5px solid rgba(255,255,255,.1);font-size:14px} .hrow:first-child{border-top:0}
+.hrow .l{width:130px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hrow .b{flex:1;height:10px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden} .hrow .b i{display:block;height:100%;background:#0a84ff;border-radius:5px}
+.hrow .n{width:74px;flex:none;text-align:right;color:rgba(235,235,245,.62);font-variant-numeric:tabular-nums}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0 16px}
 blockquote{margin:8px 0 0;padding:8px 12px;border-left:3px solid rgba(255,255,255,.2);color:rgba(235,235,245,.8);background:rgba(255,255,255,.04);border-radius:6px;white-space:pre-wrap}
 </style></head>
 <body><main>
@@ -40,6 +58,25 @@ blockquote{margin:8px 0 0;padding:8px 12px;border-left:3px solid rgba(255,255,25
 </section>
 
 <section id="app" class="hide">
+<h2>Überblick</h2>
+<div class="tiles" id="tiles"></div>
+<div class="cols">
+<div><h2>Letzte 14 Tage: Bewertungen</h2><div class="grp chart" id="days"></div></div>
+<div><h2>Letzte 12 Wochen</h2><div class="grp chart" id="weeks"></div></div>
+</div>
+<div class="cols">
+<div><h2>Wie Neue ankommen</h2><div class="grp" id="funnel"></div></div>
+<div><h2>Notenverteilung</h2><div class="grp chart" id="scores"></div></div>
+</div>
+<div class="cols">
+<div><h2>Meistbewertet</h2><div class="grp" id="toptitles"></div></div>
+<div><h2>Genres</h2><div class="grp" id="genres"></div></div>
+</div>
+<div class="cols">
+<div><h2>Wo geschaut</h2><div class="grp" id="where"></div></div>
+<div><h2>Mitteilungen</h2><div class="grp" id="push"></div></div>
+</div>
+<p class="t3" id="gen"></p>
 <h2 id="rh">Meldungen</h2>
 <div id="reports"></div>
 <p class="t3">Apple verlangt, dass Meldungen innert 24 Stunden geprüft werden.</p>
@@ -60,7 +97,7 @@ async function show() {
   const { data: dev } = await sb.rpc("is_dev");
   if (dev !== true) { $("lerr").textContent = "Kein Zugriff mit diesem Konto."; await sb.auth.signOut(); return; }
   $("login").classList.add("hide"); $("app").classList.remove("hide"); $("out").classList.remove("hide");
-  await Promise.all([loadReports(), loadUsers()]);
+  await Promise.all([loadReports(), loadStats()]);
 }
 
 async function loadReports() {
@@ -101,12 +138,63 @@ async function loadReports() {
   });
 }
 
-async function loadUsers() {
-  const { data, error } = await sb.rpc("dev_users");
-  if (error) { $("users").innerHTML = `<tr><td class="err">${esc(error.message)}</td></tr>`; return; }
-  $("uh").textContent = `Nutzer (${data.length})`;
-  $("users").innerHTML = `<tr><th>Nutzer</th><th>E-Mail</th><th>Bewertungen</th><th>Freunde</th><th>Zuletzt aktiv</th><th>Seit</th></tr>` +
-    data.map(u => `<tr><td>@${esc(u.username)}</td><td>${esc(u.email)}</td><td>${u.ratings}</td><td>${u.friends}</td><td>${day(u.last_sign_in_at)}</td><td>${day(u.created_at)}</td></tr>`).join("");
+const num = n => Number(n ?? 0).toLocaleString("de-CH");
+const pct = (a, b) => b ? Math.round(a / b * 100) + " %" : "–";
+const GENRES = {"Action":"Action","Adventure":"Abenteuer","Animation":"Animation","Biography":"Biografie","Comedy":"Komödie","Crime":"Krimi","Documentary":"Dokumentarfilm","Drama":"Drama","Family":"Familie","Fantasy":"Fantasy","History":"Geschichte","Horror":"Horror","Music":"Musik","Musical":"Musical","Mystery":"Mystery","Romance":"Romantik","Sci-Fi":"Science-Fiction","Science Fiction":"Science-Fiction","Sport":"Sport","Thriller":"Thriller","War":"Krieg","Western":"Western"};
+
+// Waagrechte Balken: [Beschriftung, Wert, Zusatztext]
+function hbars(el, rows) {
+  const max = Math.max(1, ...rows.map(r => r[1]));
+  $(el).innerHTML = rows.length ? rows.map(([l, v, extra]) => `<div class="hrow"><div class="l">${esc(l)}</div><div class="b"><i style="width:${Math.max(2, v / max * 100)}%"></i></div><div class="n">${extra ?? num(v)}</div></div>`).join("") : `<div class="row t2">Noch keine Daten.</div>`;
+}
+// Senkrechte Balken, optional gestapelt (zweiter Wert lila)
+function vbars(el, items, legend) {
+  const max = Math.max(1, ...items.map(x => x.a + (x.b || 0)));
+  $(el).innerHTML = `<div class="bars">` + items.map(x => {
+    const t = x.a + (x.b || 0);
+    return `<div class="bar" title="${esc(x.label)}: ${t}"><small>${t || ""}</small>${x.b ? `<i class="s" style="height:${x.b / max * 100}%"></i>` : ""}<i style="height:${x.a / max * 100}%;${x.b ? "border-radius:0" : ""}"></i></div>`;
+  }).join("") + `</div><div class="blab">` + items.map(x => `<span>${esc(x.short)}</span>`).join("") + `</div>` + (legend ? `<div class="legend">${legend}</div>` : "");
+}
+
+async function loadStats() {
+  const { data: s, error } = await sb.rpc("dev_stats");
+  if (error) { $("tiles").innerHTML = `<div class="err">${esc(error.message)}</div>`; return; }
+  const t = s.totals, f = s.funnel;
+  const tiles = [
+    [num(t.users), "Nutzer"],
+    [num(s.active.d7), "aktiv in 7 Tagen"],
+    [num(s.active.d30), "aktiv in 30 Tagen"],
+    [num(t.ratings), `Bewertungen (${num(t.movies)} Filme, ${num(t.series)} Serien)`],
+    [t.avg_score ?? "–", "Schnitt aller Noten"],
+    [num(t.friendships), `Freundschaften (${num(t.friend_requests_open)} offen)`],
+    [t.avg_friends ?? "–", "Freunde pro Nutzer"],
+    [num(t.watchlist), "auf Merklisten"],
+    [num(t.recommendations), `Empfehlungen (${num(t.recommendations_accepted)} angenommen)`],
+    [num(t.shared_lists), `gemeinsame Listen (${num(t.shared_list_items)} Titel)`],
+    [num(t.episodes_tracked), "verfolgte Serien"],
+    [num(t.wishes), `Wünsche · ${num(t.feedback_threads)} Feedback-Verläufe`]
+  ];
+  $("tiles").innerHTML = tiles.map(([v, l]) => `<div class="tile"><b>${v}</b><span>${esc(l)}</span></div>`).join("");
+
+  const wd = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+  vbars("days", s.days.map(d => { const dt = new Date(d.day + "T12:00:00"); return { a: d.ratings, label: `${dt.toLocaleDateString("de-CH")}, ${d.active} aktiv, ${d.new_users} neu`, short: wd[dt.getDay()] }; }),
+    `Neue Nutzer in 14 Tagen: ${num(s.days.reduce((n, d) => n + d.new_users, 0))} · heute aktiv: ${num(s.days[s.days.length - 1]?.active)}`);
+  vbars("weeks", s.weeks.map(w => { const dt = new Date(w.week + "T12:00:00"); return { a: w.movies, b: w.series, label: `Woche ab ${dt.toLocaleDateString("de-CH")}: ${w.active} aktiv, ${w.new_users} neu`, short: dt.getDate() + "." + (dt.getMonth() + 1) + "." }; }),
+    `<i style="background:#0a84ff"></i>Filme<i style="background:#bf5af2"></i>Serien`);
+  hbars("funnel", [["Registriert", f.registered, num(f.registered)], ["Erste Bewertung", f.first_rating, `${num(f.first_rating)} · ${pct(f.first_rating, f.registered)}`], ["Erster Freund", f.first_friend, `${num(f.first_friend)} · ${pct(f.first_friend, f.registered)}`], ["5 Bewertungen", f.five_ratings, `${num(f.five_ratings)} · ${pct(f.five_ratings, f.registered)}`]]);
+  vbars("scores", s.scores.map(x => ({ a: x.count, label: `Note ${x.score}`, short: String(x.score) })), "Ganze Punkte: 8 heisst 8.0 bis 8.9");
+  hbars("toptitles", s.top_titles.map(x => [x.title, x.count, `${x.count}× · ${x.avg}`]));
+  hbars("genres", s.genres.map(x => [GENRES[x.genre] || x.genre, x.count]));
+  const w = s.where || {};
+  hbars("where", Object.entries(w).sort((a, b) => b[1] - a[1]).map(([k, v]) => [k, v, `${num(v)} · ${pct(v, t.ratings)}`]));
+  hbars("push", [["Nutzer mit Push", s.push.users, `${num(s.push.users)} · ${pct(s.push.users, t.users)}`], ["Geräte", s.push.devices], ["davon TestFlight", s.push.testflight_devices]]);
+  $("gen").textContent = "Stand: " + day(s.generated_at);
+
+  // Nutzertabelle
+  const users = s.users || [];
+  $("uh").textContent = `Nutzer (${users.length})`;
+  $("users").innerHTML = `<tr><th>Nutzer</th><th>E-Mail</th><th>Bewertungen</th><th>Freunde</th><th>Merkliste</th><th>Letzte Bewertung</th><th>Zuletzt angemeldet</th><th>Push</th><th>Seit</th></tr>` +
+    users.map(u => `<tr><td>@${esc(u.username)}</td><td>${esc(u.email)}</td><td>${u.ratings}</td><td>${u.friends}</td><td>${u.watchlist}</td><td>${day(u.last_rating)}</td><td>${day(u.last_sign_in_at)}</td><td>${u.push ? "✓" : ""}</td><td>${day(u.created_at)}</td></tr>`).join("");
 }
 
 $("go").onclick = async () => {
