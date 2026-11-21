@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T12:48+00:00",
+ "updated": "2026-11-21T12:35+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -403,35 +403,6 @@
    "votes": 17351
   },
   {
-   "title": "VisionQuest",
-   "tvmaze_id": 64950,
-   "imdb_id": "tt23112594",
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/636/1592334.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/636/1592334.jpg",
-   "genres": [
-    "Drama",
-    "Action",
-    "Science-Fiction"
-   ],
-   "season": 1,
-   "latest": "2026-11-10",
-   "next": null,
-   "premiere": false,
-   "isNew": true,
-   "summary": "Vision, rebooted and having escaped from those who sought to weaponize him, has been in hiding. Searching for new meaning, he consults the AI personas embedded in his programming, including F.R.I.D.A.Y., E.D.I.T.H., J.A.R.V.I.S., and the infamous Ultron. His discreet existence ends when a bounty placed on his head thrusts him on the run with Thomas Shepard, a mysterious boy who may be Vision's son, reincarnate. As Vision evades capture, he must confront his nature, resist Ultron's influence, and unravel the enigma that is his young companion if he's to survive.",
-   "url": "https://www.justwatch.com/ch/Suche?q=VisionQuest",
-   "ext": {
-    "kind": "series",
-    "tvm": 7.6,
-    "platform": "Disney+",
-    "imdb": "7.8",
-    "seasons": "1",
-    "genre": "Action"
-   },
-   "votes": 14696
-  },
-  {
    "title": "All's Fair",
    "tvmaze_id": 78300,
    "imdb_id": "tt30291387",
@@ -679,6 +650,33 @@
    "votes": 980
   },
   {
+   "title": "FBI True",
+   "tvmaze_id": 67172,
+   "imdb_id": "tt21340132",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/501/1253255.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/501/1253255.jpg",
+   "genres": [
+    "Crime"
+   ],
+   "season": 9,
+   "latest": null,
+   "next": "2026-12-01",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Each edition of FBI True focuses on dynamic insider conversations between agents when they meet at the FBI's favorite bar, the Arts & Crafts Beer Parlor, just down the block from their New York headquarters. It's a hallowed place where law enforcement colleagues talk frankly about the triumphs, tragedies and real truths of their jobs. In this relaxed setting, they share hair-raising stories of dangerous missions carried out by the FBI in the United States and worldwide. With everything on the line, what choices did they make? How did they keep their cool with a kidnapped child's life on the li",
+   "url": "https://www.justwatch.com/ch/Suche?q=FBI%20True",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.4,
+    "platform": "Paramount+",
+    "imdb": "6.9",
+    "seasons": "6",
+    "genre": "Documentary, Crime"
+   },
+   "votes": 625
+  },
+  {
    "title": "Batwheels",
    "tvmaze_id": 51042,
    "imdb_id": "tt13292830",
@@ -706,6 +704,31 @@
     "genre": "Animation, Action, Adventure"
    },
    "votes": 574
+  },
+  {
+   "title": "The Dog House",
+   "tvmaze_id": 43593,
+   "imdb_id": "tt11076876",
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/618/1547354.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/618/1547354.jpg",
+   "genres": [],
+   "season": 9,
+   "latest": null,
+   "next": "2026-11-27",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Series set inside Wood Green, The Animals Charity, where staff are committed to matching their homeless dogs with hopeful dog owners.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Dog%20House",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Channel 4",
+    "imdb": "8.7",
+    "seasons": "5",
+    "genre": "Documentary"
+   },
+   "votes": 501
   },
   {
    "title": "4 Blocks Zero",
@@ -841,80 +864,6 @@
     "genre": "Comedy"
    },
    "votes": 9
-  },
-  {
-   "title": "Megastorm",
-   "tvmaze_id": 94997,
-   "imdb_id": null,
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615127.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615127.jpg",
-   "genres": [
-    "Nature"
-   ],
-   "season": 1,
-   "latest": "2026-11-17",
-   "next": "2026-11-24",
-   "premiere": false,
-   "isNew": true,
-   "summary": "Extreme weather events examined from the inside out, including Hurricane Helene, the December Tennessee tornado outbreak and the vicious Black Summer of Australian wildfires, charting how and why they happen and the devastation left behind using first-hand survivor and witness accounts and adrenaline-fuelled footage captured on the ground.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Megastorm",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Disney+"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Phony",
-   "tvmaze_id": 63873,
-   "imdb_id": "tt21952924",
-   "platform": "Hulu",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1617071.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1617071.jpg",
-   "genres": [
-    "Comedy",
-    "Mystery"
-   ],
-   "season": 1,
-   "latest": "2026-11-17",
-   "next": "2026-11-24",
-   "premiere": false,
-   "isNew": true,
-   "summary": "Phony is a coming-of-age mystery about a teenager who wakes up in the hospital after a car accident to discover his mom - his only parent and his best friend - appears to have been replaced by an impostor.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Phony",
-   "ext": {
-    "kind": "series",
-    "tvm": 5.6,
-    "platform": "Hulu",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Comedy, Drama, Mystery"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Get Huge: Looksmaxxing to Death",
-   "tvmaze_id": 95272,
-   "imdb_id": "tt50135019",
-   "platform": "Hulu",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1626173.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1626173.jpg",
-   "genres": [],
-   "season": 1,
-   "latest": "2026-11-10",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Deep in the manosphere, an underground movement promises to unlock human potential - bulging muscles, bigger penises, eternal youth. At its center is Dr. Tony Huge, a guru pushing homemade biohacks on a devoted following willing to risk everything for the cause. When Leo & Longevity, a penis-enlargement expert and one of Tony's closest allies, is found dead in Thailand, alpha-male influencers become online sleuths, running wild with theories and questioning Tony Huge and his right-hand man, Connor Murphy. Soon, a darker pattern emerges: Leo isn't the first of the inner circle to die under myst",
-   "url": "https://www.justwatch.com/ch/Suche?q=Get%20Huge%3A%20Looksmaxxing%20to%20Death",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Hulu"
-   },
-   "votes": 0
   },
   {
    "title": "Sacrifice",
@@ -1127,7 +1076,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=12%2012%2012",
    "ext": {
     "kind": "series",
-    "tvm": 4.5,
+    "tvm": 4.7,
     "platform": "Apple TV+",
     "imdb": null,
     "seasons": "1",
@@ -1176,15 +1125,15 @@
     "Espionage"
    ],
    "season": 1,
-   "latest": "2026-11-14",
-   "next": "2026-11-21",
+   "latest": "2026-11-21",
+   "next": "2026-11-28",
    "premiere": true,
    "isNew": true,
    "summary": "Honey goes deep undercover in 1980s East Berlin to explore a shadowy world of counter espionage and risky but irresistible relations. East Berlin, 1982. Martha, 24, is a deep cover agent for MI6. Surrounded by enemies and constantly under threat of her cover being blown, she tries her hardest to avoid detection by Friedrich Bauman, the new Head of Counter Espionage for the Stasi. Finding herself caught between Friedrich and the reckless, arrogant (and incredibly attractive…) CIA operative Aaron Neeland, she is blind-sided by desire in this Cold War menage-a-trois. The risk of being garrotted o",
    "url": "https://www.justwatch.com/ch/Suche?q=Honey",
    "ext": {
     "kind": "series",
-    "tvm": 3.8,
+    "tvm": 5,
     "platform": "BBC",
     "imdb": null,
     "seasons": null,
@@ -1204,8 +1153,8 @@
     "Travel"
    ],
    "season": 1,
-   "latest": "2026-11-14",
-   "next": "2026-11-21",
+   "latest": "2026-11-21",
+   "next": "2026-11-28",
    "premiere": false,
    "isNew": true,
    "summary": "Griff Rhys Jones takes on one of the world's most celebrated mountain ranges by train as he explores from Slovenia to France, uncovering how the Alps have shaped Europe's history, wars, trade, and communities.From Hannibal's famous elephant crossing in 218 BC, to Napoleon's Alpine campaigns, pilgrim trails, medieval traders, and WWII Escape Routes, The Alps have played a pivotal role in some of humanities greatest historical moments and influenced the spread and survival of culture for centuries.Starting with the Alp's eastern end at the stunning Lake Bled and ending on the Mediterranean beach",
@@ -1214,6 +1163,30 @@
     "kind": "series",
     "tvm": null,
     "platform": "Channel 4"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Megastorm",
+   "tvmaze_id": 94997,
+   "imdb_id": null,
+   "platform": "Disney+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1615127.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1615127.jpg",
+   "genres": [
+    "Nature"
+   ],
+   "season": 1,
+   "latest": "2026-11-17",
+   "next": "2026-11-24",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Extreme weather events examined from the inside out, including Hurricane Helene, the December Tennessee tornado outbreak and the vicious Black Summer of Australian wildfires, charting how and why they happen and the devastation left behind using first-hand survivor and witness accounts and adrenaline-fuelled footage captured on the ground.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Megastorm",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Disney+"
    },
    "votes": 0
   },
@@ -1238,6 +1211,34 @@
     "kind": "series",
     "tvm": null,
     "platform": "Paramount+"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Phony",
+   "tvmaze_id": 63873,
+   "imdb_id": "tt21952924",
+   "platform": "Hulu",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/646/1617071.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/646/1617071.jpg",
+   "genres": [
+    "Comedy",
+    "Mystery"
+   ],
+   "season": 1,
+   "latest": "2026-11-17",
+   "next": "2026-11-24",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Phony is a coming-of-age mystery about a teenager who wakes up in the hospital after a car accident to discover his mom - his only parent and his best friend - appears to have been replaced by an impostor.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Phony",
+   "ext": {
+    "kind": "series",
+    "tvm": 5.6,
+    "platform": "Hulu",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Comedy, Drama, Mystery"
    },
    "votes": 0
   },
@@ -1286,7 +1287,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Altruists",
    "ext": {
     "kind": "series",
-    "tvm": null,
+    "tvm": 3.2,
     "platform": "Netflix",
     "imdb": null,
     "seasons": "1",
@@ -1314,7 +1315,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Northumbria%20Mysteries",
    "ext": {
     "kind": "series",
-    "tvm": 6,
+    "tvm": 6.4,
     "platform": "BBC",
     "imdb": null,
     "seasons": "1",
@@ -1546,6 +1547,60 @@
     "imdb": null,
     "seasons": "1",
     "genre": "Family"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Trinity",
+   "tvmaze_id": 85583,
+   "imdb_id": "tt37433759",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1631194.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1631194.jpg",
+   "genres": [
+    "Thriller"
+   ],
+   "season": 1,
+   "latest": null,
+   "next": "2026-12-01",
+   "premiere": true,
+   "isNew": true,
+   "summary": "A heroic female naval officer becomes involved with the outwardly charismatic secretary of defense, only to discover he may be at the heart of a dangerous conspiracy.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Trinity",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Netflix",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Drama, Thriller"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Collect & Praise",
+   "tvmaze_id": 95345,
+   "imdb_id": "tt43728785",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630940.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630940.jpg",
+   "genres": [
+    "Comedy"
+   ],
+   "season": 1,
+   "latest": null,
+   "next": "2026-12-01",
+   "premiere": true,
+   "isNew": true,
+   "summary": "",
+   "url": "https://www.justwatch.com/ch/Suche?q=Collect%20%26%20Praise",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Netflix",
+    "imdb": null,
+    "seasons": null,
+    "genre": "Comedy"
    },
    "votes": 0
   }
