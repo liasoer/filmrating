@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T12:35+00:00",
+ "updated": "2026-11-22T12:32+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -17,7 +17,7 @@
    "season": 3,
    "latest": "2026-11-18",
    "next": "2026-11-25",
-   "premiere": true,
+   "premiere": false,
    "isNew": false,
    "summary": "Set thousands of years before the events of The Lord of the Rings, this epic drama follows an ensemble cast of characters, both familiar and new, as they confront the long-feared re-emergence of evil to Middle-earth.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Lord%20of%20the%20Rings%3A%20The%20Rings%20of%20Power",
@@ -158,8 +158,8 @@
     "History"
    ],
    "season": 6,
-   "latest": "2026-11-15",
-   "next": "2026-11-22",
+   "latest": "2026-11-22",
+   "next": "2026-11-29",
    "premiere": true,
    "isNew": false,
    "summary": "The Chosen is the first-ever-multi-season TV show about the life of Jesus. Created outside of the Hollywood system, The Chosen allows us to see Him through the eyes of those who knew him. No matter where you are at in your journey with Jesus Christ, this TV show is for you.",
@@ -186,8 +186,8 @@
     "History"
    ],
    "season": 4,
-   "latest": "2026-11-15",
-   "next": "2026-11-22",
+   "latest": "2026-11-22",
+   "next": "2026-11-29",
    "premiere": false,
    "isNew": false,
    "summary": "The American Gilded Age was a period of immense economic change, of huge fortunes made and lost, and the rise of disparity between old money and new.Against this backdrop of change, the story begins in 1882 — introducing young Marian Brook, the orphaned daughter of a Union general, who moves into the New York City home of her thoroughly old money aunts Agnes van Rhijn and Ada Brook. Accompanied by Peggy Scott, an accomplished African-American woman, Marian inadvertently becomes enmeshed in a social war between one of her aunts, a scion of the old money set, and her stupendously rich neighbors,",
@@ -259,6 +259,35 @@
     "genre": "Crime, Drama, Mystery"
    },
    "votes": 32828
+  },
+  {
+   "title": "Bad Monkey",
+   "tvmaze_id": 56778,
+   "imdb_id": "tt15203646",
+   "platform": "Apple TV+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/649/1623869.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/649/1623869.jpg",
+   "genres": [
+    "Drama",
+    "Comedy",
+    "Crime"
+   ],
+   "season": 2,
+   "latest": null,
+   "next": "2026-12-02",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Bad Monkey tells the story of Andrew Yancy, a one-time detective demoted to restaurant inspector in Southern Florida. A severed arm found by a tourist out fishing pulls Yancy into the world of greed and corruption that decimates the land and environment in both Florida and the Bahamas. And yes, there's a monkey.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Bad%20Monkey",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.4,
+    "platform": "Apple TV+",
+    "imdb": "7.4",
+    "seasons": "2",
+    "genre": "Comedy, Crime, Drama"
+   },
+   "votes": 30720
   },
   {
    "title": "Die Kaiserin",
@@ -483,33 +512,6 @@
     "genre": "Animation, Adventure, Comedy"
    },
    "votes": 5688
-  },
-  {
-   "title": "Hollyoaks",
-   "tvmaze_id": 4175,
-   "imdb_id": "tt0112004",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/625/1564536.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/625/1564536.jpg",
-   "genres": [
-    "Drama"
-   ],
-   "season": 32,
-   "latest": "2026-11-11",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "Hollyoaks follows the lives of a group of residents living in the fictional village of Chester.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Hollyoaks",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.7,
-    "platform": "Channel 4",
-    "imdb": "4.6",
-    "seasons": "1",
-    "genre": "Drama, Romance"
-   },
-   "votes": 4832
   },
   {
    "title": "Reasonable Doubt",
@@ -760,6 +762,31 @@
    "votes": 179
   },
   {
+   "title": "Grand Designs: House of the Year",
+   "tvmaze_id": 7677,
+   "imdb_id": "tt5254568",
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/601/1504203.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/601/1504203.jpg",
+   "genres": [],
+   "season": 9,
+   "latest": null,
+   "next": "2026-12-02",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Every year the Royal Institute of British Architects looks for the best new home in Britain, and this time Grand Designs is along for the ride.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Grand%20Designs%3A%20House%20of%20the%20Year",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.8,
+    "platform": "Channel 4",
+    "imdb": "7.6",
+    "seasons": "6",
+    "genre": "Documentary"
+   },
+   "votes": 175
+  },
+  {
    "title": "Countryfile",
    "tvmaze_id": 6543,
    "imdb_id": "tt0229118",
@@ -770,8 +797,8 @@
     "Nature"
    ],
    "season": 38,
-   "latest": "2026-11-15",
-   "next": "2026-11-22",
+   "latest": "2026-11-22",
+   "next": "2026-11-29",
    "premiere": false,
    "isNew": false,
    "summary": "The people, places and stories making news in the British countryside.",
@@ -866,61 +893,6 @@
    "votes": 9
   },
   {
-   "title": "Sacrifice",
-   "tvmaze_id": 50786,
-   "imdb_id": null,
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/384/962318.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/384/962318.jpg",
-   "genres": [
-    "Drama",
-    "Thriller",
-    "Legal"
-   ],
-   "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
-   "premiere": false,
-   "isNew": false,
-   "summary": "Sacrifice follows Daniella Hernandez, a highly sought-after entertainment lawyer, as she navigates the nefarious lives of her rich and famous clients.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Sacrifice",
-   "ext": {
-    "kind": "series",
-    "tvm": 5.4,
-    "platform": "Paramount+"
-   },
-   "votes": 0
-  },
-  {
-   "title": "The Body",
-   "tvmaze_id": 87480,
-   "imdb_id": "tt8014982",
-   "platform": "Netflix",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/644/1612276.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/644/1612276.jpg",
-   "genres": [
-    "Drama",
-    "Horror",
-    "Mystery"
-   ],
-   "season": 1,
-   "latest": "2026-11-11",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "After a dance-team initiation goes wrong, a group of badly behaved Catholic school girls begin having prophetic visions that set off mass hysteria in their town.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Body",
-   "ext": {
-    "kind": "series",
-    "tvm": 6,
-    "platform": "Netflix",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Drama, Horror, Thriller"
-   },
-   "votes": 0
-  },
-  {
    "title": "Cunk on Cinema",
    "tvmaze_id": 91301,
    "imdb_id": null,
@@ -932,7 +904,7 @@
     "History"
    ],
    "season": 1,
-   "latest": "2026-11-12",
+   "latest": "2026-11-15",
    "next": null,
    "premiere": true,
    "isNew": true,
@@ -1047,7 +1019,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=Nocturne",
    "ext": {
     "kind": "series",
-    "tvm": 7.7,
+    "tvm": 7.8,
     "platform": "Apple TV+",
     "imdb": null,
     "seasons": "1",
@@ -1243,6 +1215,32 @@
    "votes": 0
   },
   {
+   "title": "Sacrifice",
+   "tvmaze_id": 50786,
+   "imdb_id": null,
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/384/962318.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/384/962318.jpg",
+   "genres": [
+    "Drama",
+    "Thriller",
+    "Legal"
+   ],
+   "season": 2,
+   "latest": "2026-11-18",
+   "next": "2026-11-25",
+   "premiere": false,
+   "isNew": false,
+   "summary": "Sacrifice follows Daniella Hernandez, a highly sought-after entertainment lawyer, as she navigates the nefarious lives of her rich and famous clients.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Sacrifice",
+   "ext": {
+    "kind": "series",
+    "tvm": 5.4,
+    "platform": "Paramount+"
+   },
+   "votes": 0
+  },
+  {
    "title": "Vienna Game",
    "tvmaze_id": 75517,
    "imdb_id": "tt31844371",
@@ -1287,7 +1285,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Altruists",
    "ext": {
     "kind": "series",
-    "tvm": 3.2,
+    "tvm": 2.9,
     "platform": "Netflix",
     "imdb": null,
     "seasons": "1",
@@ -1356,8 +1354,8 @@
     "Nature"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-22",
+   "latest": "2026-11-22",
+   "next": null,
    "premiere": false,
    "isNew": true,
    "summary": "Blue Planet III will build on its groundbreaking legacy, redefining the realm of possibility in underwater wildlife film-making. Taking the wonder, immersion, and discovery of the Blue Planet brand to extraordinary new depths, it will reveal brand new and untold stories from magical underwater worlds. Combining our deeper understanding of the oceans with a whole new generation of camera technology, we can now showcase stunning stories and extraordinary behaviours, previously impossible to film or only recently discovered.",
@@ -1381,8 +1379,8 @@
     "Supernatural"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-22",
+   "latest": "2026-11-22",
+   "next": "2026-11-29",
    "premiere": true,
    "isNew": true,
    "summary": "South Wales, 1989. Bill and Liz Rich leave London for Heol Fanog, a remote modern farmhouse in the foothills of the Brecon Beacons, determined to make a fresh start. At first, the isolation feels like freedom. But when, in the midst of a traumatic home birth, Liz becomes convinced she's seen a ghostly figure in the bedroom they start to feel increasingly afraid…What follows is a steady escalation of the chillingly uncanny - unexplained disturbances and an unsettling sense that they are not alone. As Bill and Liz begin to investigate, the house draws them deeper into a history that refuses to s",
