@@ -14,26 +14,27 @@
 </script>
 <style>
 :root{
-  --tint:#0a84ff;--ok:#30d158;--mid:#ffd60a;--low:#ff9f0a;--bad:#ff453a;
-  --t1:#fff;--t2:rgba(235,235,245,.62);--t3:rgba(235,235,245,.32);--grp:rgba(44,44,50,.55);--line:rgba(255,255,255,.12);
-  --r:28px;--ease:cubic-bezier(.2,.8,.2,1);
+  --tint:#0a84ff;--ok:#30d158;--good:#9ed65c;--mid:#ffd60a;--low:#ff9f0a;--bad:#ff453a;
+  --t1:#fff;--t2:rgba(235,235,245,.62);--t3:rgba(235,235,245,.32);--line:rgba(255,255,255,.12);
+  --ease:cubic-bezier(.2,.8,.2,1);
   --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
   --fd:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,sans-serif;
 }
-*{box-sizing:border-box}
-html{background:#000;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:#000;color:var(--t1);font:17px/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+*{box-sizing:border-box;min-width:0}
+html{background:#000;-webkit-text-size-adjust:100%}
+body{margin:0;background:#000;color:var(--t1);font:17px/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:var(--tint);text-decoration:none}
 html.de [data-l=en],html.en [data-l=de]{display:none!important}
 .wrap{width:min(1120px,100% - 40px);margin:0 auto}
 section{position:relative}
-h1,h2,h3{font-family:var(--fd);margin:0;letter-spacing:-.025em;line-height:1.05}
-h2{font-size:clamp(38px,6vw,68px);font-weight:700}
-.eyebrow{display:inline-block;font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--c,var(--tint));margin-bottom:14px}
+h1,h2,h3{font-family:var(--fd);margin:0;letter-spacing:-.025em;line-height:1.05;text-wrap:balance}
+h2{font-size:clamp(38px,6vw,64px);font-weight:700}
+h3{font-size:clamp(24px,2.6vw,30px);font-weight:700}
+.eyebrow{display:block;font-size:15px;font-weight:600;color:var(--c,var(--tint));margin-bottom:14px}
 .lede{font-size:clamp(18px,2vw,21px);color:var(--t2);max-width:560px;margin:18px 0 0;line-height:1.45}
-.center{text-align:center}.center .lede{margin-left:auto;margin-right:auto}
-.sec{padding:clamp(110px,16vw,190px) 0 0}
+.sec{padding:clamp(110px,15vw,180px) 0 0}
+.note{color:var(--t3);font-size:13px;margin:22px 0 0}
 
 /* Knopf */
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--tint);color:#fff;font-weight:600;font-size:17px;padding:15px 28px;border-radius:999px;transition:transform .3s var(--ease),box-shadow .3s var(--ease);box-shadow:0 10px 40px rgba(10,132,255,.35)}
@@ -42,23 +43,52 @@ h2{font-size:clamp(38px,6vw,68px);font-weight:700}
 .btn svg{width:20px;height:20px}
 .ghost{color:var(--t2);font-size:15px}
 
+/* Liquid Glass wie in der App */
+.glass{position:relative;isolation:isolate;border-radius:22px;background:linear-gradient(105deg,color-mix(in srgb,var(--tc,#2c2c2e) 92%,transparent),rgba(28,28,30,.62));-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);box-shadow:inset 0 .6px 0 rgba(255,255,255,.28),inset 0 0 0 .6px rgba(255,255,255,.1),0 14px 34px rgba(0,0,0,.38)}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.09),transparent 46%);pointer-events:none;z-index:-1}
+
+/* Filmzeile wie «Meine Filme» */
+.rows{display:grid;gap:12px}
+.mrow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;align-items:center;padding:11px 14px 11px 11px}
+.mrow img{width:52px;height:78px;border-radius:9px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.mrow b{display:block;font-size:17px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mrow small{display:block;color:var(--t2);font-size:13.5px;margin:1px 0 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.cp{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:8px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);white-space:nowrap}
+.cp i{width:8px;height:8px;border-radius:50%;background:var(--bad)}
+.rank{font-family:var(--fd);font-weight:800;font-size:22px;color:var(--t3);width:22px;text-align:center}
+.mrow.ranked{grid-template-columns:22px 52px minmax(0,1fr) auto}
+
+/* Ring wie in der App */
+.ring{--s:54px;position:relative;width:var(--s);height:var(--s);flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+.ring .tr{stroke:rgba(255,255,255,.14)}
+.ring .pr{stroke:var(--rc,var(--ok));stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1.4s var(--ease) var(--rd,0s),stroke .5s}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--fd);font-weight:700;font-size:calc(var(--s)*.31);font-variant-numeric:tabular-nums}
+.ring.big{--s:200px}.ring.big circle{stroke-width:8}
+.ring.big .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ring.big .num b{position:static;font-size:56px;font-weight:800;letter-spacing:-.03em}
+.ring.big .num small{font-size:15px;color:var(--t2);font-weight:600;margin-top:6px}
+.ring.big .num .w{color:var(--rc)}
+
+/* Balken */
+.bars{display:grid;gap:12px}
+.bars div{display:grid;grid-template-columns:minmax(70px,140px) minmax(0,1fr) 44px;align-items:center;gap:12px;font-size:15px;color:var(--t2)}
+.bars i{height:8px;border-radius:8px;background:rgba(255,255,255,.1);overflow:hidden}
+.bars i::after{content:"";display:block;height:100%;width:var(--v);background:var(--bc,var(--ok));border-radius:8px;transform-origin:left;transform:scaleX(0);transition:transform 1.3s var(--ease) var(--bd,0s)}
+.on .bars i::after,.bars.on i::after{transform:scaleX(1)}
+.bars em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:#fff;font-weight:600}
+
+/* Einblenden */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease) var(--d,0s),transform .8s var(--ease) var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
 /* iPhone-Rahmen */
 .phone{--w:300px;width:var(--w);aspect-ratio:1320/2868;border-radius:calc(var(--w)*.16);padding:calc(var(--w)*.03);background:linear-gradient(145deg,#3a3a40,#121214 40%,#2a2a2e);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 40px 90px rgba(0,0,0,.65),0 0 0 1px #000;position:relative;flex:none}
 .phone .scr{position:relative;width:100%;height:100%;border-radius:calc(var(--w)*.135);overflow:hidden;background:#000}
-.phone .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.phone .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .phone .island{position:absolute;top:calc(var(--w)*.045);left:50%;transform:translateX(-50%);width:32%;height:calc(var(--w)*.085);background:#000;border-radius:99px;z-index:3}
-
-/* Einblenden */
-.rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s),clip-path 1.1s var(--ease) var(--d,0s)}
-.rv.in{opacity:1;transform:none}
-/* Titel wachsen aus einer Maske heraus */
-h2.rv{opacity:1;clip-path:inset(0 0 100% 0);transform:translateY(40px)}
-h2.rv.in{clip-path:inset(-20% -5% -30% -5%);transform:none}
-/* Bilder öffnen sich von unten */
-.mask.rv{opacity:1;clip-path:inset(100% 0 0 0 round 22px)}
-.mask.rv.in{clip-path:inset(0 0 0 0 round 22px)}
-[data-par]{will-change:transform;transition:clip-path 1.1s var(--ease),opacity .9s!important}
-.pb-wrap{display:none}@media(min-width:900px){.pb-wrap{display:block}}
 
 /* Kopfleiste */
 .bar{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(env(safe-area-inset-top) + 10px) 0 10px;transform:translateY(-110%);transition:transform .5s var(--ease);background:rgba(0,0,0,.55);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);border-bottom:.5px solid var(--line)}
@@ -70,14 +100,13 @@ h2.rv.in{clip-path:inset(-20% -5% -30% -5%);transform:none}
 
 /* Hero */
 .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:calc(env(safe-area-inset-top) + 70px) 0 0;overflow:hidden}
-.wall{position:absolute;inset:-10% -20% 0;display:flex;flex-direction:column;gap:16px;transform:rotate(-8deg) translateY(var(--wy,0));opacity:.6;pointer-events:none;-webkit-mask:radial-gradient(ellipse 70% 60% at 50% 45%,#000 20%,transparent 75%);mask:radial-gradient(ellipse 70% 60% at 50% 45%,#000 20%,transparent 75%)}
+.wall{position:absolute;inset:-10% -20% 0;display:flex;flex-direction:column;gap:16px;transform:rotate(-8deg);opacity:.6;pointer-events:none;-webkit-mask:radial-gradient(ellipse 70% 60% at 50% 45%,#000 20%,transparent 75%);mask:radial-gradient(ellipse 70% 60% at 50% 45%,#000 20%,transparent 75%)}
 .wall::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 45% 38% at 50% 42%,rgba(0,0,0,.78),rgba(0,0,0,.35) 60%,transparent)}
-.lane{will-change:transform}
 .row{display:flex;gap:16px;width:max-content;animation:drift var(--s,80s) linear infinite}
-.lane:nth-child(2) .row{animation-direction:reverse}
+.row:nth-child(2){animation-direction:reverse}
 .row img{width:150px;aspect-ratio:2/3;border-radius:14px;object-fit:cover;filter:saturate(.9) brightness(.62)}
 @keyframes drift{to{transform:translateX(-50%)}}
-.hero-in{position:relative;z-index:2;text-align:center;padding:0 20px;will-change:transform,opacity}
+.hero-in{position:relative;z-index:2;text-align:center;padding:0 20px}
 .hero .icon{width:84px;height:84px;border-radius:20px;margin:0 auto 22px;box-shadow:0 12px 50px rgba(10,132,255,.45)}
 .hero h1{font-size:clamp(46px,8.5vw,96px);font-weight:800}
 .hero h1 span.g{background:linear-gradient(90deg,#fff 10%,#9fd0ff 50%,#fff 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out infinite}
@@ -88,176 +117,138 @@ h2.rv.in{clip-path:inset(-20% -5% -30% -5%);transform:none}
 .qr img{width:74px;height:74px;background:#fff;border-radius:12px;padding:6px}
 @media (hover:hover) and (min-width:900px){.qr{display:flex}}
 .hero-phone{position:relative;z-index:1;margin-top:60px;perspective:1400px}
-.hero-phone .phone{--w:min(330px,74vw);transform:translateY(var(--py,0)) rotateX(var(--rx,14deg)) scale(var(--ps,1));transform-origin:50% 0;will-change:transform}
+.hero-phone .phone{--w:min(330px,74vw);transform:translateY(var(--py,0)) rotateX(var(--rx,14deg));transform-origin:50% 0}
 .hero-phone::after{content:"";position:absolute;left:50%;bottom:-10%;width:140%;height:50%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(10,132,255,.35),transparent);filter:blur(30px);z-index:-1}
+
+/* Zweispaltig */
+.split{display:grid;gap:44px;margin-top:56px;align-items:center}
+@media(min-width:900px){.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:70px}.split.flip>:first-child{order:2}}
+.split p{color:var(--t2);margin:12px 0 0;max-width:440px}
+.split .n{font-size:14px;font-weight:700;color:var(--c)}
 
 /* Bewerten */
 #rate{--c:var(--ok)}
-.rate{display:grid;grid-template-columns:1fr;gap:28px;margin-top:56px;align-items:center}
-@media(min-width:900px){.rate{grid-template-columns:300px 1fr;gap:56px}}
-.rcard{background:var(--grp);border:.6px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:22px}
-@media(min-width:620px){.rcard{grid-template-columns:1fr 220px;align-items:center}}
-.film{display:flex;gap:16px;align-items:center}
-.film img{width:96px;border-radius:12px;aspect-ratio:2/3;object-fit:cover;box-shadow:0 14px 40px rgba(0,0,0,.6)}
-.film b{display:block;font-size:21px;font-family:var(--fd)}
-.film small{color:var(--t2);font-size:14px}
-.poster-big{display:none}
+.rate{display:grid;gap:40px;margin-top:60px;align-items:center}
+@media(min-width:900px){.rate{grid-template-columns:240px minmax(0,1fr) 220px;gap:56px}}
+.rate .poster{width:100%;max-width:240px;border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 .6px var(--line)}
+@media(max-width:899px){.rate .poster{display:none}}
+.film{display:flex;gap:14px;align-items:center;margin-bottom:26px}
+.film img{width:56px;border-radius:9px;aspect-ratio:2/3;object-fit:cover}
 @media(min-width:900px){.film img{display:none}}
-@media(min-width:900px){.poster-big{display:block;border-radius:22px;box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 1px var(--line);}}
-.sl{display:grid;gap:16px}
+.film b{display:block;font-size:22px;font-family:var(--fd)}.film small{color:var(--t2);font-size:14px}
+.sl{display:grid;gap:18px}
 .s{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:baseline}
-.s label{font-weight:600;font-size:16px}
-.s .v{font-variant-numeric:tabular-nums;font-weight:700;font-size:16px;color:var(--sc,var(--t3));min-width:44px;text-align:right;transition:color .3s}
+.s label{font-weight:600;font-size:17px}
+.s .v{font-variant-numeric:tabular-nums;font-weight:700;color:var(--sc,var(--t3));text-align:right;transition:color .3s}
 .s .h{grid-column:1/-1;color:var(--t3);font-size:13px;margin-top:-2px}
 input[type=range]{grid-column:1/-1;-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:2px 0 0;cursor:pointer;touch-action:pan-y}
-input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--sc,#555) var(--p,0%),rgba(120,120,128,.24) var(--p,0%))}
-input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--sc,#555) var(--p,0%),rgba(120,120,128,.24) var(--p,0%))}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;margin-top:-9px;box-shadow:0 2px 10px rgba(0,0,0,.4);transition:transform .2s}
-input[type=range]::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--sc,#555) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
+input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--sc,#555) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;margin-top:-10px;box-shadow:0 2px 10px rgba(0,0,0,.4);transition:transform .2s}
+input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.4)}
 input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
 input.u::-webkit-slider-thumb{background:#8e8e93}
-.ring{position:relative;width:200px;height:200px;margin:0 auto}
-.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
-.ring .tr{stroke:rgba(120,120,128,.22)}
-.ring .pr{stroke:var(--rc,var(--ok));transition:stroke-dashoffset 1s var(--ease),stroke .5s}
-.ring .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.ring .num b{font-family:var(--fd);font-size:54px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
-.ring .num small{font-size:15px;color:var(--t2);margin-top:6px;font-weight:600}
-.ring .num .w{color:var(--rc);transition:color .5s}
-.rfoot{display:flex;justify-content:center;margin-top:6px}
-.link{background:none;border:0;color:var(--tint);font:inherit;font-size:15px;cursor:pointer;padding:6px 10px}
+.rfoot{display:flex;justify-content:center;margin-top:10px}
+.link{background:none;border:0;color:var(--tint);font:inherit;font-size:15px;cursor:pointer;padding:10px}
 
 /* Freunde */
 #friends{--c:#ff6482}
-.stack{display:grid;gap:26px;margin-top:56px}
-.bx{position:sticky;top:calc(84px + var(--i,0) * 16px);background:#161618;border:.6px solid var(--line);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:22px;transform-origin:50% 0;box-shadow:0 -20px 60px rgba(0,0,0,.6);will-change:transform}
-.bx .n{font-size:13px;font-weight:700;color:var(--c)}
-.bx h3{font-size:clamp(24px,3vw,34px);margin:6px 0 8px}
-.bx p{color:var(--t2);font-size:16px;margin:0;max-width:440px}
-.bx .w{background:rgba(0,0,0,.35);border:.6px solid var(--line);border-radius:20px;padding:16px}
-@media(min-width:760px){.bx{flex-direction:row;align-items:center;gap:40px;min-height:320px;padding:40px}.bx .txt{flex:1}.bx .w{flex:1;max-width:460px}}
-.note{color:var(--t3);font-size:13px;text-align:center;margin:18px 0 0}
-.f-link{display:flex;gap:12px;align-items:center}
-.f-link img{width:64px;height:64px;background:#fff;border-radius:10px;padding:5px}
-.f-link b{display:block;font-size:15px}.f-link small{color:var(--t2);font-size:12.5px;word-break:break-all}
-.match{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.ava{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:#2c2c2e;color:var(--tint);border:2px solid #000}
-.ava+.ava{margin-left:-12px}
-.match b{font-family:var(--fd);font-size:34px;font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums}
-.match small{display:block;color:var(--t2);font-size:12.5px;line-height:1.2}
-.bars{display:grid;gap:7px}
-.bars div{display:grid;grid-template-columns:78px 1fr 30px;align-items:center;gap:8px;font-size:12.5px;color:var(--t2)}
-.bars i{height:6px;border-radius:6px;background:rgba(120,120,128,.25);position:relative;overflow:hidden}
-.bars i::after{content:"";position:absolute;inset:0;width:var(--v);background:var(--bc,var(--ok));border-radius:6px;transform-origin:left;transform:scaleX(0);transition:transform 1s var(--ease) .2s}
-.bx.in .bars i::after{transform:scaleX(1)}
-.bars em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:#fff}
-.who{display:grid;gap:9px}
-.who div{display:flex;align-items:center;gap:10px;font-size:14px}
-.who .ava{width:28px;height:28px;font-size:13px;border:0}
-.who span:not(.ava){flex:1}.who .ava{flex:none}.who b{font-variant-numeric:tabular-nums}
-.f-t{font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.ava{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:#2c2c2e;color:var(--tint);border:2px solid #000;flex:none}
+.avas{display:flex}.avas .ava+.ava{margin-left:-10px}
+.qrl{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.qrl img{width:132px;height:132px;background:#fff;border-radius:22px;padding:10px}
+.qrl b{display:block;font-size:20px}.qrl small{color:var(--t2);font-size:15px}
+.gbtn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:10px 16px;border-radius:999px;font-weight:600;font-size:15px;color:#fff}
+.scores{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;font-size:15px;font-weight:600;opacity:0;transform:scale(.8);transition:opacity .5s var(--ease) var(--cd),transform .5s var(--ease) var(--cd)}
+.chip .ava{width:26px;height:26px;font-size:12px;border:0}
+.on .chip{opacity:1;transform:none}
+.match{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.match b{font-family:var(--fd);font-size:clamp(56px,7vw,80px);font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-.03em}
+.match small{display:block;color:var(--t2);font-size:15px}
+.strip{display:flex;gap:12px}
+.strip figure{margin:0;position:relative;flex:1;max-width:130px;opacity:0;transform:translateY(20px) rotate(var(--r,0deg));transition:opacity .6s var(--ease) var(--cd),transform .6s var(--ease) var(--cd)}
+.on .strip figure{opacity:1;transform:rotate(var(--r,0deg))}
+.strip img{width:100%;aspect-ratio:2/3;border-radius:14px;object-fit:cover;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.strip .ava{position:absolute;right:-6px;bottom:-8px;width:30px;height:30px;font-size:13px}
+.lh{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:600}
 
-/* Detailkarten */
+/* Alles zum Film */
 #details{--c:var(--mid)}
-.hz{position:relative}
-.hz-pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:56px}
-.hz-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.hz-head h2{font-size:clamp(34px,5vw,60px)}
-.hz-head .lede{margin-top:12px}
-.track{display:flex;gap:18px;padding:34px max(20px,calc((100vw - 1120px)/2)) 20px;width:max-content;will-change:transform}
-.prog{height:3px;border-radius:3px;background:rgba(255,255,255,.12);margin:0 auto;width:min(1120px,100% - 40px);overflow:hidden}
-.prog i{display:block;height:100%;width:100%;background:var(--mid);transform-origin:left;transform:scaleX(var(--p,0))}
-@media(max-height:760px){.hz-head .lede{display:none}.card{min-height:340px!important}}
-.card{flex:none;width:min(320px,80vw);min-height:400px;background:var(--grp);border:.6px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;transition:transform .5s var(--ease)}
-.card.in:hover{transform:translateY(-6px)}
-.card .k{font-size:12.5px;font-weight:700;color:var(--t2);letter-spacing:.06em;text-transform:uppercase}
-.card h3{font-size:26px;margin:8px 0 18px}
-.card p{color:var(--t2);font-size:15px;margin:auto 0 0}
-.crit{display:grid;gap:16px}
-.crit div{display:grid;grid-template-columns:1fr auto;gap:6px}
-.crit span{font-weight:600}
-.crit b{font-family:var(--fd);font-size:22px;font-variant-numeric:tabular-nums}
-.crit i{grid-column:1/-1;height:6px;border-radius:6px;background:rgba(120,120,128,.25);overflow:hidden}
-.crit i::after{content:"";display:block;height:100%;width:var(--v);background:var(--bc);border-radius:6px}
-.award{margin-top:18px;font-size:14px;color:var(--mid);font-weight:600}
-.trailer{padding:0}
-.trailer .bd{position:absolute;inset:0;background:center/cover;transform:scale(1.05);transition:transform 6s linear}
-.trailer:hover .bd{transform:scale(1.15)}
-.trailer::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.85) 75%)}
-.trailer .in{position:relative;z-index:2;margin-top:auto;padding:24px}
-.play{position:absolute;z-index:2;top:38%;left:50%;width:74px;height:74px;margin:-37px;border-radius:50%;background:rgba(255,255,255,.18);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:.6px solid rgba(255,255,255,.3);display:grid;place-items:center;animation:pulse 2.6s ease-in-out infinite}
-.play::before{content:"";margin-left:6px;border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent}
-@keyframes pulse{50%{box-shadow:0 0 0 16px rgba(255,255,255,0)}0%{box-shadow:0 0 0 0 rgba(255,255,255,.25)}}
-.times{display:grid;gap:14px}
-.times div b{display:block;font-size:15px;margin-bottom:8px}
-.times span{display:inline-block;font-size:14px;font-weight:600;padding:6px 11px;border-radius:10px;background:rgba(120,120,128,.24);margin:0 6px 6px 0;font-variant-numeric:tabular-nums}
-.times span.x{background:rgba(10,132,255,.22);color:#7cbcff}
-.prov{display:grid;gap:14px}
-.prov small{display:block;color:var(--t2);font-size:13px;margin-bottom:6px}
-.pill{display:inline-block;padding:7px 12px;border-radius:999px;background:rgba(120,120,128,.24);font-size:14px;font-weight:600;margin:0 6px 6px 0}
-.facts{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px}
+.detail{display:grid;gap:44px;margin-top:56px}
+@media(min-width:900px){.detail{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:70px;align-items:start}}
+.trailer{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.trailer img{width:100%;height:100%;object-fit:cover;transition:transform 6s linear}
+.trailer:hover img{transform:scale(1.08)}
+.trailer::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.75))}
+.trailer span{position:absolute;left:20px;bottom:16px;z-index:2;font-weight:600}
+.play{position:absolute;z-index:2;top:50%;left:50%;width:70px;height:70px;margin:-35px;border-radius:50%;background:rgba(255,255,255,.18);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:inset 0 .6px 0 rgba(255,255,255,.4);display:grid;place-items:center}
+.play::before{content:"";margin-left:6px;border-left:20px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent}
+.dmeta{display:flex;gap:16px;align-items:center;margin-top:22px}
+.dmeta img{width:84px;border-radius:12px;aspect-ratio:2/3;object-fit:cover}
+.dmeta b{display:block;font-size:24px;font-family:var(--fd)}.dmeta small{color:var(--t2);font-size:14px}
+.blk{padding:22px 0;border-top:.5px solid var(--line)}
+.blk:first-child{border-top:0;padding-top:0}
+.blk h4{margin:0 0 14px;font-size:13px;font-weight:700;color:var(--t2);letter-spacing:.04em;text-transform:uppercase}
+.times{display:grid;gap:10px}
+.times div{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.times b{width:100%;font-size:15px}
+.tp{font-size:14px;font-weight:600;padding:6px 11px;border-radius:10px;background:rgba(255,255,255,.1);font-variant-numeric:tabular-nums}
+.tp.x{background:rgba(10,132,255,.22);color:#7cbcff}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:15px;margin:0}
 .facts dt{color:var(--t2)}.facts dd{margin:0;font-weight:600;text-align:right}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:8px 13px;border-radius:999px;font-size:14px;font-weight:600;background:rgba(48,209,88,.16);color:#7be39a}
-.chip.b{background:rgba(10,132,255,.18);color:#7cbcff}.chip.y{background:rgba(255,214,10,.16);color:#ffe16b}
-.nav{display:none;gap:10px;justify-content:flex-end}
-@media(hover:hover){.nav{display:flex}}
-.nav button{width:44px;height:44px;border-radius:50%;border:.6px solid var(--line);background:var(--grp);color:#fff;font-size:20px;cursor:pointer;transition:background .2s}
-.nav button:hover{background:rgba(80,80,88,.6)}
+.award{margin-top:12px;font-size:14px;color:var(--mid);font-weight:600}
 
 /* Screenpass */
 #pass{--c:#e9c46a}
-.passgrid{display:grid;gap:50px;align-items:center;margin-top:20px}
-@media(min-width:900px){.passgrid{grid-template-columns:1fr 1fr}}
 .tilt{perspective:1100px;display:flex;justify-content:center}
-.tilt .phone{--w:min(310px,72vw);transform:rotateY(var(--ry,-12deg)) rotateX(var(--rx2,6deg)) translateY(var(--ty,0));transition:transform .25s linear;transform-style:preserve-3d}
-.tilt .gloss{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--gx,30%) var(--gy,20%),rgba(255,255,255,.22),transparent 45%);mix-blend-mode:screen;pointer-events:none;z-index:5}
-.feat{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:18px}
-.feat li{display:flex;gap:14px;align-items:flex-start}
-.feat i{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-style:normal;font-size:18px;background:rgba(233,196,106,.14)}
-.feat b{display:block}.feat span{color:var(--t2);font-size:15px}
+.tilt .phone{--w:min(300px,70vw);transform:rotateY(var(--ry,-10deg)) rotateX(var(--rx2,5deg));transition:transform .6s var(--ease)}
+.tilt .gloss{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--gx,30%) var(--gy,20%),rgba(255,255,255,.2),transparent 45%);mix-blend-mode:screen;pointer-events:none;z-index:5}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 20px;margin-top:34px}
+.stat b{display:block;font-family:var(--fd);font-size:clamp(34px,4vw,44px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.05}
+.stat span{color:var(--t2);font-size:15px}
+.stat i{display:block;height:6px;border-radius:6px;background:rgba(255,255,255,.1);margin-top:10px;overflow:hidden}
+.stat i::after{content:"";display:block;height:100%;width:var(--v);background:var(--bc,#e9c46a);transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease) .2s}
+.stats.on .stat i::after{transform:scaleX(1)}
 
-/* Mehr */
-.duo{display:grid;gap:22px;margin-top:56px}
-@media(min-width:900px){.duo{grid-template-columns:1fr 1fr}}
-.tile{background:var(--grp);border:.6px solid var(--line);border-radius:var(--r);padding:30px 30px 0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center}
-.tile h3{font-size:28px}.tile p{color:var(--t2);margin:10px 0 28px;font-size:16px;max-width:380px}
-.tile .phone{--w:250px;margin-bottom:-120px;transition:transform .8s var(--ease)}
-
+/* Top-Liste und Serien */
+.two{display:grid;gap:60px;margin-top:56px}
+@media(min-width:900px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:50px}}
+.two h3{margin-bottom:6px}.two p{color:var(--t2);margin:0 0 22px;font-size:16px}
+.ep{display:block;margin-top:2px}
+.ep i{display:block;height:6px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
+.ep i::after{content:"";display:block;height:100%;width:var(--v);background:var(--bc,var(--tint));transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease) var(--rd,0s)}
+.on .ep i::after{transform:scaleX(1)}
+.done{color:var(--ok);font-weight:700;font-size:15px}
 
 /* Privat */
-.trio{display:grid;gap:16px;margin-top:50px}
-@media(min-width:760px){.trio{grid-template-columns:repeat(3,1fr)}}
-.trio .rv{transform:translateY(40px) scale(.9)}.trio .rv.in{transform:none}
-.trio div{background:var(--grp);border:.6px solid var(--line);border-radius:24px;padding:26px}
-.trio svg{width:30px;height:30px;color:var(--ok);margin-bottom:14px}
-.trio b{display:block;font-size:19px;margin-bottom:4px}.trio span{color:var(--t2);font-size:15px}
+.trio{display:grid;gap:34px;margin-top:50px}
+@media(min-width:760px){.trio{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.trio svg{width:34px;height:34px;color:var(--ok);margin-bottom:14px}
+.trio b{display:block;font-size:20px;margin-bottom:4px}.trio span{color:var(--t2);font-size:15px}
 
 /* Schluss */
-.end{padding:clamp(120px,16vw,200px) 0 60px;text-align:center;overflow:hidden}
-.end::before{content:"";position:absolute;left:50%;top:30%;width:900px;height:600px;transform:translateX(-50%) scale(var(--g,.4));opacity:var(--g,.4);background:radial-gradient(closest-side,rgba(10,132,255,.25),transparent);pointer-events:none}
+.end{padding:clamp(130px,16vw,200px) 0 60px;text-align:center;overflow:hidden}
+.end::before{content:"";position:absolute;left:50%;top:30%;width:900px;height:600px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(10,132,255,.25),transparent);pointer-events:none}
 .end .icon{width:96px;height:96px;border-radius:22px;margin:0 auto 26px;box-shadow:0 12px 50px rgba(10,132,255,.45)}
-.howto{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:40px auto 0;max-width:820px}
-.howto div{flex:1 1 220px;background:var(--grp);border:.6px solid var(--line);border-radius:20px;padding:18px;text-align:left;font-size:15px;color:var(--t2)}
-.howto b{display:block;color:#fff;font-size:13px;margin-bottom:4px;color:var(--tint)}
+.end .lede{margin:18px auto 34px}
+.howto{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:44px auto 0;max-width:820px;color:var(--t2);font-size:15px}
+.howto b{color:var(--tint);margin-right:6px}
 footer{padding:40px 0 calc(40px + env(safe-area-inset-bottom));border-top:.5px solid var(--line);color:var(--t3);font-size:13px;text-align:center;line-height:1.7}
 footer a{color:var(--t2)}
 
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition-duration:.01s!important}
+  *,*::before,*::after{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}
   .rv{opacity:1;transform:none}
-  .hero-phone .phone{transform:none}
 }
 </style></head><body>
 
-<!-- Kopfleiste, erscheint nach dem Hero -->
 <div class="bar" id="bar"><div class="wrap">
   <img src="icon-192.png?v=4" alt=""><b>Screenreview</b>
   <a class="btn" data-cta href="https://testflight.apple.com/join/AKTDkQ2c"><span data-l="de">Laden</span><span data-l="en">Get</span></a>
 </div></div>
 
-<!-- Hero -->
+<!-- Start -->
 <section class="hero" id="top">
   <div class="wall" id="wall" aria-hidden="true"></div>
   <div class="hero-in">
@@ -275,113 +266,125 @@ footer a{color:var(--t2)}
   </div>
 </section>
 
+<!-- Deine Filme -->
+<section class="sec" id="mine" style="--c:var(--tint)"><div class="wrap split">
+  <div>
+    <span class="eyebrow rv" data-l="de">Deine Filme</span><span class="eyebrow rv" data-l="en">Your movies</span>
+    <h2 class="rv"><span data-l="de">Alles, was du gesehen hast.</span><span data-l="en">Everything you've watched.</span></h2>
+    <p class="lede rv"><span data-l="de">Jede Note auf einen Blick, mit IMDb, Rotten Tomatoes und Metacritic gleich daneben.</span><span data-l="en">Every score at a glance, with IMDb, Rotten Tomatoes and Metacritic right next to it.</span></p>
+  </div>
+  <div class="rows" id="mineRows"></div>
+</div></section>
+
 <!-- Bewerten -->
 <section class="sec" id="rate"><div class="wrap">
-  <div class="rv"><span class="eyebrow" data-l="de">Bewerten</span><span class="eyebrow" data-l="en">Rating</span></div>
+  <span class="eyebrow rv" data-l="de">Bewerten</span><span class="eyebrow rv" data-l="en">Rating</span>
   <h2 class="rv"><span data-l="de">Mehr als eine Zahl.</span><span data-l="en">More than a number.</span></h2>
   <p class="lede rv"><span data-l="de">Story, Cast, Kamera, Musik und Wirkung, in halben Punkten von 1 bis 10. Probier es gleich hier aus.</span><span data-l="en">Story, cast, visuals, music and impact, in half points from 1 to 10. Try it right here.</span></p>
   <div class="rate">
-    <div class="pb-wrap"><img class="poster-big mask rv" data-par="-.12" src="img/posters/dune-part-two.webp" alt="Dune: Part Two" loading="lazy" width="228" height="342" style="width:300px"></div>
-    <div class="rcard rv" style="--d:.1s">
-      <div>
-        <div class="film" style="margin-bottom:22px"><img src="img/posters/dune-part-two.webp" alt="" loading="lazy"><div><b>Dune: Part Two</b><small>2024 · Denis Villeneuve</small></div></div>
-        <div class="sl" id="sliders"></div>
-      </div>
-      <div>
-        <div class="ring" id="ring"><svg viewBox="0 0 140 140"><circle class="tr" cx="70" cy="70" r="60"/><circle class="pr" cx="70" cy="70" r="60" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
-          <div class="num"><b id="total">–</b><small id="word"></small></div></div>
-        <div class="rfoot"><button class="link" id="reset"><span data-l="de">Selbst bewerten</span><span data-l="en">Rate it yourself</span></button></div>
-      </div>
+    <img class="poster rv" src="img/posters/dune-part-two.webp" alt="Dune: Part Two" loading="lazy" width="228" height="342">
+    <div class="rv" style="--d:.08s">
+      <div class="film"><img src="img/posters/dune-part-two.webp" alt="" loading="lazy"><div><b>Dune: Part Two</b><small>2024 · Denis Villeneuve</small></div></div>
+      <div class="sl" id="sliders"></div>
+    </div>
+    <div class="rv" style="--d:.16s">
+      <div class="ring big" id="ring"><svg viewBox="0 0 140 140"><circle class="tr" cx="70" cy="70" r="60"/><circle class="pr" cx="70" cy="70" r="60" pathLength="100"/></svg>
+        <div class="num"><b id="total">–</b><small id="word"></small></div></div>
+      <div class="rfoot"><button class="link" id="reset"><span data-l="de">Selbst bewerten</span><span data-l="en">Rate it yourself</span></button></div>
     </div>
   </div>
 </div></section>
 
 <!-- Freunde -->
 <section class="sec" id="friends"><div class="wrap">
-  <div>
-    <div class="rv"><span class="eyebrow" data-l="de">Mit Freunden</span><span class="eyebrow" data-l="en">With friends</span></div>
-    <h2 class="rv"><span data-l="de">Zusammen ist es besser.</span><span data-l="en">Better together.</span></h2>
-    <p class="lede rv"><span data-l="de">Screenreview ist für Freundesgruppen gemacht. Für Filmabende, Diskussionen danach und die Frage, wem man trauen kann.</span><span data-l="en">Screenreview is made for groups of friends. For movie nights, the discussion afterwards and knowing whose taste to trust.</span></p>
+  <span class="eyebrow rv" data-l="de">Mit Freunden</span><span class="eyebrow rv" data-l="en">With friends</span>
+  <h2 class="rv"><span data-l="de">Zusammen ist es besser.</span><span data-l="en">Better together.</span></h2>
+  <p class="lede rv"><span data-l="de">Screenreview ist für Freundesgruppen gemacht. Für Filmabende, Diskussionen danach und die Frage, wem man trauen kann.</span><span data-l="en">Screenreview is made for groups of friends. For movie nights, the discussion afterwards and knowing whose taste to trust.</span></p>
+
+  <div class="split">
+    <div class="rv"><span class="n" data-l="de">Verbinden</span><span class="n" data-l="en">Connect</span><h3><span data-l="de">In Sekunden befreundet</span><span data-l="en">Friends in seconds</span></h3><p><span data-l="de">Teile deinen Freundeslink oder lass deinen QR-Code scannen. Die Anfrage ist sofort unterwegs, Kontakte lädst du direkt ein.</span><span data-l="en">Share your friend link or let someone scan your QR code. The request is on its way instantly, and you can invite contacts directly.</span></p></div>
+    <div class="qrl rv" style="--d:.1s"><img src="img/qr-testflight.svg" alt=""><div><b data-l="de">Dein Freundeslink</b><b data-l="en">Your friend link</b><small>screenreview.ch/add?u=lias</small><br><span class="gbtn glass"><span data-l="de">Kontakt einladen</span><span data-l="en">Invite a contact</span></span></div></div>
   </div>
-  <div class="stack">
-    <article class="bx" style="--i:0"><div class="txt"><span class="n" data-l="de">Geschmacks-Match</span><span class="n" data-l="en">Taste match</span><h3><span data-l="de">Wem kannst du trauen?</span><span data-l="en">Whose taste can you trust?</span></h3><p><span data-l="de">Wie ähnlich euer Geschmack ist, Kategorie für Kategorie. Jetzt weisst du, wessen Tipps sich lohnen.</span><span data-l="en">How similar your taste is, category by category. Now you know whose tips are worth it.</span></p></div>
-      <div class="w"><div class="match"><span class="ava">L</span><span class="ava">A</span><div><b class="pct" data-to="87">0 %</b><small data-l="de">Geschmacks-Match mit alex</small><small data-l="en">Taste match with alex</small></div></div>
-        <div class="bars"><div><span>Story</span><i style="--v:92%"></i><em>92</em></div><div><span>Cast</span><i style="--v:88%"></i><em>88</em></div><div><span data-l="de">Kamera</span><span data-l="en">Visuals</span><i style="--v:95%"></i><em>95</em></div><div><span data-l="de">Musik</span><span data-l="en">Music</span><i style="--v:71%;--bc:var(--mid)"></i><em>71</em></div><div><span data-l="de">Wirkung</span><span data-l="en">Impact</span><i style="--v:84%"></i><em>84</em></div></div></div></article>
-    <article class="bx" style="--i:1"><div class="txt"><span class="n" data-l="de">Verbinden</span><span class="n" data-l="en">Connect</span><h3><span data-l="de">In Sekunden befreundet</span><span data-l="en">Friends in seconds</span></h3><p><span data-l="de">Freundeslink teilen oder QR-Code scannen lassen. Auch Kontakte kannst du direkt einladen.</span><span data-l="en">Share your friend link or let someone scan your QR code. You can invite contacts directly, too.</span></p></div>
-      <div class="w"><div class="f-link"><img src="img/qr-testflight.svg" alt=""><div><b data-l="de">Dein Freundeslink</b><b data-l="en">Your friend link</b><small>screenreview.ch/add?u=lias</small></div></div></div></article>
-    <article class="bx" style="--i:2"><div class="txt"><span class="n" data-l="de">Bewertungen</span><span class="n" data-l="en">Ratings</span><h3><span data-l="de">Sehen, wer was bewertet hat</span><span data-l="en">See who rated what</span></h3><p><span data-l="de">Bei jedem Titel die Noten deiner Freunde und wie weit ihr auseinanderliegt.</span><span data-l="en">For every title, your friends' scores and how far apart you are.</span></p></div>
-      <div class="w"><div class="f-t" data-l="de">Dune: Part Two · Freunde</div><div class="f-t" data-l="en">Dune: Part Two · Friends</div>
-        <div class="who"><div><span class="ava">A</span><span>alex</span><b style="color:var(--ok)">9.5</b></div><div><span class="ava">J</span><span>jonas</span><b style="color:var(--ok)">8.5</b></div><div><span class="ava">B</span><span>ben</span><b style="color:#9ed65c">7.5</b></div></div></div></article>
-    <article class="bx" style="--i:3"><div class="txt"><span class="n" data-l="de">Gemeinsame Listen</span><span class="n" data-l="en">Shared lists</span><h3><span data-l="de">Der nächste Filmabend</span><span data-l="en">The next movie night</span></h3><p><span data-l="de">Alle fügen Titel hinzu, und ihr seht, was ihr zusammen noch schauen wollt.</span><span data-l="en">Everyone adds titles, and you see what you still want to watch together.</span></p></div>
-      <div class="w"><div class="f-t">Saturday Movienight</div><div class="who"><div><span class="ava">L</span><span data-l="de">Lias fügt <b>Sinners</b> hinzu</span><span data-l="en">Lias added <b>Sinners</b></span></div><div><span class="ava">J</span><span data-l="de">jonas fügt <b>Aftersun</b> hinzu</span><span data-l="en">jonas added <b>Aftersun</b></span></div><div><span class="ava">B</span><span data-l="de">ben will <b>Past Lives</b> sehen</span><span data-l="en">ben wants to see <b>Past Lives</b></span></div></div></div></article>
-    <article class="bx" style="--i:4"><div class="txt"><span class="n" data-l="de">Gruppenstatistik</span><span class="n" data-l="en">Group stats</span><h3><span data-l="de">Wer ist am strengsten?</span><span data-l="en">Who's the harshest critic?</span></h3><p><span data-l="de">Strengste Noten, Lieblingsgenres und wer am meisten schaut.</span><span data-l="en">Harshest scores, favorite genres and who watches the most.</span></p></div>
-      <div class="w"><div class="f-t" data-l="de">Schnitt der Gruppe</div><div class="f-t" data-l="en">Group average</div><div class="bars"><div><span>ben</span><i style="--v:64%;--bc:var(--mid)"></i><em>6.4</em></div><div><span>Lias</span><i style="--v:72%;--bc:#9ed65c"></i><em>7.2</em></div><div><span>alex</span><i style="--v:81%"></i><em>8.1</em></div><div><span>jonas</span><i style="--v:86%"></i><em>8.6</em></div></div></div></article>
+
+  <div class="split flip">
+    <div class="rv"><span class="n" data-l="de">Bewertungen</span><span class="n" data-l="en">Ratings</span><h3><span data-l="de">Sehen, wer was bewertet hat</span><span data-l="en">See who rated what</span></h3><p><span data-l="de">Bei jedem Titel siehst du die Noten deiner Freunde und wie weit ihr auseinanderliegt.</span><span data-l="en">For every title you see your friends' scores and how far apart you are.</span></p></div>
+    <div class="anim" id="who"><div class="rows" id="whoRow"></div>
+      <div class="scores"><span class="chip glass" style="--cd:.5s"><span class="ava">A</span>alex <span style="color:var(--ok)">9.5</span></span><span class="chip glass" style="--cd:.65s"><span class="ava">J</span>jonas <span style="color:var(--ok)">8.5</span></span><span class="chip glass" style="--cd:.8s"><span class="ava">B</span>ben <span style="color:var(--good)">7.5</span></span></div></div>
   </div>
-  <p class="note rv" data-l="de">Beispielwerte</p><p class="note rv" data-l="en">Sample values</p>
+
+  <div class="split">
+    <div class="rv"><span class="n" data-l="de">Geschmacks-Match</span><span class="n" data-l="en">Taste match</span><h3><span data-l="de">Wem kannst du trauen?</span><span data-l="en">Whose taste can you trust?</span></h3><p><span data-l="de">Wie ähnlich euer Geschmack ist, Kategorie für Kategorie. Jetzt weisst du, wessen Tipps sich lohnen.</span><span data-l="en">How similar your taste is, category by category. Now you know whose tips are worth it.</span></p></div>
+    <div class="anim" id="match"><div class="match"><span class="avas"><span class="ava">L</span><span class="ava">A</span></span><div><b id="pct">0 %</b><small data-l="de">Geschmacks-Match mit alex</small><small data-l="en">Taste match with alex</small></div></div>
+      <div class="bars"><div><span>Story</span><i style="--v:92%"></i><em>92</em></div><div><span>Cast</span><i style="--v:88%;--bd:.1s"></i><em>88</em></div><div><span data-l="de">Kamera</span><span data-l="en">Visuals</span><i style="--v:95%;--bd:.2s"></i><em>95</em></div><div><span data-l="de">Musik</span><span data-l="en">Music</span><i style="--v:71%;--bc:var(--mid);--bd:.3s"></i><em>71</em></div><div><span data-l="de">Wirkung</span><span data-l="en">Impact</span><i style="--v:84%;--bd:.4s"></i><em>84</em></div></div></div>
+  </div>
+
+  <div class="split flip">
+    <div class="rv"><span class="n" data-l="de">Gemeinsame Listen</span><span class="n" data-l="en">Shared lists</span><h3><span data-l="de">Der nächste Filmabend</span><span data-l="en">The next movie night</span></h3><p><span data-l="de">Alle fügen Titel hinzu, und ihr seht, was ihr zusammen noch schauen wollt.</span><span data-l="en">Everyone adds titles, and you see what you still want to watch together.</span></p></div>
+    <div class="anim" id="list"><div class="lh"><span class="avas"><span class="ava">L</span><span class="ava">J</span><span class="ava">B</span></span>Saturday Movienight</div>
+      <div class="strip"><figure style="--r:-3deg;--cd:0s"><img src="img/posters/sinners.webp" alt="Sinners" loading="lazy"><span class="ava">L</span></figure><figure style="--r:2deg;--cd:.12s"><img src="img/posters/aftersun.webp" alt="Aftersun" loading="lazy"><span class="ava">J</span></figure><figure style="--r:-1deg;--cd:.24s"><img src="img/posters/past-lives.webp" alt="Past Lives" loading="lazy"><span class="ava">B</span></figure><figure style="--r:3deg;--cd:.36s"><img src="img/posters/primal-fear.webp" alt="Primal Fear" loading="lazy"><span class="ava">L</span></figure></div></div>
+  </div>
+
+  <div class="split">
+    <div class="rv"><span class="n" data-l="de">Gruppenstatistik</span><span class="n" data-l="en">Group stats</span><h3><span data-l="de">Wer ist am strengsten?</span><span data-l="en">Who's the harshest critic?</span></h3><p><span data-l="de">Strengste Noten, Lieblingsgenres und wer am meisten schaut.</span><span data-l="en">Harshest scores, favorite genres and who watches the most.</span></p></div>
+    <div class="anim"><div class="bars" style="gap:16px"><div><span><span class="ava" style="display:inline-grid;width:26px;height:26px;font-size:12px;border:0;vertical-align:middle;margin-right:8px">B</span>ben</span><i style="--v:64%;--bc:var(--mid)"></i><em>6.4</em></div><div><span><span class="ava" style="display:inline-grid;width:26px;height:26px;font-size:12px;border:0;vertical-align:middle;margin-right:8px">L</span>Lias</span><i style="--v:72%;--bc:var(--good);--bd:.1s"></i><em>7.2</em></div><div><span><span class="ava" style="display:inline-grid;width:26px;height:26px;font-size:12px;border:0;vertical-align:middle;margin-right:8px">A</span>alex</span><i style="--v:81%;--bd:.2s"></i><em>8.1</em></div><div><span><span class="ava" style="display:inline-grid;width:26px;height:26px;font-size:12px;border:0;vertical-align:middle;margin-right:8px">J</span>jonas</span><i style="--v:86%;--bd:.3s"></i><em>8.6</em></div></div></div>
+  </div>
+  <p class="note" data-l="de">Namen und Werte bei den Freunden sind Beispiele.</p><p class="note" data-l="en">Friend names and values are examples.</p>
 </div></section>
 
-<!-- Detailkarten -->
-<section class="sec" id="details"><div class="hz" id="hz"><div class="hz-pin">
-  <div class="wrap hz-head">
-    <div><div class="rv"><span class="eyebrow" data-l="de">Alles zum Film</span><span class="eyebrow" data-l="en">Everything about a movie</span></div>
-    <h2 class="rv"><span data-l="de">Alles an einem Ort.</span><span data-l="en">All in one place.</span></h2>
-    <p class="lede rv"><span data-l="de">Kritiken, Trailer, Kinoprogramm, wo du schauen kannst und Fakten zur Produktion.</span><span data-l="en">Reviews, trailers, showtimes, where to watch and production facts.</span></p></div>
-    <div class="nav rv"><button id="prev" aria-label="Zurück">‹</button><button id="next" aria-label="Weiter">›</button></div>
+<!-- Alles zum Film -->
+<section class="sec" id="details"><div class="wrap">
+  <span class="eyebrow rv" data-l="de">Alles zum Film</span><span class="eyebrow rv" data-l="en">Everything about a movie</span>
+  <h2 class="rv"><span data-l="de">Alles an einem Ort.</span><span data-l="en">All in one place.</span></h2>
+  <p class="lede rv"><span data-l="de">Kritiken, Trailer, Kinoprogramm, wo du schauen kannst und Fakten zur Produktion.</span><span data-l="en">Reviews, trailers, showtimes, where to watch and production facts.</span></p>
+  <div class="detail">
+    <div class="rv">
+      <div class="trailer"><img src="img/posters/dune-backdrop.webp" alt="" loading="lazy"><div class="play" aria-hidden="true"></div><span>Trailer</span></div>
+      <div class="dmeta"><img src="img/posters/dune-part-two.webp" alt="" loading="lazy"><div><b>Dune: Part Two</b><small>2024 · Science Fiction · 2 h 47 min</small></div></div>
+    </div>
+    <div class="rv" style="--d:.1s">
+      <div class="blk anim"><h4 data-l="de">Kritiken</h4><h4 data-l="en">Reviews</h4>
+        <div class="bars"><div><span>IMDb</span><i style="--v:84%;--bc:var(--mid)"></i><em>8.4</em></div><div><span>Rotten Tomatoes</span><i style="--v:92%;--bc:var(--bad);--bd:.12s"></i><em>92 %</em></div><div><span>Metacritic</span><i style="--v:79%;--bc:var(--ok);--bd:.24s"></i><em>79</em></div></div>
+        <div class="award" data-l="de">2 Oscars</div><div class="award" data-l="en">Won 2 Oscars</div></div>
+      <div class="blk"><h4 data-l="de">Im Kino</h4><h4 data-l="en">In cinemas</h4>
+        <div class="times"><div><b>Pathé Dietlikon</b><span class="tp">17:30</span><span class="tp x">20:15 IMAX</span><span class="tp">21:00</span></div><div><b>Pathé Spreitenbach</b><span class="tp">18:15</span><span class="tp">20:45</span></div></div></div>
+      <div class="blk"><h4 data-l="de">Wo schauen</h4><h4 data-l="en">Where to watch</h4>
+        <div class="pills" style="gap:8px"><span class="tp">Netflix</span><span class="tp">HBO Max</span><span class="tp">Sky</span><span class="tp" style="color:var(--t2)"><span data-l="de">Leihen:</span><span data-l="en">Rent:</span> blue TV</span></div></div>
+      <div class="blk"><h4 data-l="de">Fakten</h4><h4 data-l="en">Facts</h4>
+        <dl class="facts"><dt data-l="de">Regie</dt><dt data-l="en">Director</dt><dd>Denis Villeneuve</dd><dt>Budget</dt><dd data-l="de">190 Mio. $</dd><dd data-l="en">$190M</dd><dt data-l="de">Eingespielt</dt><dt data-l="en">Box office</dt><dd data-l="de">715 Mio. $</dd><dd data-l="en">$715M</dd><dt>Cast</dt><dd>Timothée Chalamet, Zendaya</dd></dl></div>
+    </div>
   </div>
-  <div class="track" id="rail">
-    <article class="card rv"><span class="k" data-l="de">Kritiken</span><span class="k" data-l="en">Reviews</span><h3>Dune: Part Two</h3>
-      <div class="crit"><div><span>IMDb</span><b>8.4</b><i style="--v:84%;--bc:var(--mid)"></i></div><div><span>Rotten Tomatoes</span><b>92 %</b><i style="--v:92%;--bc:var(--bad)"></i></div><div><span>Metacritic</span><b>79</b><i style="--v:79%;--bc:var(--ok)"></i></div></div>
-      <div class="award" data-l="de">🏆 2 Oscars</div><div class="award" data-l="en">🏆 Won 2 Oscars</div>
-      <p><span data-l="de">Dazu Kritiken aus der Presse, direkt beim Titel.</span><span data-l="en">Plus press reviews, right with the title.</span></p></article>
-    <article class="card trailer rv" style="--d:.06s"><div class="bd" style="background-image:url(img/posters/dune-backdrop.webp)"></div><div class="play" aria-hidden="true"></div>
-      <div class="in"><span class="k">Trailer</span><h3 style="margin-bottom:6px"><span data-l="de">Trailer ansehen</span><span data-l="en">Watch the trailer</span></h3><p style="color:rgba(255,255,255,.75)"><span data-l="de">Ohne die App zu verlassen.</span><span data-l="en">Without leaving the app.</span></p></div></article>
-    <article class="card rv" style="--d:.12s"><span class="k" data-l="de">Kinoprogramm</span><span class="k" data-l="en">Showtimes</span><h3><span data-l="de">Heute im Kino</span><span data-l="en">In cinemas today</span></h3>
-      <div class="times"><div><b>Pathé Dietlikon</b><span>17:30</span><span class="x">20:15 IMAX</span><span>21:00</span></div><div><b>Pathé Spreitenbach</b><span>18:15</span><span>20:45</span></div><div><b>Pathé Basel</b><span>17:00</span><span class="x">20:00 4DX</span></div></div>
-      <p><span data-l="de">In der Schweiz mit Spielzeiten von Pathé, sonst aus TMDB.</span><span data-l="en">In Switzerland with Pathé showtimes, elsewhere from TMDB.</span></p></article>
-    <article class="card rv" style="--d:.18s"><span class="k" data-l="de">Wo schauen</span><span class="k" data-l="en">Where to watch</span><h3><span data-l="de">Streamen, leihen, kaufen</span><span data-l="en">Stream, rent, buy</span></h3>
-      <div class="prov"><div><small data-l="de">Im Abo</small><small data-l="en">Subscription</small><span class="pill">Netflix</span><span class="pill">HBO Max</span><span class="pill">Sky</span></div><div><small data-l="de">Leihen</small><small data-l="en">Rent</small><span class="pill">blue TV</span><span class="pill">Apple TV</span></div></div>
-      <p><span data-l="de">Passend zu deinem Land und deinen Diensten. Daten von JustWatch.</span><span data-l="en">Matched to your country and services. Data from JustWatch.</span></p></article>
-    <article class="card rv" style="--d:.24s"><span class="k" data-l="de">Fakten</span><span class="k" data-l="en">Facts</span><h3><span data-l="de">Hinter der Kamera</span><span data-l="en">Behind the camera</span></h3>
-      <dl class="facts"><dt data-l="de">Regie</dt><dt data-l="en">Director</dt><dd>Denis Villeneuve</dd><dt data-l="de">Laufzeit</dt><dt data-l="en">Runtime</dt><dd>2 h 47 min</dd><dt>Budget</dt><dd data-l="de">190 Mio. $</dd><dd data-l="en">$190M</dd><dt data-l="de">Eingespielt</dt><dt data-l="en">Box office</dt><dd data-l="de">715 Mio. $</dd><dd data-l="en">$715M</dd><dt>Cast</dt><dd>Chalamet, Zendaya</dd></dl>
-      <p><span data-l="de">Dazu Hintergründe aus Wikipedia.</span><span data-l="en">Plus background from Wikipedia.</span></p></article>
-    <article class="card rv" style="--d:.3s"><span class="k" data-l="de">Dein Abend</span><span class="k" data-l="en">Your night</span><h3><span data-l="de">Was hängen bleibt</span><span data-l="en">What stuck with you</span></h3>
-      <div class="chips"><span class="chip b" data-l="de">Mit Freunden</span><span class="chip b" data-l="en">With friends</span><span class="chip b" data-l="de">Kino</span><span class="chip b" data-l="en">Cinema</span><span class="chip y">IMAX</span><span class="chip" data-l="de">Tempo genau richtig</span><span class="chip" data-l="en">Pace just right</span><span class="chip" data-l="de">Starkes Ende</span><span class="chip" data-l="en">Strong ending</span><span class="chip y" data-l="de">Der Wurmritt</span><span class="chip y" data-l="en">The worm ride</span></div>
-      <p><span data-l="de">Halte fest, mit wem und wo du geschaut hast und welche Momente bleiben.</span><span data-l="en">Note who you watched with, where, and which moments stayed with you.</span></p></article>
-  </div>
-  <div class="prog"><i id="prog"></i></div>
-</div></div></section>
+  <p class="note"><span data-l="de">Kinozeiten als Beispiel. In der Schweiz kommt das Programm von Pathé.</span><span data-l="en">Showtimes are examples. In Switzerland, the schedule comes from Pathé.</span></p>
+</div></section>
 
 <!-- Screenpass -->
-<section class="sec" id="pass"><div class="wrap passgrid">
+<section class="sec" id="pass"><div class="wrap split">
   <div>
-    <div class="rv"><span class="eyebrow">Screenpass</span></div>
+    <span class="eyebrow rv">Screenpass</span>
     <h2 class="rv"><span data-l="de">Dein Jahr in Filmen.</span><span data-l="en">Your year in movies.</span></h2>
-    <p class="lede rv"><span data-l="de">Deine Statistik in Kapiteln. Als Karte oder Sticker für deine Instagram-Story.</span><span data-l="en">Your stats in chapters. As a card or a sticker for your Instagram Story.</span></p>
-    <ul class="feat">
-      <li class="rv"><i>⏱</i><div><b data-l="de">Bildschirmzeit</b><b data-l="en">Screen time</b><span data-l="de">Wie viele Stunden du dieses Jahr geschaut hast.</span><span data-l="en">How many hours you watched this year.</span></div></li>
-      <li class="rv" style="--d:.06s"><i>🍿</i><div><b data-l="de">Kino gegen Zuhause</b><b data-l="en">Cinema vs. home</b><span data-l="de">Und deine Lieblingsgenres.</span><span data-l="en">And your favorite genres.</span></div></li>
-      <li class="rv" style="--d:.12s"><i>⚖️</i><div><b data-l="de">Streng oder mild?</b><b data-l="en">Harsh or generous?</b><span data-l="de">Deine Noten im Vergleich zu IMDb.</span><span data-l="en">Your scores compared to IMDb.</span></div></li>
-      <li class="rv" style="--d:.18s"><i>🎵</i><div><b data-l="de">Jahresrückblick</b><b data-l="en">Year in review</b><span data-l="de">Zum Jahresende dein persönlicher Rückblick mit Musik.</span><span data-l="en">At the end of the year, your personal review with music.</span></div></li>
-    </ul>
+    <p class="lede rv"><span data-l="de">Deine Statistik in Kapiteln, als Karte oder Sticker für deine Instagram-Story. Zum Jahresende mit persönlichem Rückblick und Musik.</span><span data-l="en">Your stats in chapters, as a card or a sticker for your Instagram Story. At the end of the year with a personal review and music.</span></p>
+    <div class="stats" id="stats">
+      <div class="stat"><b data-count="1608" data-suffix=" h">0 h</b><span data-l="de">Bildschirmzeit</span><span data-l="en">Screen time</span><i style="--v:78%"></i></div>
+      <div class="stat"><b data-count="38">0</b><span data-l="de">Filme bewertet</span><span data-l="en">Movies rated</span><i style="--v:60%;--bc:var(--tint)"></i></div>
+      <div class="stat"><b data-count="62" data-suffix=" %">0 %</b><span data-l="de">im Kino gesehen</span><span data-l="en">seen in cinemas</span><i style="--v:62%;--bc:var(--bad)"></i></div>
+      <div class="stat"><b data-count="0.4" data-dec="1" data-prefix="+">0</b><span data-l="de">milder als IMDb</span><span data-l="en">more generous than IMDb</span><i style="--v:54%;--bc:var(--ok)"></i></div>
+    </div>
   </div>
-  <div class="tilt rv" id="tilt"><div class="phone"><div class="island"></div><div class="scr"><img src="img/screens/pass-430.webp" srcset="img/screens/pass-430.webp 430w,img/screens/pass-860.webp 860w" sizes="310px" alt="" loading="lazy"></div><div class="gloss"></div></div></div>
+  <div class="tilt rv" id="tilt"><div class="phone"><div class="island"></div><div class="scr"><img src="img/screens/pass-430.webp" srcset="img/screens/pass-430.webp 430w,img/screens/pass-860.webp 860w" sizes="300px" alt="" loading="lazy"></div><div class="gloss"></div></div></div>
 </div></section>
 
 <!-- Top-Liste und Serien -->
 <section class="sec"><div class="wrap">
-  <div class="center"><h2 class="rv"><span data-l="de">Und noch mehr.</span><span data-l="en">And there's more.</span></h2></div>
-  <div class="duo">
-    <div class="tile rv"><h3><span data-l="de">Die Top-Liste</span><span data-l="en">The top list</span></h3><p><span data-l="de">Der Schnitt aller Bewertungen, anonym. Für diese Woche, diesen Monat oder immer.</span><span data-l="en">The average of all ratings, anonymous. For this week, this month or all time.</span></p>
-      <div class="phone" data-par="-.1"><div class="island"></div><div class="scr"><img src="img/screens/top-430.webp" srcset="img/screens/top-430.webp 430w,img/screens/top-860.webp 860w" sizes="250px" alt="" loading="lazy"></div></div></div>
-    <div class="tile rv" style="--d:.1s"><h3><span data-l="de">Serien im Blick</span><span data-l="en">Keep up with shows</span></h3><p><span data-l="de">Folgen abhaken und erinnert werden, wenn eine neue erscheint.</span><span data-l="en">Check off episodes and get notified when a new one is out.</span></p>
-      <div class="phone" data-par="-.2"><div class="island"></div><div class="scr"><img src="img/screens/shows-430.webp" srcset="img/screens/shows-430.webp 430w,img/screens/shows-860.webp 860w" sizes="250px" alt="" loading="lazy"></div></div></div>
+  <h2 class="rv"><span data-l="de">Und noch mehr.</span><span data-l="en">And there's more.</span></h2>
+  <div class="two">
+    <div><h3 class="rv"><span data-l="de">Die Top-Liste</span><span data-l="en">The top list</span></h3><p class="rv"><span data-l="de">Der Schnitt aller Bewertungen, anonym. Für diese Woche, diesen Monat oder immer.</span><span data-l="en">The average of all ratings, anonymous. For this week, this month or all time.</span></p><div class="rows" id="topRows"></div></div>
+    <div><h3 class="rv"><span data-l="de">Serien im Blick</span><span data-l="en">Keep up with shows</span></h3><p class="rv"><span data-l="de">Folgen abhaken und erinnert werden, wenn eine neue erscheint.</span><span data-l="en">Check off episodes and get notified when a new one is out.</span></p><div class="rows" id="showRows"></div></div>
   </div>
 </div></section>
 
 <!-- Privat -->
 <section class="sec"><div class="wrap">
-  <div class="center"><div class="rv"><span class="eyebrow" style="--c:var(--ok)" data-l="de">Privat</span><span class="eyebrow" style="--c:var(--ok)" data-l="en">Private</span></div>
-  <h2 class="rv"><span data-l="de">Deine Noten gehören dir.</span><span data-l="en">Your scores are yours.</span></h2></div>
+  <span class="eyebrow rv" style="--c:var(--ok)" data-l="de">Privat</span><span class="eyebrow rv" style="--c:var(--ok)" data-l="en">Private</span>
+  <h2 class="rv"><span data-l="de">Deine Noten gehören dir.</span><span data-l="en">Your scores are yours.</span></h2>
   <div class="trio">
     <div class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><b data-l="de">Keine Werbung</b><b data-l="en">No ads</b><span data-l="de">Und nichts zu kaufen.</span><span data-l="en">And nothing to buy.</span></div>
     <div class="rv" style="--d:.08s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><b data-l="de">Kein Tracking</b><b data-l="en">No tracking</b><span data-l="de">Keine Analyse-Tools, keine Weitergabe.</span><span data-l="en">No analytics, no sharing with third parties.</span></div>
@@ -393,12 +396,12 @@ footer a{color:var(--t2)}
 <section class="end"><div class="wrap" style="position:relative">
   <img class="icon rv" src="icon-512.png?v=4" alt="">
   <h2 class="rv"><span data-l="de">Bereit für den nächsten Filmabend?</span><span data-l="en">Ready for the next movie night?</span></h2>
-  <p class="lede rv" style="margin-bottom:34px"><span data-l="de">Kostenlos für iPhone. Bring deine Freunde mit.</span><span data-l="en">Free for iPhone. Bring your friends.</span></p>
+  <p class="lede rv"><span data-l="de">Kostenlos für iPhone. Bring deine Freunde mit.</span><span data-l="en">Free for iPhone. Bring your friends.</span></p>
   <div class="cta rv"><a class="btn" data-cta href="https://testflight.apple.com/join/AKTDkQ2c"><span data-l="de">Für iPhone laden</span><span data-l="en">Get it for iPhone</span></a><div class="qr"><img src="img/qr-testflight.svg" alt=""><span><span data-l="de">Mit der iPhone-Kamera<br>scannen</span><span data-l="en">Scan with your<br>iPhone camera</span></span></div></div>
-  <div class="howto" id="howto">
-    <div class="rv"><b>1</b><span data-l="de">Link auf dem iPhone öffnen</span><span data-l="en">Open the link on your iPhone</span></div>
-    <div class="rv" style="--d:.06s"><b>2</b><span data-l="de">TestFlight aus dem App Store installieren</span><span data-l="en">Install TestFlight from the App Store</span></div>
-    <div class="rv" style="--d:.12s"><b>3</b><span data-l="de">Screenreview in TestFlight laden</span><span data-l="en">Install Screenreview in TestFlight</span></div>
+  <div class="howto rv" id="howto">
+    <span><b>1</b><span data-l="de">Link auf dem iPhone öffnen</span><span data-l="en">Open the link on your iPhone</span></span>
+    <span><b>2</b><span data-l="de">TestFlight installieren</span><span data-l="en">Install TestFlight</span></span>
+    <span><b>3</b><span data-l="de">Screenreview in TestFlight laden</span><span data-l="en">Install Screenreview in TestFlight</span></span>
   </div>
 </div></section>
 
@@ -409,7 +412,7 @@ footer a{color:var(--t2)}
 </div></footer>
 
 <script>
-(() => {
+{
   const L = document.documentElement.lang === 'en' ? 'en' : 'de';
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -426,36 +429,92 @@ footer a{color:var(--t2)}
     criteria: { de: [['Story', 'Handlung, Spannung, Ende'], ['Cast', 'Schauspiel und Besetzung'], ['Kamera & Bild', 'Bildsprache, Effekte, Farben'], ['Musik', 'Soundtrack, Score, Sound'], ['Wirkung', 'Wie sehr dich der Film mitgenommen hat']],
                 en: [['Story', 'Plot, suspense, ending'], ['Cast', 'Acting and casting'], ['Camera & visuals', 'Visuals, effects, colors'], ['Music', 'Soundtrack, score, sound'], ['Impact', 'How much the movie moved you']] }[L]
   };
-
-  // App Store statt TestFlight, sobald ein Link eingetragen ist
   if (SR.links.appStore) {
     $$('[data-cta]').forEach(a => a.href = SR.links.appStore);
     $$('[data-beta]').forEach(e => e.textContent = L === 'de' ? 'Kostenlos im App Store' : 'Free on the App Store');
     $('#howto')?.remove();
   }
 
-  // Einblenden beim Scrollen
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  $$('.rv').forEach(el => io.observe(el));
+  // Zahl hochzählen
+  const countTo = (el, to, dec = 1, suffix = '', prefix = '') => {
+    const set = v => el.textContent = prefix + v.toFixed(dec) + suffix;
+    if (calm) return set(to);
+    const from = parseFloat(el.textContent.replace(/[^\d.]/g, '')) || 0, t0 = performance.now(), dur = 1300;
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); set(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+
+  // Filmzeilen wie in der App (Liquid Glass, Ring füllt sich beim Erscheinen)
+  const fmt = v => (v % 1 ? v.toFixed(1) : v.toFixed(0));
+  const ring = v => `<div class="ring" data-v="${v}" style="--rc:${SR.color(v)}"><svg viewBox="0 0 64 64"><circle class="tr" cx="32" cy="32" r="27"/><circle class="pr" cx="32" cy="32" r="27" pathLength="100"/></svg><b>0</b></div>`;
+  const row = (m, i, extra = '') => `<div class="glass mrow rv${m.rank ? ' ranked' : ''}" style="--tc:${m.tc};--d:${i * .07}s">${m.rank ? `<span class="rank">${m.rank}</span>` : ''}<img src="img/posters/${m.p}.webp" alt="" loading="lazy"><div><b>${m.t}</b><small>${m.s}</small>${extra || `<div class="pills">${m.imdb ? `<span class="cp">IMDb ${m.imdb}</span>` : ''}${m.rt ? `<span class="cp"><i></i>${m.rt}</span>` : ''}${m.mc ? `<span class="cp">MC ${m.mc}</span>` : ''}</div>`}</div>${m.v != null ? ring(m.v) : m.right || ''}</div>`;
+  const mine = [
+    { p: 'interstellar', t: 'Interstellar', s: '2014', imdb: '8.7', rt: '73%', mc: 74, v: 9.9, tc: '#40392f' },
+    { p: 'dune-part-two', t: 'Dune: Part Two', s: '2024', imdb: '8.4', rt: '92%', mc: 79, v: 9.7, tc: '#60380f' },
+    { p: 'the-odyssey', t: 'The Odyssey', s: '2026', imdb: '8.4', mc: 88, v: 9.7, tc: '#44372b' },
+    { p: 'inception', t: 'Inception', s: '2010', imdb: '8.8', rt: '86%', mc: 74, v: 9.5, tc: '#243f4c' },
+    { p: 'oppenheimer', t: 'Oppenheimer', s: '2023', imdb: '8.2', rt: '93%', mc: 90, v: 9.3, tc: '#632a0d' }
+  ];
+  $('#mineRows').innerHTML = mine.map((m, i) => row(m, i)).join('');
+  $('#whoRow').innerHTML = row({ p: 'dune-part-two', t: 'Dune: Part Two', s: (L === 'de' ? '2024 · du, alex, jonas, ben' : '2024 · you, alex, jonas, ben'), imdb: '8.4', rt: '92%', mc: 79, v: 9.7, tc: '#60380f' }, 0);
+  const top = [
+    { p: 'interstellar', t: 'Interstellar', s: '2014', imdb: '8.7', rt: '73%', mc: 74, v: 9.6, tc: '#40392f', rank: 1 },
+    { p: 'lotr', t: L === 'de' ? 'Der Herr der Ringe: Die Gefährten' : 'The Lord of the Rings: The Fellowship of the Ring', s: '2001', imdb: '8.9', rt: '91%', mc: 92, v: 9.5, tc: '#443e2b', rank: 2 },
+    { p: 'dune-part-two', t: 'Dune: Part Two', s: '2024', imdb: '8.4', rt: '92%', mc: 79, v: 9.4, tc: '#60380f', rank: 3 },
+    { p: 'inception', t: 'Inception', s: '2010', imdb: '8.8', rt: '86%', mc: 74, v: 9.3, tc: '#243f4c', rank: 4 },
+    { p: 'oppenheimer', t: 'Oppenheimer', s: '2023', imdb: '8.2', rt: '93%', mc: 90, v: 9.1, tc: '#632a0d', rank: 5 }
+  ];
+  $('#topRows').innerHTML = top.map((m, i) => row(m, i)).join('');
+  const ep = (txt, v, c) => `<span class="ep"><span style="color:var(--t2);font-size:13.5px">${txt}</span><i style="--v:${v}%;--bc:${c}"></i></span>`;
+  const shows = [
+    { p: 'severance', t: 'Severance', s: L === 'de' ? 'Staffel 2' : 'Season 2', tc: '#21414e', x: ep(L === 'de' ? '8 von 10 Folgen' : '8 of 10 episodes', 80, 'var(--tint)'), right: '<span class="cp">S2E9</span>' },
+    { p: 'the-bear', t: 'The Bear', s: L === 'de' ? 'Staffel 4' : 'Season 4', tc: '#283347', x: ep(L === 'de' ? '3 von 10 Folgen' : '3 of 10 episodes', 30, 'var(--tint)'), right: `<span class="cp">${L === 'de' ? 'Neu' : 'New'}</span>` },
+    { p: 'andor', t: 'Andor', s: L === 'de' ? 'Staffel 2' : 'Season 2', tc: '#463829', x: ep(L === 'de' ? 'Alle 12 Folgen' : 'All 12 episodes', 100, 'var(--ok)'), right: '<span class="done">✓</span>' }
+  ];
+  $('#showRows').innerHTML = shows.map((m, i) => row(m, i, m.x)).join('');
+
+  // Einblenden und Animationen beim Erscheinen
+  const fillRing = (r, delay = 0) => {
+    const v = +r.dataset.v, pr = $('.pr', r), b = $('b', r);
+    setTimeout(() => { pr.style.strokeDashoffset = 100 - v * 10; countTo(b, v, v % 1 ? 1 : 0); }, calm ? 0 : delay);
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target; el.classList.add('in', 'on'); io.unobserve(el);
+    $$('.ring[data-v]', el).forEach(r => fillRing(r, 250));
+    if (el.id === 'match') countTo($('#pct'), 87, 0, ' %');
+    if (el.id === 'stats') $$('[data-count]', el).forEach(b => countTo(b, +b.dataset.count, +(b.dataset.dec || 0), b.dataset.suffix || '', b.dataset.prefix || ''));
+  }), { rootMargin: '0px 0px -10% 0px' });
+  $$('.rv, .anim, #stats').forEach(el => io.observe(el));
 
   // Posterwand
   const posters = ['oppenheimer', 'inception', 'dune-part-two', 'interstellar', 'project-hail-mary', 'the-lord-of-the-rings-the-fellowship-of-the-ring', 'primal-fear', 'aftersun', 'the-grand-budapest-hotel', 'parasite', 'the-dark-knight', 'whiplash', 'la-la-land', 'blade-runner-2049', 'pulp-fiction', 'spider-man-across-the-spider-verse', 'everything-everywhere-all-at-once', 'past-lives', 'arrival', 'mad-max-fury-road', 'poor-things', 'top-gun-maverick', 'spirited-away', 'the-godfather', 'wake-up-dead-man-a-knives-out-mystery', 'sinners'];
   const wall = $('#wall');
-  const lanes = [0, 1, 2].map(r => {
-    const lane = document.createElement('div'); lane.className = 'lane';
-    const row = document.createElement('div'); row.className = 'row'; row.style.setProperty('--s', (90 + r * 25) + 's');
+  [0, 1, 2].forEach(r => {
+    const rowEl = document.createElement('div'); rowEl.className = 'row'; rowEl.style.setProperty('--s', (90 + r * 25) + 's');
     const list = posters.slice(r * 9).concat(posters.slice(0, r * 9)).slice(0, 12);
-    [...list, ...list].forEach((p, i) => { const im = new Image(); im.src = `img/posters/${p}.webp`; im.alt = ''; im.decoding = 'async'; im.loading = i < 8 ? 'eager' : 'lazy'; row.append(im); });
-    lane.append(row); wall.append(lane); return lane;
+    [...list, ...list].forEach((p, i) => { const im = new Image(); im.src = `img/posters/${p}.webp`; im.alt = ''; im.decoding = 'async'; im.loading = i < 8 ? 'eager' : 'lazy'; rowEl.append(im); });
+    wall.append(rowEl);
   });
+
+  // Nur noch ein Scroll-Effekt: das iPhone im Start richtet sich auf, die Kopfleiste erscheint
+  const hp = $('#heroPhone'), bar = $('#bar');
+  let tick = false;
+  const frame = () => {
+    tick = false;
+    const y = scrollY, p = Math.min(1, y / (innerHeight * .8));
+    if (!calm) { hp.style.setProperty('--rx', (14 - 14 * p) + 'deg'); hp.style.setProperty('--py', (-40 * p) + 'px'); }
+    bar.classList.toggle('on', y > innerHeight * .85);
+  };
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(frame); } }, { passive: true });
+  frame();
 
   // Bewerten: fünf Regler, Gesamtnote erst wenn alle gesetzt sind (wie in der App)
   const box = $('#sliders'), vals = SR.criteria.map(() => null);
-  const ring = $('#ring'), pr = $('.pr', ring), total = $('#total'), word = $('#word');
-  const fmt = v => (v % 1 ? v.toFixed(1) : v.toFixed(0));
+  const big = $('#ring'), pr = $('.pr', big), total = $('#total'), word = $('#word');
   const sliders = SR.criteria.map(([name, hint], i) => {
     const d = document.createElement('div'); d.className = 's';
-    d.innerHTML = `<label for="c${i}">${name}</label><span class="v">${L === 'de' ? 'ziehen' : 'drag'}</span><input id="c${i}" class="u" type="range" min="1" max="10" step="0.5" value="5.5" aria-label="${name}"><span class="h">${hint}</span>`;
+    d.innerHTML = `<label for="c${i}">${name}</label><span class="v">${L === 'de' ? 'ziehen' : 'drag'}</span><input id="c${i}" class="u" type="range" min="1" max="10" step="0.5" value="5.5"><span class="h">${hint}</span>`;
     box.append(d);
     const inp = $('input', d), out = $('.v', d);
     const paint = () => {
@@ -470,140 +529,38 @@ footer a{color:var(--t2)}
   function update() {
     const set = vals.filter(v => v != null);
     if (set.length < vals.length) {
-      pr.style.strokeDashoffset = 100 - set.length * 4; ring.style.setProperty('--rc', 'rgba(255,255,255,.35)');
+      pr.style.strokeDashoffset = 100 - set.length * 4; big.style.setProperty('--rc', 'rgba(255,255,255,.35)');
       total.textContent = set.length ? `${set.length}/5` : '–';
-      word.textContent = L === 'de' ? `Noch ${5 - set.length} Kategorien` : `${5 - set.length} more to go`;
-      if (set.length === 4) word.textContent = L === 'de' ? 'Noch eine Kategorie' : 'One more to go';
+      word.textContent = set.length === 4 ? (L === 'de' ? 'Noch eine Kategorie' : 'One more to go') : (L === 'de' ? `Noch ${5 - set.length} Kategorien` : `${5 - set.length} more to go`);
       return;
     }
     const t = Math.round(set.reduce((a, b) => a + b, 0) / set.length * 10) / 10;
-    ring.style.setProperty('--rc', SR.color(t));
-    pr.style.strokeDashoffset = 100 - t * 10;
-    countTo(total, t, 1);
+    big.style.setProperty('--rc', SR.color(t)); pr.style.strokeDashoffset = 100 - t * 10;
+    total.textContent = '0'; countTo(total, t, 1);
     word.innerHTML = `<span class="w">${SR.word(t)}</span>`;
   }
-  // Zahl hochzählen
-  function countTo(el, to, dec, suffix = '') {
-    if (calm) { el.textContent = to.toFixed(dec) + suffix; return; }
-    const from = parseFloat(el.textContent) || 0, t0 = performance.now(), dur = 700;
-    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = (from + (to - from) * e).toFixed(dec) + suffix; if (k < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  }
-  // Beispiel spielt sich einmal von selbst ab, sobald der Abschnitt sichtbar ist
   const sample = [9, 9, 10, 9.5, 9];
-  let timers = [], demoDone = false;
+  let timers = [];
   function stopDemo() { timers.forEach(clearTimeout); timers = []; }
-  function playDemo() {
-    stopDemo();
-    sample.forEach((v, i) => timers.push(setTimeout(() => { vals[i] = v; sliders[i].paint(); update(); }, calm ? 0 : 500 + i * 420)));
-  }
   update();
-  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !demoDone) { demoDone = true; playDemo(); o.disconnect(); } }), { threshold: .45 }).observe($('.rcard'));
-  $('#reset').addEventListener('click', () => { stopDemo(); vals.fill(null); sliders.forEach(s => s.paint()); total.textContent = '–'; update(); $('#c0').focus({ preventScroll: true }); });
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { o.disconnect(); sample.forEach((v, i) => timers.push(setTimeout(() => { vals[i] = v; sliders[i].paint(); update(); }, calm ? 0 : 400 + i * 380))); } }), { threshold: .4 }).observe(box);
+  $('#reset').addEventListener('click', () => { stopDemo(); vals.fill(null); sliders.forEach(s => s.paint()); update(); $('#c0').focus({ preventScroll: true }); });
 
-  // Freunde: Geschmacks-Match zählt hoch, sobald die Kachel sichtbar ist
-  const po = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const p = $('.pct', e.target); countTo(p, +p.dataset.to, 0, ' %'); po.unobserve(e.target); } }), { threshold: .5 });
-  $$('.bx').forEach(b => { if ($('.pct', b)) po.observe(b); });
-
-  // Eine Scroll-Schleife für alle Effekte (nur transform und opacity, ein Frame pro Bildaufbau)
-  const hp = $('#heroPhone'), heroIn = $('.hero-in'), bar = $('#bar');
-  const par = $$('[data-par]');
-  const cards = $$('.bx');
-  const hz = $('#hz'), track = $('#rail'), prog = $('#prog'), tCards = $$('.card', track);
-  const tilt = $('#tilt'), tp = $('.phone', tilt), end = $('.end');
-  let hovering = false, shift = 0, vh = innerHeight;
-  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  // Höhe des Abschnitts so wählen, dass der ganze Kartenweg in senkrechtes Scrollen passt
-  const layout = () => {
-    vh = innerHeight;
-    shift = Math.max(0, track.scrollWidth - innerWidth);
-    hz.style.height = (vh + shift) + 'px';
-  };
-  const frame = () => {
-    tick = false;
-    const y = scrollY;
-    bar.classList.toggle('on', y > vh * .85);
-    // Horizontal: senkrechter Scroll schiebt die Karten seitwärts
-    const hr = hz.getBoundingClientRect(), hp2 = shift ? clamp(-hr.top / shift) : 0;
-    track.style.transform = `translate3d(${-hp2 * shift}px,0,0)`;
-    prog.style.setProperty('--p', hp2);
-    if (calm) return;
-    // Hero: Ebenen mit verschiedenen Geschwindigkeiten
-    if (y < vh * 1.4) {
-      const p = clamp(y / (vh * .8));
-      lanes.forEach((l, i) => l.style.transform = `translate3d(0,${y * (.12 + i * .14)}px,0)`);
-      heroIn.style.transform = `translate3d(0,${y * -.25}px,0) scale(${1 - p * .06})`;
-      heroIn.style.opacity = 1 - p * 1.1;
-      hp.style.setProperty('--rx', (14 - 14 * p) + 'deg');
-      hp.style.setProperty('--py', (-40 * p) + 'px');
-      hp.style.setProperty('--ps', 1 + .04 * p);
-    }
-    // Parallax: Ebene gegen die Bildmitte verschoben
-    par.forEach(el => {
-      const r = el.parentElement.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) return;
-      el.style.transform = `translate3d(0,${(r.top + r.height / 2 - vh / 2) * +el.dataset.par}px,0)`;
-    });
-    // Freunde: die darunterliegende Karte wird kleiner und dunkler, wenn die nächste darüberschiebt
-    cards.forEach((c, i) => {
-      const next = cards[i + 1]; if (!next) return;
-      const a = c.getBoundingClientRect(), b = next.getBoundingClientRect();
-      const k = clamp((a.bottom - b.top) / a.height);
-      c.style.transform = `scale(${1 - k * .06})`;
-      c.style.filter = k > 0 ? `brightness(${1 - k * .45})` : '';
-    });
-    // Screenpass: dreht sich mit dem Scroll, solange die Maus nicht darüber ist
-    if (!hovering) {
-      const r = tilt.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < vh) {
-        const p = clamp((vh - r.top) / (vh + r.height));
-        tp.style.setProperty('--ry', ((.5 - p) * 40) + 'deg');
-        tp.style.setProperty('--rx2', ((p - .5) * 12) + 'deg');
-        tp.style.setProperty('--ty', ((.5 - p) * 40) + 'px');
-        tp.style.setProperty('--gx', (p * 100) + '%'); tp.style.setProperty('--gy', (20 + p * 50) + '%');
-      }
-    }
-    // Schluss: der blaue Schein wächst
-    const er = end.getBoundingClientRect();
-    if (er.top < vh) end.style.setProperty('--g', (.4 + clamp((vh - er.top) / vh) * .8).toFixed(3));
-  };
-  let tick = false, snapT;
-  const onScroll = () => {
-    if (!tick) { tick = true; requestAnimationFrame(frame); }
-    // Einrasten: nach dem Scrollen im Kartenbereich zur nächsten Karte gleiten
-    clearTimeout(snapT);
-    snapT = setTimeout(() => {
-      const hr = hz.getBoundingClientRect();
-      if (calm || !shift || hr.top > 0 || -hr.top >= shift) return;
-      const step = tCards[0].offsetWidth + 18, x = -hr.top, target = Math.min(shift, Math.round(x / step) * step);
-      if (Math.abs(target - x) > 6) scrollTo({ top: scrollY + (target - x), behavior: 'smooth' });
-    }, 180);
-  };
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', () => { layout(); frame(); });
-  layout(); frame();
-  // Pfeile verschieben um eine Karte
-  const by = dir => scrollBy({ top: dir * (tCards[0].offsetWidth + 18), behavior: 'smooth' });
-  $('#prev').onclick = () => by(-1); $('#next').onclick = () => by(1);
-  // Freunde-Karten: Balken füllen, sobald sichtbar
-  const bo = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); bo.unobserve(e.target); } }), { threshold: .4 });
-  cards.forEach(c => bo.observe(c));
-
-  // Screenpass: mit der Maus neigen und glänzen lassen
+  // Screenpass: neigt sich mit der Maus und glänzt
+  const tilt = $('#tilt'), tp = $('.phone', tilt);
   if (!calm && matchMedia('(hover:hover)').matches) {
     tilt.addEventListener('pointermove', e => {
-      hovering = true;
       const r = tp.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
       tp.style.setProperty('--ry', ((x - .5) * 24) + 'deg'); tp.style.setProperty('--rx2', ((.5 - y) * 18) + 'deg');
       tp.style.setProperty('--gx', (x * 100) + '%'); tp.style.setProperty('--gy', (y * 100) + '%');
     });
-    tilt.addEventListener('pointerleave', () => { hovering = false; frame(); });
+    tilt.addEventListener('pointerleave', () => ['--ry', '--rx2'].forEach(p => tp.style.removeProperty(p)));
   }
-})();
+}
 </script>
 <script>
 // Alte Web-App sauber entfernen: Service Worker abmelden, Zwischenspeicher leeren
-if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
-if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k)));
+if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
+if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k))).catch(() => {});
 </script>
 </body></html>
