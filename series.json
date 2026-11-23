@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T12:32+00:00",
+ "updated": "2026-11-23T14:30+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -246,7 +246,7 @@
    "season": 11,
    "latest": "2026-11-19",
    "next": "2026-11-26",
-   "premiere": true,
+   "premiere": false,
    "isNew": false,
    "summary": "The dark side of one of the most beautiful places on earth. Uncovering secrets and lies from the past.",
    "url": "https://www.justwatch.com/ch/Suche?q=Shetland",
@@ -288,35 +288,6 @@
     "genre": "Comedy, Crime, Drama"
    },
    "votes": 30720
-  },
-  {
-   "title": "Die Kaiserin",
-   "tvmaze_id": 59746,
-   "imdb_id": "tt13720112",
-   "platform": "Netflix",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/554/1387123.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/554/1387123.jpg",
-   "genres": [
-    "Drama",
-    "Romance",
-    "History"
-   ],
-   "season": 3,
-   "latest": "2026-11-12",
-   "next": null,
-   "premiere": true,
-   "isNew": false,
-   "summary": "When the rebellious Elisabeth (\"Sisi\") meets Franz, the Emperor of Austria, the young couple's intoxicating love completely upsets the power structure at the Viennese court. After the wedding, the young empress must assert herself not only against her mother-in-law, the sovereign, power-hungry Sophie but also against Franz's brother Maxi, who himself longs for the throne (and for Sisi). As enemy troops form upon the borders of the Habsburg Empire, people in Vienna rise up in protest against the emperor. Elisabeth must find out who she can trust and how high the price is to be a true empress an",
-   "url": "https://www.justwatch.com/ch/Suche?q=Die%20Kaiserin",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.6,
-    "platform": "Netflix",
-    "imdb": "7.8",
-    "seasons": "3",
-    "genre": "Drama, History, Romance"
-   },
-   "votes": 22289
   },
   {
    "title": "Rivals",
@@ -415,8 +386,8 @@
     "Children"
    ],
    "season": 57,
-   "latest": null,
-   "next": "2026-11-23",
+   "latest": "2026-11-23",
+   "next": null,
    "premiere": true,
    "isNew": false,
    "summary": "Sunny days are here! This freshly reimagined \"Sesame Street\" series features characters you love, fan-favorite segments — and new ways to play.",
@@ -893,112 +864,6 @@
    "votes": 9
   },
   {
-   "title": "Cunk on Cinema",
-   "tvmaze_id": 91301,
-   "imdb_id": null,
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1627907.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1627907.jpg",
-   "genres": [
-    "Comedy",
-    "History"
-   ],
-   "season": 1,
-   "latest": "2026-11-15",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Philomena Cunk will be asking experts all of the hard-hitting questions about the history of cinema, from the invention of the camera, to the New Wave filmmakers of the 60s, right up to the entrance of CGI and what the future of AI holds. Cunk will attempt to demystify it all while sitting in lumpy seats with stale popcorn, asking herself where did cinema come from? And why? What does it want? And why can't it tell us?",
-   "url": "https://www.justwatch.com/ch/Suche?q=Cunk%20on%20Cinema",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.8,
-    "platform": "BBC"
-   },
-   "votes": 0
-  },
-  {
-   "title": "The Jigsaw Puzzle Murder",
-   "tvmaze_id": 95680,
-   "imdb_id": "tt50940908",
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1629208.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1629208.jpg",
-   "genres": [
-    "Crime"
-   ],
-   "season": 1,
-   "latest": "2026-11-12",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "A dismembered human torso is discovered in a Manchester woodland. With no DNA match, witnesses, murder weapon or obvious suspect, detectives open a murder investigation with almost nothing. And then more body parts appear across an unsettled city.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Jigsaw%20Puzzle%20Murder",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Paramount+"
-   },
-   "votes": 0
-  },
-  {
-   "title": "The Good Daughter",
-   "tvmaze_id": 75488,
-   "imdb_id": "tt31842126",
-   "platform": "Peacock",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/649/1623830.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/649/1623830.jpg",
-   "genres": [
-    "Drama",
-    "Crime"
-   ],
-   "season": 1,
-   "latest": "2026-11-12",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "The Good Daughter is a suspenseful crime drama where sisters Charlotte and Samantha Quinn have spent the last twenty-eight years trying to piece together the lives that were fractured by a single night of violence. When another attack splinters the small town of Pikeville, Charlotte is the first witness on the scene. Now a lawyer like her father, she's forced to confront her own demons as the case twists through one shocking revelation after another. In the end, both she and Samantha find themselves wondering if the price of being the good daughter was worth it after all.",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Good%20Daughter",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.1,
-    "platform": "Peacock",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Crime, Drama, Thriller"
-   },
-   "votes": 0
-  },
-  {
-   "title": "War",
-   "tvmaze_id": 86587,
-   "imdb_id": "tt37972251",
-   "platform": "HBO Max",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/645/1614048.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/645/1614048.jpg",
-   "genres": [
-    "Drama",
-    "Thriller",
-    "Legal"
-   ],
-   "season": 1,
-   "latest": "2026-11-19",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "War follows two of London's most prestigious rival firms – Cathcarts and Taylor & Byrne – as they go head-to-head in the divorce case of the century. Each side is certain they'll win. But as the case spirals and loyalties fracture, reputations are on the line, and everyone's playing to win.",
-   "url": "https://www.justwatch.com/ch/Suche?q=War",
-   "ext": {
-    "kind": "series",
-    "tvm": 5.9,
-    "platform": "HBO Max",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Drama, Thriller"
-   },
-   "votes": 0
-  },
-  {
    "title": "Nocturne",
    "tvmaze_id": 66811,
    "imdb_id": "tt26598805",
@@ -1135,6 +1000,31 @@
     "kind": "series",
     "tvm": null,
     "platform": "Channel 4"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Cunk on Cinema",
+   "tvmaze_id": 91301,
+   "imdb_id": null,
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1627907.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1627907.jpg",
+   "genres": [
+    "Comedy",
+    "History"
+   ],
+   "season": 1,
+   "latest": "2026-11-15",
+   "next": null,
+   "premiere": true,
+   "isNew": true,
+   "summary": "Philomena Cunk will be asking experts all of the hard-hitting questions about the history of cinema, from the invention of the camera, to the New Wave filmmakers of the 60s, right up to the entrance of CGI and what the future of AI holds. Cunk will attempt to demystify it all while sitting in lumpy seats with stale popcorn, asking herself where did cinema come from? And why? What does it want? And why can't it tell us?",
+   "url": "https://www.justwatch.com/ch/Suche?q=Cunk%20on%20Cinema",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.8,
+    "platform": "BBC"
    },
    "votes": 0
   },
@@ -1294,6 +1184,35 @@
    "votes": 0
   },
   {
+   "title": "War",
+   "tvmaze_id": 86587,
+   "imdb_id": "tt37972251",
+   "platform": "HBO Max",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/645/1614048.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/645/1614048.jpg",
+   "genres": [
+    "Drama",
+    "Thriller",
+    "Legal"
+   ],
+   "season": 1,
+   "latest": "2026-11-19",
+   "next": null,
+   "premiere": false,
+   "isNew": false,
+   "summary": "War follows two of London's most prestigious rival firms – Cathcarts and Taylor & Byrne – as they go head-to-head in the divorce case of the century. Each side is certain they'll win. But as the case spirals and loyalties fracture, reputations are on the line, and everyone's playing to win.",
+   "url": "https://www.justwatch.com/ch/Suche?q=War",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.2,
+    "platform": "HBO Max",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Drama, Thriller"
+   },
+   "votes": 0
+  },
+  {
    "title": "The Northumbria Mysteries",
    "tvmaze_id": 91133,
    "imdb_id": "tt41266040",
@@ -1313,7 +1232,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Northumbria%20Mysteries",
    "ext": {
     "kind": "series",
-    "tvm": 6.4,
+    "tvm": 6.3,
     "platform": "BBC",
     "imdb": null,
     "seasons": "1",
@@ -1362,7 +1281,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=Blue%20Planet%20III",
    "ext": {
     "kind": "series",
-    "tvm": null,
+    "tvm": 9.5,
     "platform": "BBC"
    },
    "votes": 0
@@ -1372,8 +1291,8 @@
    "tvmaze_id": 91198,
    "imdb_id": "tt41492493",
    "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1625695.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1625695.jpg",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1632196.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1632196.jpg",
    "genres": [
     "Drama",
     "Supernatural"
@@ -1403,8 +1322,8 @@
     "History"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-23",
+   "latest": "2026-11-23",
+   "next": null,
    "premiere": true,
    "isNew": true,
    "summary": "Lucy Worsley's Keys to the Castle opens up the hidden rooms, sealed archives and private spaces, to uncover the untold stories behind the buildings and the people who lived in them.Across four episodes, Lucy unlocks the secrets of Britain's majestic Blenheim Palace (birthplace of Winston Churchill); the glittering Versailles Palace in France - and one of its most infamous residents, Queen Marie Antoinette; the fairytale castle Neuschwanstein in Germany; and Venice's intriguing Doge's Palace.While these spectacular palaces host millions of visitors every year, Lucy Worsley's Keys To The Castle ",
@@ -1428,8 +1347,8 @@
     "Romance"
    ],
    "season": 3,
-   "latest": null,
-   "next": "2026-11-23",
+   "latest": "2026-11-23",
+   "next": "2026-11-30",
    "premiere": true,
    "isNew": false,
    "summary": "Extraordinary stories of romance fraud, exposing the lies and jaw-dropping scams of heartless manipulators; and the fight to bring them to justice.",
@@ -1444,7 +1363,7 @@
   {
    "title": "Prue and Sandi's South African Adventure",
    "tvmaze_id": 95768,
-   "imdb_id": null,
+   "imdb_id": "tt51672930",
    "platform": "Channel 4",
    "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1631122.jpg",
    "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1631122.jpg",
@@ -1599,6 +1518,35 @@
     "imdb": null,
     "seasons": null,
     "genre": "Comedy"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Pride and Prejudice",
+   "tvmaze_id": 84008,
+   "imdb_id": "tt36475261",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/641/1604172.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/641/1604172.jpg",
+   "genres": [
+    "Drama",
+    "Romance",
+    "History"
+   ],
+   "season": 1,
+   "latest": null,
+   "next": "2026-12-03",
+   "premiere": true,
+   "isNew": true,
+   "summary": "The adaptation will hew closely to the original text, reuniting existing fans with the timeless novel, while also introducing a new generation to Austen.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Pride%20and%20Prejudice",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Netflix",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Drama, Romance"
    },
    "votes": 0
   }

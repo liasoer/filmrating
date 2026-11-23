@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T12:30+00:00",
+ "updated": "2026-11-23T14:29+00:00",
  "source": "Pathé Schweiz",
  "now": [
   {
@@ -53,7 +53,7 @@
    "slug": "ebenezer-a-christmas-carol-50491",
    "release": "2026-11-12",
    "poster": "https://media.pathe.ch/movie/alex/HO00004846/poster/lg/2/movie&uuid=484988E7-601F-470D-8623-FDFE317AEA90",
-   "backdrop": "https://media.pathe.ch/movie/mx/50491/lg/36/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/50491/lg/37/media",
    "duration": 115,
    "genres": [
     "Fantasy"
@@ -94,41 +94,55 @@
    }
   },
   {
-   "title": "Shaun das Schaf - Spuk im Kürbisfeld",
-   "slug": "shaun-das-schaf-spuk-im-kurbisfeld-54679",
-   "release": "2026-10-01",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005162/poster/lg/1/movie&uuid=35A473F3-4C32-4633-963D-9D181EE895C1",
-   "backdrop": "https://media.pathe.ch/movie/mx/54679/lg/87/media",
-   "duration": 81,
+   "title": "How to Rob a Bank",
+   "slug": "how-to-rob-a-bank-51793",
+   "release": "2026-11-12",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004979/poster/lg/2/movie&uuid=601BD9EC-72FE-49A8-9F31-C3FC0C37A855",
+   "backdrop": "https://media.pathe.ch/movie/mx/51793/lg/141/media",
+   "duration": 122,
    "genres": [
-    "Animation",
-    "Family"
+    "Action"
    ],
    "directors": [
-    "Matthew Walker, Steve Cox"
+    "David Leitch"
    ],
    "cast": [
-    "John Sparkes",
-    "Kate Harbour",
-    "Justin Fletcher"
+    "Michael Gandolfini",
+    "Anna Sawai",
+    "Rhenzy Feliz",
+    "Sam Lerner",
+    "Pete Davidson"
    ],
-   "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/shaun-das-schaf-spuk-im-kurbisfeld-54679",
+   "age": "14/14",
+   "url": "https://www.pathe.ch/de/films/how-to-rob-a-bank-51793",
    "isNew": false,
    "order": 3,
-   "formats": [],
+   "formats": [
+    "D-BOX",
+    "VIP & Premium"
+   ],
    "languages": [
     "Deutsch",
+    "Englisch",
     "Französisch"
    ],
-   "synopsis": "Auf der Mossy Bottom Farm steigt die Vorfreude auf Halloween. Doch ausgerechnet kurz vor dem grossen Fest zerstört der tollpatschige Farmer den liebevoll angelegten Kürbisgarten der Schafherde. Für Shaun das Schaf ist klar: Halloween muss gerettet werden. Entschlossen, das Problem zu lösen, wagt er ein ungewöhnliches wissenschaftliches Experiment. Doch schon bald geraten die Dinge ausser Kontrolle. Als der Farmer plötzlich spurlos verschwindet und ein mysteriöses, haariges Ungeheuer die Wälder von Mossingham unsicher macht, ist das Chaos perfekt. Auf Shaun und seine wolligen Freunde wartet ein"
+   "synopsis": "In HOW TO ROB A BANK streamt eine Gruppe junger Outlaws ihre riskanten Raubüberfälle live ins Netz. Dabei ahnen sie nicht, dass sie aufgrund ihres wachsenden viralen Ruhmes ins Visier eines erfahrenen FBI-Agenten und einer brillanten Softwareentwicklerin geraten sind. Obwohl das ungleiche Duo ihnen immer näherkommt, geht die Bande bis an ihre Grenzen und setzt für ihre Überzeugungen – und ihren bisher ehrgeizigsten Raubüberfall – alles aufs Spiel.",
+   "imdb_id": "tt35866986",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Action, Crime, Thriller",
+    "director": "David Leitch",
+    "runtime": "N/A"
+   }
   },
   {
    "title": "Der perfekte Urlaub",
    "slug": "der-perfekte-urlaub-51935",
    "release": "2026-10-22",
    "poster": "https://media.pathe.ch/movie/alex/HO00005000/poster/lg/2/movie&uuid=86A554A8-5750-4DCC-AD95-01750CDE8B34",
-   "backdrop": "https://media.pathe.ch/movie/mx/51935/lg/80/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/51935/lg/81/media",
    "duration": 117,
    "genres": [
     "Comedy"
@@ -165,255 +179,11 @@
    }
   },
   {
-   "title": "Auf der Suche nach der Weihnachtswerkstatt",
-   "slug": "auf-der-suche-nach-der-weihnachtswerkstatt-54872",
-   "release": "2026-11-12",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005181/poster/lg/2/movie&uuid=6B9D59E1-675D-48C5-9309-16404E61FDF2",
-   "backdrop": "https://media.pathe.ch/movie/mx/54872/lg/73/media",
-   "duration": 71,
-   "genres": [
-    "Animation"
-   ],
-   "directors": [
-    "Rasmus A. Sivertsen, Mette Tange"
-   ],
-   "cast": [],
-   "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/auf-der-suche-nach-der-weihnachtswerkstatt-54872",
-   "isNew": false,
-   "order": 6,
-   "formats": [
-    "VIP & Premium"
-   ],
-   "languages": [
-    "Deutsch"
-   ],
-   "synopsis": "Als die Weihnachtswunschliste der neunjährigen Mari verschwindet und ein geheimnisvoller Handschuh auftaucht, macht sie sich gemeinsam mit ihrem weihnachtsmüden Vater und ihrer furchtlosen Grossmutter auf die Suche nach Santas Werkstatt. Doch während sie gegen Schneestürme kämpfen und einem entschlossenen Elf begegnen, der sie aufhalten will, entdecken sie, dass der wahre Zauber von Weihnachten nicht in den Geschenken liegt – sondern in der Liebe und im Glauben aneinander."
-  },
-  {
-   "title": "How to Rob a Bank",
-   "slug": "how-to-rob-a-bank-51793",
-   "release": "2026-11-12",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004979/poster/lg/2/movie&uuid=601BD9EC-72FE-49A8-9F31-C3FC0C37A855",
-   "backdrop": "https://media.pathe.ch/movie/mx/51793/lg/140/media",
-   "duration": 122,
-   "genres": [
-    "Action"
-   ],
-   "directors": [
-    "David Leitch"
-   ],
-   "cast": [
-    "Michael Gandolfini",
-    "Anna Sawai",
-    "Rhenzy Feliz",
-    "Sam Lerner",
-    "Pete Davidson"
-   ],
-   "age": "14/14",
-   "url": "https://www.pathe.ch/de/films/how-to-rob-a-bank-51793",
-   "isNew": false,
-   "order": 7,
-   "formats": [
-    "4DX",
-    "D-BOX"
-   ],
-   "languages": [
-    "Deutsch",
-    "Englisch",
-    "Französisch"
-   ],
-   "synopsis": "In HOW TO ROB A BANK streamt eine Gruppe junger Outlaws ihre riskanten Raubüberfälle live ins Netz. Dabei ahnen sie nicht, dass sie aufgrund ihres wachsenden viralen Ruhmes ins Visier eines erfahrenen FBI-Agenten und einer brillanten Softwareentwicklerin geraten sind. Obwohl das ungleiche Duo ihnen immer näherkommt, geht die Bande bis an ihre Grenzen und setzt für ihre Überzeugungen – und ihren bisher ehrgeizigsten Raubüberfall – alles aufs Spiel.",
-   "imdb_id": "tt35866986",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Action, Crime, Thriller",
-    "director": "David Leitch",
-    "runtime": "N/A"
-   }
-  },
-  {
-   "title": "Festtagsspaß mit Peppa – Das Kinoerlebnis",
-   "slug": "festtagsspass-mit-peppa-das-kinoerlebnis-56027",
-   "release": "2026-11-14",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005278/poster/lg/1/movie&uuid=CB2F6E4F-652D-4C97-83C0-1F7FF9D1408D",
-   "backdrop": "https://media.pathe.ch/movie/mx/56027/lg/52/media",
-   "duration": 60,
-   "genres": [
-    "Animation"
-   ],
-   "directors": [],
-   "cast": [],
-   "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/festtagsspass-mit-peppa-das-kinoerlebnis-56027",
-   "isNew": false,
-   "order": 8,
-   "formats": [
-    "Kinderkino"
-   ],
-   "languages": [
-    "Deutsch"
-   ],
-   "synopsis": "JErlebt ein festliches Kinoabenteuer, in dem Peppa Wutz und ihre Familie auf der großen Leinwand Evies erstes Weihnachtsfest feiern! Seid dabei, wenn Peppa Wutz und ihre Familie den Trubel am Weihnachtstag erleben und sich an ihre schönsten Weihnachtsmomente erinnern. Von verschneiten Abenteuern und festlichen Theateraufführungen bis hin zum Schmücken des Weihnachtsbaums – dieses einstündige Kinoerlebnis vereint sieben klassische Weihnachtsfolgen von Peppa Wutz mit vier brandneuen Liedern, bei denen die Kleinen tanzen und mitsingen können. Voller Lachen, Musik und herzerwärmender Momente ist d"
-  },
-  {
-   "title": "Der frechste Troll der Welt",
-   "slug": "der-frechste-troll-der-welt-54637",
-   "release": "2026-11-05",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005158/poster/lg/1/movie&uuid=84A58F68-C802-429F-A0D8-288EB84B3377",
-   "backdrop": "https://media.pathe.ch/movie/mx/54637/lg/90/media",
-   "duration": 80,
-   "genres": [
-    "Animation"
-   ],
-   "directors": [
-    "Jan Rahbek"
-   ],
-   "cast": [
-    "Carl Løber Roliggaard",
-    "Dagmar Celinder Norrbom",
-    "Mille Lehfeldt"
-   ],
-   "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/der-frechste-troll-der-welt-54637",
-   "isNew": false,
-   "order": 9,
-   "formats": [],
-   "languages": [
-    "Deutsch"
-   ],
-   "synopsis": "Der kleine Troll Billy ist im Quatsch machen einfach unschlagbar. Auf seiner Lieblings-Fledermaus fliegt er von einem Schlamassel in den nächsten. Eigentlich soll der kleine freche Billy der nächste Höhlenmeister werden und die Troll-Familie vor den fiesen Menschen beschützen. Aber stattdessen sehnt er sich nach gefährlichen Abenteuern. Neugierig und im Herzen mutig schleicht er sich ans Tageslicht in die streng verbotene Menschenwelt. Mit Schwester Bonny an seiner Seite entdeckt er jedoch, dass ihr Zuhause in grosser Gefahr schwebt. Die Menschen wollen einen gigantischen Freizeitpark darauf b"
-  },
-  {
-   "title": "Other Mommy",
-   "slug": "other-mommy-54756",
-   "release": "2026-10-29",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005166/poster/lg/2/movie&uuid=8CDBCF0E-F7C8-491F-88F1-BFFE2AC81698",
-   "backdrop": "https://media.pathe.ch/movie/mx/54756/lg/118/media",
-   "duration": 93,
-   "genres": [
-    "Horror"
-   ],
-   "directors": [
-    "Rob Savage"
-   ],
-   "cast": [
-    "Jay Duplass",
-    "Dichen Lachman",
-    "Arabella Olivia Clark",
-    "Jessica Chastain"
-   ],
-   "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/other-mommy-54756",
-   "isNew": false,
-   "order": 10,
-   "formats": [
-    "4DX",
-    "Dolby Atmos",
-    "VIP & Premium"
-   ],
-   "languages": [
-    "Deutsch",
-    "Französisch"
-   ],
-   "synopsis": "Und jetzt krieche ich in dein Herz.Die eigene Mutter ist für ein Kind der Inbegriff von Geborgenheit. Doch die kleine Bela muss erkennen, dass das Böse manchmal genau das Gesicht trägt, dem man am meisten vertraut.  Mit OTHER MOMMY öffnen James Wan, Blumhouse Atomic Monster und Rob Savage die Tür zu einer Welt, in der Sicherheit nur eine trügerische Erinnerung ist.",
-   "imdb_id": "tt36586020",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Horror",
-    "director": "Rob Savage",
-    "runtime": "93 min"
-   }
-  },
-  {
-   "title": "Ramayana: Rise of a Legend",
-   "slug": "ramayana-rise-of-a-legend-55622",
-   "release": "2026-11-05",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005263/poster/lg/2/movie&uuid=784AC5CF-AE99-4937-9325-81D86407FB79",
-   "backdrop": "https://media.pathe.ch/movie/mx/55622/lg/31/media",
-   "duration": 168,
-   "genres": [
-    "Adventure"
-   ],
-   "directors": [
-    "Nitesh Tiwari"
-   ],
-   "cast": [
-    "Ranbir Kapoor",
-    "Sai Pallavi",
-    "Ravi Dubey",
-    "Yash ."
-   ],
-   "age": "14/14",
-   "url": "https://www.pathe.ch/de/films/ramayana-rise-of-a-legend-55622",
-   "isNew": false,
-   "order": 11,
-   "formats": [
-    "3D",
-    "VIP & Premium"
-   ],
-   "languages": [
-    "Englisch",
-    "Hindi"
-   ],
-   "synopsis": "Das erste Epos der Menschheit. Von den visuellen Machern hinter Die Odyssee und Dune.",
-   "imdb_id": "tt27988879",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Action, Adventure, Drama",
-    "director": "Nitesh Tiwari",
-    "runtime": "N/A"
-   }
-  },
-  {
-   "title": "Camembert",
-   "slug": "camembert-51588",
-   "release": "2026-11-18",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004959/poster/lg/1/movie&uuid=2771657A-1E4D-489A-8CD2-02CFF7255325",
-   "backdrop": "https://media.pathe.ch/movie/mx/51588/lg/31/media",
-   "duration": 92,
-   "genres": [
-    "Comedy"
-   ],
-   "directors": [
-    "Matthieu Rumani, Nicolas Slomka"
-   ],
-   "cast": [
-    "Alex Lutz",
-    "Pascale Arbillot",
-    "Kristin Scott Thomas"
-   ],
-   "age": "8/12",
-   "url": "https://www.pathe.ch/de/films/camembert-51588",
-   "isNew": true,
-   "order": 12,
-   "formats": [],
-   "languages": [
-    "Französisch"
-   ],
-   "synopsis": "At Christmas Eve dinner at the Roussels', Stan meets his girlfriend Cléo's large, upper-class family for the first time. Everything seems perfect - until the group decides to play a game of Trivial Pursuit.",
-   "imdb_id": "tt39314834",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Comedy",
-    "director": "Matthieu Rumani, Nicolas Slomka",
-    "runtime": "N/A"
-   }
-  },
-  {
    "title": "Clayface",
    "slug": "clayface-40536",
    "release": "2026-10-22",
    "poster": "https://media.pathe.ch/movie/alex/HO00004241/poster/lg/3/movie&uuid=5BE557FC-342D-408A-8D11-E282A2478599",
-   "backdrop": "https://media.pathe.ch/movie/mx/40536/lg/52/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/40536/lg/53/media",
    "duration": 109,
    "genres": [
     "Horror"
@@ -431,12 +201,11 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/clayface-40536",
    "isNew": false,
-   "order": 13,
-   "formats": [
-    "VIP & Premium"
-   ],
+   "order": 5,
+   "formats": [],
    "languages": [
     "Deutsch",
+    "Englisch",
     "Französisch"
    ],
    "synopsis": "Matt Hagens kometenhafter Aufstieg vom Jungen aus den Straßen Gothams zum Schauspielstar in Hollywood findet ein tragisches Ende, als er durch die Machenschaften eines örtlichen Gangsterbosses auf grausame Weise entstellt wird. Von seinem Team im Stich gelassen und völlig mittellos, wendet sich Matt einer bahnbrechenden neuen Behandlungsmethode zu, die ihn auf wundersame Weise zurück in sein altes Ich verwandelt. Doch völlig unerwartet beeinträchtigt diese Therapie auch seinen Realitätssinn – und treibt ihn in eine zerstörerische Spirale aus alles verzehrenden Rachegelüsten.",
@@ -451,49 +220,263 @@
    }
   },
   {
-   "title": "Forgotten Island ",
-   "slug": "forgotten-island-51497",
-   "release": "2026-10-01",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004945/poster/lg/2/movie&uuid=D08FC8C9-4CB7-4B7D-B9DE-BF12562CFD2A",
-   "backdrop": "https://media.pathe.ch/movie/mx/51497/lg/237/media",
-   "duration": 109,
+   "title": "Godzilla Minus Zero",
+   "slug": "godzilla-minus-zero-55017",
+   "release": "2026-11-05",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005200/poster/lg/1/movie&uuid=E4621B30-E411-43B3-B640-001861A389D0",
+   "backdrop": "https://media.pathe.ch/movie/mx/55017/lg/59/media",
+   "duration": 135,
    "genres": [
-    "Animation",
-    "Family"
+    "Action"
    ],
    "directors": [
-    "Januel Mercado, Joel Crawford"
+    "Takashi Yamazaki"
    ],
    "cast": [
-    "Dave Franco",
-    "Lea Salonga",
-    "Jo Koy",
-    "Dolly de Leon",
-    "Liza Soberano"
+    "Minami Hamabe",
+    "Ryûnosuke Kamiki",
+    "Miou Tanaka"
    ],
-   "age": "6/10",
-   "url": "https://www.pathe.ch/de/films/forgotten-island-51497",
+   "age": "16/16",
+   "url": "https://www.pathe.ch/de/films/godzilla-minus-zero-55017",
    "isNew": false,
-   "order": 14,
+   "order": 6,
    "formats": [
     "4DX",
-    "D-BOX",
-    "3D",
-    "Kinderkino"
+    "VIP & Premium"
    ],
+   "languages": [
+    "Deutsch",
+    "Französisch",
+    "Japanisch"
+   ],
+   "synopsis": "Der Krieg hat Japan auf Null reduziert, und Godzilla hat es ins Minus gestürzt. Zwei Jahre sind seitdem vergangen und das Land kämpft immer noch immer verzweifelt darum, sich wieder zu erholen und endlich in den normalen Alltag zurückzufinden. Gerade als es der Menschheit gelang, an einem hart erkämpften Frieden festzuhalten, schlägt eine neue Bedrohung zu und vernichtet die Hoffnung im Handumdrehen. Ein drittes Mal wird es nicht geben. Hier endet alles.",
+   "imdb_id": "tt34384661",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Action, Adventure, Drama",
+    "director": "Takashi Yamazaki",
+    "runtime": "119 min"
+   }
+  },
+  {
+   "title": "Other Mommy",
+   "slug": "other-mommy-54756",
+   "release": "2026-10-29",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005166/poster/lg/2/movie&uuid=8CDBCF0E-F7C8-491F-88F1-BFFE2AC81698",
+   "backdrop": "https://media.pathe.ch/movie/mx/54756/lg/119/media",
+   "duration": 93,
+   "genres": [
+    "Horror"
+   ],
+   "directors": [
+    "Rob Savage"
+   ],
+   "cast": [
+    "Jay Duplass",
+    "Dichen Lachman",
+    "Arabella Olivia Clark",
+    "Jessica Chastain"
+   ],
+   "age": "16/16",
+   "url": "https://www.pathe.ch/de/films/other-mommy-54756",
+   "isNew": false,
+   "order": 8,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Und jetzt krieche ich in dein Herz.Die eigene Mutter ist für ein Kind der Inbegriff von Geborgenheit. Doch die kleine Bela muss erkennen, dass das Böse manchmal genau das Gesicht trägt, dem man am meisten vertraut.  Mit OTHER MOMMY öffnen James Wan, Blumhouse Atomic Monster und Rob Savage die Tür zu einer Welt, in der Sicherheit nur eine trügerische Erinnerung ist.",
+   "imdb_id": "tt36586020",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Horror",
+    "director": "Rob Savage",
+    "runtime": "93 min"
+   }
+  },
+  {
+   "title": "Il faut brûler Maman",
+   "slug": "il-faut-bruler-maman-51587",
+   "release": "2026-11-11",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004958/poster/lg/1/movie&uuid=2FA0446B-A057-4750-BB38-55B70A521F49",
+   "backdrop": "https://media.pathe.ch/movie/mx/51587/lg/32/media",
+   "duration": 81,
+   "genres": [
+    "Black Humor"
+   ],
+   "directors": [
+    "Albert Dupontel"
+   ],
+   "cast": [
+    "Julia Piaton",
+    "Artus ",
+    "Louise Coldefy",
+    "Albert Dupontel"
+   ],
+   "age": "12/14",
+   "url": "https://www.pathe.ch/de/films/il-faut-bruler-maman-51587",
+   "isNew": false,
+   "order": 9,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "In a family of undertakers, two sisters and a brother reunite for their mother's funeral. With the staff on strike, they must carry out the funeral arrangements themselves. How will they agree on how to cremate Mom?",
+   "imdb_id": "tt39562962",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Comedy",
+    "director": "Albert Dupontel",
+    "runtime": "N/A"
+   }
+  },
+  {
+   "title": "Camembert",
+   "slug": "camembert-51588",
+   "release": "2026-11-18",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004959/poster/lg/1/movie&uuid=2771657A-1E4D-489A-8CD2-02CFF7255325",
+   "backdrop": "https://media.pathe.ch/movie/mx/51588/lg/32/media",
+   "duration": 92,
+   "genres": [
+    "Comedy"
+   ],
+   "directors": [
+    "Matthieu Rumani, Nicolas Slomka"
+   ],
+   "cast": [
+    "Alex Lutz",
+    "Pascale Arbillot",
+    "Kristin Scott Thomas"
+   ],
+   "age": "8/12",
+   "url": "https://www.pathe.ch/de/films/camembert-51588",
+   "isNew": true,
+   "order": 10,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "At Christmas Eve dinner at the Roussels', Stan meets his girlfriend Cléo's large, upper-class family for the first time. Everything seems perfect - until the group decides to play a game of Trivial Pursuit.",
+   "imdb_id": "tt39314834",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Comedy",
+    "director": "Matthieu Rumani, Nicolas Slomka",
+    "runtime": "N/A"
+   }
+  },
+  {
+   "title": "Eiserne Wildnis - Heart Of The Beast",
+   "slug": "eiserne-wildnis-heart-of-the-beast-52900",
+   "release": "2026-09-24",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005090/poster/lg/1/movie&uuid=55CAC122-F6A1-4A8F-90F4-CC175CBBD366",
+   "backdrop": "https://media.pathe.ch/movie/mx/52900/lg/106/media",
+   "duration": 101,
+   "genres": [
+    "Action"
+   ],
+   "directors": [
+    "David Ayer"
+   ],
+   "cast": [
+    "Anna Lambe",
+    "Brad Pitt",
+    "J.K. Simmons"
+   ],
+   "age": "12/12",
+   "url": "https://www.pathe.ch/de/films/eiserne-wildnis-heart-of-the-beast-52900",
+   "isNew": false,
+   "order": 11,
+   "formats": [],
    "languages": [
     "Deutsch",
     "Französisch"
    ],
-   "synopsis": "Als die zwei besten Freundinnen Jo und Raissa auf der geheimnisvollen Insel Nakali stranden, begreifen sie, dass der Weg nach Hause ein ganzes Leben an Erinnerungen fordert – vielleicht auch an den Menschen, der ihnen am meisten bedeutet.Die Grammy- und Oscar® prämierte Ausnahmekünstlerin H.E.R. und Liza Soberano (Lisa Frankenstein, Allein mit dir) glänzen in den Hauptrollen als Jo und Raissa. Die beiden Highschool-Absolventinnen sind unzertrennliche Freundinnen seit Kindertagen. Doch nun stehen sie am Beginn völlig unterschiedlicher Lebenswege.In ihrer letzten gemeinsamen Nacht entdecken Jo u",
-   "imdb_id": "tt36583977",
+   "synopsis": "Nach einem verheerenden Flugzeugabsturz finden sich der Special-Forces-Offizier James Belmont (Brad Pitt) und sein Militärhund Odin tief in der Wildnis Alaskas gestrandet wieder. Gemeinsam sind sie gezwungen, einen brutalen Kampf ums Überleben gegen die Elemente zu führen. „Eiserne Wildnis - Heart of the Beast“ des gefeierten Filmemachers David Ayer ist ein packender Abenteuerthriller, der von der unzerbrechlichen Verbindung zwischen einem Mann und seinem besten Freund erzählt, während sie sich ihrer bislang grössten Herausforderung stellen."
+  },
+  {
+   "title": "Lieblingsmenschen",
+   "slug": "lieblingsmenschen-54702",
+   "release": "2026-11-19",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005163/poster/lg/1/movie&uuid=B18090D6-BCC8-407F-B170-2A3C5FAA2D1A",
+   "backdrop": "https://media.pathe.ch/movie/mx/54702/lg/27/media",
+   "duration": 108,
+   "genres": [
+    "Comedy"
+   ],
+   "directors": [
+    "Helena Hufnagel"
+   ],
+   "cast": [
+    "Ronald Zehrfeld",
+    "Katharina Thalbach",
+    "Bardo Böhlefeld"
+   ],
+   "age": "6/6",
+   "url": "https://www.pathe.ch/de/films/lieblingsmenschen-54702",
+   "isNew": true,
+   "order": 12,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Amir, ein 28-jähriger schwuler Flüchtling aus dem Iran, trifft auf Agnes, eine lebhafte 101-jährige Berlinerin. Sie beschliessen, zusammenzuziehen. Was als ungewöhnliche Wohngemeinschaft beginnt, entwickelt sich zu einer tiefen Freundschaft, die die kulturellen und altersbedingten Grenzen sprengt. Dabei lernen sie nicht nur voneinander, sondern finden auch neue Freude und Lebensmut. Eine wahre Geschichte über unerwartete Freundschaft und die Wunder, die das Leben bereithält.",
+   "imdb_id": "tt43598591",
    "ext": {
-    "imdb": "7.7",
+    "imdb": "8.2",
     "rt": null,
-    "mc": "73",
-    "genre": "Animation, Action, Adventure",
-    "director": "Joel Crawford, Januel P. Mercado",
-    "runtime": "109 min"
+    "mc": null,
+    "genre": "Comedy, Drama",
+    "director": "Helena Hufnagel",
+    "runtime": "108 min"
+   }
+  },
+  {
+   "title": "Verity - Dunkle Geheimnisse",
+   "slug": "verity-dunkle-geheimnisse-50878",
+   "release": "2026-10-01",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004892/poster/lg/2/movie&uuid=875CB73C-CE70-4598-A3F5-C42F4DB9F242",
+   "backdrop": "https://media.pathe.ch/movie/mx/50878/lg/100/media",
+   "duration": 114,
+   "genres": [
+    "Drama"
+   ],
+   "directors": [
+    "Michael Showalter"
+   ],
+   "cast": [
+    "Josh Hartnett",
+    "Dakota Johnson",
+    "Anne Hathaway",
+    "Brady Wagner",
+    "Ismael Cruz Cordóva"
+   ],
+   "age": "14/16",
+   "url": "https://www.pathe.ch/de/films/verity-dunkle-geheimnisse-50878",
+   "isNew": false,
+   "order": 13,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Basierend auf Colleen Hoovers Bestseller erzählt dieser ebenso verführerische wie fesselnde Psychothriller die Geschichte der renommierten Autorin Verity Crawford (Anne Hathaway) und Lowen Ashleigh (Dakota Johnson), einer bislang recht erfolglosen Schriftstellerin, die auf das abgelegene Anwesen der Crawfords zieht, um für Verity als Ghostwriterin zu arbeiten. Nachdem Lowen scheinbar Veritys erschreckende autobiografische Aufzeichnungen entdeckt, gerät sie in einen Strudel verstörender und verwirrender Geständnisse über Veritys Ehemann Jeremy (Josh Hartnett) – und ringt damit, Fiktion von Real",
+   "imdb_id": "tt32261958",
+   "ext": {
+    "imdb": null,
+    "rt": "31%",
+    "mc": null,
+    "genre": "Crime, Drama, Mystery",
+    "director": "Michael Showalter",
+    "runtime": "114 min"
    }
   },
   {
@@ -519,7 +502,7 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/wild-horse-nine-52032",
    "isNew": false,
-   "order": 15,
+   "order": 14,
    "formats": [],
    "languages": [
     "Deutsch",
@@ -537,125 +520,43 @@
    }
   },
   {
-   "title": "Godzilla Minus Zero",
-   "slug": "godzilla-minus-zero-55017",
-   "release": "2026-11-05",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005200/poster/lg/1/movie&uuid=E4621B30-E411-43B3-B640-001861A389D0",
-   "backdrop": "https://media.pathe.ch/movie/mx/55017/lg/58/media",
-   "duration": 135,
-   "genres": [
-    "Action"
-   ],
-   "directors": [
-    "Takashi Yamazaki"
-   ],
-   "cast": [
-    "Minami Hamabe",
-    "Ryûnosuke Kamiki",
-    "Miou Tanaka"
-   ],
-   "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/godzilla-minus-zero-55017",
-   "isNew": false,
-   "order": 16,
-   "formats": [
-    "4DX"
-   ],
-   "languages": [
-    "Deutsch",
-    "Japanisch"
-   ],
-   "synopsis": "Der Krieg hat Japan auf Null reduziert, und Godzilla hat es ins Minus gestürzt. Zwei Jahre sind seitdem vergangen und das Land kämpft immer noch immer verzweifelt darum, sich wieder zu erholen und endlich in den normalen Alltag zurückzufinden. Gerade als es der Menschheit gelang, an einem hart erkämpften Frieden festzuhalten, schlägt eine neue Bedrohung zu und vernichtet die Hoffnung im Handumdrehen. Ein drittes Mal wird es nicht geben. Hier endet alles.",
-   "imdb_id": "tt34384661",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Action, Adventure, Drama",
-    "director": "Takashi Yamazaki",
-    "runtime": "119 min"
-   }
-  },
-  {
-   "title": "Il faut brûler Maman",
-   "slug": "il-faut-bruler-maman-51587",
-   "release": "2026-11-11",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004958/poster/lg/1/movie&uuid=2FA0446B-A057-4750-BB38-55B70A521F49",
-   "backdrop": "https://media.pathe.ch/movie/mx/51587/lg/31/media",
+   "title": "Shaun das Schaf - Spuk im Kürbisfeld",
+   "slug": "shaun-das-schaf-spuk-im-kurbisfeld-54679",
+   "release": "2026-10-01",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005162/poster/lg/1/movie&uuid=35A473F3-4C32-4633-963D-9D181EE895C1",
+   "backdrop": "https://media.pathe.ch/movie/mx/54679/lg/88/media",
    "duration": 81,
-   "genres": [
-    "Black Humor"
-   ],
-   "directors": [
-    "Albert Dupontel"
-   ],
-   "cast": [
-    "Julia Piaton",
-    "Artus ",
-    "Louise Coldefy",
-    "Albert Dupontel"
-   ],
-   "age": "12/14",
-   "url": "https://www.pathe.ch/de/films/il-faut-bruler-maman-51587",
-   "isNew": false,
-   "order": 17,
-   "formats": [],
-   "languages": [
-    "Französisch"
-   ],
-   "synopsis": "In a family of undertakers, two sisters and a brother reunite for their mother's funeral. With the staff on strike, they must carry out the funeral arrangements themselves. How will they agree on how to cremate Mom?",
-   "imdb_id": "tt39562962",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Comedy",
-    "director": "Albert Dupontel",
-    "runtime": "N/A"
-   }
-  },
-  {
-   "title": "Minions & Monster ",
-   "slug": "minions-monster-40833",
-   "release": "2026-07-01",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004275/poster/lg/1/movie&uuid=9D16A3FD-9896-4171-BF79-1AEFD4863F7E",
-   "backdrop": "https://media.pathe.ch/movie/mx/40833/lg/279/media",
-   "duration": 90,
    "genres": [
     "Animation",
     "Family"
    ],
    "directors": [
-    "Pierre Coffin"
+    "Matthew Walker, Steve Cox"
    ],
    "cast": [
-    "Zoey Deutch",
-    "Bobby Moynihan",
-    "Trey Parker",
-    "Allison Janney",
-    "Christoph Waltz"
+    "John Sparkes",
+    "Kate Harbour",
+    "Justin Fletcher"
    ],
-   "age": "6/8",
-   "url": "https://www.pathe.ch/de/films/minions-monster-40833",
+   "age": "0/0",
+   "url": "https://www.pathe.ch/de/films/shaun-das-schaf-spuk-im-kurbisfeld-54679",
    "isNew": false,
-   "order": 18,
+   "order": 15,
    "formats": [
-    "D-BOX",
-    "Dolby Atmos",
-    "VIP & Premium"
+    "Kinderkino"
    ],
    "languages": [
     "Deutsch",
     "Französisch"
    ],
-   "synopsis": "MINIONS & MONSTER erzählt die abgefahrene, aberwitzige und natürlich absolut wahre Geschichte von den Minions und wie sie Hollywood erobern, Filmstars werden, alles verlieren, Monster auf die Welt loslassen und sich dann heldenhaft daranmachen, den Planeten vor genau dem Chaos zu retten, das sie selbst angerichtet haben.In den mehr als zehn Jahren seit ihrem ersten Auftritt sind die Minions die absoluten Kult-Animationsfiguren ihrer Generation geworden. Global bekannt und von Fans jeden Alters geliebt, haben die Illumination Franchises Ich – Einfach unverbesserlich und Minions weltweit mehr al"
+   "synopsis": "Auf der Mossy Bottom Farm steigt die Vorfreude auf Halloween. Doch ausgerechnet kurz vor dem grossen Fest zerstört der tollpatschige Farmer den liebevoll angelegten Kürbisgarten der Schafherde. Für Shaun das Schaf ist klar: Halloween muss gerettet werden. Entschlossen, das Problem zu lösen, wagt er ein ungewöhnliches wissenschaftliches Experiment. Doch schon bald geraten die Dinge ausser Kontrolle. Als der Farmer plötzlich spurlos verschwindet und ein mysteriöses, haariges Ungeheuer die Wälder von Mossingham unsicher macht, ist das Chaos perfekt. Auf Shaun und seine wolligen Freunde wartet ein"
   },
   {
    "title": "Blood Money",
    "slug": "blood-money-56222",
    "release": "2026-11-12",
    "poster": "https://media.pathe.ch/movie/alex/HO00005286/poster/lg/1/movie&uuid=43B9BAC4-B8CB-4DEA-9FD2-AF355B0415D5",
-   "backdrop": "https://media.pathe.ch/movie/mx/56222/lg/25/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/56222/lg/26/media",
    "duration": 110,
    "genres": [
     "Drama"
@@ -673,7 +574,7 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/blood-money-56222",
    "isNew": false,
-   "order": 19,
+   "order": 16,
    "formats": [],
    "languages": [
     "Albanisch"
@@ -690,135 +591,75 @@
    }
   },
   {
-   "title": "Eiserne Wildnis - Heart Of The Beast",
-   "slug": "eiserne-wildnis-heart-of-the-beast-52900",
-   "release": "2026-09-24",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005090/poster/lg/1/movie&uuid=55CAC122-F6A1-4A8F-90F4-CC175CBBD366",
-   "backdrop": "https://media.pathe.ch/movie/mx/52900/lg/105/media",
-   "duration": 101,
+   "title": "Die Odyssee",
+   "slug": "die-odyssee-43278",
+   "release": "2026-07-16",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004416/poster/lg/2/movie&uuid=97346600-0943-4AE5-A28C-7A2A3D135DC3",
+   "backdrop": "https://media.pathe.ch/movie/mx/43278/lg/186/media",
+   "duration": 172,
    "genres": [
     "Action"
    ],
    "directors": [
-    "David Ayer"
+    "Christopher Nolan"
    ],
    "cast": [
-    "Anna Lambe",
-    "Brad Pitt",
-    "J.K. Simmons"
+    "Tom Holland",
+    "Lupita Nyong'o",
+    "Zendaya ",
+    "Anne Hathaway",
+    "Charlize Theron"
    ],
-   "age": "12/12",
-   "url": "https://www.pathe.ch/de/films/eiserne-wildnis-heart-of-the-beast-52900",
+   "age": "14/14",
+   "url": "https://www.pathe.ch/de/films/die-odyssee-43278",
    "isNew": false,
-   "order": 22,
+   "order": 17,
    "formats": [],
    "languages": [
     "Deutsch",
-    "Englisch",
-    "Französisch"
+    "Englisch"
    ],
-   "synopsis": "Nach einem verheerenden Flugzeugabsturz finden sich der Special-Forces-Offizier James Belmont (Brad Pitt) und sein Militärhund Odin tief in der Wildnis Alaskas gestrandet wieder. Gemeinsam sind sie gezwungen, einen brutalen Kampf ums Überleben gegen die Elemente zu führen. „Eiserne Wildnis - Heart of the Beast“ des gefeierten Filmemachers David Ayer ist ein packender Abenteuerthriller, der von der unzerbrechlichen Verbindung zwischen einem Mann und seinem besten Freund erzählt, während sie sich ihrer bislang grössten Herausforderung stellen."
-  },
-  {
-   "title": "Lieblingsmenschen",
-   "slug": "lieblingsmenschen-54702",
-   "release": "2026-11-19",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005163/poster/lg/1/movie&uuid=B18090D6-BCC8-407F-B170-2A3C5FAA2D1A",
-   "backdrop": "https://media.pathe.ch/movie/mx/54702/lg/26/media",
-   "duration": 108,
-   "genres": [
-    "Comedy"
-   ],
-   "directors": [
-    "Helena Hufnagel"
-   ],
-   "cast": [
-    "Ronald Zehrfeld",
-    "Katharina Thalbach",
-    "Bardo Böhlefeld"
-   ],
-   "age": "6/6",
-   "url": "https://www.pathe.ch/de/films/lieblingsmenschen-54702",
-   "isNew": true,
-   "order": 24,
-   "formats": [],
-   "languages": [
-    "Deutsch"
-   ],
-   "synopsis": "Amir, ein 28-jähriger schwuler Flüchtling aus dem Iran, trifft auf Agnes, eine lebhafte 101-jährige Berlinerin. Sie beschliessen, zusammenzuziehen. Was als ungewöhnliche Wohngemeinschaft beginnt, entwickelt sich zu einer tiefen Freundschaft, die die kulturellen und altersbedingten Grenzen sprengt. Dabei lernen sie nicht nur voneinander, sondern finden auch neue Freude und Lebensmut. Eine wahre Geschichte über unerwartete Freundschaft und die Wunder, die das Leben bereithält.",
-   "imdb_id": "tt43598591",
+   "synopsis": "DIE ODYSSEE, Christopher Nolans neuestes Filmprojekt, ist ein bildgewaltiges Action-Epos, das mit brandneuer IMAX®-Technologie an Schauplätzen auf der ganzen Welt entstanden ist. Der Film bringt Homers mythische Heldensaga am 16. Juli 2026 auf die grosse Leinwand. Zur Besetzung von DIE ODYSSEE gehören Matt Damon (Good Will Hunting), Tom Holland (Spider-Man: No Way Home), Anne Hathaway (Les Misérables), Robert Pattinson (Der Leuchtturm) und Lupita Nyong’o (12 Years A Slave). In weiteren Rollen sind Zendaya (Dune) und Charlize Theron (Monster) zu sehen.",
+   "imdb_id": "tt1284645",
    "ext": {
-    "imdb": "8.2",
+    "imdb": "8.0",
     "rt": null,
     "mc": null,
-    "genre": "Comedy, Drama",
-    "director": "Helena Hufnagel",
-    "runtime": "108 min"
+    "genre": "Documentary",
+    "director": "Werner C. Barg, Stephan M. Vogel",
+    "runtime": "52 min"
    }
   },
   {
-   "title": "Twin Peaks Marathon",
-   "slug": "twin-peaks-marathon-55305",
-   "release": "2026-11-22",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005244/poster/lg/1/movie&uuid=1680CD6E-86F5-4439-A6E5-F03E24BBDAC5",
-   "backdrop": "https://media.pathe.ch/movie/id/55305/backdrop/277044/lg/1/twin-peaks-s01e01-pilot-1990-still-1786289853726-14.jpg",
-   "duration": 529,
-   "genres": [],
+   "title": "Festtagsspaß mit Peppa – Das Kinoerlebnis",
+   "slug": "festtagsspass-mit-peppa-das-kinoerlebnis-56027",
+   "release": "2026-11-14",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005278/poster/lg/1/movie&uuid=CB2F6E4F-652D-4C97-83C0-1F7FF9D1408D",
+   "backdrop": "https://media.pathe.ch/movie/mx/56027/lg/53/media",
+   "duration": 60,
+   "genres": [
+    "Animation"
+   ],
    "directors": [],
    "cast": [],
-   "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/twin-peaks-marathon-55305",
-   "isNew": true,
-   "order": 25,
-   "formats": [],
-   "languages": [],
-   "synopsis": ""
-  },
-  {
-   "title": "Verity - Dunkle Geheimnisse",
-   "slug": "verity-dunkle-geheimnisse-50878",
-   "release": "2026-10-01",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004892/poster/lg/2/movie&uuid=875CB73C-CE70-4598-A3F5-C42F4DB9F242",
-   "backdrop": "https://media.pathe.ch/movie/mx/50878/lg/99/media",
-   "duration": 114,
-   "genres": [
-    "Drama"
-   ],
-   "directors": [
-    "Michael Showalter"
-   ],
-   "cast": [
-    "Josh Hartnett",
-    "Dakota Johnson",
-    "Anne Hathaway",
-    "Brady Wagner",
-    "Ismael Cruz Cordóva"
-   ],
-   "age": "14/16",
-   "url": "https://www.pathe.ch/de/films/verity-dunkle-geheimnisse-50878",
+   "age": "0/0",
+   "url": "https://www.pathe.ch/de/films/festtagsspass-mit-peppa-das-kinoerlebnis-56027",
    "isNew": false,
-   "order": 26,
-   "formats": [],
+   "order": 18,
+   "formats": [
+    "Kinderkino"
+   ],
    "languages": [
     "Deutsch"
    ],
-   "synopsis": "Basierend auf Colleen Hoovers Bestseller erzählt dieser ebenso verführerische wie fesselnde Psychothriller die Geschichte der renommierten Autorin Verity Crawford (Anne Hathaway) und Lowen Ashleigh (Dakota Johnson), einer bislang recht erfolglosen Schriftstellerin, die auf das abgelegene Anwesen der Crawfords zieht, um für Verity als Ghostwriterin zu arbeiten. Nachdem Lowen scheinbar Veritys erschreckende autobiografische Aufzeichnungen entdeckt, gerät sie in einen Strudel verstörender und verwirrender Geständnisse über Veritys Ehemann Jeremy (Josh Hartnett) – und ringt damit, Fiktion von Real",
-   "imdb_id": "tt32261958",
-   "ext": {
-    "imdb": null,
-    "rt": "31%",
-    "mc": null,
-    "genre": "Crime, Drama, Mystery",
-    "director": "Michael Showalter",
-    "runtime": "114 min"
-   }
+   "synopsis": "JErlebt ein festliches Kinoabenteuer, in dem Peppa Wutz und ihre Familie auf der großen Leinwand Evies erstes Weihnachtsfest feiern! Seid dabei, wenn Peppa Wutz und ihre Familie den Trubel am Weihnachtstag erleben und sich an ihre schönsten Weihnachtsmomente erinnern. Von verschneiten Abenteuern und festlichen Theateraufführungen bis hin zum Schmücken des Weihnachtsbaums – dieses einstündige Kinoerlebnis vereint sieben klassische Weihnachtsfolgen von Peppa Wutz mit vier brandneuen Liedern, bei denen die Kleinen tanzen und mitsingen können. Voller Lachen, Musik und herzerwärmender Momente ist d"
   },
   {
    "title": "Women on Trial",
    "slug": "women-on-trial-51584",
    "release": "2026-11-04",
    "poster": "https://media.pathe.ch/movie/alex/HO00004955/poster/lg/1/movie&uuid=7D9F52F7-0259-49D9-9423-9FE79F157C7F",
-   "backdrop": "https://media.pathe.ch/movie/mx/51584/lg/41/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/51584/lg/42/media",
    "duration": 102,
    "genres": [
     "Drama"
@@ -828,7 +669,7 @@
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/women-on-trial-51584",
    "isNew": false,
-   "order": 27,
+   "order": 20,
    "formats": [],
    "languages": [
     "Französisch"
@@ -845,163 +686,11 @@
    }
   },
   {
-   "title": "Yugly",
-   "slug": "yugly-51300",
-   "release": "2026-10-14",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004933/poster/lg/1/movie&uuid=ED56085E-A1A6-48A1-9919-58FCE5C637C0",
-   "backdrop": "https://media.pathe.ch/movie/mx/51300/lg/105/media",
-   "duration": 85,
-   "genres": [
-    "Animation"
-   ],
-   "directors": [
-    "Yanis Belaïd, Jérémie Degruson"
-   ],
-   "cast": [
-    "Axel Auriant"
-   ],
-   "age": "6/8",
-   "url": "https://www.pathe.ch/de/films/yugly-51300",
-   "isNew": false,
-   "order": 28,
-   "formats": [],
-   "languages": [
-    "Französisch"
-   ],
-   "synopsis": "Meet Yugly, the ugliest dog in the world....and, weirdly, the cutest who dreams of doing the impossible: competing in the prestigious \"Best in Dog Show\". Defying every obstacle, he is determined to prove that even the most unlikely deserve a chance, secretly hoping that along the way, he'll find a forever family.",
-   "imdb_id": "tt7081280",
-   "ext": {
-    "imdb": "6.6",
-    "rt": null,
-    "mc": null,
-    "genre": "Animation, Adventure, Comedy",
-    "director": "Yanis Belaid, Jérémie Degruson",
-    "runtime": "85 min"
-   }
-  },
-  {
-   "title": "Je so' pazzo",
-   "slug": "je-so-pazzo-56882",
-   "release": "2026-11-12",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005335/poster/lg/2/movie&uuid=24FDB84E-4E9E-4E4C-A38C-DBCC6372C9B0",
-   "backdrop": "https://media.pathe.ch/movie/mx/56882/lg/16/media",
-   "duration": 105,
-   "genres": [
-    "Biographical"
-   ],
-   "directors": [
-    "Nicola Prosatore"
-   ],
-   "cast": [
-    "Massimiliano Caiazzo",
-    "Paolo Aguzzi",
-    "Riccardo Betteghella",
-    "Leonardo Bianconi",
-    "Giuseppe Brunetti"
-   ],
-   "age": "12/14",
-   "url": "https://www.pathe.ch/de/films/je-so-pazzo-56882",
-   "isNew": false,
-   "order": 29,
-   "formats": [],
-   "languages": [],
-   "synopsis": "",
-   "imdb_id": "tt36411726",
-   "ext": {
-    "imdb": null,
-    "rt": null,
-    "mc": null,
-    "genre": "Biography",
-    "director": "Nicola Prosatore",
-    "runtime": "N/A"
-   }
-  },
-  {
-   "title": "Karma",
-   "slug": "karma-49299",
-   "release": "2026-10-21",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004731/poster/lg/1/movie&uuid=186A9A61-A4F5-40FC-9E2D-3A92104FD256",
-   "backdrop": "https://media.pathe.ch/movie/mx/49299/lg/153/media",
-   "duration": 141,
-   "genres": [
-    "Thriller"
-   ],
-   "directors": [
-    "Guillaume Canet"
-   ],
-   "cast": [
-    "Marion Cotillard",
-    "Anne Le Forestier",
-    "Denis Ménochet",
-    "Luis Zahera",
-    "Leonardo Sbaraglia"
-   ],
-   "age": "14/16",
-   "url": "https://www.pathe.ch/de/films/karma-49299",
-   "isNew": false,
-   "order": 30,
-   "formats": [],
-   "languages": [
-    "Französisch"
-   ],
-   "synopsis": "In a village in northern Spain, Jeanne tries to rebuild her life with Daniel, who knows nothing about her troubled past. One day, Jeanne's six-year-old godson mysteriously disappears and Jeanne becomes the main suspect.",
-   "imdb_id": "tt35450621",
-   "ext": {
-    "imdb": "6.5",
-    "rt": null,
-    "mc": null,
-    "genre": "Drama, Mystery, Thriller",
-    "director": "Guillaume Canet",
-    "runtime": "149 min"
-   }
-  },
-  {
-   "title": "Paw Patrol: Der Dino Film",
-   "slug": "paw-patrol-der-dino-film-38464",
-   "release": "2026-08-06",
-   "poster": "https://media.pathe.ch/movie/alex/HO00003995/poster/lg/1/movie&uuid=A8B4908C-61EA-402D-BA85-F2364C86739E",
-   "backdrop": "https://media.pathe.ch/movie/mx/38464/lg/163/media",
-   "duration": 89,
-   "genres": [
-    "Animation",
-    "Family"
-   ],
-   "directors": [
-    "Cal Brunker"
-   ],
-   "cast": [
-    "Jennifer Hudson",
-    "McKenna Grace",
-    "Ron Pardo",
-    "Nylan Parthipan",
-    "Jameela Jamil"
-   ],
-   "age": "0/6",
-   "url": "https://www.pathe.ch/de/films/paw-patrol-der-dino-film-38464",
-   "isNew": false,
-   "order": 32,
-   "formats": [],
-   "languages": [
-    "Deutsch",
-    "Französisch"
-   ],
-   "synopsis": "Nachdem ihr Schiff in einen mysteriösen Sturm gerät, landen die PAW-Patrol-Welpen auf einer unbekannten tropischen Insel, auf der Dinos leben. Dort treffen sie auf Rex, einen Welpen, der vor Jahren auf der Insel gestrandet ist und sich seitdem zu einem Dino-Experten entwickelt hat. Als Bürgermeister Besserwisser, Erzrivale der PAW Patrol, rücksichtslos mit dem Abbau der natürlichen Ressourcen der Insel beginnt, löst er damit unbeabsichtigt den Ausbruch eines großen Vulkans aus. Die PAW-Patrol-Welpen werden in eine Reihe von spannenden, riesigen Dinosaurier-Rettungsaktionen verwickelt, größer a",
-   "imdb_id": "tt29356163",
-   "ext": {
-    "imdb": "6.1",
-    "rt": null,
-    "mc": "47",
-    "genre": "Animation, Action, Adventure",
-    "director": "Cal Brunker",
-    "runtime": "88 min"
-   }
-  },
-  {
    "title": "The Only Living Pickpocket in New York",
    "slug": "the-only-living-pickpocket-in-new-york-56180",
    "release": "2026-11-19",
    "poster": "https://media.pathe.ch/movie/alex/HO00005281/poster/lg/1/movie&uuid=236DA1E3-C14F-4C04-BF82-6D3609720314",
-   "backdrop": "https://media.pathe.ch/movie/mx/56180/lg/34/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/56180/lg/35/media",
    "duration": 88,
    "genres": [
     "Thriller"
@@ -1019,7 +708,7 @@
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/the-only-living-pickpocket-in-new-york-56180",
    "isNew": true,
-   "order": 33,
+   "order": 23,
    "formats": [],
    "languages": [
     "Englisch"
@@ -1040,7 +729,7 @@
    "slug": "un-bon-patron-51586",
    "release": "2026-11-04",
    "poster": "https://media.pathe.ch/movie/alex/HO00004957/poster/lg/1/movie&uuid=3E8447AF-8D83-4CAA-A770-F3A381FC1ACD",
-   "backdrop": "https://media.pathe.ch/movie/mx/51586/lg/27/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/51586/lg/28/media",
    "duration": 88,
    "genres": [
     "Comedy"
@@ -1058,7 +747,7 @@
    "age": "12/16",
    "url": "https://www.pathe.ch/de/films/un-bon-patron-51586",
    "isNew": false,
-   "order": 34,
+   "order": 24,
    "formats": [],
    "languages": [
     "Französisch"
@@ -1079,7 +768,7 @@
    "slug": "15-18-52251",
    "release": "2026-11-11",
    "poster": "https://media.pathe.ch/movie/alex/HO00005027/poster/lg/1/movie&uuid=D15EEDB6-A98D-410A-95C5-33E0F85D67A6",
-   "backdrop": "https://media.pathe.ch/movie/mx/52251/lg/13/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/52251/lg/14/media",
    "duration": 105,
    "genres": [
     "Drama"
@@ -1089,7 +778,7 @@
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/15-18-52251",
    "isNew": false,
-   "order": 35,
+   "order": 25,
    "formats": [],
    "languages": [
     "Französisch"
@@ -1106,144 +795,158 @@
    }
   },
   {
-   "title": "Bluey im Kino: „Küchenspass“- Kollektion ",
-   "slug": "bluey-im-kino-kuchenspass-kollektion-51548",
-   "release": "2026-03-26",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004947/poster/lg/1/movie&uuid=7F3539A6-96BA-4F06-8C4D-8DB0FF3C69EC",
-   "backdrop": "https://media.pathe.ch/movie/mx/51548/lg/267/media",
-   "duration": 55,
+   "title": "A Talent for Murder",
+   "slug": "a-talent-for-murder-55749",
+   "release": "2026-11-05",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005274/poster/lg/2/movie&uuid=796BA681-0E8F-4E85-8F65-48B578A2639B",
+   "backdrop": "https://media.pathe.ch/movie/mx/55749/lg/27/media",
+   "duration": 105,
    "genres": [
-    "Animation",
-    "Family"
+    "Crime"
    ],
    "directors": [
-    "Joe Brumm"
-   ],
-   "cast": [],
-   "age": "0/0",
-   "url": "https://www.pathe.ch/de/films/bluey-im-kino-kuchenspass-kollektion-51548",
-   "isNew": false,
-   "order": 36,
-   "formats": [],
-   "languages": [
-    "Französisch"
-   ],
-   "synopsis": "Bluey im Kino: „Küchenspass“-Kollektion ist ein einstündiges Vergnügen für alle Bluey-Fans, bestehend aus acht bereits ausgestrahlten Episoden aus den drei Staffeln der TV-Serie – alle rund um den Spass am Essen! Die Kollektion wird unvergessliche Momente wie Warten und Feines Restaurant zeigen und die Kochkünste der Heelers mit Folgen wie Omelette und Enten-Torte hervorheben. So viel Spass hat Kochen noch nie gemacht!"
-  },
-  {
-   "title": "Die Odyssee",
-   "slug": "die-odyssee-43278",
-   "release": "2026-07-16",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004416/poster/lg/2/movie&uuid=97346600-0943-4AE5-A28C-7A2A3D135DC3",
-   "backdrop": "https://media.pathe.ch/movie/mx/43278/lg/185/media",
-   "duration": 172,
-   "genres": [
-    "Action"
-   ],
-   "directors": [
-    "Christopher Nolan"
+    "Anton Corbijn"
    ],
    "cast": [
-    "Tom Holland",
-    "Lupita Nyong'o",
-    "Zendaya ",
-    "Anne Hathaway",
-    "Charlize Theron"
+    "Olivia Cooke",
+    "Alden Ehrenreich",
+    "Helen Mirren"
    ],
-   "age": "14/14",
-   "url": "https://www.pathe.ch/de/films/die-odyssee-43278",
+   "age": "12/12",
+   "url": "https://www.pathe.ch/de/films/a-talent-for-murder-55749",
    "isNew": false,
-   "order": 38,
-   "formats": [],
-   "languages": [
-    "Deutsch",
-    "Englisch"
-   ],
-   "synopsis": "DIE ODYSSEE, Christopher Nolans neuestes Filmprojekt, ist ein bildgewaltiges Action-Epos, das mit brandneuer IMAX®-Technologie an Schauplätzen auf der ganzen Welt entstanden ist. Der Film bringt Homers mythische Heldensaga am 16. Juli 2026 auf die grosse Leinwand. Zur Besetzung von DIE ODYSSEE gehören Matt Damon (Good Will Hunting), Tom Holland (Spider-Man: No Way Home), Anne Hathaway (Les Misérables), Robert Pattinson (Der Leuchtturm) und Lupita Nyong’o (12 Years A Slave). In weiteren Rollen sind Zendaya (Dune) und Charlize Theron (Monster) zu sehen.",
-   "imdb_id": "tt1284645",
-   "ext": {
-    "imdb": "8.0",
-    "rt": null,
-    "mc": null,
-    "genre": "Documentary",
-    "director": "Werner C. Barg, Stephan M. Vogel",
-    "runtime": "52 min"
-   }
-  },
-  {
-   "title": "Ducobu et le fantôme de Saint-Potache",
-   "slug": "ducobu-et-le-fantome-de-saint-potache-48322",
-   "release": "2026-10-07",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004624/poster/lg/1/movie&uuid=84ACD0F3-0237-464A-B076-8794DEEC1183",
-   "backdrop": "https://media.pathe.ch/movie/mx/48322/lg/54/media",
-   "duration": 89,
-   "genres": [
-    "Comedy",
-    "Family"
-   ],
-   "directors": [
-    "Elie Semoun"
-   ],
-   "cast": [
-    "Frédérique Bel",
-    "Loïc Legendre",
-    "Elie Semoun",
-    "Emilie Caen",
-    "Gérard Jugnot"
-   ],
-   "age": "8/8",
-   "url": "https://www.pathe.ch/de/films/ducobu-et-le-fantome-de-saint-potache-48322",
-   "isNew": false,
-   "order": 39,
-   "formats": [],
-   "languages": [
-    "Französisch"
-   ],
-   "synopsis": "It’s Halloween, and Ducobu is back for an adventure filled with laughter and mystery! Professor Latouche and Miss Rateau move into a house haunted by the ghost of Anatole, the biggest dunce in the history of Saint-Potache School. This mischievous ghost will drag Ducobu, Léonie, their parents, and Kitrish into a series of hilarious and unexpected adventures. But beware: on Halloween, anything can happen!",
-   "imdb_id": "tt43622004",
-   "ext": {
-    "imdb": "4.7",
-    "rt": null,
-    "mc": null,
-    "genre": "Comedy",
-    "director": "Elie Semoun",
-    "runtime": "90 min"
-   }
-  },
-  {
-   "title": "Emil und die Detektive",
-   "slug": "emil-und-die-detektive-51206",
-   "release": "2026-09-24",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004918/poster/lg/1/movie&uuid=579C14B3-4B1F-4356-9423-67E6E10077CF",
-   "backdrop": "https://media.pathe.ch/movie/mx/51206/lg/195/media",
-   "duration": 100,
-   "genres": [
-    "Animation",
-    "Family"
-   ],
-   "directors": [
-    "Florian Dietrich"
-   ],
-   "cast": [
-    "Nicholas Jonah Peter",
-    "Merlin Sandmeyer",
-    "Lara Toni Lüdders"
-   ],
-   "age": "6/6",
-   "url": "https://www.pathe.ch/de/films/emil-und-die-detektive-51206",
-   "isNew": false,
-   "order": 40,
+   "order": 26,
    "formats": [],
    "languages": [],
    "synopsis": "",
-   "imdb_id": "tt39381622",
+   "imdb_id": "tt14129116",
    "ext": {
     "imdb": null,
     "rt": null,
     "mc": null,
-    "genre": "Family",
-    "director": "David Dietl",
-    "runtime": "N/A"
+    "genre": "Biography, Crime, Drama",
+    "director": "Anton Corbijn",
+    "runtime": "106 min"
+   }
+  },
+  {
+   "title": "Forgotten Island ",
+   "slug": "forgotten-island-51497",
+   "release": "2026-10-01",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004945/poster/lg/2/movie&uuid=D08FC8C9-4CB7-4B7D-B9DE-BF12562CFD2A",
+   "backdrop": "https://media.pathe.ch/movie/mx/51497/lg/238/media",
+   "duration": 109,
+   "genres": [
+    "Animation",
+    "Family"
+   ],
+   "directors": [
+    "Januel Mercado, Joel Crawford"
+   ],
+   "cast": [
+    "Dave Franco",
+    "Lea Salonga",
+    "Jo Koy",
+    "Dolly de Leon",
+    "Liza Soberano"
+   ],
+   "age": "6/10",
+   "url": "https://www.pathe.ch/de/films/forgotten-island-51497",
+   "isNew": false,
+   "order": 30,
+   "formats": [
+    "Kinderkino"
+   ],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Als die zwei besten Freundinnen Jo und Raissa auf der geheimnisvollen Insel Nakali stranden, begreifen sie, dass der Weg nach Hause ein ganzes Leben an Erinnerungen fordert – vielleicht auch an den Menschen, der ihnen am meisten bedeutet.Die Grammy- und Oscar® prämierte Ausnahmekünstlerin H.E.R. und Liza Soberano (Lisa Frankenstein, Allein mit dir) glänzen in den Hauptrollen als Jo und Raissa. Die beiden Highschool-Absolventinnen sind unzertrennliche Freundinnen seit Kindertagen. Doch nun stehen sie am Beginn völlig unterschiedlicher Lebenswege.In ihrer letzten gemeinsamen Nacht entdecken Jo u",
+   "imdb_id": "tt36583977",
+   "ext": {
+    "imdb": "7.7",
+    "rt": null,
+    "mc": "73",
+    "genre": "Animation, Action, Adventure",
+    "director": "Joel Crawford, Januel P. Mercado",
+    "runtime": "109 min"
+   }
+  },
+  {
+   "title": "Hope",
+   "slug": "hope-54368",
+   "release": "2026-10-08",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005117/poster/lg/1/movie&uuid=C83C6C85-1BDA-4E6E-B200-E8CF16EE8CE3",
+   "backdrop": "https://media.pathe.ch/movie/mx/54368/lg/70/media",
+   "duration": 157,
+   "genres": [
+    "Horror"
+   ],
+   "directors": [
+    "Na Hong-Jin"
+   ],
+   "cast": [
+    "Taylor Russell",
+    "Hwang Jung-Min",
+    "Zo In-Sung",
+    "Hoyeon ",
+    "Cameron Britton"
+   ],
+   "age": "16/16",
+   "url": "https://www.pathe.ch/de/films/hope-54368",
+   "isNew": false,
+   "order": 31,
+   "formats": [],
+   "languages": [
+    "Koreanisch"
+   ],
+   "synopsis": "Am Rande der abgelegenen Hafenstadt Hope wird eine mysteriöse Entdeckung gemacht. Bald findet sich die Bevölkerung in einem verzweifelten Kampf ums Überleben wieder – gegen etwas, dem niemand je zuvor begegnet ist. Der Polizeichef, eine Polizistin und eine Gruppe von Jägern nehmen die Verfolgung auf.",
+   "imdb_id": "tt27369017",
+   "ext": {
+    "imdb": "6.9",
+    "rt": null,
+    "mc": "66",
+    "genre": "Action, Drama, Horror",
+    "director": "Na Hong-jin",
+    "runtime": "160 min"
+   }
+  },
+  {
+   "title": "Karma",
+   "slug": "karma-49299",
+   "release": "2026-10-21",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004731/poster/lg/1/movie&uuid=186A9A61-A4F5-40FC-9E2D-3A92104FD256",
+   "backdrop": "https://media.pathe.ch/movie/mx/49299/lg/154/media",
+   "duration": 141,
+   "genres": [
+    "Thriller"
+   ],
+   "directors": [
+    "Guillaume Canet"
+   ],
+   "cast": [
+    "Marion Cotillard",
+    "Anne Le Forestier",
+    "Denis Ménochet",
+    "Luis Zahera",
+    "Leonardo Sbaraglia"
+   ],
+   "age": "14/16",
+   "url": "https://www.pathe.ch/de/films/karma-49299",
+   "isNew": false,
+   "order": 32,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "In a village in northern Spain, Jeanne tries to rebuild her life with Daniel, who knows nothing about her troubled past. One day, Jeanne's six-year-old godson mysteriously disappears and Jeanne becomes the main suspect.",
+   "imdb_id": "tt35450621",
+   "ext": {
+    "imdb": "6.5",
+    "rt": null,
+    "mc": null,
+    "genre": "Drama, Mystery, Thriller",
+    "director": "Guillaume Canet",
+    "runtime": "149 min"
    }
   },
   {
@@ -1251,7 +954,7 @@
    "slug": "la-gradiva-54590",
    "release": "2026-11-04",
    "poster": "https://media.pathe.ch/movie/alex/HO00005144/poster/lg/2/movie&uuid=A6CA0045-C56B-4FDA-80AD-DEAAEF39ED10",
-   "backdrop": "https://media.pathe.ch/movie/mx/54590/lg/5/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54590/lg/6/media",
    "duration": 145,
    "genres": [
     "Drama"
@@ -1269,7 +972,7 @@
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/la-gradiva-54590",
    "isNew": false,
-   "order": 42,
+   "order": 33,
    "formats": [],
    "languages": [
     "Französisch"
@@ -1286,42 +989,68 @@
    }
   },
   {
-   "title": "Lucy Lost",
-   "slug": "lucy-lost-52818",
-   "release": "2026-10-28",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005088/poster/lg/1/movie&uuid=66F8FFF5-0B04-4A36-960B-CDE79CB7DD30",
-   "backdrop": "https://media.pathe.ch/movie/mx/52818/lg/51/media",
-   "duration": 89,
+   "title": "Minions & Monster ",
+   "slug": "minions-monster-40833",
+   "release": "2026-07-01",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004275/poster/lg/1/movie&uuid=9D16A3FD-9896-4171-BF79-1AEFD4863F7E",
+   "backdrop": "https://media.pathe.ch/movie/mx/40833/lg/280/media",
+   "duration": 90,
    "genres": [
-    "Animation"
+    "Animation",
+    "Family"
    ],
    "directors": [
-    "Olivier Clert"
+    "Pierre Coffin"
    ],
    "cast": [
-    "Charlie Rosenzweig",
-    "Zach Valentin-Dattas",
-    "Jessica Monceau",
-    "Quentin Faure",
-    "Keanu Peyran"
+    "Zoey Deutch",
+    "Bobby Moynihan",
+    "Trey Parker",
+    "Allison Janney",
+    "Christoph Waltz"
    ],
-   "age": "8/10",
-   "url": "https://www.pathe.ch/de/films/lucy-lost-52818",
+   "age": "6/8",
+   "url": "https://www.pathe.ch/de/films/minions-monster-40833",
    "isNew": false,
-   "order": 43,
+   "order": 35,
    "formats": [],
    "languages": [
-    "Französisch"
+    "Deutsch"
    ],
-   "synopsis": "Lucy, a mysterious girl with visions no one else can see, meets her secret friend Milly. Together they set out on a magical quest to uncover the secret behind her mysterious powers.",
-   "imdb_id": "tt10569744",
+   "synopsis": "MINIONS & MONSTER erzählt die abgefahrene, aberwitzige und natürlich absolut wahre Geschichte von den Minions und wie sie Hollywood erobern, Filmstars werden, alles verlieren, Monster auf die Welt loslassen und sich dann heldenhaft daranmachen, den Planeten vor genau dem Chaos zu retten, das sie selbst angerichtet haben.In den mehr als zehn Jahren seit ihrem ersten Auftritt sind die Minions die absoluten Kult-Animationsfiguren ihrer Generation geworden. Global bekannt und von Fans jeden Alters geliebt, haben die Illumination Franchises Ich – Einfach unverbesserlich und Minions weltweit mehr al"
+  },
+  {
+   "title": "NAZA",
+   "slug": "naza-55507",
+   "release": "2026-10-01",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005253/poster/lg/1/movie&uuid=9EF0836F-196E-48C4-9259-906CF80600D0",
+   "backdrop": "https://media.pathe.ch/movie/mx/55507/lg/68/media",
+   "duration": 80,
+   "genres": [
+    "Documentary"
+   ],
+   "directors": [
+    "Rachel Szor, Yuval Abraham"
+   ],
+   "cast": [
+    "Rachel Szor",
+    "Yuval Abraham"
+   ],
+   "age": "16/18",
+   "url": "https://www.pathe.ch/de/films/naza-55507",
+   "isNew": false,
+   "order": 36,
+   "formats": [],
+   "languages": [],
+   "synopsis": "",
+   "imdb_id": "tt44766123",
    "ext": {
-    "imdb": "7.8",
+    "imdb": "7.9",
     "rt": null,
-    "mc": null,
-    "genre": "Animation, Adventure, Drama",
-    "director": "Olivier Clert",
-    "runtime": "85 min"
+    "mc": "94",
+    "genre": "Documentary, War",
+    "director": "Yuval Abraham, Rachel Szor",
+    "runtime": "80 min"
    }
   },
   {
@@ -1343,7 +1072,7 @@
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/papa-ou-t-es-56162",
    "isNew": false,
-   "order": 44,
+   "order": 37,
    "formats": [],
    "languages": [
     "Französisch"
@@ -1360,53 +1089,76 @@
    }
   },
   {
-   "title": "Spider-Man: Brand New Day",
-   "slug": "spider-man-brand-new-day-43161",
-   "release": "2026-07-29",
-   "poster": "https://media.pathe.ch/movie/alex/HO00004400/poster/lg/3/movie&uuid=23CA5D63-7E1D-4FAC-8735-64AD3CE4C96B",
-   "backdrop": "https://media.pathe.ch/movie/id/43161/backdrop/270122/lg/1/sbnd-27223-r.jpg",
-   "duration": 145,
+   "title": "Ramayana: Rise of a Legend",
+   "slug": "ramayana-rise-of-a-legend-55622",
+   "release": "2026-11-05",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005263/poster/lg/2/movie&uuid=784AC5CF-AE99-4937-9325-81D86407FB79",
+   "backdrop": "https://media.pathe.ch/movie/mx/55622/lg/32/media",
+   "duration": 168,
    "genres": [
-    "Action"
+    "Adventure"
    ],
    "directors": [
-    "Destin Daniel Cretton"
+    "Nitesh Tiwari"
    ],
    "cast": [
-    "Tom Holland",
-    "Sadie Sink",
-    "Zendaya ",
-    "Jacob Batalon",
-    "Tramell Tillman"
+    "Ranbir Kapoor",
+    "Sai Pallavi",
+    "Ravi Dubey",
+    "Yash ."
    ],
-   "age": "12/14",
-   "url": "https://www.pathe.ch/de/films/spider-man-brand-new-day-43161",
+   "age": "14/14",
+   "url": "https://www.pathe.ch/de/films/ramayana-rise-of-a-legend-55622",
    "isNew": false,
-   "order": 45,
+   "order": 38,
    "formats": [
-    "4DX",
     "3D"
    ],
    "languages": [
+    "Deutsch",
+    "Englisch"
+   ],
+   "synopsis": "Das erste Epos der Menschheit. Von den visuellen Machern hinter Die Odyssee und Dune.",
+   "imdb_id": "tt27988879",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Action, Adventure, Drama",
+    "director": "Nitesh Tiwari",
+    "runtime": "N/A"
+   }
+  },
+  {
+   "title": "Auf der Suche nach der Weihnachtswerkstatt",
+   "slug": "auf-der-suche-nach-der-weihnachtswerkstatt-54872",
+   "release": "2026-11-12",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005181/poster/lg/2/movie&uuid=6B9D59E1-675D-48C5-9309-16404E61FDF2",
+   "backdrop": "https://media.pathe.ch/movie/mx/54872/lg/74/media",
+   "duration": 71,
+   "genres": [
+    "Animation"
+   ],
+   "directors": [
+    "Rasmus A. Sivertsen, Mette Tange"
+   ],
+   "cast": [],
+   "age": "0/0",
+   "url": "https://www.pathe.ch/de/films/auf-der-suche-nach-der-weihnachtswerkstatt-54872",
+   "isNew": false,
+   "order": 39,
+   "formats": [],
+   "languages": [
     "Deutsch"
    ],
-   "synopsis": "Nach dem phänomenalen weltweiten Erfolg von „Spider-Man: No Way Home“ schlägt SPIDER-MAN: BRAND NEW DAY ein völlig neues Kapitel für Peter Parker und Spider-Man auf. Vier Jahre sind seit den Ereignissen von „No Way Home“ vergangen. Peter ist nun erwachsen und lebt für sich allein, nachdem er sich freiwillig aus dem Leben und den Erinnerungen derer, die er liebt, ausgelöscht hat. Er bekämpft Verbrechen in einem New York, das ihn und seinen Namen nicht mehr kennt, und widmet sich ganz dem Schutz seiner Stadt: Spider-Man in Vollzeit. Doch mit den steigenden Anforderungen löst der Druck eine überr",
-   "imdb_id": "tt22084616",
-   "ext": {
-    "imdb": "8.0",
-    "rt": null,
-    "mc": "66",
-    "genre": "Action, Adventure",
-    "director": "Destin Daniel Cretton",
-    "runtime": "145 min"
-   }
+   "synopsis": "Als die Weihnachtswunschliste der neunjährigen Mari verschwindet und ein geheimnisvoller Handschuh auftaucht, macht sie sich gemeinsam mit ihrem weihnachtsmüden Vater und ihrer furchtlosen Grossmutter auf die Suche nach Santas Werkstatt. Doch während sie gegen Schneestürme kämpfen und einem entschlossenen Elf begegnen, der sie aufhalten will, entdecken sie, dass der wahre Zauber von Weihnachten nicht in den Geschenken liegt – sondern in der Liebe und im Glauben aneinander."
   },
   {
    "title": "A Woman Today",
    "slug": "a-woman-today-54593",
    "release": "2026-10-21",
    "poster": "https://media.pathe.ch/movie/alex/HO00005147/poster/lg/2/movie&uuid=5D2E0DC4-809E-4865-B7DE-05121B2789D8",
-   "backdrop": "https://media.pathe.ch/movie/mx/54593/lg/52/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54593/lg/53/media",
    "duration": 123,
    "genres": [
     "Drama"
@@ -1424,7 +1176,7 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/a-woman-today-54593",
    "isNew": false,
-   "order": 47,
+   "order": 40,
    "formats": [],
    "languages": [
     "Französisch"
@@ -1441,40 +1193,209 @@
    }
   },
   {
-   "title": "Hope",
-   "slug": "hope-54368",
-   "release": "2026-10-08",
-   "poster": "https://media.pathe.ch/movie/alex/HO00005117/poster/lg/1/movie&uuid=C83C6C85-1BDA-4E6E-B200-E8CF16EE8CE3",
-   "backdrop": "https://media.pathe.ch/movie/mx/54368/lg/69/media",
-   "duration": 157,
+   "title": "Bluey im Kino: „Küchenspass“- Kollektion ",
+   "slug": "bluey-im-kino-kuchenspass-kollektion-51548",
+   "release": "2026-03-26",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004947/poster/lg/1/movie&uuid=7F3539A6-96BA-4F06-8C4D-8DB0FF3C69EC",
+   "backdrop": "https://media.pathe.ch/movie/mx/51548/lg/268/media",
+   "duration": 55,
    "genres": [
-    "Horror"
+    "Animation",
+    "Family"
    ],
    "directors": [
-    "Na Hong-Jin"
+    "Joe Brumm"
+   ],
+   "cast": [],
+   "age": "0/0",
+   "url": "https://www.pathe.ch/de/films/bluey-im-kino-kuchenspass-kollektion-51548",
+   "isNew": false,
+   "order": 41,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "Bluey im Kino: „Küchenspass“-Kollektion ist ein einstündiges Vergnügen für alle Bluey-Fans, bestehend aus acht bereits ausgestrahlten Episoden aus den drei Staffeln der TV-Serie – alle rund um den Spass am Essen! Die Kollektion wird unvergessliche Momente wie Warten und Feines Restaurant zeigen und die Kochkünste der Heelers mit Folgen wie Omelette und Enten-Torte hervorheben. So viel Spass hat Kochen noch nie gemacht!"
+  },
+  {
+   "title": "Der frechste Troll der Welt",
+   "slug": "der-frechste-troll-der-welt-54637",
+   "release": "2026-11-05",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005158/poster/lg/1/movie&uuid=84A58F68-C802-429F-A0D8-288EB84B3377",
+   "backdrop": "https://media.pathe.ch/movie/mx/54637/lg/91/media",
+   "duration": 80,
+   "genres": [
+    "Animation"
+   ],
+   "directors": [
+    "Jan Rahbek"
    ],
    "cast": [
-    "Taylor Russell",
-    "Hwang Jung-Min",
-    "Zo In-Sung",
-    "Hoyeon ",
-    "Cameron Britton"
+    "Carl Løber Roliggaard",
+    "Dagmar Celinder Norrbom",
+    "Mille Lehfeldt"
    ],
-   "age": "16/16",
-   "url": "https://www.pathe.ch/de/films/hope-54368",
+   "age": "0/0",
+   "url": "https://www.pathe.ch/de/films/der-frechste-troll-der-welt-54637",
    "isNew": false,
-   "order": 48,
+   "order": 42,
+   "formats": [],
+   "languages": [
+    "Deutsch"
+   ],
+   "synopsis": "Der kleine Troll Billy ist im Quatsch machen einfach unschlagbar. Auf seiner Lieblings-Fledermaus fliegt er von einem Schlamassel in den nächsten. Eigentlich soll der kleine freche Billy der nächste Höhlenmeister werden und die Troll-Familie vor den fiesen Menschen beschützen. Aber stattdessen sehnt er sich nach gefährlichen Abenteuern. Neugierig und im Herzen mutig schleicht er sich ans Tageslicht in die streng verbotene Menschenwelt. Mit Schwester Bonny an seiner Seite entdeckt er jedoch, dass ihr Zuhause in grosser Gefahr schwebt. Die Menschen wollen einen gigantischen Freizeitpark darauf b"
+  },
+  {
+   "title": "Ducobu et le fantôme de Saint-Potache",
+   "slug": "ducobu-et-le-fantome-de-saint-potache-48322",
+   "release": "2026-10-07",
+   "poster": "https://media.pathe.ch/movie/alex/HO00004624/poster/lg/1/movie&uuid=84ACD0F3-0237-464A-B076-8794DEEC1183",
+   "backdrop": "https://media.pathe.ch/movie/mx/48322/lg/55/media",
+   "duration": 89,
+   "genres": [
+    "Comedy",
+    "Family"
+   ],
+   "directors": [
+    "Elie Semoun"
+   ],
+   "cast": [
+    "Frédérique Bel",
+    "Loïc Legendre",
+    "Elie Semoun",
+    "Emilie Caen",
+    "Gérard Jugnot"
+   ],
+   "age": "8/8",
+   "url": "https://www.pathe.ch/de/films/ducobu-et-le-fantome-de-saint-potache-48322",
+   "isNew": false,
+   "order": 43,
+   "formats": [],
+   "languages": [
+    "Französisch"
+   ],
+   "synopsis": "It’s Halloween, and Ducobu is back for an adventure filled with laughter and mystery! Professor Latouche and Miss Rateau move into a house haunted by the ghost of Anatole, the biggest dunce in the history of Saint-Potache School. This mischievous ghost will drag Ducobu, Léonie, their parents, and Kitrish into a series of hilarious and unexpected adventures. But beware: on Halloween, anything can happen!",
+   "imdb_id": "tt43622004",
+   "ext": {
+    "imdb": "4.7",
+    "rt": null,
+    "mc": null,
+    "genre": "Comedy",
+    "director": "Elie Semoun",
+    "runtime": "90 min"
+   }
+  },
+  {
+   "title": "Je so' pazzo",
+   "slug": "je-so-pazzo-56882",
+   "release": "2026-11-12",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005335/poster/lg/2/movie&uuid=24FDB84E-4E9E-4E4C-A38C-DBCC6372C9B0",
+   "backdrop": "https://media.pathe.ch/movie/mx/56882/lg/17/media",
+   "duration": 105,
+   "genres": [
+    "Biographical"
+   ],
+   "directors": [
+    "Nicola Prosatore"
+   ],
+   "cast": [
+    "Massimiliano Caiazzo",
+    "Paolo Aguzzi",
+    "Riccardo Betteghella",
+    "Leonardo Bianconi",
+    "Giuseppe Brunetti"
+   ],
+   "age": "12/14",
+   "url": "https://www.pathe.ch/de/films/je-so-pazzo-56882",
+   "isNew": false,
+   "order": 44,
+   "formats": [],
+   "languages": [
+    "Italienisch"
+   ],
+   "synopsis": "Der Film erzählt die Geschichte von Pino Daniele, der mit seiner Mischung aus Blues, Jazz und neapolitanischer Tradition die italienische Musik prägt. Von einer schwierigen Kindheit bis zum legendären Konzert 1981 begleitet er seinen Aufstieg. Dabei kämpft Pino mit familiären Konflikten, persönlichen Krisen und dem Wunsch nach Versöhnung mit seinem Vater und seinen Wurzeln.",
+   "imdb_id": "tt36411726",
+   "ext": {
+    "imdb": null,
+    "rt": null,
+    "mc": null,
+    "genre": "Biography",
+    "director": "Nicola Prosatore",
+    "runtime": "N/A"
+   }
+  },
+  {
+   "title": "Le roi du game",
+   "slug": "le-roi-du-game-54367",
+   "release": "2026-10-21",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005116/poster/lg/1/movie&uuid=E6F4727A-6D80-4D1C-9301-3404F37B9AEA",
+   "backdrop": "https://media.pathe.ch/movie/mx/54367/lg/73/media",
+   "duration": 89,
+   "genres": [
+    "Comedy"
+   ],
+   "directors": [
+    "Eric Judor"
+   ],
+   "cast": [
+    "Eric Judor",
+    "Alexandra Lamy",
+    "Liona Bordonaro",
+    "Hafid F. Benamar",
+    "Marc Labrèche"
+   ],
+   "age": "10/12",
+   "url": "https://www.pathe.ch/de/films/le-roi-du-game-54367",
+   "isNew": false,
+   "order": 45,
    "formats": [],
    "languages": [],
    "synopsis": "",
-   "imdb_id": "tt27369017",
+   "imdb_id": "tt44842464",
    "ext": {
-    "imdb": "6.9",
+    "imdb": null,
     "rt": null,
-    "mc": "66",
-    "genre": "Action, Drama, Horror",
-    "director": "Na Hong-jin",
-    "runtime": "160 min"
+    "mc": null,
+    "genre": "Comedy",
+    "director": "Eric Judor",
+    "runtime": "88 min"
+   }
+  },
+  {
+   "title": "Words of Love",
+   "slug": "words-of-love-52750",
+   "release": "2026-11-04",
+   "poster": "https://media.pathe.ch/movie/alex/HO00005064/poster/lg/2/movie&uuid=AC6FD18B-F4AA-43C9-99A0-D34A62F870AA",
+   "backdrop": "https://media.pathe.ch/movie/mx/52750/lg/164/media",
+   "duration": 94,
+   "genres": [
+    "Drama"
+   ],
+   "directors": [
+    "Rudi Rosenberg"
+   ],
+   "cast": [
+    "Hafsia Herzi",
+    "Nour Salam",
+    "Ella Bedoucha",
+    "Aïdan Djouadi",
+    "Mateo Danila"
+   ],
+   "age": "10/14",
+   "url": "https://www.pathe.ch/de/films/words-of-love-52750",
+   "isNew": false,
+   "order": 46,
+   "formats": [],
+   "languages": [],
+   "synopsis": "",
+   "imdb_id": "tt39969491",
+   "ext": {
+    "imdb": "5.9",
+    "rt": null,
+    "mc": null,
+    "genre": "Comedy, Drama",
+    "director": "Rudi Rosenberg",
+    "runtime": "95 min"
    }
   }
  ],
@@ -1484,7 +1405,7 @@
    "slug": "der-letzte-walsanger-49129",
    "release": "2026-02-12",
    "poster": "https://media.pathe.ch/movie/alex/HO00004715/poster/lg/1/movie&uuid=8FA9885D-DCDC-4BB3-8442-4029144C6418",
-   "backdrop": "https://media.pathe.ch/movie/mx/49129/lg/338/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/49129/lg/339/media",
    "duration": 99,
    "genres": [
     "Animation",
@@ -1503,7 +1424,7 @@
    "age": "0/0",
    "url": "https://www.pathe.ch/de/films/der-letzte-walsanger-49129",
    "isNew": false,
-   "order": 79,
+   "order": 71,
    "formats": [],
    "languages": [],
    "synopsis": "Der jugendliche Buckelwal Vincent (gesprochen von Flemming Stein) ist der verwaiste Sohn des letzten Walsängers. Da ihn der Verlust seiner Eltern stark belastet, ist er nicht in der Lage, ebenfalls die Ozeane mit seinem magischen Lied zu beschützen. Doch als der monströse Leviathan aus einem schmelzenden Eisberg ausbricht und sämtliches Meeresleben mit seiner giftigen Tinte bedroht, muss Vincent seine Ängste überwinden und sich auf eine gefährliche Reise begeben um sein eigenes Lied zu finden."
@@ -1513,7 +1434,7 @@
    "slug": "111-echoes-from-halifax-38775",
    "release": "2026-10-01",
    "poster": "https://media.pathe.ch/movie/alex/HO00004042/poster/lg/1/movie&uuid=795DA458-5593-4B3B-8C66-23BD9657E2D1",
-   "backdrop": "https://media.pathe.ch/movie/mx/38775/lg/68/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/38775/lg/69/media",
    "duration": 97,
    "genres": [
     "Drama"
@@ -1528,7 +1449,7 @@
    "age": "10/12",
    "url": "https://www.pathe.ch/de/films/111-echoes-from-halifax-38775",
    "isNew": false,
-   "order": 56,
+   "order": 48,
    "formats": [],
    "languages": [],
    "synopsis": "Am 2. September 1998 verändert der Absturz des Swissair-Flugs 111 vor der Küste von Halifax das Leben vieler Menschen für immer. Doch «111 – Echoes from Halifax» erzählt nicht die Katastrophe selbst – sondern ihre Nachwirkungen. Der Film folgt Menschen in verschiedenen Ländern, deren Schicksale durch das Unglück miteinander verbunden sind. Angehörige ringen um Gewissheit über ihre Liebsten, Helfende versuchen Trost zu spenden, und die Bewohner der kanadischen Küste werden mit den Spuren der Tragödie konfrontiert. Während die Zeit vergeht und Fragen offen bleiben, zeigt der Film, wie Trauer ver",
@@ -1547,7 +1468,7 @@
    "slug": "dua-56317",
    "release": "2026-10-15",
    "poster": "https://media.pathe.ch/movie/alex/HO00005304/poster/lg/1/movie&uuid=63C630FF-38CA-4717-8097-A2FF82CAA3AA",
-   "backdrop": "https://media.pathe.ch/movie/mx/56317/lg/39/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/56317/lg/40/media",
    "duration": 100,
    "genres": [
     "Drama"
@@ -1557,7 +1478,7 @@
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/dua-56317",
    "isNew": false,
-   "order": 83,
+   "order": 75,
    "formats": [],
    "languages": [],
    "synopsis": "Prishtina, Kosovo, Ende der 1990er Jahre. Während der Krieg näher rückt und die ethnischen Spannungen eskalieren, ringt die dreizehnjährige Dua darum, ihren Platz unter Gleichaltrigen – und in ihrem sich wandelnden Körper – zu finden. Nach einem Vorfall, der ihre Gemeinschaft erschüttert, gerät sie selbst ins Visier. Sie freundet sich mit der furchtlosen Maki an, die sie zu einer unerwarteten Form des Widerstands hinzieht. Zwischen allgegenwärtiger Gewalt und der wachsenden Bedrohung des Exils bleibt kaum Raum für leise, persönliche Aufbrüche.",
@@ -1576,7 +1497,7 @@
    "slug": "frank-louis-54510",
    "release": "2026-10-22",
    "poster": "https://media.pathe.ch/movie/alex/HO00005128/poster/lg/2/movie&uuid=FC4AD1EE-C045-4785-AED9-61D07C93D7B6",
-   "backdrop": "https://media.pathe.ch/movie/mx/54510/lg/52/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54510/lg/53/media",
    "duration": 96,
    "genres": [
     "Drama"
@@ -1594,7 +1515,7 @@
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/frank-louis-54510",
    "isNew": false,
-   "order": 99,
+   "order": 92,
    "formats": [],
    "languages": [],
    "synopsis": "Frank (Kingsley Ben-Adir), ein Mann in den Vierzigern, verbüsst eine lebenslange Haftstrafe - mit der Aussicht auf Bewährung. Um die brutale Realität des Gefängnisalltags zu ertragen, hat er sich emotional abgeschottet. Als er in eine neue Einrichtung verlegt wird, beschliesst er, sich den Gold Coats anzuschliessen – einem Programm, in dem Häftlinge an Alzheimer und Demenz erkrankte Mitinsassen zu betreuen - in der Hoffnung, durch dieses Engagement die Chancen auf Bewährung zu erhöhen. Die Arbeit ist fordernd, doch Frank entwickelt eine unerwartete Beziehung zu einem seiner Patienten, Louis Ne",
@@ -1613,7 +1534,7 @@
    "slug": "wildwood-54930",
    "release": "2026-11-05",
    "poster": "https://media.pathe.ch/movie/alex/HO00005193/poster/lg/2/movie&uuid=9A6F711B-96EC-498F-9F5E-0F3F76ECF120",
-   "backdrop": "https://media.pathe.ch/movie/mx/54930/lg/73/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54930/lg/74/media",
    "duration": 130,
    "genres": [
     "Animation"
@@ -1631,7 +1552,7 @@
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/wildwood-54930",
    "isNew": false,
-   "order": 46,
+   "order": 19,
    "formats": [],
    "languages": [
     "Deutsch"
@@ -1652,7 +1573,7 @@
    "slug": "gentle-monster-54388",
    "release": "2026-11-12",
    "poster": "https://media.pathe.ch/movie/alex/HO00005118/poster/lg/1/movie&uuid=D382696C-8946-429C-9ADE-86608E666835",
-   "backdrop": "https://media.pathe.ch/movie/mx/54388/lg/101/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54388/lg/102/media",
    "duration": 114,
    "genres": [
     "Drama"
@@ -1669,7 +1590,7 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/gentle-monster-54388",
    "isNew": false,
-   "order": 101,
+   "order": 94,
    "formats": [],
    "languages": [],
    "synopsis": "Die berühmte Pianistin Lucy zieht – trotz negativer Auswirkungen auf ihre Karriere – nach dem Burnout ihres Mannes Philip zusammen mit ihm und dem gemeinsamen Sohn aufs Land. Elsa, die als Sonderermittlerin bei der Polizei arbeitet, muss sich um ihren dementen Vater kümmern. Die beiden Frauen vereint ein Schicksal: Sie sehen sich umgeben von den dunklen Geheimnissen der Männer in ihrem Leben.",
@@ -1688,7 +1609,7 @@
    "slug": "de-ragebogefisch-51589",
    "release": "2026-11-19",
    "poster": "https://media.pathe.ch/movie/alex/HO00004960/poster/lg/2/movie&uuid=F966B37A-ABA3-495F-A79A-362B23CE35FE",
-   "backdrop": "https://media.pathe.ch/movie/mx/51589/lg/33/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/51589/lg/34/media",
    "duration": 70,
    "genres": [
     "Family"
@@ -1700,10 +1621,8 @@
    "age": "0/0",
    "url": "https://www.pathe.ch/de/films/de-ragebogefisch-51589",
    "isNew": true,
-   "order": 5,
-   "formats": [
-    "Kinderkino"
-   ],
+   "order": 7,
+   "formats": [],
    "languages": [
     "Deutsch"
    ],
@@ -1714,7 +1633,7 @@
    "slug": "la-bola-negra-54506",
    "release": "2026-11-19",
    "poster": "https://media.pathe.ch/movie/alex/HO00005127/poster/lg/1/movie&uuid=E8F383DA-DDCD-4E63-BF93-E06400154389",
-   "backdrop": "https://media.pathe.ch/movie/mx/54506/lg/5/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54506/lg/6/media",
    "duration": 160,
    "genres": [
     "Drama"
@@ -1732,7 +1651,7 @@
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/la-bola-negra-54506",
    "isNew": true,
-   "order": 124,
+   "order": 117,
    "formats": [],
    "languages": [],
    "synopsis": "Drei junge Männer in Spanien im 20. und 21. Jahrhundert, drei verschiedene Zeiten und Lebenswelten – und ein unsichtbares Band, das sie alle miteinander verwebt.Kantabrien 1937: Der Trompeter Sebastián dient als Soldat in einem Krankenhaus der franquistischen Armee, wo er den verwundeten republikanischen Kriegsgefangenen Rafael zu bewachen hat. Zwischen den beiden entsteht eine unverhoffte Anziehung, und Sebastián verzweifelt zunehmend an der Gewalt, die Rafael angetan wird.Granada 1932: Carlos, der Spross einer angesehenen Familie, bewirbt sich auf Druck seines Vaters um die Mitgliedschaft im",
@@ -1751,7 +1670,7 @@
    "slug": "a-good-little-soldier-52728",
    "release": "2026-11-25",
    "poster": "https://media.pathe.ch/movie/alex/HO00005062/poster/lg/1/movie&uuid=41A47E8B-FE67-4D7E-9D01-E110D6DFA2B7",
-   "backdrop": "https://media.pathe.ch/movie/mx/52728/lg/68/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/52728/lg/69/media",
    "duration": 100,
    "genres": [
     "Drama"
@@ -1768,7 +1687,7 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/a-good-little-soldier-52728",
    "isNew": true,
-   "order": 60,
+   "order": 52,
    "formats": [],
    "languages": [],
    "synopsis": "Follows Carla, a 43-year-old high-performing executive newly recruited as HR manager of a major insurer, tasked with rebuilding its brand in a corporate environment where vulnerability is not an asset."
@@ -1778,7 +1697,7 @@
    "slug": "paper-tiger-54609",
    "release": "2026-11-25",
    "poster": "https://media.pathe.ch/movie/alex/HO00005151/poster/lg/1/movie&uuid=977A258B-47AA-429E-ABFC-22B823B42268",
-   "backdrop": "https://media.pathe.ch/movie/mx/54609/lg/30/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54609/lg/31/media",
    "duration": 114,
    "genres": [
     "Drama"
@@ -1794,7 +1713,7 @@
    "age": "14/14",
    "url": "https://www.pathe.ch/de/films/paper-tiger-54609",
    "isNew": true,
-   "order": 172,
+   "order": 165,
    "formats": [],
    "languages": [],
    "synopsis": "Two brothers pursue the American Dream but get entangled in a dangerous Russian mafia scheme that terrorizes their family, testing their bond as betrayal becomes possible.",
@@ -1813,7 +1732,7 @@
    "slug": "congo-boy-56412",
    "release": "2026-11-26",
    "poster": "https://media.pathe.ch/movie/alex/HO00005312/poster/lg/1/movie&uuid=17962B12-0BB8-486F-BA69-426DD840C196",
-   "backdrop": "https://media.pathe.ch/movie/mx/56412/lg/33/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/56412/lg/34/media",
    "duration": 94,
    "genres": [
     "Drama"
@@ -1831,7 +1750,7 @@
    "age": "12/14",
    "url": "https://www.pathe.ch/de/films/congo-boy-56412",
    "isNew": false,
-   "order": 75,
+   "order": 67,
    "formats": [],
    "languages": [],
    "synopsis": "Bangui. Robert ist 17 Jahre alt und träumt von einer Karriere als Musiker. Doch er ist kein Zentralafrikaner wie die anderen. Er ist ein kongolesischer Flüchtling. Als seine Eltern verhaftet werden, muss er sich allein um seine vier jüngeren Geschwister kümmern. Er jongliert zwischen Gelegenheitsjobs und der Vorbereitung auf das Abitur, während er gleichzeitig den Milizen ausweicht, die in der Stadt Terror verbreiten. Eines Tages erfährt er, dass ein Musikwettbewerb veranstaltet wird. Der Sieg wird zu seiner einzigen Hoffnung. Mit entwaffnender Ehrlichkeit und einer Dramaturgie, die nur das Le",
@@ -1850,7 +1769,7 @@
    "slug": "enjoy-your-stay-54627",
    "release": "2026-11-26",
    "poster": "https://media.pathe.ch/movie/alex/HO00005154/poster/lg/1/movie&uuid=F22CD796-CBB6-4B5F-B6A6-E0A887CDCDAD",
-   "backdrop": "https://media.pathe.ch/movie/mx/54627/lg/86/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/54627/lg/87/media",
    "duration": 100,
    "genres": [
     "Drama"
@@ -1867,7 +1786,7 @@
    "age": "14/16",
    "url": "https://www.pathe.ch/de/films/enjoy-your-stay-54627",
    "isNew": true,
-   "order": 41,
+   "order": 29,
    "formats": [],
    "languages": [
     "Englisch"
@@ -1888,7 +1807,7 @@
    "slug": "focker-in-law-48729",
    "release": "2026-11-26",
    "poster": "https://media.pathe.ch/movie/alex/HO00004667/poster/lg/1/movie&uuid=0E4E065D-BE98-4F07-9B11-CF088D0CF20E",
-   "backdrop": "https://media.pathe.ch/movie/mx/48729/lg/25/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/48729/lg/26/media",
    "duration": 105,
    "genres": [
     "Comedy"
@@ -1906,7 +1825,7 @@
    "age": "6/6",
    "url": "https://www.pathe.ch/de/films/focker-in-law-48729",
    "isNew": false,
-   "order": 98,
+   "order": 91,
    "formats": [],
    "languages": [],
    "synopsis": "Endlich werden Comedy-Ikone und Emmy-Preisträger Ben Stiller und der zweifache Oscar®-Preisträger Robert De Niro wiedervereint! Neben der Oscar® nominierten Grammy-Gewinnerin Ariana Grande kitzeln Owen Wilson, Blythe Danner, Teri Polo, Skyler Gisondo, Beanie Feldstein und Eduardo Franco die Lachmuskeln Ihrer Gäste.",
@@ -1935,7 +1854,7 @@
    "age": "16/16",
    "url": "https://www.pathe.ch/de/films/inglourious-basterds-55733",
    "isNew": false,
-   "order": 110,
+   "order": 103,
    "formats": [],
    "languages": [],
    "synopsis": "Im ersten Jahr der deutschen Besatzung Frankreichs. Shosanna Dreyfus muss mit ansehen wie der Nazi Oberst Hans Landa ihre gesamte Familie ermordet. Shosanna gelingt es nur knapp, zu entkommen. Sie flieht nach Paris und legt sich dort eine neue Identität als Besitzerin eines Kinos zu. Anderswo in Europa stellt Leutnant Aldo Raine eine Gruppe bestehend aus jüdisch amerikanischen Soldaten zusammen, die flinke, schockierende Vergeltungsschläge begehen soll. Später werden sie dem Feind als „Die Bastarde“ ein Begriff sein. Raines Truppe kontaktiert die deutsche Schauspielerin und Geheimagentin Bridg",
@@ -1954,7 +1873,7 @@
    "slug": "i-play-rocky-51667",
    "release": "2026-11-26",
    "poster": "https://media.pathe.ch/movie/alex/HO00004975/poster/lg/1/movie&uuid=2154BBF8-4965-463D-809A-5A0AD69862E6",
-   "backdrop": "https://media.pathe.ch/movie/mx/51667/lg/55/media",
+   "backdrop": "https://media.pathe.ch/movie/mx/51667/lg/56/media",
    "duration": 128,
    "genres": [
     "Biographical"
@@ -1972,7 +1891,7 @@
    "age": "12/12",
    "url": "https://www.pathe.ch/de/films/i-play-rocky-51667",
    "isNew": false,
-   "order": 112,
+   "order": 105,
    "formats": [],
    "languages": [],
    "synopsis": "Vom Oscar®-prämierten Regisseur Peter Farrelly (Green Book) kommt die unglaubliche wahre Geschichte hinter einem der grössten Kino-Hits aller Zeiten.Der Film erzählt die elektrisierende wahre Geschichte eines unbekannten Schauspielers, der unbeirrbar daran glaubt, dass er nicht nur dazu bestimmt ist, ROCKY zu schreiben, sondern auch selbst Rocky Balboa zu verkörpern. Trotz zahlloser Rückschläge und scheinbar unüberwindbarer Widerstände hält der junge Sylvester Stallone an seiner Vision fest – und schreibt damit Filmgeschichte.",
