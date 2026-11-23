@@ -121,22 +121,17 @@ input.u::-webkit-slider-thumb{background:#8e8e93}
 
 /* Freunde */
 #friends{--c:#ff6482}
-.story{display:grid;grid-template-columns:1fr;margin-top:40px}
-@media(min-width:900px){.story{grid-template-columns:1fr 1fr;gap:40px}}
-.stage{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;z-index:1}
-@media(max-width:899px){.stage{height:64svh;top:0;z-index:3;padding-top:calc(env(safe-area-inset-top) + 56px);align-items:flex-start;background:linear-gradient(#000 88%,rgba(0,0,0,0))}.stage .phone{--w:min(230px,52vw)}.steps{z-index:1}}
-@media(min-width:900px){.stage{order:2}.stage .phone{--w:320px}}
-.steps{position:relative;z-index:2}
-.step{min-height:80svh;display:flex;flex-direction:column;justify-content:center;padding:20px 0;opacity:.25;transition:opacity .6s var(--ease)}
-.step.on{opacity:1}
-@media(max-width:899px){.step{min-height:58svh;justify-content:flex-end;padding:0 0 6svh}.step:first-child{min-height:30svh}.step:last-child{padding-bottom:20svh}.step h3{font-size:26px}}
-.step .n{font-size:14px;font-weight:700;color:var(--c);letter-spacing:.04em}
-.step h3{font-size:clamp(28px,3.4vw,40px);margin:8px 0 10px}
-.step p{color:var(--t2);margin:0;max-width:440px}
-.float{position:absolute;z-index:4;width:250px;background:rgba(28,28,30,.82);-webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);border:.6px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 30px 70px rgba(0,0,0,.6);opacity:0;transform:translateY(20px) scale(.96);transition:opacity .6s var(--ease),transform .6s var(--ease);pointer-events:none}
-.float.on{opacity:1;transform:none}
-.stage .float{left:50%;bottom:2%;margin-left:-125px}
-@media(min-width:900px){.stage .float{left:auto;right:calc(50% + 125px);margin:0;bottom:14%}}
+.bento{display:grid;gap:18px;margin-top:56px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.bx.wide{grid-column:1/-1}}
+@media(min-width:1040px){.bento{grid-template-columns:repeat(3,minmax(0,1fr))}.bx.wide{grid-column:span 2;grid-row:span 1}}
+.bx{background:var(--grp);border:.6px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:22px;transition:transform .5s var(--ease),border-color .5s}
+.bx:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.2)}
+.bx .n{font-size:13px;font-weight:700;color:var(--c)}
+.bx h3{font-size:24px;margin:6px 0 8px}
+.bx p{color:var(--t2);font-size:15px;margin:0}
+.bx .w{margin-top:auto;background:rgba(0,0,0,.35);border:.6px solid var(--line);border-radius:20px;padding:16px}
+@media(min-width:760px){.bx.wide{flex-direction:row;align-items:center;gap:30px}.bx.wide .txt{flex:1}.bx.wide .w{flex:1.1;margin:0}}
+.note{color:var(--t3);font-size:13px;text-align:center;margin:18px 0 0}
 .f-link{display:flex;gap:12px;align-items:center}
 .f-link img{width:64px;height:64px;background:#fff;border-radius:10px;padding:5px}
 .f-link b{display:block;font-size:15px}.f-link small{color:var(--t2);font-size:12.5px;word-break:break-all}
@@ -149,12 +144,12 @@ input.u::-webkit-slider-thumb{background:#8e8e93}
 .bars div{display:grid;grid-template-columns:78px 1fr 30px;align-items:center;gap:8px;font-size:12.5px;color:var(--t2)}
 .bars i{height:6px;border-radius:6px;background:rgba(120,120,128,.25);position:relative;overflow:hidden}
 .bars i::after{content:"";position:absolute;inset:0;width:var(--v);background:var(--bc,var(--ok));border-radius:6px;transform-origin:left;transform:scaleX(0);transition:transform 1s var(--ease) .2s}
-.float.on .bars i::after{transform:scaleX(1)}
+.bx.in .bars i::after{transform:scaleX(1)}
 .bars em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:#fff}
 .who{display:grid;gap:9px}
 .who div{display:flex;align-items:center;gap:10px;font-size:14px}
 .who .ava{width:28px;height:28px;font-size:13px;border:0}
-.who span{flex:1}.who b{font-variant-numeric:tabular-nums}
+.who span:not(.ava){flex:1}.who .ava{flex:none}.who b{font-variant-numeric:tabular-nums}
 .f-t{font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
 
 /* Detailkarten */
@@ -293,36 +288,26 @@ footer a{color:var(--t2)}
 
 <!-- Freunde -->
 <section class="sec" id="friends"><div class="wrap">
-  <div class="center">
+  <div>
     <div class="rv"><span class="eyebrow" data-l="de">Mit Freunden</span><span class="eyebrow" data-l="en">With friends</span></div>
     <h2 class="rv"><span data-l="de">Zusammen ist es besser.</span><span data-l="en">Better together.</span></h2>
     <p class="lede rv"><span data-l="de">Screenreview ist für Freundesgruppen gemacht. Für Filmabende, Diskussionen danach und die Frage, wem man trauen kann.</span><span data-l="en">Screenreview is made for groups of friends. For movie nights, the discussion afterwards and knowing whose taste to trust.</span></p>
   </div>
-  <div class="story">
-    <div class="stage">
-      <div class="phone" id="fPhone"><div class="island"></div><div class="scr">
-        <img src="img/screens/mine-430.webp" srcset="img/screens/mine-430.webp 430w,img/screens/mine-860.webp 860w" sizes="320px" alt="" loading="lazy" data-s="0">
-        <img src="img/screens/friends-430.webp" srcset="img/screens/friends-430.webp 430w,img/screens/friends-860.webp 860w" sizes="320px" alt="" loading="lazy" data-s="1" style="opacity:0">
-        <img src="img/screens/detail-430.webp" srcset="img/screens/detail-430.webp 430w,img/screens/detail-860.webp 860w" sizes="320px" alt="" loading="lazy" data-s="2" style="opacity:0">
-        <img src="img/screens/discover-430.webp" srcset="img/screens/discover-430.webp 430w,img/screens/discover-860.webp 860w" sizes="320px" alt="" loading="lazy" data-s="3" style="opacity:0">
-        <img src="img/screens/top-430.webp" srcset="img/screens/top-430.webp 430w,img/screens/top-860.webp 860w" sizes="320px" alt="" loading="lazy" data-s="4" style="opacity:0">
-      </div></div>
-      <div class="float" data-f="0"><div class="f-link"><img src="img/qr-testflight.svg" alt=""><div><b data-l="de">Dein Freundeslink</b><b data-l="en">Your friend link</b><small>screenreview.ch/add?u=lias</small></div></div></div>
-      <div class="float" data-f="1"><div class="f-t" data-l="de">Dune: Part Two · Freunde</div><div class="f-t" data-l="en">Dune: Part Two · Friends</div>
-        <div class="who"><div><span class="ava">A</span><span>alex</span><b style="color:var(--ok)">9.5</b></div><div><span class="ava">J</span><span>jonas</span><b style="color:var(--ok)">8.5</b></div><div><span class="ava">B</span><span>ben</span><b style="color:#9ed65c">7.5</b></div></div></div>
-      <div class="float" data-f="2"><div class="match"><span class="ava">L</span><span class="ava">A</span><div><b id="pct">0 %</b><small data-l="de">Geschmacks-Match mit alex</small><small data-l="en">Taste match with alex</small></div></div>
-        <div class="bars"><div><span>Story</span><i style="--v:92%"></i><em>92</em></div><div><span>Cast</span><i style="--v:88%"></i><em>88</em></div><div><span data-l="de">Kamera</span><span data-l="en">Visuals</span><i style="--v:95%"></i><em>95</em></div><div><span data-l="de">Musik</span><span data-l="en">Music</span><i style="--v:71%;--bc:var(--mid)"></i><em>71</em></div><div><span data-l="de">Wirkung</span><span data-l="en">Impact</span><i style="--v:84%"></i><em>84</em></div></div></div>
-      <div class="float" data-f="3"><div class="f-t">Saturday Movienight</div><div class="who"><div><span class="ava">L</span><span data-l="de">Lias fügt <b>Sinners</b> hinzu</span><span data-l="en">Lias added <b>Sinners</b></span></div><div><span class="ava">J</span><span data-l="de">jonas fügt <b>Aftersun</b> hinzu</span><span data-l="en">jonas added <b>Aftersun</b></span></div><div><span class="ava">B</span><span data-l="de">ben will <b>Past Lives</b> sehen</span><span data-l="en">ben wants to see <b>Past Lives</b></span></div></div></div>
-      <div class="float" data-f="4"><div class="f-t" data-l="de">Strengste Kritiker</div><div class="f-t" data-l="en">Harshest critics</div><div class="bars"><div><span>ben</span><i style="--v:64%;--bc:var(--mid)"></i><em>6.4</em></div><div><span>Lias</span><i style="--v:72%;--bc:#9ed65c"></i><em>7.2</em></div><div><span>alex</span><i style="--v:81%"></i><em>8.1</em></div><div><span>jonas</span><i style="--v:86%"></i><em>8.6</em></div></div></div>
-    </div>
-    <div class="steps">
-      <div class="step" data-i="0"><div class="box"><span class="n">01</span><h3><span data-l="de">Verbinden in Sekunden</span><span data-l="en">Connect in seconds</span></h3><p><span data-l="de">Teile deinen Freundeslink oder lass deinen QR-Code scannen. Die Anfrage ist sofort unterwegs, auch Kontakte kannst du direkt einladen.</span><span data-l="en">Share your friend link or let someone scan your QR code. The request is on its way instantly, and you can invite contacts directly.</span></p></div></div>
-      <div class="step" data-i="1"><div class="box"><span class="n">02</span><h3><span data-l="de">Sehen, wer was bewertet hat</span><span data-l="en">See who rated what</span></h3><p><span data-l="de">Bei jedem Titel siehst du die Noten deiner Freunde und wie weit ihr auseinanderliegt.</span><span data-l="en">For every title you see your friends' scores and how far apart you are.</span></p></div></div>
-      <div class="step" data-i="2"><div class="box"><span class="n">03</span><h3><span data-l="de">Euer Geschmacks-Match</span><span data-l="en">Your taste match</span></h3><p><span data-l="de">Wie ähnlich ist euer Geschmack, Kategorie für Kategorie? Jetzt weisst du, wessen Tipps du trauen kannst.</span><span data-l="en">How similar is your taste, category by category? Now you know whose tips to trust.</span></p></div></div>
-      <div class="step" data-i="3"><div class="box"><span class="n">04</span><h3><span data-l="de">Gemeinsame Listen</span><span data-l="en">Shared lists</span></h3><p><span data-l="de">Plant den nächsten Filmabend zusammen. Alle fügen Titel hinzu, und ihr seht, was ihr beide noch schauen wollt.</span><span data-l="en">Plan the next movie night together. Everyone adds titles, and you see what you both still want to watch.</span></p></div></div>
-      <div class="step" data-i="4"><div class="box"><span class="n">05</span><h3><span data-l="de">Wer ist am strengsten?</span><span data-l="en">Who's the harshest critic?</span></h3><p><span data-l="de">Vergleicht eure Statistiken als Gruppe: strengste Noten, Lieblingsgenres und wer am meisten schaut.</span><span data-l="en">Compare your stats as a group: harshest scores, favorite genres and who watches the most.</span></p></div></div>
-    </div>
+  <div class="bento">
+    <article class="bx wide rv"><div class="txt"><span class="n" data-l="de">Geschmacks-Match</span><span class="n" data-l="en">Taste match</span><h3><span data-l="de">Wem kannst du trauen?</span><span data-l="en">Whose taste can you trust?</span></h3><p><span data-l="de">Wie ähnlich euer Geschmack ist, Kategorie für Kategorie. Jetzt weisst du, wessen Tipps sich lohnen.</span><span data-l="en">How similar your taste is, category by category. Now you know whose tips are worth it.</span></p></div>
+      <div class="w"><div class="match"><span class="ava">L</span><span class="ava">A</span><div><b class="pct" data-to="87">0 %</b><small data-l="de">Geschmacks-Match mit alex</small><small data-l="en">Taste match with alex</small></div></div>
+        <div class="bars"><div><span>Story</span><i style="--v:92%"></i><em>92</em></div><div><span>Cast</span><i style="--v:88%"></i><em>88</em></div><div><span data-l="de">Kamera</span><span data-l="en">Visuals</span><i style="--v:95%"></i><em>95</em></div><div><span data-l="de">Musik</span><span data-l="en">Music</span><i style="--v:71%;--bc:var(--mid)"></i><em>71</em></div><div><span data-l="de">Wirkung</span><span data-l="en">Impact</span><i style="--v:84%"></i><em>84</em></div></div></div></article>
+    <article class="bx rv" style="--d:.06s"><div class="txt"><span class="n" data-l="de">Verbinden</span><span class="n" data-l="en">Connect</span><h3><span data-l="de">In Sekunden befreundet</span><span data-l="en">Friends in seconds</span></h3><p><span data-l="de">Freundeslink teilen oder QR-Code scannen lassen. Auch Kontakte kannst du direkt einladen.</span><span data-l="en">Share your friend link or let someone scan your QR code. You can invite contacts directly, too.</span></p></div>
+      <div class="w"><div class="f-link"><img src="img/qr-testflight.svg" alt=""><div><b data-l="de">Dein Freundeslink</b><b data-l="en">Your friend link</b><small>screenreview.ch/add?u=lias</small></div></div></div></article>
+    <article class="bx rv"><div class="txt"><span class="n" data-l="de">Bewertungen</span><span class="n" data-l="en">Ratings</span><h3><span data-l="de">Sehen, wer was bewertet hat</span><span data-l="en">See who rated what</span></h3><p><span data-l="de">Bei jedem Titel die Noten deiner Freunde und wie weit ihr auseinanderliegt.</span><span data-l="en">For every title, your friends' scores and how far apart you are.</span></p></div>
+      <div class="w"><div class="f-t" data-l="de">Dune: Part Two · Freunde</div><div class="f-t" data-l="en">Dune: Part Two · Friends</div>
+        <div class="who"><div><span class="ava">A</span><span>alex</span><b style="color:var(--ok)">9.5</b></div><div><span class="ava">J</span><span>jonas</span><b style="color:var(--ok)">8.5</b></div><div><span class="ava">B</span><span>ben</span><b style="color:#9ed65c">7.5</b></div></div></div></article>
+    <article class="bx rv" style="--d:.06s"><div class="txt"><span class="n" data-l="de">Gemeinsame Listen</span><span class="n" data-l="en">Shared lists</span><h3><span data-l="de">Der nächste Filmabend</span><span data-l="en">The next movie night</span></h3><p><span data-l="de">Alle fügen Titel hinzu, und ihr seht, was ihr zusammen noch schauen wollt.</span><span data-l="en">Everyone adds titles, and you see what you still want to watch together.</span></p></div>
+      <div class="w"><div class="f-t">Saturday Movienight</div><div class="who"><div><span class="ava">L</span><span data-l="de">Lias fügt <b>Sinners</b> hinzu</span><span data-l="en">Lias added <b>Sinners</b></span></div><div><span class="ava">J</span><span data-l="de">jonas fügt <b>Aftersun</b> hinzu</span><span data-l="en">jonas added <b>Aftersun</b></span></div><div><span class="ava">B</span><span data-l="de">ben will <b>Past Lives</b> sehen</span><span data-l="en">ben wants to see <b>Past Lives</b></span></div></div></div></article>
+    <article class="bx rv" style="--d:.12s"><div class="txt"><span class="n" data-l="de">Gruppenstatistik</span><span class="n" data-l="en">Group stats</span><h3><span data-l="de">Wer ist am strengsten?</span><span data-l="en">Who's the harshest critic?</span></h3><p><span data-l="de">Strengste Noten, Lieblingsgenres und wer am meisten schaut.</span><span data-l="en">Harshest scores, favorite genres and who watches the most.</span></p></div>
+      <div class="w"><div class="f-t" data-l="de">Schnitt der Gruppe</div><div class="f-t" data-l="en">Group average</div><div class="bars"><div><span>ben</span><i style="--v:64%;--bc:var(--mid)"></i><em>6.4</em></div><div><span>Lias</span><i style="--v:72%;--bc:#9ed65c"></i><em>7.2</em></div><div><span>alex</span><i style="--v:81%"></i><em>8.1</em></div><div><span>jonas</span><i style="--v:86%"></i><em>8.6</em></div></div></div></article>
   </div>
+  <p class="note rv" data-l="de">Beispielwerte</p><p class="note rv" data-l="en">Sample values</p>
 </div></section>
 
 <!-- Detailkarten -->
@@ -521,22 +506,9 @@ footer a{color:var(--t2)}
   new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting && !demoDone) { demoDone = true; playDemo(); o.disconnect(); } }), { threshold: .45 }).observe($('.rcard'));
   $('#reset').addEventListener('click', () => { stopDemo(); vals.fill(null); sliders.forEach(s => s.paint()); total.textContent = '–'; update(); $('#c0').focus({ preventScroll: true }); });
 
-  // Freunde: Bildschirm und Karte wechseln mit dem Schritt
-  const screens = $$('#fPhone img'), floats = $$('#friends .float'), steps = $$('.step');
-  let cur = -1;
-  const show = i => {
-    if (i === cur) return; cur = i;
-    screens.forEach(im => { const on = +im.dataset.s === i; im.style.opacity = on ? 1 : 0; im.style.transform = on ? 'none' : 'scale(1.04)'; });
-    floats.forEach(f => f.classList.toggle('on', +f.dataset.f === i));
-    steps.forEach(s => s.classList.toggle('on', +s.dataset.i === i));
-    if (i === 2) { const p = $('#pct'); p.textContent = '0 %'; countTo(p, 87, 0, ' %'); }
-  };
-  // Breit: Schritt in der Bildmitte. Schmal: Text im freien Bereich unter dem iPhone.
-  const narrow = matchMedia('(max-width: 899px)').matches;
-  const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) show(+(e.target.closest('.step').dataset.i)); }),
-    narrow ? { rootMargin: '-64% 0px 0px 0px', threshold: .5 } : { rootMargin: '-45% 0px -45% 0px' });
-  steps.forEach(s => so.observe(narrow ? s.querySelector('.box') : s));
-  show(0);
+  // Freunde: Geschmacks-Match zählt hoch, sobald die Kachel sichtbar ist
+  const po = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const p = $('.pct', e.target); countTo(p, +p.dataset.to, 0, ' %'); po.unobserve(e.target); } }), { threshold: .5 });
+  $$('.bx').forEach(b => { if ($('.pct', b)) po.observe(b); });
 
   // Detailkarten: mit der Maus ziehen, Pfeile
   const rail = $('#rail');
