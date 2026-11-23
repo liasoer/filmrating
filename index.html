@@ -211,16 +211,6 @@ input.u::-webkit-slider-thumb{background:#8e8e93}
 .stat i::after{content:"";display:block;height:100%;width:var(--v);background:var(--bc,#e9c46a);transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease) .2s}
 .stats.on .stat i::after{transform:scaleX(1)}
 
-/* Top-Liste und Serien */
-.two{display:grid;gap:60px;margin-top:56px}
-@media(min-width:900px){.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:50px}}
-.two h3{margin-bottom:6px}.two p{color:var(--t2);margin:0 0 22px;font-size:16px}
-.ep{display:block;margin-top:2px}
-.ep i{display:block;height:6px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
-.ep i::after{content:"";display:block;height:100%;width:var(--v);background:var(--bc,var(--tint));transform-origin:left;transform:scaleX(0);transition:transform 1.4s var(--ease) var(--rd,0s)}
-.on .ep i::after{transform:scaleX(1)}
-.done{color:var(--ok);font-weight:700;font-size:15px}
-
 /* Privat */
 .trio{display:grid;gap:34px;margin-top:50px}
 @media(min-width:760px){.trio{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -372,13 +362,14 @@ footer a{color:var(--t2)}
   <div class="tilt rv" id="tilt"><div class="phone"><div class="island"></div><div class="scr"><img src="img/screens/pass-430.webp" srcset="img/screens/pass-430.webp 430w,img/screens/pass-860.webp 860w" sizes="300px" alt="" loading="lazy"></div><div class="gloss"></div></div></div>
 </div></section>
 
-<!-- Top-Liste und Serien -->
-<section class="sec"><div class="wrap">
-  <h2 class="rv"><span data-l="de">Und noch mehr.</span><span data-l="en">And there's more.</span></h2>
-  <div class="two">
-    <div><h3 class="rv"><span data-l="de">Die Top-Liste</span><span data-l="en">The top list</span></h3><p class="rv"><span data-l="de">Der Schnitt aller Bewertungen, anonym. Für diese Woche, diesen Monat oder immer.</span><span data-l="en">The average of all ratings, anonymous. For this week, this month or all time.</span></p><div class="rows" id="topRows"></div></div>
-    <div><h3 class="rv"><span data-l="de">Serien im Blick</span><span data-l="en">Keep up with shows</span></h3><p class="rv"><span data-l="de">Folgen abhaken und erinnert werden, wenn eine neue erscheint.</span><span data-l="en">Check off episodes and get notified when a new one is out.</span></p><div class="rows" id="showRows"></div></div>
+<!-- Top-Liste -->
+<section class="sec" id="top-list" style="--c:var(--low)"><div class="wrap split flip">
+  <div>
+    <span class="eyebrow rv" data-l="de">Top-Liste</span><span class="eyebrow rv" data-l="en">Top list</span>
+    <h2 class="rv"><span data-l="de">Was alle lieben.</span><span data-l="en">What everyone loves.</span></h2>
+    <p class="lede rv"><span data-l="de">Der Schnitt aller Bewertungen in Screenreview, anonym. Für diese Woche, diesen Monat oder immer.</span><span data-l="en">The average of all ratings on Screenreview, anonymous. For this week, this month or all time.</span></p>
   </div>
+  <div class="rows" id="topRows"></div>
 </div></section>
 
 <!-- Privat -->
@@ -465,13 +456,6 @@ footer a{color:var(--t2)}
     { p: 'oppenheimer', t: 'Oppenheimer', s: '2023', imdb: '8.2', rt: '93%', mc: 90, v: 9.1, tc: '#632a0d', rank: 5 }
   ];
   $('#topRows').innerHTML = top.map((m, i) => row(m, i)).join('');
-  const ep = (txt, v, c) => `<span class="ep"><span style="color:var(--t2);font-size:13.5px">${txt}</span><i style="--v:${v}%;--bc:${c}"></i></span>`;
-  const shows = [
-    { p: 'severance', t: 'Severance', s: L === 'de' ? 'Staffel 2' : 'Season 2', tc: '#21414e', x: ep(L === 'de' ? '8 von 10 Folgen' : '8 of 10 episodes', 80, 'var(--tint)'), right: '<span class="cp">S2E9</span>' },
-    { p: 'the-bear', t: 'The Bear', s: L === 'de' ? 'Staffel 4' : 'Season 4', tc: '#283347', x: ep(L === 'de' ? '3 von 10 Folgen' : '3 of 10 episodes', 30, 'var(--tint)'), right: `<span class="cp">${L === 'de' ? 'Neu' : 'New'}</span>` },
-    { p: 'andor', t: 'Andor', s: L === 'de' ? 'Staffel 2' : 'Season 2', tc: '#463829', x: ep(L === 'de' ? 'Alle 12 Folgen' : 'All 12 episodes', 100, 'var(--ok)'), right: '<span class="done">✓</span>' }
-  ];
-  $('#showRows').innerHTML = shows.map((m, i) => row(m, i, m.x)).join('');
 
   // Einblenden und Animationen beim Erscheinen
   const fillRing = (r, delay = 0) => {
