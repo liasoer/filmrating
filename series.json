@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:30+00:00",
+ "updated": "2026-11-24T14:48+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -15,8 +15,8 @@
     "Fantasy"
    ],
    "season": 3,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-24",
+   "next": null,
    "premiere": false,
    "isNew": false,
    "summary": "Set thousands of years before the events of The Lord of the Rings, this epic drama follows an ensemble cast of characters, both familiar and new, as they confront the long-feared re-emergence of evil to Middle-earth.",
@@ -26,10 +26,10 @@
     "tvm": 7.1,
     "platform": "Prime Video",
     "imdb": "6.8",
-    "seasons": "3",
+    "seasons": "4",
     "genre": "Action, Adventure, Drama"
    },
-   "votes": 445576
+   "votes": 451631
   },
   {
    "title": "Dexter: Resurrection",
@@ -86,7 +86,7 @@
     "seasons": "3",
     "genre": "Crime, Drama"
    },
-   "votes": 131558
+   "votes": 147224
   },
   {
    "title": "Tulsa King",
@@ -172,7 +172,7 @@
     "seasons": "7",
     "genre": "Biography, Drama, History"
    },
-   "votes": 72475
+   "votes": 73001
   },
   {
    "title": "The Gilded Age",
@@ -232,6 +232,33 @@
    "votes": 54328
   },
   {
+   "title": "The Devil's Hour",
+   "tvmaze_id": 53882,
+   "imdb_id": "tt14379784",
+   "platform": "Prime Video",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1629292.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1629292.jpg",
+   "genres": [
+    "Thriller"
+   ],
+   "season": 3,
+   "latest": null,
+   "next": "2026-12-04",
+   "premiere": true,
+   "isNew": false,
+   "summary": "The Devil's Hour tells the story of Lucy who wakes up by terrifying visions every night at exactly 3:33 AM, in the middle of the so-called devil's hour between 3 AM and 4 AM. Her eight-year-old son is withdrawn and emotionless. Her mother speaks to empty chairs. Her house is haunted by the echoes of a life that isn't her own. When Lucy's name is inexplicably connected to a string of brutal murders in the area, the answers that have evaded her all these years will finally come into focus and Lucy's nightmares will draw her into a hunt for a serial killer in a world where nothing is as it seems.",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Devil%27s%20Hour",
+   "ext": {
+    "kind": "series",
+    "tvm": 6.8,
+    "platform": "Prime Video",
+    "imdb": "7.6",
+    "seasons": "2",
+    "genre": "Drama, Mystery, Sci-Fi"
+   },
+   "votes": 34450
+  },
+  {
    "title": "Shetland",
    "tvmaze_id": 1852,
    "imdb_id": "tt2396135",
@@ -255,7 +282,7 @@
     "tvm": 7.9,
     "platform": "BBC",
     "imdb": "8.3",
-    "seasons": "10",
+    "seasons": "11",
     "genre": "Crime, Drama, Mystery"
    },
    "votes": 32828
@@ -367,7 +394,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Hunting%20Wives",
    "ext": {
     "kind": "series",
-    "tvm": 6,
+    "tvm": 5.9,
     "platform": "Netflix",
     "imdb": "6.8",
     "seasons": "2",
@@ -451,7 +478,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Lowdown",
    "ext": {
     "kind": "series",
-    "tvm": 6.5,
+    "tvm": 6.4,
     "platform": "FX",
     "imdb": "7.3",
     "seasons": "2",
@@ -496,8 +523,8 @@
     "Legal"
    ],
    "season": 4,
-   "latest": "2026-11-17",
-   "next": "2026-11-24",
+   "latest": "2026-11-24",
+   "next": null,
    "premiere": false,
    "isNew": false,
    "summary": "In Reasonable Doubt, you'll judge Jax Stewart for her questionable ethics and wild interpretations of the law... until you're the one in trouble. Then you'll see her for what she is: the most brilliant and fearless defense attorney in Los Angeles who bucks the justice system at every chance she gets.",
@@ -566,6 +593,33 @@
     "genre": "Documentary, Comedy, Game-Show"
    },
    "votes": 2561
+  },
+  {
+   "title": "It's Florida, Man",
+   "tvmaze_id": 80035,
+   "imdb_id": "tt33745056",
+   "platform": "HBO Max",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/600/1501487.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/600/1501487.jpg",
+   "genres": [
+    "Comedy"
+   ],
+   "season": 3,
+   "latest": null,
+   "next": "2026-12-04",
+   "premiere": true,
+   "isNew": false,
+   "summary": "This irreverent late-night comedy series brings to life unbelievable ripped-from-the-headlines tales of the Sunshine State - straight from the people who live there. Featuring interviews from everyday Floridians and playful recreations starring a rotating cast of actors and comedians, including Anna Faris, Jake Johnson, Randall Park, Juliette Lewis, Sam Richardson, Ego Nwodim and more, this hilarious and outrageous series sheds light on the viral, wacky and weird. Covering diverse topics - from mermaids to witches, extreme fantasies and feral bunnies with equal parts humor and heart, IT'S FLOR",
+   "url": "https://www.justwatch.com/ch/Suche?q=It%27s%20Florida%2C%20Man",
+   "ext": {
+    "kind": "series",
+    "tvm": 4.8,
+    "platform": "HBO Max",
+    "imdb": "6.4",
+    "seasons": "2",
+    "genre": "Documentary, Comedy"
+   },
+   "votes": 2460
   },
   {
    "title": "Where's Wanda?",
@@ -704,35 +758,6 @@
    "votes": 501
   },
   {
-   "title": "4 Blocks Zero",
-   "tvmaze_id": 89896,
-   "imdb_id": "tt39379365",
-   "platform": "HBO Max",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609928.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609928.jpg",
-   "genres": [
-    "Action",
-    "Crime",
-    "Thriller"
-   ],
-   "season": 1,
-   "latest": "2026-11-13",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "The prequel to the award-winning gangster drama ‘4 Blocks' tells the story of the Hamadys in 1990s Berlin: having fled Lebanon and only accepted as tolerated refugees in Germany, they struggle to gain a foothold in their new home. Who are they, how did the family become the most influential clan in the city, and how did Ali eventually become Toni?",
-   "url": "https://www.justwatch.com/ch/Suche?q=4%20Blocks%20Zero",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "HBO Max",
-    "imdb": "6.6",
-    "seasons": null,
-    "genre": "Crime, Drama"
-   },
-   "votes": 179
-  },
-  {
    "title": "Grand Designs: House of the Year",
    "tvmaze_id": 7677,
    "imdb_id": "tt5254568",
@@ -783,6 +808,33 @@
     "genre": "Documentary"
    },
    "votes": 173
+  },
+  {
+   "title": "He Said, She Said: Till Death Do Us Part",
+   "tvmaze_id": 95731,
+   "imdb_id": "tt49691783",
+   "platform": "Paramount+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630020.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630020.jpg",
+   "genres": [
+    "Crime"
+   ],
+   "season": 1,
+   "latest": "2026-11-17",
+   "next": null,
+   "premiere": true,
+   "isNew": true,
+   "summary": "A toxic custody battle spirals into tragedy and a viral war over truth, blame and perception.",
+   "url": "https://www.justwatch.com/ch/Suche?q=He%20Said%2C%20She%20Said%3A%20Till%20Death%20Do%20Us%20Part",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Paramount+",
+    "imdb": "6.1",
+    "seasons": null,
+    "genre": "Documentary"
+   },
+   "votes": 100
   },
   {
    "title": "Top Guns: Inside the RAF",
@@ -864,90 +916,29 @@
    "votes": 9
   },
   {
-   "title": "Nocturne",
-   "tvmaze_id": 66811,
-   "imdb_id": "tt26598805",
-   "platform": "Apple TV+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609134.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609134.jpg",
-   "genres": [
-    "Drama",
-    "Crime",
-    "Thriller"
-   ],
-   "season": 1,
-   "latest": "2026-11-20",
-   "next": "2026-11-25",
-   "premiere": false,
-   "isNew": true,
-   "summary": "Nocturne tells the story of Jonah Lynn, an ex-soldier turned homicide detective who, tired of working the tough streets of Philadelphia, moves to a small town in Western Pennsylvania for a quiet life. But, as the town and his family come under attack from the diabolically cunning serial killer Jurek Walter, Jonah must protect all that he holds dear. When the desperate search for Jurek's last missing victim forces Jonah to send his adopted daughter, FBI Agent Saga Bauer, up against Jurek, how far will Jonah go?",
-   "url": "https://www.justwatch.com/ch/Suche?q=Nocturne",
-   "ext": {
-    "kind": "series",
-    "tvm": 7.8,
-    "platform": "Apple TV+",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Crime, Drama, Thriller"
-   },
-   "votes": 0
-  },
-  {
-   "title": "12 12 12",
-   "tvmaze_id": 84261,
-   "imdb_id": "tt32375763",
-   "platform": "Apple TV+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628295.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628295.jpg",
-   "genres": [
-    "Drama",
-    "Action",
-    "Crime"
-   ],
-   "season": 1,
-   "latest": "2026-11-20",
-   "next": "2026-11-25",
-   "premiere": true,
-   "isNew": true,
-   "summary": "Each episode of 12 12 12 unfolds across three timelines of a heist: the 12 months of planning, the 12 hours of the heist and the 12 days following it. The series follows a disgraced FBI agent and an American career criminal as they play a zero-sum game of cat and mouse across Europe. At the center of it all is the daring, epic raid on a bank vault deep beneath the streets of Zurich.",
-   "url": "https://www.justwatch.com/ch/Suche?q=12%2012%2012",
-   "ext": {
-    "kind": "series",
-    "tvm": 4.7,
-    "platform": "Apple TV+",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Crime, Drama, Thriller"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Clangold",
-   "tvmaze_id": 95666,
-   "imdb_id": "tt45643443",
+   "title": "Oobah: Scams for a Better Tomorrow",
+   "tvmaze_id": 95410,
+   "imdb_id": "tt50688819",
    "platform": "HBO Max",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628949.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628949.jpg",
-   "genres": [
-    "Crime",
-    "History"
-   ],
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/650/1626658.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/650/1626658.jpg",
+   "genres": [],
    "season": 1,
-   "latest": "2026-11-13",
-   "next": null,
+   "latest": "2026-11-22",
+   "next": "2026-11-29",
    "premiere": true,
    "isNew": true,
-   "summary": "Clangold explores the spectacular 2017 theft of the 100-kilogram \"Big Maple Leaf\" gold coin from Berlin's Bode Museum. Through the perspectives of investigators, the four-part documentary follows the investigation into the Remmo clan, the subsequent trial, and the challenges faced by authorities in prosecuting organized crime in Germany.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Clangold",
+   "summary": "Through elaborate schemes and pranks, Oobah Butler gets one over on the world's biggest industries and most powerful institutions.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Oobah%3A%20Scams%20for%20a%20Better%20Tomorrow",
    "ext": {
     "kind": "series",
     "tvm": null,
     "platform": "HBO Max",
-    "imdb": null,
+    "imdb": "6.9",
     "seasons": null,
-    "genre": "Documentary, Crime"
+    "genre": "Comedy, Reality-TV"
    },
-   "votes": 0
+   "votes": 8
   },
   {
    "title": "Honey",
@@ -973,7 +964,7 @@
     "tvm": 5,
     "platform": "BBC",
     "imdb": null,
-    "seasons": null,
+    "seasons": "1",
     "genre": "Crime, Drama, Romance"
    },
    "votes": 0
@@ -1039,8 +1030,8 @@
     "Nature"
    ],
    "season": 1,
-   "latest": "2026-11-17",
-   "next": "2026-11-24",
+   "latest": "2026-11-24",
+   "next": "2026-12-01",
    "premiere": false,
    "isNew": true,
    "summary": "Extreme weather events examined from the inside out, including Hurricane Helene, the December Tennessee tornado outbreak and the vicious Black Summer of Australian wildfires, charting how and why they happen and the devastation left behind using first-hand survivor and witness accounts and adrenaline-fuelled footage captured on the ground.",
@@ -1049,30 +1040,6 @@
     "kind": "series",
     "tvm": null,
     "platform": "Disney+"
-   },
-   "votes": 0
-  },
-  {
-   "title": "He Said, She Said: Till Death Do Us Part",
-   "tvmaze_id": 95731,
-   "imdb_id": "tt49691783",
-   "platform": "Paramount+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630020.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630020.jpg",
-   "genres": [
-    "Crime"
-   ],
-   "season": 1,
-   "latest": "2026-11-17",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "A toxic custody battle spirals into tragedy and a viral war over truth, blame and perception.",
-   "url": "https://www.justwatch.com/ch/Suche?q=He%20Said%2C%20She%20Said%3A%20Till%20Death%20Do%20Us%20Part",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Paramount+"
    },
    "votes": 0
   },
@@ -1088,11 +1055,11 @@
     "Mystery"
    ],
    "season": 1,
-   "latest": "2026-11-17",
-   "next": "2026-11-24",
+   "latest": "2026-11-24",
+   "next": "2026-12-01",
    "premiere": false,
    "isNew": true,
-   "summary": "Phony is a coming-of-age mystery about a teenager who wakes up in the hospital after a car accident to discover his mom - his only parent and his best friend - appears to have been replaced by an impostor.",
+   "summary": "Phony is a coming-of-age mystery about a teenager who wakes up in the hospital after a car accident to discover his mom - his only parent and his best friend - appears to have been replaced by an imposter.",
    "url": "https://www.justwatch.com/ch/Suche?q=Phony",
    "ext": {
     "kind": "series",
@@ -1175,7 +1142,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Altruists",
    "ext": {
     "kind": "series",
-    "tvm": 2.9,
+    "tvm": 2.8,
     "platform": "Netflix",
     "imdb": null,
     "seasons": "1",
@@ -1204,7 +1171,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=War",
    "ext": {
     "kind": "series",
-    "tvm": 6.2,
+    "tvm": 6.1,
     "platform": "HBO Max",
     "imdb": null,
     "seasons": "1",
@@ -1232,11 +1199,69 @@
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Northumbria%20Mysteries",
    "ext": {
     "kind": "series",
-    "tvm": 6.3,
+    "tvm": 6.2,
     "platform": "BBC",
     "imdb": null,
     "seasons": "1",
     "genre": "Crime, Drama, Mystery"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Nocturne",
+   "tvmaze_id": 66811,
+   "imdb_id": "tt26598805",
+   "platform": "Apple TV+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/643/1609134.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/643/1609134.jpg",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Thriller"
+   ],
+   "season": 1,
+   "latest": "2026-11-20",
+   "next": "2026-11-25",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Nocturne tells the story of Jonah Lynn, an ex-soldier turned homicide detective who, tired of working the tough streets of Philadelphia, moves to a small town in Western Pennsylvania for a quiet life. But, as the town and his family come under attack from the diabolically cunning serial killer Jurek Walter, Jonah must protect all that he holds dear. When the desperate search for Jurek's last missing victim forces Jonah to send his adopted daughter, FBI Agent Saga Bauer, up against Jurek, how far will Jonah go?",
+   "url": "https://www.justwatch.com/ch/Suche?q=Nocturne",
+   "ext": {
+    "kind": "series",
+    "tvm": 7.3,
+    "platform": "Apple TV+",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Crime, Drama, Thriller"
+   },
+   "votes": 0
+  },
+  {
+   "title": "12 12 12",
+   "tvmaze_id": 84261,
+   "imdb_id": "tt32375763",
+   "platform": "Apple TV+",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628295.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628295.jpg",
+   "genres": [
+    "Drama",
+    "Action",
+    "Crime"
+   ],
+   "season": 1,
+   "latest": "2026-11-20",
+   "next": "2026-11-25",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Each episode of 12 12 12 unfolds across three timelines of a heist: the 12 months of planning, the 12 hours of the heist and the 12 days following it. The series follows a disgraced FBI agent and an American career criminal as they play a zero-sum game of cat and mouse across Europe. At the center of it all is the daring, epic raid on a bank vault deep beneath the streets of Zurich.",
+   "url": "https://www.justwatch.com/ch/Suche?q=12%2012%2012",
+   "ext": {
+    "kind": "series",
+    "tvm": 4.8,
+    "platform": "Apple TV+",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Crime, Drama, Thriller"
    },
    "votes": 0
   },
@@ -1307,7 +1332,10 @@
    "ext": {
     "kind": "series",
     "tvm": null,
-    "platform": "BBC"
+    "platform": "BBC",
+    "imdb": null,
+    "seasons": null,
+    "genre": "Drama, Horror, Mystery"
    },
    "votes": 0
   },
@@ -1332,6 +1360,31 @@
     "kind": "series",
     "tvm": null,
     "platform": "BBC"
+   },
+   "votes": 0
+  },
+  {
+   "title": "The Trials of Karen Read",
+   "tvmaze_id": 95923,
+   "imdb_id": "tt33004920",
+   "platform": "Netflix",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/653/1633055.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/653/1633055.jpg",
+   "genres": [
+    "Drama",
+    "Crime"
+   ],
+   "season": 1,
+   "latest": "2026-11-23",
+   "next": null,
+   "premiere": true,
+   "isNew": true,
+   "summary": "",
+   "url": "https://www.justwatch.com/ch/Suche?q=The%20Trials%20of%20Karen%20Read",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Netflix"
    },
    "votes": 0
   },
@@ -1372,8 +1425,8 @@
     "Travel"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-24",
+   "latest": "2026-11-24",
+   "next": null,
    "premiere": true,
    "isNew": true,
    "summary": "Prue Leith and Sandi Toksvig take in South Africa's vibrant culture and history, as they enjoy an unforgettable adventure around the country Prue was born and brought up in.",
