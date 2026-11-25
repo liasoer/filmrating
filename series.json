@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T14:48+00:00",
+ "updated": "2026-11-25T14:14+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -329,8 +329,8 @@
     "Romance"
    ],
    "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": "2026-12-02",
    "premiere": false,
    "isNew": false,
    "summary": "Rivals dives headfirst into the cut-throat world of independent television in 1986, where the shoulder pads are big and ambitions even bigger. In the fictional upper-class county of Rutshire, a long-standing rivalry between two powerful men is about to boil over: ex-Olympian, Member of Parliament, and notorious womaniser Rupert Campbell-Black, and his Rutshire neighbour Tony Baddingham, controller of the independent TV franchise Corinium Television. As tensions rise and rivalries deepen, there are spilled secrets, forged alliances, and snatched liaisons that draw wives, lovers, colleagues, fri",
@@ -357,8 +357,8 @@
     "Sports"
    ],
    "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": "2026-12-02",
    "premiere": false,
    "isNew": false,
    "summary": "Pryce Cahill is an over-the-hill, ex-pro golfer whose career was derailed prematurely 20 years ago. After the collapse of his marriage and getting fired from his job at an Indiana sporting goods store, Pryce hedges his bets, and future, entirely on a troubled 17-year-old golf phenom named Santi. Stick is a heartfelt, feel-good comedy about a found family and their relationships set within the world of golf as it's never been shown before.",
@@ -441,8 +441,8 @@
     "Legal"
    ],
    "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": "2026-12-02",
    "premiere": false,
    "isNew": false,
    "summary": "A team of female divorce attorneys leave a male-dominated firm to open their own powerhouse practice. Fierce, brilliant, and emotionally complicated, they navigate high-stakes breakups, scandalous secrets, and shifting allegiances—both in the courtroom and within their own ranks. In a world where money talks and love is a battleground, these women don't just play the game—they change it.",
@@ -470,8 +470,8 @@
     "Crime"
    ],
    "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": null,
    "premiere": false,
    "isNew": false,
    "summary": "The Lowdown follows the gritty exploits of citizen journalist Lee Raybon, a self-proclaimed Tulsa \"truthstorian\" whose obsession with the truth is always getting him into trouble.",
@@ -485,31 +485,6 @@
     "genre": "Biography, Comedy, Crime"
    },
    "votes": 10435
-  },
-  {
-   "title": "The Proud Family: Louder and Prouder",
-   "tvmaze_id": 46457,
-   "imdb_id": "tt11871764",
-   "platform": "Disney+",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/629/1573761.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/629/1573761.jpg",
-   "genres": [],
-   "season": 4,
-   "latest": "2026-11-14",
-   "next": null,
-   "premiere": false,
-   "isNew": false,
-   "summary": "A continuation of the acclaimed series, \"The Proud Family: Louder and Prouder\" follows the adventures and misadventures of newly 14-year-old Penny Proud and her Proud Family as they navigate modern life with hilarity and heart. The 2020s brings new career highs for mom Trudy, wilder dreams for dad Oscar and new challenges for Penny, including a socially woke neighbor who thinks she has a lot to teach her, bullying social media influencers who want to cancel her and her own teenage hormones. Penny's friends return, including Dijonay, LaCienega, Zoey and Michael. Penny's Suga Mama also returns, ",
-   "url": "https://www.justwatch.com/ch/Suche?q=The%20Proud%20Family%3A%20Louder%20and%20Prouder",
-   "ext": {
-    "kind": "series",
-    "tvm": 8,
-    "platform": "Disney+",
-    "imdb": "3.3",
-    "seasons": "4",
-    "genre": "Animation, Adventure, Comedy"
-   },
-   "votes": 5688
   },
   {
    "title": "Reasonable Doubt",
@@ -633,8 +608,8 @@
     "Comedy"
    ],
    "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": "2026-12-02",
    "premiere": false,
    "isNew": false,
    "summary": "Where's Wanda? tells the story of Dedo and Carlotta Klatt, who are desperate to locate their missing 17-year-old daughter Wanda, who disappeared months ago without a trace. When the police fail to find her, the family takes matters into their own hands, obtaining surveillance devices with the help of their tech-savvy son Ole. Disguising themselves as employees of an electrical company, they bug first their neighborhood and then half their suburb, finding out that behind closed doors none of their neighbors are who they pretend to be.",
@@ -941,60 +916,6 @@
    "votes": 8
   },
   {
-   "title": "Honey",
-   "tvmaze_id": 83585,
-   "imdb_id": "tt36329495",
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628584.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628584.jpg",
-   "genres": [
-    "Romance",
-    "Thriller",
-    "Espionage"
-   ],
-   "season": 1,
-   "latest": "2026-11-21",
-   "next": "2026-11-28",
-   "premiere": true,
-   "isNew": true,
-   "summary": "Honey goes deep undercover in 1980s East Berlin to explore a shadowy world of counter espionage and risky but irresistible relations. East Berlin, 1982. Martha, 24, is a deep cover agent for MI6. Surrounded by enemies and constantly under threat of her cover being blown, she tries her hardest to avoid detection by Friedrich Bauman, the new Head of Counter Espionage for the Stasi. Finding herself caught between Friedrich and the reckless, arrogant (and incredibly attractive…) CIA operative Aaron Neeland, she is blind-sided by desire in this Cold War menage-a-trois. The risk of being garrotted o",
-   "url": "https://www.justwatch.com/ch/Suche?q=Honey",
-   "ext": {
-    "kind": "series",
-    "tvm": 5,
-    "platform": "BBC",
-    "imdb": null,
-    "seasons": "1",
-    "genre": "Crime, Drama, Romance"
-   },
-   "votes": 0
-  },
-  {
-   "title": "Griff Across the Alps",
-   "tvmaze_id": 95143,
-   "imdb_id": null,
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1618817.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1618817.jpg",
-   "genres": [
-    "Adventure",
-    "Travel"
-   ],
-   "season": 1,
-   "latest": "2026-11-21",
-   "next": "2026-11-28",
-   "premiere": false,
-   "isNew": true,
-   "summary": "Griff Rhys Jones takes on one of the world's most celebrated mountain ranges by train as he explores from Slovenia to France, uncovering how the Alps have shaped Europe's history, wars, trade, and communities.From Hannibal's famous elephant crossing in 218 BC, to Napoleon's Alpine campaigns, pilgrim trails, medieval traders, and WWII Escape Routes, The Alps have played a pivotal role in some of humanities greatest historical moments and influenced the spread and survival of culture for centuries.Starting with the Alp's eastern end at the stunning Lake Bled and ending on the Mediterranean beach",
-   "url": "https://www.justwatch.com/ch/Suche?q=Griff%20Across%20the%20Alps",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Channel 4"
-   },
-   "votes": 0
-  },
-  {
    "title": "Cunk on Cinema",
    "tvmaze_id": 91301,
    "imdb_id": null,
@@ -1084,8 +1005,8 @@
     "Legal"
    ],
    "season": 2,
-   "latest": "2026-11-18",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": null,
    "premiere": false,
    "isNew": false,
    "summary": "Sacrifice follows Daniella Hernandez, a highly sought-after entertainment lawyer, as she navigates the nefarious lives of her rich and famous clients.",
@@ -1220,8 +1141,8 @@
     "Thriller"
    ],
    "season": 1,
-   "latest": "2026-11-20",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": "2026-12-04",
    "premiere": false,
    "isNew": true,
    "summary": "Nocturne tells the story of Jonah Lynn, an ex-soldier turned homicide detective who, tired of working the tough streets of Philadelphia, moves to a small town in Western Pennsylvania for a quiet life. But, as the town and his family come under attack from the diabolically cunning serial killer Jurek Walter, Jonah must protect all that he holds dear. When the desperate search for Jurek's last missing victim forces Jonah to send his adopted daughter, FBI Agent Saga Bauer, up against Jurek, how far will Jonah go?",
@@ -1249,8 +1170,8 @@
     "Crime"
    ],
    "season": 1,
-   "latest": "2026-11-20",
-   "next": "2026-11-25",
+   "latest": "2026-11-25",
+   "next": "2026-12-04",
    "premiere": false,
    "isNew": true,
    "summary": "Each episode of 12 12 12 unfolds across three timelines of a heist: the 12 months of planning, the 12 hours of the heist and the 12 days following it. The series follows a disgraced FBI agent and an American career criminal as they play a zero-sum game of cat and mouse across Europe. At the center of it all is the daring, epic raid on a bank vault deep beneath the streets of Zurich.",
@@ -1284,6 +1205,60 @@
     "kind": "series",
     "tvm": null,
     "platform": "Prime Video"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Honey",
+   "tvmaze_id": 83585,
+   "imdb_id": "tt36329495",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1628584.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1628584.jpg",
+   "genres": [
+    "Romance",
+    "Thriller",
+    "Espionage"
+   ],
+   "season": 1,
+   "latest": "2026-11-21",
+   "next": "2026-11-28",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Honey goes deep undercover in 1980s East Berlin to explore a shadowy world of counter espionage and risky but irresistible relations. East Berlin, 1982. Martha, 24, is a deep cover agent for MI6. Surrounded by enemies and constantly under threat of her cover being blown, she tries her hardest to avoid detection by Friedrich Bauman, the new Head of Counter Espionage for the Stasi. Finding herself caught between Friedrich and the reckless, arrogant (and incredibly attractive…) CIA operative Aaron Neeland, she is blind-sided by desire in this Cold War menage-a-trois. The risk of being garrotted o",
+   "url": "https://www.justwatch.com/ch/Suche?q=Honey",
+   "ext": {
+    "kind": "series",
+    "tvm": 5,
+    "platform": "BBC",
+    "imdb": null,
+    "seasons": "1",
+    "genre": "Crime, Drama, Romance"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Griff Across the Alps",
+   "tvmaze_id": 95143,
+   "imdb_id": null,
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/647/1618817.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/647/1618817.jpg",
+   "genres": [
+    "Adventure",
+    "Travel"
+   ],
+   "season": 1,
+   "latest": "2026-11-21",
+   "next": "2026-11-28",
+   "premiere": false,
+   "isNew": true,
+   "summary": "Griff Rhys Jones takes on one of the world's most celebrated mountain ranges by train as he explores from Slovenia to France, uncovering how the Alps have shaped Europe's history, wars, trade, and communities.From Hannibal's famous elephant crossing in 218 BC, to Napoleon's Alpine campaigns, pilgrim trails, medieval traders, and WWII Escape Routes, The Alps have played a pivotal role in some of humanities greatest historical moments and influenced the spread and survival of culture for centuries.Starting with the Alp's eastern end at the stunning Lake Bled and ending on the Mediterranean beach",
+   "url": "https://www.justwatch.com/ch/Suche?q=Griff%20Across%20the%20Alps",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
@@ -1414,31 +1389,6 @@
    "votes": 0
   },
   {
-   "title": "Prue and Sandi's South African Adventure",
-   "tvmaze_id": 95768,
-   "imdb_id": "tt51672930",
-   "platform": "Channel 4",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1631122.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1631122.jpg",
-   "genres": [
-    "Adventure",
-    "Travel"
-   ],
-   "season": 1,
-   "latest": "2026-11-24",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Prue Leith and Sandi Toksvig take in South Africa's vibrant culture and history, as they enjoy an unforgettable adventure around the country Prue was born and brought up in.",
-   "url": "https://www.justwatch.com/ch/Suche?q=Prue%20and%20Sandi%27s%20South%20African%20Adventure",
-   "ext": {
-    "kind": "series",
-    "tvm": null,
-    "platform": "Channel 4"
-   },
-   "votes": 0
-  },
-  {
    "title": "Blade Runner 2099",
    "tvmaze_id": 60458,
    "imdb_id": "tt18224594",
@@ -1450,19 +1400,44 @@
     "Thriller"
    ],
    "season": 1,
-   "latest": null,
-   "next": "2026-11-25",
+   "latest": "2026-11-24",
+   "next": null,
    "premiere": true,
    "isNew": true,
    "summary": "Fifty years after the events of Blade Runner 2049, Los Angeles has been reborn, just not by humanity. Cora, a fugitive in a final bid to stop running, takes on one last identity: a Blade Runner. Forced to partner with Olwen, a Replicant days from dying, she hunts down a runaway hiding a truth that could collapse their fragile city.",
    "url": "https://www.justwatch.com/ch/Suche?q=Blade%20Runner%202099",
    "ext": {
     "kind": "series",
-    "tvm": null,
+    "tvm": 10,
     "platform": "Prime Video",
     "imdb": null,
     "seasons": "1",
     "genre": "Action, Drama, Mystery"
+   },
+   "votes": 0
+  },
+  {
+   "title": "Prue and Sandi's South African Adventure",
+   "tvmaze_id": 95768,
+   "imdb_id": "tt51672930",
+   "platform": "Channel 4",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/653/1633190.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/653/1633190.jpg",
+   "genres": [
+    "Adventure",
+    "Travel"
+   ],
+   "season": 1,
+   "latest": "2026-11-24",
+   "next": "2026-12-01",
+   "premiere": true,
+   "isNew": true,
+   "summary": "Prue Leith and Sandi Toksvig take in South Africa's vibrant culture and history, as they enjoy an unforgettable adventure around the country Prue was born and brought up in.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Prue%20and%20Sandi%27s%20South%20African%20Adventure",
+   "ext": {
+    "kind": "series",
+    "tvm": null,
+    "platform": "Channel 4"
    },
    "votes": 0
   },
