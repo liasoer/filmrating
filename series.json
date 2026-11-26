@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T14:14+00:00",
+ "updated": "2026-11-26T13:50+00:00",
  "source": "TVmaze",
  "shows": [
   {
@@ -160,7 +160,7 @@
    "season": 6,
    "latest": "2026-11-22",
    "next": "2026-11-29",
-   "premiere": true,
+   "premiere": false,
    "isNew": false,
    "summary": "The Chosen is the first-ever-multi-season TV show about the life of Jesus. Created outside of the Hollywood system, The Chosen allows us to see Him through the eyes of those who knew him. No matter where you are at in your journey with Jesus Christ, this TV show is for you.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Chosen",
@@ -259,6 +259,35 @@
    "votes": 34450
   },
   {
+   "title": "Strike",
+   "tvmaze_id": 22390,
+   "imdb_id": "tt4276618",
+   "platform": "BBC",
+   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/652/1630392.jpg",
+   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/652/1630392.jpg",
+   "genres": [
+    "Drama",
+    "Crime",
+    "Mystery"
+   ],
+   "season": 7,
+   "latest": null,
+   "next": "2026-12-06",
+   "premiere": true,
+   "isNew": false,
+   "summary": "Strike is a drama series based on the novels by Robert Galbraith. Cormoran Strike, an injured war veteran turned PI, and secretary Robin Ellacott seek the truth surrounding a mysterious death.",
+   "url": "https://www.justwatch.com/ch/Suche?q=Strike",
+   "ext": {
+    "kind": "series",
+    "tvm": 8,
+    "platform": "BBC",
+    "imdb": "7.9",
+    "seasons": "6",
+    "genre": "Crime, Drama, Mystery"
+   },
+   "votes": 33908
+  },
+  {
    "title": "Shetland",
    "tvmaze_id": 1852,
    "imdb_id": "tt2396135",
@@ -271,8 +300,8 @@
     "Mystery"
    ],
    "season": 11,
-   "latest": "2026-11-19",
-   "next": "2026-11-26",
+   "latest": "2026-11-26",
+   "next": "2026-12-03",
    "premiere": false,
    "isNew": false,
    "summary": "The dark side of one of the most beautiful places on earth. Uncovering secrets and lies from the past.",
@@ -386,15 +415,15 @@
     "Mystery"
    ],
    "season": 2,
-   "latest": null,
-   "next": "2026-11-26",
+   "latest": "2026-11-26",
+   "next": null,
    "premiere": true,
    "isNew": false,
    "summary": "The Hunting Wives tells the story of Sophie O'Neil and her family's move from the East Coast to deep-red East Texas, where she succumbs to socialite Margo Banks‘ irresistible charms – and finds her life consumed by obsession, seduction, and murder.",
    "url": "https://www.justwatch.com/ch/Suche?q=The%20Hunting%20Wives",
    "ext": {
     "kind": "series",
-    "tvm": 5.9,
+    "tvm": 6.1,
     "platform": "Netflix",
     "imdb": "6.8",
     "seasons": "2",
@@ -916,31 +945,6 @@
    "votes": 8
   },
   {
-   "title": "Cunk on Cinema",
-   "tvmaze_id": 91301,
-   "imdb_id": null,
-   "platform": "BBC",
-   "poster": "https://static.tvmaze.com/uploads/images/medium_portrait/651/1627907.jpg",
-   "poster_l": "https://static.tvmaze.com/uploads/images/original_untouched/651/1627907.jpg",
-   "genres": [
-    "Comedy",
-    "History"
-   ],
-   "season": 1,
-   "latest": "2026-11-15",
-   "next": null,
-   "premiere": true,
-   "isNew": true,
-   "summary": "Philomena Cunk will be asking experts all of the hard-hitting questions about the history of cinema, from the invention of the camera, to the New Wave filmmakers of the 60s, right up to the entrance of CGI and what the future of AI holds. Cunk will attempt to demystify it all while sitting in lumpy seats with stale popcorn, asking herself where did cinema come from? And why? What does it want? And why can't it tell us?",
-   "url": "https://www.justwatch.com/ch/Suche?q=Cunk%20on%20Cinema",
-   "ext": {
-    "kind": "series",
-    "tvm": 6.8,
-    "platform": "BBC"
-   },
-   "votes": 0
-  },
-  {
    "title": "Megastorm",
    "tvmaze_id": 94997,
    "imdb_id": null,
@@ -1092,7 +1096,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=War",
    "ext": {
     "kind": "series",
-    "tvm": 6.1,
+    "tvm": 6.3,
     "platform": "HBO Max",
     "imdb": null,
     "seasons": "1",
@@ -1178,7 +1182,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=12%2012%2012",
    "ext": {
     "kind": "series",
-    "tvm": 4.8,
+    "tvm": 5.3,
     "platform": "Apple TV+",
     "imdb": null,
     "seasons": "1",
@@ -1408,7 +1412,7 @@
    "url": "https://www.justwatch.com/ch/Suche?q=Blade%20Runner%202099",
    "ext": {
     "kind": "series",
-    "tvm": 10,
+    "tvm": 7.4,
     "platform": "Prime Video",
     "imdb": null,
     "seasons": "1",
