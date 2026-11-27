@@ -180,6 +180,41 @@ input.u::-webkit-slider-thumb{background:#8e8e93}
 .strip .ava{position:absolute;right:-6px;bottom:-8px;width:30px;height:30px;font-size:13px}
 .lh{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:600}
 
+/* Serien */
+#series{--c:#64d2ff}
+.trk{display:grid;gap:12px;max-width:460px}
+.tban{display:flex;align-items:center;gap:14px;padding:14px 18px;--tc:#0a4a8a}
+.tban svg{width:24px;height:24px;flex:none}
+.tban b{display:block;font-size:16px}.tban small{color:rgba(255,255,255,.75);font-size:13.5px}
+.tcard{padding:0;--tc:#1f2a33}
+.tme{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px 12px 12px}
+.tme img{width:58px;height:87px;border-radius:9px;object-fit:cover}
+.tme small{display:block;color:var(--t2);font-size:13px}
+.tme b{display:block;font-family:var(--fd);font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.plus{font-size:15px;font-weight:600;padding:9px 14px;border-radius:999px;background:var(--tint);color:#fff;white-space:nowrap;transition:transform .2s var(--ease)}
+.plus.tap{transform:scale(.9)}
+.tfr{display:flex;align-items:center;gap:10px;padding:11px 14px;border-top:.5px solid var(--line);font-size:15px}
+.tfr .ava{width:28px;height:28px;font-size:12px;border:0}
+.tfr em{margin-left:auto;font-style:normal;color:var(--t2);font-size:13.5px;white-space:nowrap}
+.tfr em.same{color:var(--ok)}
+.watch{display:flex;gap:12px}
+.watch figure{margin:0;position:relative;flex:1;max-width:120px;opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease) var(--cd),transform .6s var(--ease) var(--cd)}
+.on .watch figure,.watch.on figure{opacity:1;transform:none}
+.watch img{width:100%;aspect-ratio:2/3;border-radius:12px;object-fit:cover;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.watch figcaption{font-size:13px;color:var(--t2);margin-top:6px;font-variant-numeric:tabular-nums}
+.watch figcaption b{display:block;color:var(--t1);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.watch .pill{position:absolute;left:6px;top:6px;font-size:11px;font-weight:800;padding:3px 7px;border-radius:999px;background:var(--tint);color:#fff}
+.watch .ava{position:absolute;right:-6px;bottom:44px;width:28px;height:28px;font-size:12px}
+.kinds{display:inline-flex;gap:4px;padding:4px;border-radius:999px;margin-top:22px}
+.kinds span{padding:7px 18px;border-radius:999px;font-size:15px;font-weight:600;color:var(--t2)}
+.kinds span.sel{background:rgba(255,255,255,.16);color:#fff}
+/* Konsens */
+.vs{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:440px}
+.vs .p{display:grid;justify-items:center;gap:8px;font-size:14px;font-weight:600}
+.vs .d{text-align:center}.vs .d b{display:block;font-family:var(--fd);font-size:28px;font-weight:800;color:var(--ok)}
+.vs .d small{font-size:11px;letter-spacing:.12em;color:var(--t3);font-weight:700}
+.lock{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:14px;color:var(--t2)}
+
 /* Alles zum Film */
 #details{--c:var(--mid)}
 .detail{display:grid;gap:44px;margin-top:56px}
@@ -251,7 +286,7 @@ footer a{color:var(--t2)}
   <div class="hero-in">
     <img class="icon rv" src="icon-512.png?v=4" alt="Screenreview">
     <h1 class="rv" style="--d:.08s"><span data-l="de">Filme bewerten.<br><span class="g">Mit Freunden.</span></span><span data-l="en">Rate movies.<br><span class="g">With friends.</span></span></h1>
-    <p class="lede rv" style="--d:.16s"><span data-l="de">Fünf Kategorien statt einer Zahl. Und du siehst sofort, wer deinen Geschmack teilt.</span><span data-l="en">Five categories instead of one number. And you see right away who shares your taste.</span></p>
+    <p class="lede rv" style="--d:.16s"><span data-l="de">Filme und Serien in fünf Kategorien statt einer Zahl. Und du siehst sofort, wer deinen Geschmack teilt.</span><span data-l="en">Movies and shows in five categories instead of one number. And you see right away who shares your taste.</span></p>
     <div class="cta rv" style="--d:.24s">
       <a class="btn" data-cta href="https://testflight.apple.com/join/AKTDkQ2c"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1zM5 19h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2z"/></svg><span data-l="de">Für iPhone laden</span><span data-l="en">Get it for iPhone</span></a>
       <div class="qr"><img src="img/qr-testflight.svg" alt=""><span><span data-l="de">Mit der iPhone-Kamera<br>scannen</span><span data-l="en">Scan with your<br>iPhone camera</span></span></div>
@@ -263,11 +298,46 @@ footer a{color:var(--t2)}
 <!-- Deine Filme -->
 <section class="sec" id="mine" style="--c:var(--tint)"><div class="wrap split">
   <div>
-    <span class="eyebrow rv" data-l="de">Deine Filme</span><span class="eyebrow rv" data-l="en">Your movies</span>
+    <span class="eyebrow rv" data-l="de">Deine Filme und Serien</span><span class="eyebrow rv" data-l="en">Your movies and shows</span>
     <h2 class="rv"><span data-l="de">Alles, was du gesehen hast.</span><span data-l="en">Everything you've watched.</span></h2>
-    <p class="lede rv"><span data-l="de">Jede Note auf einen Blick, mit IMDb, Rotten Tomatoes und Metacritic gleich daneben.</span><span data-l="en">Every score at a glance, with IMDb, Rotten Tomatoes and Metacritic right next to it.</span></p>
+    <p class="lede rv"><span data-l="de">Jede Note auf einen Blick, mit IMDb, Rotten Tomatoes und Metacritic gleich daneben. Und du entscheidest, ob Filme oder Serien zuerst kommen.</span><span data-l="en">Every score at a glance, with IMDb, Rotten Tomatoes and Metacritic right next to it. And you decide whether movies or shows come first.</span></p>
+    <div class="kinds glass rv" aria-hidden="true"><span class="sel" data-l="de">Filme</span><span class="sel" data-l="en">Movies</span><span data-l="de">Serien</span><span data-l="en">Shows</span></div>
   </div>
   <div class="rows" id="mineRows"></div>
+</div></section>
+
+<!-- Serien -->
+<section class="sec" id="series"><div class="wrap">
+  <span class="eyebrow rv" data-l="de">Serien</span><span class="eyebrow rv" data-l="en">Shows</span>
+  <h2 class="rv"><span data-l="de">Immer wissen, wo du stehst.</span><span data-l="en">Always know where you are.</span></h2>
+  <p class="lede rv"><span data-l="de">Zähle Folgen mit, sieh, wann die nächste Staffel kommt, und wie weit deine Freunde sind.</span><span data-l="en">Track episodes, see when the next season arrives and how far your friends are.</span></p>
+
+  <div class="split">
+    <div class="rv"><span class="n" data-l="de">Folgen mitzählen</span><span class="n" data-l="en">Episode tracking</span><h3><span data-l="de">Ein Tipp pro Folge</span><span data-l="en">One tap per episode</span></h3><p><span data-l="de">Dein Stand steht auf der Serie, «+1 Folge» zählt weiter, am Ende einer Staffel geht es von selbst zur nächsten. Bist du durch, fragt Screenreview nach deiner Bewertung.</span><span data-l="en">Your progress sits on the show, "+1 episode" counts on, and at the end of a season it moves to the next one by itself. When you're done, Screenreview asks for your rating.</span></p></div>
+    <div class="anim trk" id="trk">
+      <div class="glass tban"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><div><b data-l="de">Staffel 3 startet am 12. März</b><b data-l="en">Season 3 starts on March 12</b><small data-l="de">in 14 Tagen</small><small data-l="en">in 14 days</small></div></div>
+      <div class="glass tcard">
+        <div class="tme"><img src="img/posters/severance.webp" alt="Severance" loading="lazy"><div><small data-l="de">Dein Stand</small><small data-l="en">Your progress</small><b id="ep">S2 E5</b><small id="epOf">5 / 10</small></div><span class="plus" id="plus" data-l="de">+ 1 Folge</span><span class="plus" id="plus2" data-l="en">+ 1 episode</span></div>
+        <div class="tfr"><span class="ava">J</span><span><span data-l="de">jonas ist bei</span><span data-l="en">jonas is at</span> <b>S2 E7</b></span><em id="gap"></em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split flip">
+    <div class="rv"><span class="n" data-l="de">Neue Staffeln</span><span class="n" data-l="en">New seasons</span><h3><span data-l="de">Nichts mehr verpassen</span><span data-l="en">Never miss a season</span></h3><p><span data-l="de">Screenreview merkt, wenn eine neue Staffel angekündigt ist oder startet, und sagt es dir. Unter «Am Schauen» siehst du, was du gerade schaust und was als Nächstes kommt. Fertig geschaute Serien verschwinden, bis es Nachschub gibt.</span><span data-l="en">Screenreview notices when a new season is announced or starts, and tells you. Under "Watching" you see what you're on and what's next. Finished shows disappear until there's more.</span></p></div>
+    <div class="anim watch">
+      <figure style="--cd:0s"><img src="img/posters/severance.webp" alt="Severance" loading="lazy"><span class="ava">J</span><figcaption><b>Severance</b>S2 E5</figcaption></figure>
+      <figure style="--cd:.12s"><img src="img/posters/the-bear.webp" alt="The Bear" loading="lazy"><span class="pill" data-l="de">S5 neu</span><span class="pill" data-l="en">S5 new</span><figcaption><b>The Bear</b>S4 E10</figcaption></figure>
+      <figure style="--cd:.24s"><img src="img/posters/slow-horses.webp" alt="Slow Horses" loading="lazy"><span class="pill" data-l="de">E4 am 3.12.</span><span class="pill" data-l="en">E4 on 12/3</span><figcaption><b>Slow Horses</b>S5 E3</figcaption></figure>
+      <figure style="--cd:.36s"><img src="img/posters/shogun.webp" alt="Shōgun" loading="lazy"><figcaption><b>Shōgun</b>S1 E7</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="rv"><span class="n" data-l="de">Schaut ihr beide</span><span class="n" data-l="en">Watching together</span><h3><span data-l="de">Wer ist schon weiter?</span><span data-l="en">Who's further ahead?</span></h3><p><span data-l="de">Schaut ihr dieselbe Serie, siehst du, wo deine Freunde stehen. Ohne Spoiler, nur Staffel und Folge. Wer das nicht teilen will, schaltet es aus.</span><span data-l="en">If you're watching the same show, you see where your friends are. No spoilers, just season and episode. Anyone who doesn't want to share turns it off.</span></p></div>
+    <div class="anim"><div class="scores" style="margin-top:0"><span class="chip glass" style="--cd:.1s"><span class="ava">J</span>jonas <span style="color:var(--t2)">S2 E7</span></span><span class="chip glass" style="--cd:.25s"><span class="ava">A</span>alex <span style="color:var(--t2)">S2 E5</span></span><span class="chip glass" style="--cd:.4s"><span class="ava">B</span>ben <span style="color:var(--t2)">S1 E9</span></span></div></div>
+  </div>
+  <p class="note" data-l="de">Namen und Stände sind Beispiele.</p><p class="note" data-l="en">Names and progress are examples.</p>
 </div></section>
 
 <!-- Bewerten -->
@@ -293,7 +363,7 @@ footer a{color:var(--t2)}
 <section class="sec" id="friends"><div class="wrap">
   <span class="eyebrow rv" data-l="de">Mit Freunden</span><span class="eyebrow rv" data-l="en">With friends</span>
   <h2 class="rv"><span data-l="de">Zusammen ist es besser.</span><span data-l="en">Better together.</span></h2>
-  <p class="lede rv"><span data-l="de">Screenreview ist für Freundesgruppen gemacht. Für Filmabende, Diskussionen danach und die Frage, wem man trauen kann.</span><span data-l="en">Screenreview is made for groups of friends. For movie nights, the discussion afterwards and knowing whose taste to trust.</span></p>
+  <p class="lede rv"><span data-l="de">Screenreview ist für Freundesgruppen gemacht. Für Filmabende, Diskussionen danach und die Frage, wem man trauen kann. Empfehlungen, Anfragen und gemeinsame Bewertungen landen in deiner Mitteilungszentrale.</span><span data-l="en">Screenreview is made for groups of friends. For movie nights, the discussion afterwards and knowing whose taste to trust. Recommendations, requests and shared ratings land in your notification center.</span></p>
 
   <div class="split">
     <div class="rv"><span class="n" data-l="de">Verbinden</span><span class="n" data-l="en">Connect</span><h3><span data-l="de">In Sekunden befreundet</span><span data-l="en">Friends in seconds</span></h3><p><span data-l="de">Teile deinen Freundeslink oder lass deinen QR-Code scannen. Die Anfrage ist sofort unterwegs, Kontakte lädst du direkt ein.</span><span data-l="en">Share your friend link or let someone scan your QR code. The request is on its way instantly, and you can invite contacts directly.</span></p></div>
@@ -304,6 +374,17 @@ footer a{color:var(--t2)}
     <div class="rv"><span class="n" data-l="de">Bewertungen</span><span class="n" data-l="en">Ratings</span><h3><span data-l="de">Sehen, wer was bewertet hat</span><span data-l="en">See who rated what</span></h3><p><span data-l="de">Bei jedem Titel siehst du die Noten deiner Freunde und wie weit ihr auseinanderliegt.</span><span data-l="en">For every title you see your friends' scores and how far apart you are.</span></p></div>
     <div class="anim" id="who"><div class="rows" id="whoRow"></div>
       <div class="scores"><span class="chip glass" style="--cd:.5s"><span class="ava">A</span>alex <span style="color:var(--ok)">9.5</span></span><span class="chip glass" style="--cd:.65s"><span class="ava">J</span>jonas <span style="color:var(--ok)">8.5</span></span><span class="chip glass" style="--cd:.8s"><span class="ava">B</span>ben <span style="color:var(--good)">7.5</span></span></div></div>
+  </div>
+
+  <div class="split">
+    <div class="rv"><span class="n" data-l="de">Unser Konsens</span><span class="n" data-l="en">Our consensus</span><h3><span data-l="de">Erst bewerten, dann vergleichen</span><span data-l="en">Rate first, then compare</span></h3><p><span data-l="de">Habt ihr zusammen geschaut, vergleicht ihr eure Noten Kategorie für Kategorie. Die Note deines Freundes bleibt verdeckt, bis du selbst bewertet hast. So beeinflusst sich niemand.</span><span data-l="en">If you watched together, compare your scores category by category. Your friend's score stays hidden until you've rated it yourself, so nobody gets influenced.</span></p></div>
+    <div class="anim"><div class="vs"><div class="p"><div class="ring" data-v="9.8" style="--rc:#30d158"><svg viewBox="0 0 64 64"><circle class="tr" cx="32" cy="32" r="27"/><circle class="pr" cx="32" cy="32" r="27" pathLength="100"/></svg><b>0</b></div><span data-l="de">Du</span><span data-l="en">You</span></div><div class="d"><b>+0.4</b><small data-l="de">UNTERSCHIED</small><small data-l="en">DIFFERENCE</small></div><div class="p"><div class="ring" data-v="9.4" style="--rc:#30d158"><svg viewBox="0 0 64 64"><circle class="tr" cx="32" cy="32" r="27"/><circle class="pr" cx="32" cy="32" r="27" pathLength="100"/></svg><b>0</b></div>jonas</div></div>
+      <div class="lock"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-l="de">Verdeckt, bis du bewertet hast</span><span data-l="en">Hidden until you've rated it</span></div></div>
+  </div>
+
+  <div class="split flip">
+    <div class="rv"><span class="n" data-l="de">Freundesprofile</span><span class="n" data-l="en">Friend profiles</span><h3><span data-l="de">Wie tickt dein Freund?</span><span data-l="en">What's your friend into?</span></h3><p><span data-l="de">Seine Top 5, was er zuletzt bewertet hat, eure Gemeinsamkeiten und wo er strenger ist als du. Empfehlen oder eine gemeinsame Liste starten geht direkt von dort.</span><span data-l="en">Their top 5, what they rated recently, what you have in common and where they're stricter than you. Recommend something or start a shared list right from there.</span></p></div>
+    <div class="anim"><div class="strip"><figure style="--r:-2deg;--cd:0s"><img src="img/posters/interstellar.webp" alt="Interstellar" loading="lazy"><span class="ava">1</span></figure><figure style="--r:1deg;--cd:.12s"><img src="img/posters/dune-part-two.webp" alt="Dune: Part Two" loading="lazy"><span class="ava">2</span></figure><figure style="--r:-1deg;--cd:.24s"><img src="img/posters/inception.webp" alt="Inception" loading="lazy"><span class="ava">3</span></figure><figure style="--r:2deg;--cd:.36s"><img src="img/posters/severance.webp" alt="Severance" loading="lazy"><span class="ava">4</span></figure></div></div>
   </div>
 
   <div class="split">
@@ -471,9 +552,25 @@ footer a{color:var(--t2)}
     const el = e.target; el.classList.add('in', 'on'); io.unobserve(el);
     $$('.ring[data-v]', el).forEach(r => fillRing(r, 250));
     if (el.id === 'match') countTo($('#pct'), 87, 0, ' %');
+    if (el.id === 'trk') trackDemo();
     if (el.id === 'stats') $$('[data-count]', el).forEach(b => countTo(b, +b.dataset.count, +(b.dataset.dec || 0), b.dataset.suffix || '', b.dataset.prefix || ''));
   }), { rootMargin: '0px 0px -10% 0px' });
   $$('.rv, .anim, #stats').forEach(el => io.observe(el));
+
+  // Serien: «+1 Folge» tippt sich zweimal selbst, bis du gleich weit bist wie jonas
+  function trackDemo() {
+    let e = 5;
+    const ep = $('#ep'), of = $('#epOf'), gap = $('#gap'), btns = [$('#plus'), $('#plus2')];
+    const show = () => {
+      ep.textContent = `S2 E${e}`; of.textContent = `${e} / 10`;
+      const d = 7 - e;
+      gap.className = d ? '' : 'same';
+      gap.textContent = d ? (L === 'de' ? `${d} ${d === 1 ? 'Folge' : 'Folgen'} voraus` : `${d} ${d === 1 ? 'episode' : 'episodes'} ahead`) : (L === 'de' ? 'gleich weit' : 'same spot');
+    };
+    show();
+    if (calm) return;
+    [1400, 2600].forEach(t => setTimeout(() => { btns.forEach(b => b.classList.add('tap')); setTimeout(() => btns.forEach(b => b.classList.remove('tap')), 180); e += 1; show(); }, t));
+  }
 
   // Posterwand
   const posters = ['oppenheimer', 'inception', 'dune-part-two', 'interstellar', 'project-hail-mary', 'the-lord-of-the-rings-the-fellowship-of-the-ring', 'primal-fear', 'aftersun', 'the-grand-budapest-hotel', 'parasite', 'the-dark-knight', 'whiplash', 'la-la-land', 'blade-runner-2049', 'pulp-fiction', 'spider-man-across-the-spider-verse', 'everything-everywhere-all-at-once', 'past-lives', 'arrival', 'mad-max-fury-road', 'poor-things', 'top-gun-maverick', 'spirited-away', 'the-godfather', 'wake-up-dead-man-a-knives-out-mystery', 'sinners'];
